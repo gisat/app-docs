@@ -1,0 +1,58 @@
+{
+  "name": "app-docs",
+  "version": "0.1.0",
+  "private": false,
+  "homepage": "https://gisat.github.io/app-docs/",
+  "dependencies": {
+    "@gisatcz/ptr-atoms": "1.0.0-alpha",
+    "@gisatcz/ptr-charts": "1.0.6-alpha",
+    "@gisatcz/ptr-components": "1.0.0-alpha",
+    "@gisatcz/ptr-core": "1.0.0-alpha",
+    "@gisatcz/ptr-maps": "1.1.0-alpha",
+    "@gisatcz/ptr-state": "1.0.7-alpha",
+    "@gisatcz/ptr-utils": "1.1.0",
+    "classnames": "2.2.6",
+    "history": "4.10.1",
+    "isomorphic-fetch": "2.2.1",
+    "lodash": "4.17.15",
+    "moment": "2.24.0",
+    "node-sass": "4.13.1",
+    "oaf-react-router": "2.1.1",
+    "prop-types": "15.7.2",
+    "query-string": "6.11.1",
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "react-helmet": "5.2.1",
+    "react-scripts": "3.4.0"
+  },
+  "devDependencies": {
+    "no-cors-proxy": "1.0.4",
+    "react-app-rewired": "2.1.5",
+    "gh-pages": "2.2.0"
+  },
+  "scripts": {
+    "proxy": "no-cors-proxy -p 3031 -t http://project.gisat.cz",
+    "proxy2": "no-cors-proxy -p 3032 -t http://45.56.96.184:8965",
+    "start": "react-app-rewired start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b gh-pages -d build",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
