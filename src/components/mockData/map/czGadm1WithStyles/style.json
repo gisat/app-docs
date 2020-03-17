@@ -10,6 +10,9 @@
 	  "rules":[
 		{
 		  "styles":[
+			  {
+				  "fillOpacity": 0.5
+			  },
 			{
 			  "attributeKey":"e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
 			  "attributeClasses":[

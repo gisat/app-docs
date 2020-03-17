@@ -14,18 +14,7 @@ const backgroundLayer = {
 class LeafletDoc extends React.PureComponent {
 	render() {
 		return (
-			<Page title="Leaflet">
-				<div style={{height: 500, marginBottom: 10}}>
-					<ReactLeafletMap
-						mapKey='react-leaflet-map'
-						view={{
-							center: {lat: 50, lon: 12},
-							boxRange: 10000
-						}}
-						backgroundLayer={backgroundLayer}
-					/>
-				</div>
-
+			<Page title="Leaflet (DEPRECATED)">
 				<div style={{height: 500}}>
 					<LeafletMap
 						mapKey='typical-example'

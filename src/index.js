@@ -7,6 +7,8 @@ import Helmet from "react-helmet";
 import createStore, {createHistory} from './state/Store';
 import {Action} from '@gisatcz/ptr-state';
 
+import config from "./config";
+
 // base styles need to be imported before all components
 // import '@gisatcz/ptr-core/src/styles/reset.css';
 // import '@gisatcz/ptr-core/src/styles/base.scss';
@@ -37,7 +39,7 @@ import HoverHandlerDoc from "./components/pages/components/commonFeatures/HoverH
 import LayersDoc from "./components/pages/architecture/systemDataTypes/LayersDoc";
 import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewDoc";
 import StyleDoc from "./components/pages/architecture/commonDataTypes/StyleDoc";
-import config from "./config";
+import ReactLeafletMapDoc from "./components/pages/components/maps/ReactLeafletMapDoc";
 
 
 const history = createHistory({basename: process.env.PUBLIC_URL});
@@ -81,7 +83,8 @@ ReactDOM.render(
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
                         <Directory label="Presentational" path="presentational">
                             <Page label="WebWorldWind" path="webWorldWind"/>
-                            <Page label="Leaflet" path="leaflet" component={LeafletDoc}/>
+                            <Page label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}/>
+                            <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
                         <Directory label="Controls" path="controls">
                             <Page label="GoToPlace" path="goToPlace"/>
