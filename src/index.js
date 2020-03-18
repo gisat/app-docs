@@ -40,13 +40,17 @@ import LayersDoc from "./components/pages/architecture/systemDataTypes/LayersDoc
 import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewDoc";
 import StyleDoc from "./components/pages/architecture/commonDataTypes/StyleDoc";
 import ReactLeafletMapDoc from "./components/pages/components/maps/ReactLeafletMapDoc";
+import WorldWindMapDoc from "./components/pages/components/maps/WorldWindMapDoc";
 
 
-const history = createHistory({basename: process.env.PUBLIC_URL});
+const path = process.env.PUBLIC_URL;
+
+const history = createHistory({basename: path});
 const Store = createStore(history);
 
 Store.dispatch(Action.app.updateLocalConfiguration(config));
 Store.dispatch(Action.app.setKey('docs'));
+// Store.dispatch(Action.app.setBaseUrl(baseUrl)); //TODO get base URL
 
 
 // Load Current User
@@ -82,7 +86,7 @@ ReactDOM.render(
                         <Page label="Map" path="map" component={MapDoc}/>
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
                         <Directory label="Presentational" path="presentational">
-                            <Page label="WebWorldWind" path="webWorldWind"/>
+                            <Page label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}/>
                             <Page label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}/>
                             <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
