@@ -118,17 +118,17 @@ class ReactLeafletMapDoc extends React.PureComponent {
 				</div>
 				<SyntaxHighlighter language="jsx">{`<ReactLeafletMap
 	mapKey='react-leaflet-map'
-	view={
+	view={{
 		center: {lat: 50, lon: 15},
 		boxRange: 2000000
-	}
-	backgroundLayer={
+	}}
+	backgroundLayer={{
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
 			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
-	}
+	}}
 />
 `}
 				</SyntaxHighlighter>
@@ -144,17 +144,17 @@ class ReactLeafletMapDoc extends React.PureComponent {
 				</div>
 				<SyntaxHighlighter language="jsx">{`<ReactLeafletMap
 	mapKey='react-leaflet-map-2'
-	view={
+	view={{
 		center: {lat: 50, lon: 15},
 		boxRange: 2000000
-	}
-	backgroundLayer={
+	}}
+	backgroundLayer={{
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
 			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
-	}
+	}}
 	layers={[
 		{
 			key: 'cuzk_ortofoto',

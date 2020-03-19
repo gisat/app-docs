@@ -6,6 +6,15 @@
  * Versions/variants managed in github.com/gisat/docker/
  */
 
-export default {
+let gst206 = {
+    geoServerUrl: 'http://192.168.2.206/geoserver/',
+    serverUrl: 'http://192.168.2.206/backend/',
+    apiGeoserverWFSHost: '192.168.2.206',
+    apiGeoserverWMSHost: '192.168.2.206',
+    apiBackendHost: '192.168.2.206',
 
+    devHostnames: ['127.0.0.1'],
+    requestPageSize: 100
 };
+
+export default gst206;

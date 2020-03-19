@@ -9,12 +9,8 @@ import {Action} from '@gisatcz/ptr-state';
 
 import config from "./config";
 
-// base styles need to be imported before all components
-// import '@gisatcz/ptr-core/src/styles/reset.css';
-// import '@gisatcz/ptr-core/src/styles/base.scss';
-
-import '@gisatcz/ptr-core/src/styles/reset.css';
-import '@gisatcz/ptr-core/src/styles/base.scss';
+import '@gisatcz/ptr-core/lib/styles/reset.css';
+import '@gisatcz/ptr-core/lib/styles/base.scss';
 import './styles/index.scss';
 
 
@@ -55,6 +51,9 @@ Store.dispatch(Action.app.setKey('docs'));
 
 // Load Current User
 Store.dispatch(Action.users.apiLoadCurrentUser());
+
+// Set local configuration
+Store.dispatch(Action.app.updateLocalConfiguration(config));
 
 ReactDOM.render(
     <Provider store={Store}>
