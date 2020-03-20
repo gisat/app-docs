@@ -80,17 +80,38 @@ class MapSetDoc extends React.PureComponent {
 				}
 			}
 		});
-		props.setSetSync('docs-MapSet', {center: true, boxRange: true, heading: true});
-		props.addMap({key: 'docs-MapSet-Map1', data: {
+
+		props.addSet({
+			key: 'docs-MapSet-worldWind',
+			data: {
+				backgroundLayer: osm,
+				layers: layers,
 				view: {
-					heading: 10
+					center: {
+						lat: 50,
+						lon: 15
+					},
+					boxRange: 1000000
 				}
-			}},);
+			}
+		});
+		
+		
+		props.setSetSync('docs-MapSet', {center: true, boxRange: true, heading: true});
+		props.setSetSync('docs-MapSet-worldWind', {center: true, boxRange: true, heading: true});
+		props.addMap({key: 'docs-MapSet-Map1'});
 		props.addMap({key: 'docs-MapSet-Map2'});
 		props.addMap({key: 'docs-MapSet-Map3'});
 		props.addMapToSet('docs-MapSet', 'docs-MapSet-Map1');
 		props.addMapToSet('docs-MapSet', 'docs-MapSet-Map2');
 		props.addMapToSet('docs-MapSet', 'docs-MapSet-Map3');
+
+		props.addMap({key: 'docs-MapSetWorldWind-Map1'});
+		props.addMap({key: 'docs-MapSetWorldWind-Map2'});
+		props.addMap({key: 'docs-MapSetWorldWind-Map3'});
+		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map1');
+		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map2');
+		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map3');
 	}
 
 	render() {
@@ -172,7 +193,7 @@ class MapSetDoc extends React.PureComponent {
 				<h3>Connected to store</h3>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
-						stateMapSetKey="docs-MapSet"
+						stateMapSetKey="docs-MapSet-worldWind"
 						mapComponent={WorldWindMap}
 						connectedMapComponent={ConnectedMap}
 					>
