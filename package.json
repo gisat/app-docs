@@ -1,6 +1,6 @@
 {
   "name": "app-docs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": false,
   "homepage": "https://gisat.github.io/app-docs/",
   "dependencies": {
@@ -8,9 +8,9 @@
     "@gisatcz/ptr-charts": "1.2.0",
     "@gisatcz/ptr-components": "1.2.0",
     "@gisatcz/ptr-core": "1.2.0",
-    "@gisatcz/ptr-maps": "1.2.3",
-    "@gisatcz/ptr-state": "1.2.1",
-    "@gisatcz/ptr-utils": "1.2.0",
+    "@gisatcz/ptr-maps": "1.2.4",
+    "@gisatcz/ptr-state": "1.2.3",
+    "@gisatcz/ptr-utils": "1.2.1",
     "classnames": "2.2.6",
     "history": "4.10.1",
     "isomorphic-fetch": "2.2.1",

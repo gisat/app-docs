@@ -222,7 +222,8 @@ class MapSetDoc extends React.PureComponent {
 						}}
 						sync={{
 							boxRange: true,
-							center: true
+							center: true,
+							heading: true
 						}}
 						backgroundLayer={wikimedia}
 					>

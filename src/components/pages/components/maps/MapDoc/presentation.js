@@ -201,10 +201,10 @@ class MapDoc extends React.PureComponent {
 				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{marginTop: 10, height: 400}}>
 					<Map
-						mapComponent={ReactLeafletMap}
+						mapComponent={WorldWindMap}
 						stateMapKey="docs-connected-map"
 					>
-						<MapControls levelsBased zoomOnly/>
+						<MapControls/>
 					</Map>
 				</div>
 				<SyntaxHighlighter language="jsx">{`import {ReactLeafletMap, MapControls, Map} from "@gisatcz/ptr-maps";
