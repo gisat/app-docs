@@ -1,26 +1,27 @@
 {
   "files": {
-    "main.css": "/app-docs/static/css/main.2127a503.chunk.css",
-    "main.js": "/app-docs/static/js/main.720af4e5.chunk.js",
-    "main.js.map": "/app-docs/static/js/main.720af4e5.chunk.js.map",
+    "main.css": "/app-docs/static/css/main.cf91bd94.chunk.css",
+    "main.js": "/app-docs/static/js/main.54e70d2c.chunk.js",
+    "main.js.map": "/app-docs/static/js/main.54e70d2c.chunk.js.map",
     "runtime-main.js": "/app-docs/static/js/runtime-main.acd66041.js",
     "runtime-main.js.map": "/app-docs/static/js/runtime-main.acd66041.js.map",
-    "static/css/2.fcbb9a24.chunk.css": "/app-docs/static/css/2.fcbb9a24.chunk.css",
-    "static/js/2.c61be2f6.chunk.js": "/app-docs/static/js/2.c61be2f6.chunk.js",
-    "static/js/2.c61be2f6.chunk.js.map": "/app-docs/static/js/2.c61be2f6.chunk.js.map",
+    "static/css/2.7bddcf66.chunk.css": "/app-docs/static/css/2.7bddcf66.chunk.css",
+    "static/js/2.bab92f61.chunk.js": "/app-docs/static/js/2.bab92f61.chunk.js",
+    "static/js/2.bab92f61.chunk.js.map": "/app-docs/static/js/2.bab92f61.chunk.js.map",
     "index.html": "/app-docs/index.html",
-    "precache-manifest.0bd941626a2c7d363eeafaef33ff037a.js": "/app-docs/precache-manifest.0bd941626a2c7d363eeafaef33ff037a.js",
+    "precache-manifest.612d015fa1f9088fc87107581a547e7f.js": "/app-docs/precache-manifest.612d015fa1f9088fc87107581a547e7f.js",
     "service-worker.js": "/app-docs/service-worker.js",
-    "static/css/2.fcbb9a24.chunk.css.map": "/app-docs/static/css/2.fcbb9a24.chunk.css.map",
-    "static/css/main.2127a503.chunk.css.map": "/app-docs/static/css/main.2127a503.chunk.css.map",
-    "static/js/2.c61be2f6.chunk.js.LICENSE.txt": "/app-docs/static/js/2.c61be2f6.chunk.js.LICENSE.txt",
+    "static/css/2.7bddcf66.chunk.css.map": "/app-docs/static/css/2.7bddcf66.chunk.css.map",
+    "static/css/main.cf91bd94.chunk.css.map": "/app-docs/static/css/main.cf91bd94.chunk.css.map",
+    "static/js/2.bab92f61.chunk.js.LICENSE.txt": "/app-docs/static/js/2.bab92f61.chunk.js.LICENSE.txt",
+    "static/media/index.scss": "/app-docs/static/media/b706a53c.78fc25c0.svg",
     "static/media/panther-icon.png": "/app-docs/static/media/panther-icon.ddf98d25.png"
   },
   "entrypoints": [
     "static/js/runtime-main.acd66041.js",
-    "static/css/2.fcbb9a24.chunk.css",
-    "static/js/2.c61be2f6.chunk.js",
-    "static/css/main.2127a503.chunk.css",
-    "static/js/main.720af4e5.chunk.js"
+    "static/css/2.7bddcf66.chunk.css",
+    "static/js/2.bab92f61.chunk.js",
+    "static/css/main.cf91bd94.chunk.css",
+    "static/js/main.54e70d2c.chunk.js"
   ]
 }
