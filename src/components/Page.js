@@ -41,6 +41,13 @@ export const DocsToDo = ({children}) => (
 	</div>
 );
 
+export const ImplementationToDo = ({children}) => (
+	<div className="ptr-docs-todo implementation">
+		<div className="ptr-docs-todo-title">Missing implementation</div>
+		<div className="ptr-docs-todo-body">{children}</div>
+	</div>
+);
+
 export const DocsToDoInline = ({children}) => (
 	<span className="ptr-docs-todo-inline">
 		<i>Missing documentation:</i>

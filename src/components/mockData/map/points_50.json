@@ -1,0 +1,1002 @@
+[
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "9b85ded4-973c-4125-a0eb-d179966d4ef4",
+      "name": "mollit dolor",
+      "attr1": 41,
+      "attr2": "high",
+      "attr3": -2,
+      "attr4": 623.437,
+      "attr5": 3.6,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.6505,
+        49.6105
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "6d2e5232-4380-49a5-93fb-9b3a8f23854e",
+      "name": "ipsum aute",
+      "attr1": 28,
+      "attr2": "low",
+      "attr3": 10,
+      "attr4": 2.6847,
+      "attr5": 6.7,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.0118,
+        49.7386
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "0202ddc9-d12a-4e6d-8971-c0727616ee25",
+      "name": "dolore ad",
+      "attr1": 72,
+      "attr2": "low",
+      "attr3": 4,
+      "attr4": 815.362,
+      "attr5": 0.6,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.4403,
+        49.5264
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "98a90e93-e2b1-46c1-8e23-27ed9d1ff31f",
+      "name": "consectetur nisi",
+      "attr1": 89,
+      "attr2": "very high",
+      "attr3": 4,
+      "attr4": 718.2754,
+      "attr5": 2.3,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.6078,
+        49.7555
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "ad3b9bd6-5872-4adf-ab6c-d85e671311db",
+      "name": "aute in",
+      "attr1": 100,
+      "attr2": "high",
+      "attr3": -7,
+      "attr4": 517.7813,
+      "attr5": 1.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.9473,
+        49.6685
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "5822a8b3-ad19-45ea-9e15-bd77f4a76c10",
+      "name": "reprehenderit sint",
+      "attr1": 86,
+      "attr2": "average",
+      "attr3": 10,
+      "attr4": 131.6799,
+      "attr5": -1.4,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.9579,
+        49.9586
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "4671ff26-8eef-46fc-9dee-557154b3c152",
+      "name": "est ad",
+      "attr1": 30,
+      "attr2": "average",
+      "attr3": -2,
+      "attr4": 102.0304,
+      "attr5": 4.1,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.2517,
+        49.6162
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "bd27dbab-8c29-432e-96c1-589c25a7b21b",
+      "name": "sit consectetur",
+      "attr1": 5,
+      "attr2": "average",
+      "attr3": -5,
+      "attr4": 78.4524,
+      "attr5": 7,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.9827,
+        49.7473
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "3cd49f7f-e356-481b-a5e3-f51a741a01fe",
+      "name": "irure ut",
+      "attr1": 70,
+      "attr2": "high",
+      "attr3": -6,
+      "attr4": 389.0326,
+      "attr5": 8.8,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.4714,
+        49.6473
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "6d29c721-de73-41c6-87b0-7331ddbef300",
+      "name": "laborum officia",
+      "attr1": 71,
+      "attr2": "very low",
+      "attr3": 2,
+      "attr4": 35.0757,
+      "attr5": -9.5,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.3312,
+        49.6881
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "78a46f6e-39df-4a52-8a74-31bdaba45075",
+      "name": "magna do",
+      "attr1": 62,
+      "attr2": "low",
+      "attr3": -3,
+      "attr4": 681.5678,
+      "attr5": -5.7,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.4434,
+        49.6807
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "151b2be8-026d-4f9c-bc44-9e76846a59e7",
+      "name": "dolor commodo",
+      "attr1": 8,
+      "attr2": "average",
+      "attr3": 0,
+      "attr4": 14.4771,
+      "attr5": 1.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.2892,
+        49.6757
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "216c834a-f562-4ba6-a3f6-9a9c322fcad2",
+      "name": "exercitation consequat",
+      "attr1": 72,
+      "attr2": "high",
+      "attr3": 5,
+      "attr4": 679.8199,
+      "attr5": -5.4,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.6468,
+        49.5384
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "7f510af7-a8bf-4771-83c9-7d5e5a91a844",
+      "name": "excepteur ex",
+      "attr1": 15,
+      "attr2": "low",
+      "attr3": 5,
+      "attr4": 960.4886,
+      "attr5": -3.4,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.1255,
+        49.9051
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "1c645426-1810-4c38-91b3-6dd0518a3988",
+      "name": "laboris aute",
+      "attr1": 14,
+      "attr2": "high",
+      "attr3": 9,
+      "attr4": 476.2544,
+      "attr5": 0.2,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.3134,
+        49.8613
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "4d4cce7f-7798-473d-af9e-8e0e65e5ebf9",
+      "name": "cillum ea",
+      "attr1": 2,
+      "attr2": "very high",
+      "attr3": -5,
+      "attr4": 530.0602,
+      "attr5": -8.1,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.9197,
+        49.6643
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "ab533e5a-cb78-4bf1-aa90-334e7a9431bb",
+      "name": "voluptate nostrud",
+      "attr1": 89,
+      "attr2": "low",
+      "attr3": 7,
+      "attr4": 686.1734,
+      "attr5": 8,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7795,
+        49.7433
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "27820ce3-3aee-4128-98c5-8d14c2a935b1",
+      "name": "ad velit",
+      "attr1": 53,
+      "attr2": "average",
+      "attr3": -10,
+      "attr4": 477.0757,
+      "attr5": -10.1,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.1528,
+        49.5465
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "c6c6d252-22d5-4c8a-af6b-18a14aceedae",
+      "name": "nostrud occaecat",
+      "attr1": 22,
+      "attr2": "very low",
+      "attr3": -3,
+      "attr4": 804.3966,
+      "attr5": -5.7,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.0544,
+        49.696
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "25d4456e-d162-4c94-a2b1-73faeca1b099",
+      "name": "id adipisicing",
+      "attr1": 24,
+      "attr2": "very high",
+      "attr3": -3,
+      "attr4": 751.6496,
+      "attr5": 0.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.1801,
+        49.788
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "2bed10b7-3739-4054-80c5-4202997d3221",
+      "name": "nostrud consequat",
+      "attr1": 88,
+      "attr2": "very low",
+      "attr3": 4,
+      "attr4": 931.9294,
+      "attr5": -3,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7321,
+        49.7451
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "9c6a81ee-aab9-48e0-bbe2-13553526590b",
+      "name": "anim cupidatat",
+      "attr1": 59,
+      "attr2": "low",
+      "attr3": -2,
+      "attr4": 631.9271,
+      "attr5": 5.9,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.623,
+        49.8445
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "6a11be34-8afd-410f-aa6c-986e53e0942c",
+      "name": "dolore incididunt",
+      "attr1": 26,
+      "attr2": "high",
+      "attr3": 2,
+      "attr4": 597.5724,
+      "attr5": -0.6,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.1541,
+        49.5604
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "802a7ef1-5848-43ff-85e9-11803e56b3f1",
+      "name": "ullamco esse",
+      "attr1": 12,
+      "attr2": "very high",
+      "attr3": 2,
+      "attr4": 333.6532,
+      "attr5": -7.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7632,
+        49.9916
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "02a1de54-025e-4d3c-824d-db2ca533e095",
+      "name": "ullamco in",
+      "attr1": 76,
+      "attr2": "very low",
+      "attr3": -10,
+      "attr4": 789.9903,
+      "attr5": -4,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7449,
+        49.5974
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "c6abef07-685f-400c-a5ce-b67592c00a37",
+      "name": "consectetur deserunt",
+      "attr1": 6,
+      "attr2": "average",
+      "attr3": 10,
+      "attr4": 694.9875,
+      "attr5": 9.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.3519,
+        49.8694
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "652311c2-0ea7-40fa-b636-28224d1900e2",
+      "name": "culpa non",
+      "attr1": 44,
+      "attr2": "very high",
+      "attr3": -9,
+      "attr4": 454.7613,
+      "attr5": 5.5,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.1627,
+        49.9086
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "30c27350-140a-41a1-9ba1-c9d6833158b5",
+      "name": "excepteur anim",
+      "attr1": 65,
+      "attr2": "very high",
+      "attr3": 9,
+      "attr4": 421.1738,
+      "attr5": 0.6,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.0711,
+        49.7256
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "37d468bb-a710-4510-86be-d13ce370ce20",
+      "name": "velit culpa",
+      "attr1": 62,
+      "attr2": "average",
+      "attr3": 9,
+      "attr4": 779.2769,
+      "attr5": -7.4,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.9841,
+        49.8009
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "3065bc8c-728c-400e-87de-83bbc99891af",
+      "name": "qui sint",
+      "attr1": 22,
+      "attr2": "average",
+      "attr3": -10,
+      "attr4": 676.8768,
+      "attr5": 6.7,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.4575,
+        49.7626
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "342335b0-ad5d-49ef-8467-b7774c4d10b8",
+      "name": "est sint",
+      "attr1": 0,
+      "attr2": "very high",
+      "attr3": -10,
+      "attr4": 391.5481,
+      "attr5": 10.2,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.8458,
+        49.8365
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "c8f2ddb4-759b-4880-a25d-6019e92e62cd",
+      "name": "reprehenderit voluptate",
+      "attr1": 34,
+      "attr2": "very low",
+      "attr3": -8,
+      "attr4": 155.885,
+      "attr5": 0.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7632,
+        49.8561
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "0d5b35c2-6255-4010-9499-ca8d97944c49",
+      "name": "do duis",
+      "attr1": 9,
+      "attr2": "very high",
+      "attr3": -6,
+      "attr4": 568.6536,
+      "attr5": -8.7,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.4637,
+        49.9522
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "fa5e4379-30ee-45ec-a3da-927bcbe9195f",
+      "name": "quis occaecat",
+      "attr1": 72,
+      "attr2": "very low",
+      "attr3": -7,
+      "attr4": 603.1484,
+      "attr5": 9.7,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.749,
+        49.8993
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "6e88ad8b-532d-43d7-af28-19e0400c87d0",
+      "name": "laboris labore",
+      "attr1": 36,
+      "attr2": "average",
+      "attr3": -1,
+      "attr4": 795.9225,
+      "attr5": -4.2,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.298,
+        49.54
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "c99026cb-89ba-436b-bcc5-5b3b72eace86",
+      "name": "enim elit",
+      "attr1": 16,
+      "attr2": "average",
+      "attr3": 1,
+      "attr4": 759.53,
+      "attr5": 7.5,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.4633,
+        49.5473
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "3ff747f3-3324-4479-a672-2de543da673a",
+      "name": "adipisicing velit",
+      "attr1": 66,
+      "attr2": "average",
+      "attr3": 2,
+      "attr4": 164.685,
+      "attr5": 5.9,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.036,
+        49.5487
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "187dcb12-ea8c-4249-9247-56e7df2d0c06",
+      "name": "consequat et",
+      "attr1": 57,
+      "attr2": "average",
+      "attr3": 5,
+      "attr4": 361.6101,
+      "attr5": -2.6,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.0818,
+        49.8548
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "6158eca8-90c1-4b2f-830f-607cb5c500ca",
+      "name": "laborum dolore",
+      "attr1": 5,
+      "attr2": "very low",
+      "attr3": 2,
+      "attr4": 384.9563,
+      "attr5": -2.2,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.5908,
+        49.9383
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "700e57ac-5a76-4713-b802-845d25453208",
+      "name": "elit sunt",
+      "attr1": 38,
+      "attr2": "high",
+      "attr3": -1,
+      "attr4": 692.6637,
+      "attr5": 6.4,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.056,
+        49.6192
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "a543fa10-972e-4bac-b2e3-0d8be0d9bda5",
+      "name": "veniam qui",
+      "attr1": 63,
+      "attr2": "average",
+      "attr3": 4,
+      "attr4": 665.3801,
+      "attr5": 3.5,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.2718,
+        49.9204
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "1f96b0f9-2f9d-4095-bf43-a32f71ed8bd2",
+      "name": "fugiat laborum",
+      "attr1": 4,
+      "attr2": "high",
+      "attr3": -10,
+      "attr4": 444.5064,
+      "attr5": 10.2,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.27,
+        49.5871
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "2a167b82-add5-4ee8-8fef-0d81fa149172",
+      "name": "ut laborum",
+      "attr1": 19,
+      "attr2": "average",
+      "attr3": -2,
+      "attr4": 374.8151,
+      "attr5": -7.3,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.2693,
+        49.7761
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "4b33ef38-c48a-4af1-b2dd-9e1a6c5bd3ce",
+      "name": "cillum qui",
+      "attr1": 53,
+      "attr2": "very low",
+      "attr3": 4,
+      "attr4": 564.3031,
+      "attr5": -1,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.0321,
+        49.6651
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "6d1804cf-bf5c-4cc5-81fd-0e8f5d604241",
+      "name": "mollit amet",
+      "attr1": 20,
+      "attr2": "low",
+      "attr3": -7,
+      "attr4": 882.6397,
+      "attr5": 9.1,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.8038,
+        49.6897
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "277362ff-13c4-47e0-b657-ad867322e0d0",
+      "name": "tempor consectetur",
+      "attr1": 45,
+      "attr2": "high",
+      "attr3": -9,
+      "attr4": 322.0039,
+      "attr5": 5.9,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.2133,
+        49.6735
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "dad11114-1753-45bc-9d66-325622967576",
+      "name": "irure sunt",
+      "attr1": 88,
+      "attr2": "very low",
+      "attr3": -4,
+      "attr4": 444.7864,
+      "attr5": -8.9,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7323,
+        49.9908
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "cb7428bf-9fdd-4b39-987a-12142c230b3e",
+      "name": "duis culpa",
+      "attr1": 35,
+      "attr2": "low",
+      "attr3": 4,
+      "attr4": 191.769,
+      "attr5": -1.2,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.7566,
+        49.5731
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "a67e20c9-d071-44be-bea0-800d9214348b",
+      "name": "et duis",
+      "attr1": 57,
+      "attr2": "very high",
+      "attr3": 1,
+      "attr4": 147.2366,
+      "attr5": -5.3,
+      "attr6": true
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        14.9617,
+        49.9486
+      ]
+    }
+  },
+  {
+    "type": "Feature",
+    "properties": {
+      "gid": "2211e6c7-65f0-4202-96e3-c93cd0bba789",
+      "name": "sint non",
+      "attr1": 16,
+      "attr2": "very low",
+      "attr3": 0,
+      "attr4": 349.7401,
+      "attr5": 3.1,
+      "attr6": false
+    },
+    "geometry": {
+      "type": "Point",
+      "coordinates": [
+        15.2532,
+        49.9276
+      ]
+    }
+  }
+]

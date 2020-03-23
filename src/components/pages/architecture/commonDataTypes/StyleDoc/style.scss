@@ -1,0 +1,10 @@
+@import '~@gisatcz/ptr-core/lib/styles/_variables';
+
+.ptr-docs-styles-maps-container {
+  margin: m(1/3) 0 m(1);
+}
+
+.ptr-docs-styles-maps-container > div{
+  margin-bottom: m(1/3);
+  height: 25rem;
+}

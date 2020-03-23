@@ -67,7 +67,15 @@ ReactDOM.render(
                     <Page label="Applications" path="applications"/>
                     <Directory label="Store data types" path="storeDataTypes">
                         <Directory label="Common data types" path="common">
-                            <Page label="Style" path="style" component={StyleDoc}/>
+                            <Page label="Style" path="style" component={StyleDoc}>
+                                <Anchor label="Without style" path="without-style"/>
+                                <Anchor label="Basic" path="basic"/>
+                                <Anchor label="Attribute values" path="values"/>
+                                <Anchor label="Intervals" path="intervals"/>
+                                <Anchor label="Scales" path="scales"/>
+                                <Anchor label="Transformations" path="transformations"/>
+                                <Anchor label="Symbols" path="symbols"/>
+                            </Page>
                         </Directory>
                         <Page label="Specific data types" path="specific"/>
                     </Directory>
