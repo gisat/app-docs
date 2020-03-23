@@ -11,10 +11,7 @@ import points_50 from "../../../../mockData/map/points_50";
 import './style.scss';
 
 import largePointData from "../../../../mockData/map/largePointData/geometries";
-import style from "../../../../mockData/map/czGadm1WithStyles/style";
-import style2 from "../../../../mockData/map/czGadm1WithStyles/style2";
 import largeDataStyle from "../../../../mockData/map/largePointData/style";
-import {HoverHandler} from "@gisatcz/ptr-core";
 
 const czView = {
 	center: {lat: 49.8, lon: 15},
@@ -204,6 +201,33 @@ const pointLayers_scales_volume = [{
 	}
 }];
 
+
+// Polygons & diagrams
+const diagramStyle = {rules: [{
+	styles: [{
+		fill: "#cccccc",
+		diagramShape: "circle",
+		diagramFillOpacity: 0.85
+	}, {
+		attributeKey: "22a43eb3-6552-476f-97a5-b47490519642",
+		attributeScale: {
+			diagramSize: {
+				"inputInterval": [-10,10],
+				"outputInterval": [2000, 30000]
+			}
+		}
+	}]
+}]};
+
+const polygonLayers_diagrams = [{
+	key: "polygons",
+	type: "diagram",
+	options: {
+		features: cz_gadm.features,
+		style: diagramStyle
+	}
+}];
+
 // World wind large data layer
 const largeDataLayers = [{
 	key: "large-data-layers",
@@ -250,8 +274,7 @@ class Index extends React.PureComponent {
 	render() {
 		return (
 			<Page title="Styles">
-				<p>Styles are for styling. </p>{/* todo */}
-
+				<DocsToDo>Add description</DocsToDo>
 
 				<SyntaxHighlighter language="javascript">
 					{
@@ -420,11 +443,22 @@ class Index extends React.PureComponent {
 				<p>This time symbol volume is specified with scale.</p>
 				<MapContainer layers={pointLayers_scales_volume} view={pragueView} hideWorldWind/>
 
+
+
 				<h3 id="transformations">Transformations</h3>
 				<ImplementationToDo>Currently implemented for arrows in WorldWind LargeDataLayer only. <Link to="#large-data-layer">See usage.</Link></ImplementationToDo>
 
+
+
 				<h3 id="symbols">Symbols</h3>
 				<ImplementationToDo>Currently implemented for arrows in WorldWind LargeDataLayer only. <Link to="#large-data-layer">See usage.</Link></ImplementationToDo>
+
+
+				<h3 id="diagrams">Diagrams</h3>
+				<ImplementationToDo>Implementation in progress</ImplementationToDo>
+				<MapContainer layers={polygonLayers_diagrams} view={czView} hideWorldWind/>
+
+
 
 				<h3 id="large-data-layer">World Wind LargeDataLayer example</h3>
 
