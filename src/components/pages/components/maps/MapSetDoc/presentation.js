@@ -1,36 +1,26 @@
 import React from 'react';
 import Page, {DocsToDo, DocsToDoInline, InlineCodeHighlighter, LightDarkBlock, SyntaxHighlighter} from "../../../../Page";
 
-import {ReactLeafletMap, LeafletMap, WorldWindMap, MapControls as MapControlsPresentation, MapSet, MapSetPresentationMap, PresentationMap} from "@gisatcz/ptr-maps";
+import {ReactLeafletMap, WorldWindMap, MapControls, MapSet, MapSetPresentationMap, PresentationMap} from "@gisatcz/ptr-maps";
 
-import {connects} from '@gisatcz/ptr-state';
+import {connects, Link} from '@gisatcz/ptr-state';
+import ComponentPropsTable, {Prop, Section} from "../../../../ComponentPropsTable/ComponentPropsTable";
 
 const ConnectedMap = connects.Map(PresentationMap);
 const ConnectedMapSet = connects.MapSet(MapSet);
 
-const backgroundLayer = {
+/* ===== DATA SOURCES ===== */
+
+/* ===== Connected to store ===== */
+
+const connectedBackgroundLayer = {
 	layerTemplateKey: 'd54f7782-976b-4fb2-9066-5f1ca4f3b703',
 	metadataModifiers: {
 		applicationKey: 'docs'
 	}
 };
 
-const osm = {
-	key: 'background-osm',
-	type: 'wmts',
-	options: {
-		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-	}
-};
-
-const wikimedia = {
-	type: 'worldwind',
-	options: {
-		layer: 'wikimedia'
-	}
-};
-
-const layers = [{
+const connectedLayers = [{
 	key: 'layer-cz',
 	layerTemplateKey: 'b5afa739-7828-4ed0-8844-306a5470e7e0'
 },{
@@ -41,7 +31,7 @@ const layers = [{
 	}
 }];
 
-const layers2 = [{
+const connectedLayers2 = [{
 	key: 'layer-geoinv',
 	layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
 	metadataModifiers: {
@@ -49,7 +39,17 @@ const layers2 = [{
 	}
 }];
 
-const layersForLeaflet = [{
+/* ===== Unconnected to store ===== */
+
+const unconnectedBackgroundOsm = {
+	key: 'background-osm',
+	type: 'wmts',
+	options: {
+		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+	}
+};
+
+const unconnectedLayersCuzk = [{
 	key: 'cuzk_ortofoto',
 	name: 'CUZK Ortofoto',
 	type: 'wms',
@@ -69,14 +69,14 @@ class MapSetDoc extends React.PureComponent {
 		props.addSet({
 			key: 'docs-MapSet',
 			data: {
-				backgroundLayer: osm,
-				layers: layers,
+				backgroundLayer: connectedBackgroundLayer,
+				layers: connectedLayers,
 				view: {
 					center: {
 						lat: 50,
 						lon: 15
 					},
-					boxRange: 1000000
+					boxRange: 5000000
 				}
 			}
 		});
@@ -84,14 +84,14 @@ class MapSetDoc extends React.PureComponent {
 		props.addSet({
 			key: 'docs-MapSet-worldWind',
 			data: {
-				backgroundLayer: osm,
-				layers: layers,
+				backgroundLayer: connectedBackgroundLayer,
+				layers: connectedLayers,
 				view: {
 					center: {
 						lat: 50,
 						lon: 15
 					},
-					boxRange: 1000000
+					boxRange: 2000000
 				}
 			}
 		});
@@ -117,34 +117,69 @@ class MapSetDoc extends React.PureComponent {
 	render() {
 		return (
 			<Page title="Map set">
-				<h2>Leaflet</h2>
+				<h2>Props</h2>
+				<ComponentPropsTable>
+					<Prop name="mapComponent" type="WorldWindMap|ReactLeafletMap" required>Presentational component to render the final map</Prop>
+					<Section name="Controlled">
+						<Prop name="connectedMapComponent" type="ConnectedMap" required><DocsToDoInline/></Prop>
+						<Prop name="stateMapSetKey" required type="string">Valid key of a map set in map store</Prop>
+					</Section>
+					<Section name="Uncontrolled">
+						<Prop name="activeMapKey" type="string" required>Valid key of active map</Prop>
+						<Prop name="view" required type="map view"><Link to="/architecture/systemDataTypes/mapView">Presentation view</Link></Prop>
+						<Prop name="layers" type="layers"><Link to="/architecture/systemDataTypes/layers">Layers</Link></Prop>
+						<Prop name="backgroundLayer" type="background layer">
+							<Link to="/architecture/systemDataTypes/layers#backgroundLayer">Background layer</Link>
+						</Prop>
+						<Prop name="sync" type="object">Which view parameters will be synchronized in all maps</Prop>
+					</Section>
+				</ComponentPropsTable>
+
+				<h2>ReactLeaflet</h2>
 				<h3>Connected to store</h3>
+				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
 						stateMapSetKey="docs-MapSet"
 						mapComponent={ReactLeafletMap}
 						connectedMapComponent={ConnectedMap}
 					>
-						<MapControlsPresentation levelsBased zoomOnly/>
+						<MapControls levelsBased zoomOnly/>
 					</ConnectedMapSet>
 				</div>
+				<SyntaxHighlighter language="jsx">{`import {connects} from '@gisatcz/ptr-state';
+import {ReactLeafletMap, MapControls, MapSet, PresentationMap} from "@gisatcz/ptr-maps";
+
+const ConnectedMap = connects.Map(PresentationMap);
+const ConnectedMapSet = connects.MapSet(MapSet);
+
+// Map set with key 'docs-MapSet' should already be in the store
+<ConnectedMapSet
+	stateMapSetKey="docs-MapSet"
+	mapComponent={ReactLeafletMap}
+	connectedMapComponent={ConnectedMap}
+>
+	<MapControls levelsBased zoomOnly/>
+</ConnectedMapSet>
+`}
+				</SyntaxHighlighter>
 
 				<h3>Uncontrolled</h3>
+				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
+						setKey="uncontrolled-leaflet"
 						activeMapKey='map-2'
 						mapComponent={ReactLeafletMap}
 						view={{
-							boxRange: 1000000,
-							heading: 10,
-							tilt: 10
+							boxRange: 3000000
 						}}
 						sync={{
 							boxRange: true,
 							center: true
 						}}
-						backgroundLayer={osm}
-						layers={layersForLeaflet}
+						backgroundLayer={unconnectedBackgroundOsm}
+						layers={connectedLayers2}
 					>
 						<MapSetPresentationMap
 							mapKey='map-1'
@@ -155,9 +190,47 @@ class MapSetDoc extends React.PureComponent {
 						<MapSetPresentationMap
 							mapKey='map-3'
 						/>
-						<MapControlsPresentation levelsBased zoomOnly/>
+						<MapControls levelsBased zoomOnly/>
 					</ConnectedMapSet>
 				</div>
+				<SyntaxHighlighter language="jsx">{`import {connects} from '@gisatcz/ptr-state';
+import {ReactLeafletMap, MapControls, MapSet, MapSetPresentationMap} from "@gisatcz/ptr-maps";
+
+const ConnectedMapSet = connects.MapSet(MapSet);
+
+<ConnectedMapSet
+	setKey="uncontrolled-leaflet"
+	activeMapKey='map-2'
+	mapComponent={ReactLeafletMap}
+	view={{
+		boxRange: 3000000
+	}}
+	sync={{
+		boxRange: true,
+		center: true
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+	layers={[{
+		key: 'layer-geoinv',
+		layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
+		metadataModifiers: {
+			applicationKey: 'docs'
+		}
+	}]}
+>
+	<MapSetPresentationMap mapKey='map-1'/>
+	<MapSetPresentationMap mapKey='map-2'/>
+	<MapSetPresentationMap mapKey='map-3'/>
+	<MapControls levelsBased zoomOnly/>
+</ConnectedMapSet>
+`}
+				</SyntaxHighlighter>
 
 				<h3>Uncontrolled unconnected</h3>
 				<div style={{height: 500}}>
@@ -165,16 +238,13 @@ class MapSetDoc extends React.PureComponent {
 						activeMapKey='map-2'
 						mapComponent={ReactLeafletMap}
 						view={{
-							boxRange: 100000,
-							heading: 10,
-							tilt: 10
+							boxRange: 5000000
 						}}
 						sync={{
 							boxRange: true,
 							center: true
 						}}
-						backgroundLayer={osm}
-						layers={layersForLeaflet}
+						backgroundLayer={unconnectedBackgroundOsm}
 					>
 						<MapSetPresentationMap
 							mapKey='map-1'
@@ -185,23 +255,53 @@ class MapSetDoc extends React.PureComponent {
 						<MapSetPresentationMap
 							mapKey='map-3'
 						/>
-						<MapControlsPresentation levelsBased zoomOnly/>
+						<MapControls levelsBased zoomOnly/>
 					</MapSet>
 				</div>
+				<SyntaxHighlighter language="jsx">{`import {connects} from '@gisatcz/ptr-state';
+import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
+
+<ConnectedMapSet
+	activeMapKey='map-2'
+	mapComponent={ReactLeafletMap}
+	view={{
+		boxRange: 5000000
+	}}
+	sync={{
+		boxRange: true,
+		center: true
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+>
+	<MapSetPresentationMap mapKey='map-1'/>
+	<MapSetPresentationMap mapKey='map-2'/>
+	<MapSetPresentationMap mapKey='map-3'/>
+	<MapControls levelsBased zoomOnly/>
+</ConnectedMapSet>
+`}
+				</SyntaxHighlighter>
 
 				<h2>World Wind</h2>
 				<h3>Connected to store</h3>
+				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
 						stateMapSetKey="docs-MapSet-worldWind"
 						mapComponent={WorldWindMap}
 						connectedMapComponent={ConnectedMap}
 					>
-						<MapControlsPresentation/>
+						<MapControls/>
 					</ConnectedMapSet>
 				</div>
 
 				<h3>Uncontrolled</h3>
+				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
 						activeMapKey='map-2'
@@ -215,8 +315,8 @@ class MapSetDoc extends React.PureComponent {
 							boxRange: true,
 							center: true
 						}}
-						backgroundLayer={wikimedia}
-						layers={layers2}
+						backgroundLayer={unconnectedBackgroundOsm}
+						layers={connectedLayers2}
 					>
 						<MapSetPresentationMap
 							mapKey='map-1'
@@ -227,7 +327,7 @@ class MapSetDoc extends React.PureComponent {
 						<MapSetPresentationMap
 							mapKey='map-3'
 						/>
-						<MapControlsPresentation/>
+						<MapControls/>
 					</ConnectedMapSet>
 				</div>
 
@@ -246,7 +346,8 @@ class MapSetDoc extends React.PureComponent {
 							center: true,
 							heading: true
 						}}
-						backgroundLayer={wikimedia}
+						backgroundLayer={unconnectedBackgroundOsm}
+						layers={unconnectedLayersCuzk}
 					>
 						<MapSetPresentationMap
 							mapKey='map-1'
@@ -257,7 +358,7 @@ class MapSetDoc extends React.PureComponent {
 						<MapSetPresentationMap
 							mapKey='map-3'
 						/>
-						<MapControlsPresentation/>
+						<MapControls/>
 					</MapSet>
 				</div>
 			</Page>

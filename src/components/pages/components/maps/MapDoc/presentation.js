@@ -211,10 +211,10 @@ class MapDoc extends React.PureComponent {
 
 // Map with key 'docs-connected-map' should already be in the store
 <Map
-	mapComponent={ReactLeafletMap}
+	mapComponent={WorldWindMap}
 	stateMapKey="docs-connected-map"
 >
-	<MapControls levelsBased zoomOnly/>
+	<MapControls/>
 </Map>
 `}
 				</SyntaxHighlighter>
