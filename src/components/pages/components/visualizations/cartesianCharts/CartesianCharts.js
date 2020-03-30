@@ -17,6 +17,7 @@ import ComponentPropsTable from "../../../../ComponentPropsTable/ComponentPropsT
 import serie_5_time_iso_2hours from "../../../../mockData/timeBased/serie_5_time_iso_2hours";
 import serie_50_time_iso_years from "../../../../mockData/timeBased/serie_50_time_iso_years";
 import series_logarithmic_10 from "../../../../mockData/logarithmic/series_logarithmic_10";
+import log_50 from "../../../../mockData/logarithmic/points_50";
 
 class CartesianCharts extends React.PureComponent {
 	constructor(props) {
@@ -860,6 +861,67 @@ class CartesianCharts extends React.PureComponent {
 					</HoverHandler>
 				</LightDarkBlock>
 
+				<p>Moreover, it is possible to set <InlineCodeHighlighter>logarithmic</InlineCodeHighlighter> scale, both for axis x and y.</p>
+
+
+				<SyntaxHighlighter language="jsx">
+					{`<HoverHandler>
+\t<ScatterChart
+\t\tkey="logarithmic"
+\t\tdata={log_50}
+
+\t\txSourcePath="data.exp2"
+\t\tySourcePath="data.exp1"
+\t\tnameSourcePath="data.name"
+\t\tkeySourcePath="key"
+
+\t\tinnerPaddingLeft={0}
+
+\t\txScaleType="logarithmic"
+\t\txOptions={{
+\t\t\tmin: 1,
+\t\t\tmax: 10000
+\t\t}}
+
+\t\tyValuesSize={4}
+\t\tyScaleType="logarithmic"
+\t\tyOptions={{
+\t\t\tmin: 1,
+\t\t\tmax: 10000
+\t\t}}
+\t/>
+</HoverHandler>`}
+				</SyntaxHighlighter>
+				<LightDarkBlock forceRows>
+					<HoverHandler>
+						<ResizableContainer>
+							<ScatterChart
+								key="logarithmic"
+								data={log_50}
+
+								xSourcePath="data.exp2"
+								ySourcePath="data.exp1"
+								nameSourcePath="data.name"
+								keySourcePath="key"
+
+								innerPaddingLeft={0}
+
+								xScaleType="logarithmic"
+								xOptions={{
+									min: 1,
+									max: 10000
+								}}
+
+								yValuesSize={4}
+								yScaleType="logarithmic"
+								yOptions={{
+									min: 1,
+									max: 10000
+								}}
+							/>
+						</ResizableContainer>
+					</HoverHandler>
+				</LightDarkBlock>
 
 
 				<h3>Show legend</h3>

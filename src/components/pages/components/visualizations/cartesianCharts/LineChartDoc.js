@@ -14,7 +14,7 @@ import Page, {
 	SyntaxHighlighter
 } from "../../../../Page";
 import ResizableContainer from "../../../../ResizableContainer/ResizableContainer";
-import ComponentPropsTable from "../../../../ComponentPropsTable/ComponentPropsTable";
+import ComponentPropsTable, {Prop, PropOption} from "../../../../ComponentPropsTable/ComponentPropsTable";
 
 class LineChartDoc extends React.PureComponent {
 	constructor(props) {
@@ -55,30 +55,16 @@ class LineChartDoc extends React.PureComponent {
 
 				<h2 id="props">Props</h2>
 				<p>Bellow are listed specific props for line chart. Other props are common to all cartesian charts (<Link to="/components/visualizations/CartesianCharts">see Cartesian charts documentation</Link>).</p>
-				<ComponentPropsTable
-					content={[
-						{
-							name: "aggregationThreshold",
-							type: "number",
-							default: "50",
-							description: "If there is more lines than threshold, lines will be aggregated to average, min and max."
-						}, {
-							name: "forceMode",
-							type: "string",
-							description: "Set the mode independently of number of lines. Possible values: 'gray' or 'aggregated'"
-						}, {
-							name: "grayingThreshold",
-							type: "number",
-							default: "10",
-							description: "If there is more lines than threshold, lines will be gray."
-						}, {
-							name: "withPoints",
-							type: "boolean",
-							default: "false",
-							description: "If true, lines will be rendered with points."
-						}
-					]}
-				/>
+				<ComponentPropsTable>
+					<Prop name="aggregationThreshold" type="number" defaultValue={50}>f there is more lines than threshold, lines will be aggregated to average, min and max.</Prop>
+					<Prop name="forceMode" type="string">Set the mode independently of number of lines. Possible values: 'gray' or 'aggregated'</Prop>
+					<Prop name="grayingThreshold" type="number" defaultValue={10}>If there are more lines than threshold, lines will be gray.</Prop>
+					<Prop name="pointNameSourcePath" type="string">Path to name for point in source data.</Prop>
+					<Prop name="pointOptions" type="object">
+						<PropOption name="showOnHover" type="boolean">Show line points on hover. Only if withPoints is set to true.</PropOption>
+					</Prop>
+					<Prop name="withPoints" type="boolean" defaultValue={false}>If true, lines will be rendered with points.</Prop>
+				</ComponentPropsTable>
 				<h2 id="dataStructure">Input data structure</h2>
 				<p>Input data for line chart has to be a collection, where each object must contain at least key and collection of attribute data objects. The attribute data object must contain at least two key-value pairs, one as source for axis x and second as source for axis y.</p>
 				<SyntaxHighlighter language="javascript">
