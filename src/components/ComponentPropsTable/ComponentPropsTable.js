@@ -23,6 +23,13 @@ export const Section = ({name, children}) => (
 	</>
 );
 
+export const PropOption = ({name, type, children}) => (
+	<div className="ptr-docs-props-table-prop-option">
+		<span>{name} [<em>{type}</em>]: </span>
+		{children}
+	</div>
+);
+
 class ComponentPropsTable extends React.PureComponent {
 	render() {
 		const content = this.props.content;

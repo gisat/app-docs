@@ -1,0 +1,452 @@
+[
+	{
+		"key": "6622388f-6711-4936-8143-81893dcc5b6f",
+		"data": {
+			"name": "Pennsylvania",
+			"integer": 4,
+			"exp1": 4096,
+			"exp2": 100
+		}
+	},
+	{
+		"key": "3a96bab6-fc3a-4dc8-861d-36afa1ccc060",
+		"data": {
+			"name": "Vermont",
+			"integer": 3,
+			"exp1": 7776,
+			"exp2": 1296
+		}
+	},
+	{
+		"key": "c79989c2-a9fc-49b3-943b-9644708bd951",
+		"data": {
+			"name": "Maine",
+			"integer": 3,
+			"exp1": 64,
+			"exp2": 16
+		}
+	},
+	{
+		"key": "612d5f63-cc6f-4f20-ab30-6826d974fbd9",
+		"data": {
+			"name": "Illinois",
+			"integer": 7,
+			"exp1": 343,
+			"exp2": 343
+		}
+	},
+	{
+		"key": "74af2453-3d88-4e82-8601-a3cb6290dae6",
+		"data": {
+			"name": "Nebraska",
+			"integer": 2,
+			"exp1": 32,
+			"exp2": 64
+		}
+	},
+	{
+		"key": "5a790a34-8c34-4335-af2b-c12776d827a5",
+		"data": {
+			"name": "Rhode Island",
+			"integer": 7,
+			"exp1": 1024,
+			"exp2": 25
+		}
+	},
+	{
+		"key": "d476c939-2c4c-4ecb-9220-6e47def369c1",
+		"data": {
+			"name": "Hawaii",
+			"integer": 3,
+			"exp1": 1,
+			"exp2": 100
+		}
+	},
+	{
+		"key": "466fce61-4201-46b6-8e9f-4611fbceb66d",
+		"data": {
+			"name": "California",
+			"integer": 8,
+			"exp1": 36,
+			"exp2": 2401
+		}
+	},
+	{
+		"key": "4570cc8e-9920-43e4-a7d5-d96771aec37d",
+		"data": {
+			"name": "Minnesota",
+			"integer": 4,
+			"exp1": 2401,
+			"exp2": 100000
+		}
+	},
+	{
+		"key": "bb5d1ee8-9d93-4135-89f9-00af402eb4be",
+		"data": {
+			"name": "Alabama",
+			"integer": 6,
+			"exp1": 343,
+			"exp2": 100
+		}
+	},
+	{
+		"key": "858f40e6-5727-4882-b2a8-16ed2989726c",
+		"data": {
+			"name": "Tennessee",
+			"integer": 5,
+			"exp1": 6561,
+			"exp2": 81
+		}
+	},
+	{
+		"key": "cb27c324-465a-4e40-8e45-b590f953dc02",
+		"data": {
+			"name": "Kansas",
+			"integer": 3,
+			"exp1": 36,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "214ebf59-8dd4-48ff-bdba-c8d6258a8dc0",
+		"data": {
+			"name": "Georgia",
+			"integer": 5,
+			"exp1": 1024,
+			"exp2": 81
+		}
+	},
+	{
+		"key": "94317f00-e27b-427e-8554-f194f9544fdd",
+		"data": {
+			"name": "Texas",
+			"integer": 7,
+			"exp1": 3125,
+			"exp2": 36
+		}
+	},
+	{
+		"key": "f2d67ead-9bd1-4669-8d04-c999cbe5d16a",
+		"data": {
+			"name": "Massachusetts",
+			"integer": 4,
+			"exp1": 16,
+			"exp2": 8
+		}
+	},
+	{
+		"key": "bca0a7dd-4feb-40ca-88d3-7ce16f4eff01",
+		"data": {
+			"name": "Oklahoma",
+			"integer": 1,
+			"exp1": 49,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "f9f7e163-5977-4574-8c1b-9bc7e1d14547",
+		"data": {
+			"name": "Wyoming",
+			"integer": 4,
+			"exp1": 10000,
+			"exp2": 4096
+		}
+	},
+	{
+		"key": "cd60e684-4b00-4711-8bc0-620a25debad7",
+		"data": {
+			"name": "Louisiana",
+			"integer": 9,
+			"exp1": 100,
+			"exp2": 3125
+		}
+	},
+	{
+		"key": "b1acf6ba-2306-498c-8ec9-9e583b9d924c",
+		"data": {
+			"name": "Oregon",
+			"integer": 2,
+			"exp1": 1,
+			"exp2": 1024
+		}
+	},
+	{
+		"key": "86d7e7ad-c76d-4cf3-b7ca-14d4777f9cfe",
+		"data": {
+			"name": "Iowa",
+			"integer": 6,
+			"exp1": 1,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "c92adb84-28e2-4398-8508-8e1c3ad8fb60",
+		"data": {
+			"name": "American Samoa",
+			"integer": 10,
+			"exp1": 36,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "a78e96ce-5e85-4ff4-bdd6-79c4ccaae2ef",
+		"data": {
+			"name": "South Carolina",
+			"integer": 7,
+			"exp1": 1000,
+			"exp2": 81
+		}
+	},
+	{
+		"key": "b6ed8820-ff21-4afd-b866-4632613017fe",
+		"data": {
+			"name": "Northern Mariana Islands",
+			"integer": 6,
+			"exp1": 16,
+			"exp2": 32
+		}
+	},
+	{
+		"key": "72e2e18d-801d-40df-87eb-fa0ce1155c6b",
+		"data": {
+			"name": "Puerto Rico",
+			"integer": 1,
+			"exp1": 125,
+			"exp2": 243
+		}
+	},
+	{
+		"key": "42fa376c-dc3e-4ecd-a3cf-b8d88ed1c056",
+		"data": {
+			"name": "New York",
+			"integer": 9,
+			"exp1": 1,
+			"exp2": 3125
+		}
+	},
+	{
+		"key": "08c0b87e-d186-4af2-9b9f-d226737d67da",
+		"data": {
+			"name": "Marshall Islands",
+			"integer": 7,
+			"exp1": 1,
+			"exp2": 1024
+		}
+	},
+	{
+		"key": "71e25670-12af-48d0-86f2-b08eadae9b9a",
+		"data": {
+			"name": "New Jersey",
+			"integer": 5,
+			"exp1": 216,
+			"exp2": 216
+		}
+	},
+	{
+		"key": "fbc5d59a-b07d-43cc-9778-a379a3ef72a8",
+		"data": {
+			"name": "West Virginia",
+			"integer": 5,
+			"exp1": 59049,
+			"exp2": 27
+		}
+	},
+	{
+		"key": "55f1b76e-f741-495a-8974-7845ed59b984",
+		"data": {
+			"name": "Montana",
+			"integer": 2,
+			"exp1": 256,
+			"exp2": 25
+		}
+	},
+	{
+		"key": "c34f0e51-c98f-4147-8559-a87390ba623c",
+		"data": {
+			"name": "Connecticut",
+			"integer": 4,
+			"exp1": 36,
+			"exp2": 1000
+		}
+	},
+	{
+		"key": "8bcfca37-2440-48c3-8f1c-1d2331df7efb",
+		"data": {
+			"name": "Delaware",
+			"integer": 7,
+			"exp1": 1296,
+			"exp2": 1024
+		}
+	},
+	{
+		"key": "70283f73-5eeb-447b-b9c5-f6bc7527c0d3",
+		"data": {
+			"name": "North Carolina",
+			"integer": 7,
+			"exp1": 16,
+			"exp2": 625
+		}
+	},
+	{
+		"key": "a080708f-737e-4e51-b310-b85239008b7b",
+		"data": {
+			"name": "Indiana",
+			"integer": 3,
+			"exp1": 64,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "afbaae81-ef85-4cce-9f9d-6ca2f4f2925c",
+		"data": {
+			"name": "District Of Columbia",
+			"integer": 4,
+			"exp1": 512,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "1916d423-1551-4f3e-b9fc-0b0f801407c1",
+		"data": {
+			"name": "Palau",
+			"integer": 1,
+			"exp1": 100,
+			"exp2": 100
+		}
+	},
+	{
+		"key": "7bfb020a-4bae-4146-bc63-e5deb31aaa2a",
+		"data": {
+			"name": "Arkansas",
+			"integer": 3,
+			"exp1": 256,
+			"exp2": 100000
+		}
+	},
+	{
+		"key": "de1a40fd-f89c-4b65-81fc-4efd6cfbad5b",
+		"data": {
+			"name": "Federated States Of Micronesia",
+			"integer": 9,
+			"exp1": 81,
+			"exp2": 32768
+		}
+	},
+	{
+		"key": "9f9798e3-9d9f-4782-acf1-30e45ab7d071",
+		"data": {
+			"name": "Alaska",
+			"integer": 2,
+			"exp1": 4,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "c7612bcb-517d-4b44-9c0d-83cfbdb8f030",
+		"data": {
+			"name": "Mississippi",
+			"integer": 3,
+			"exp1": 7776,
+			"exp2": 7776
+		}
+	},
+	{
+		"key": "b4d1749b-44ed-4a66-a23a-afa44b8c6132",
+		"data": {
+			"name": "New Mexico",
+			"integer": 10,
+			"exp1": 243,
+			"exp2": 8
+		}
+	},
+	{
+		"key": "3f94a57d-8f1a-4ecf-9977-90da9c91051e",
+		"data": {
+			"name": "Utah",
+			"integer": 3,
+			"exp1": 1024,
+			"exp2": 100000
+		}
+	},
+	{
+		"key": "3c785cc4-9e3b-49f6-acd8-2c08d7e00078",
+		"data": {
+			"name": "Kentucky",
+			"integer": 2,
+			"exp1": 32768,
+			"exp2": 625
+		}
+	},
+	{
+		"key": "b34562e8-aca3-45e8-aaeb-61938feb7b62",
+		"data": {
+			"name": "Ohio",
+			"integer": 3,
+			"exp1": 125,
+			"exp2": 9
+		}
+	},
+	{
+		"key": "90a25b3e-5158-4932-b899-6c162154a463",
+		"data": {
+			"name": "Maryland",
+			"integer": 9,
+			"exp1": 49,
+			"exp2": 16807
+		}
+	},
+	{
+		"key": "fc3f0460-9c63-4de3-8cf7-053ee5b73bda",
+		"data": {
+			"name": "Washington",
+			"integer": 10,
+			"exp1": 343,
+			"exp2": 1
+		}
+	},
+	{
+		"key": "0f1e12eb-7315-4df7-8a45-d545b36fe31c",
+		"data": {
+			"name": "Guam",
+			"integer": 4,
+			"exp1": 64,
+			"exp2": 2401
+		}
+	},
+	{
+		"key": "44dacd01-fc85-4072-8653-89ee36f0999e",
+		"data": {
+			"name": "Nevada",
+			"integer": 2,
+			"exp1": 1,
+			"exp2": 7776
+		}
+	},
+	{
+		"key": "7ac56b7f-76d9-4c46-addc-848098f7f2cb",
+		"data": {
+			"name": "Arizona",
+			"integer": 10,
+			"exp1": 1000,
+			"exp2": 16
+		}
+	},
+	{
+		"key": "a829a847-8e20-4678-9fc0-d062950aeff7",
+		"data": {
+			"name": "South Dakota",
+			"integer": 6,
+			"exp1": 1,
+			"exp2": 9
+		}
+	},
+	{
+		"key": "77c1ac26-cd7c-45c8-89fb-f134dd2d245b",
+		"data": {
+			"name": "Virginia",
+			"integer": 4,
+			"exp1": 625,
+			"exp2": 216
+		}
+	}
+]

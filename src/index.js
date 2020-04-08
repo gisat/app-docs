@@ -126,6 +126,7 @@ ReactDOM.render(
                                 <Anchor label="Basic settings" path="basicSettings"/>
                                 <Anchor label="Point radius" path="pointRadius"/>
                                 <Anchor label="Serial data handling" path="serialData"/>
+                                <Anchor label="Custom symbols" path="symbols"/>
                             </Page>
                         </Directory>
                         <Page label="Aster chart" path="asterChart" component={AsterChartDoc}>

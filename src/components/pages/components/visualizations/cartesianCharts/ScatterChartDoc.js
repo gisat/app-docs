@@ -6,7 +6,13 @@ import {ScatterChart} from '@gisatcz/ptr-charts';
 import sample_50 from "../../../../mockData/sample_50";
 
 import sample_serie_10 from "../../../../mockData/scatterChart/serie_10";
-import Page, {DocsToDo, InlineCodeHighlighter, LightDarkBlock, SyntaxHighlighter} from "../../../../Page";
+import Page, {
+	DocsToDo,
+	ImplementationToDo,
+	InlineCodeHighlighter,
+	LightDarkBlock,
+	SyntaxHighlighter
+} from "../../../../Page";
 import ComponentPropsTable from "../../../../ComponentPropsTable/ComponentPropsTable";
 import {Link} from "@gisatcz/ptr-state";
 import ResizableContainer from "../../../../ResizableContainer/ResizableContainer";
@@ -67,6 +73,11 @@ class ScatterChartDoc extends React.PureComponent {
 							name: "itemNameSourcePath",
 							type: "string",
 							description: "Required if isSerie is true."
+						}, {
+							name: "pointSymbol",
+							type: "string",
+							default: "circle",
+							description: "Other possible values: 'plus'"
 						}, {}, {
 							name: "zSourcePath",
 							type: "string",
@@ -283,6 +294,44 @@ class ScatterChartDoc extends React.PureComponent {
 								legend
 
 								defaultSchemePointColors
+							/>
+						</ResizableContainer>
+					</HoverHandler>
+				</LightDarkBlock>
+
+				<h2 id="symbols">Custom symbols</h2>
+				<ImplementationToDo>Currently 'circle' (default) and 'plus' symbols are implemented.</ImplementationToDo>
+
+				<SyntaxHighlighter language="jsx">
+					{'// Use HoverHandler to see popups when move cursor over line or point. \n' +
+					'<HoverHandler>\n' +
+					'\t<ScatterChart \n' +
+					'\t\tkey="custom-symbol"\n' +
+					'\t\t\n' +
+					'\t\tdata={data}\n' +
+					'\t\tkeySourcePath="key"\n' +
+					'\t\tnameSourcePath="data.name"\n' +
+					'\t\txSourcePath="data.some_value_1"\n' +
+					'\t\tySourcePath="data.some_value_2"\n' +
+					'\n' +
+					'\t\tpointSymbol="plus"\n' +
+					'\t/>\n' +
+					'</HoverHandler>'}
+				</SyntaxHighlighter>
+
+				<LightDarkBlock forceRows>
+					<HoverHandler>
+						<ResizableContainer>
+							<ScatterChart
+								key="custom-symbols"
+								data={sample_50}
+
+								xSourcePath="data.some_value_1"
+								ySourcePath="data.some_value_2"
+								nameSourcePath="data.name"
+								keySourcePath="key"
+
+								pointSymbol="plus"
 							/>
 						</ResizableContainer>
 					</HoverHandler>

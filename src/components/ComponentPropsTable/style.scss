@@ -70,9 +70,14 @@
 	width: 99%;
 }
 
-.ptr-docs-props-table-description-object > div > span {
+.ptr-docs-props-table-description-object > div > span,
+.ptr-docs-props-table-prop-option > span {
 	font-family: monospace;
-	font-size: 1.15rem;
+	font-size: 1.05rem;
+}
+
+.ptr-docs-props-table-prop-option > span > em {
+	color: #9034c7;
 }
 
 /* Section */
