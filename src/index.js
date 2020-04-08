@@ -75,6 +75,7 @@ ReactDOM.render(
                                 <Anchor label="Scales" path="scales"/>
                                 <Anchor label="Transformations" path="transformations"/>
                                 <Anchor label="Symbols" path="symbols"/>
+                                <Anchor label="Diagrams" path="diagrams"/>
                             </Page>
                         </Directory>
                         <Page label="Specific data types" path="specific"/>

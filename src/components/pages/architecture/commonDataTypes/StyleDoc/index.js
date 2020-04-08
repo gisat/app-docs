@@ -1,5 +1,6 @@
 import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
+import {utils} from '@gisatcz/ptr-utils';
 import {Link} from '@gisatcz/ptr-state';
 
 import Page, {DocsToDo, SyntaxHighlighter, ImplementationToDo} from '../../../../Page';
@@ -224,7 +225,8 @@ const polygonLayers_diagrams = [{
 	type: "diagram",
 	options: {
 		features: cz_gadm.features,
-		style: diagramStyle
+		style: diagramStyle,
+		fidColumnName: "GID_1"
 	}
 }];
 
@@ -261,6 +263,7 @@ const MapContainer = (props) => (
 					backgroundLayer={backgroundLayer}
 					layers={props.layers}
 					view={props.view}
+					mapKey={utils.uuid()}
 				>
 					<MapControls zoomOnly levelsBased/>
 				</PresentationMap>
@@ -455,7 +458,23 @@ class Index extends React.PureComponent {
 
 
 				<h3 id="diagrams">Diagrams</h3>
-				<ImplementationToDo>Implementation in progress</ImplementationToDo>
+				<ImplementationToDo>This functionality is not implemented in WorldWind</ImplementationToDo>
+				<SyntaxHighlighter language="js">{`{
+\tstyles: [{
+\t\tfill: "#cccccc",
+\t\tdiagramShape: "circle",
+\t\tdiagramFillOpacity: 0.85
+\t}, {
+\t\tattributeKey: "22a43eb3-6552-476f-97a5-b47490519642",
+\t\tattributeScale: {
+\t\t\tdiagramSize: {
+\t\t\t\t"inputInterval": [-10,10],
+\t\t\t\t"outputInterval": [2000, 30000]
+\t\t\t}
+\t\t}
+\t}]
+}`}
+				</SyntaxHighlighter>
 				<MapContainer layers={polygonLayers_diagrams} view={czView} hideWorldWind/>
 
 
