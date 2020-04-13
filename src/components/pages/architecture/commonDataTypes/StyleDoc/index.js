@@ -8,11 +8,17 @@ import Page, {DocsToDo, SyntaxHighlighter, ImplementationToDo} from '../../../..
 import {WorldWindMap, ReactLeafletMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries";
 import points_50 from "../../../../mockData/map/points_50";
+import nuts_2 from "../../../../mockData/map/nuts_2";
 
 import './style.scss';
 
 import largePointData from "../../../../mockData/map/largePointData/geometries";
 import largeDataStyle from "../../../../mockData/map/largePointData/style";
+
+const europeView = {
+	center: {lat: 49.8, lon: 12},
+	boxRange: 5000000
+};
 
 const czView = {
 	center: {lat: 49.8, lon: 15},
@@ -229,6 +235,61 @@ const polygonLayers_diagrams = [{
 		fidColumnName: "GID_1"
 	}
 }];
+
+// Choropleth and diagrams
+const diagramChoroplethStyle = {rules: [{
+		styles: [{
+			outlineWidth: 1,
+			outlineColor: "#666",
+			diagramShape: "circle",
+			diagramFillOpacity: 1
+		}, {
+			attributeKey: "positive_attr",
+			attributeScale: {
+				diagramSize: {
+					"inputInterval": [0,10],
+					"outputInterval": [2000, 20000]
+				}
+			}
+		}, {
+			attributeKey: "diverging_attr",
+			attributeClasses: [
+				{
+					interval: [-5,-3],
+					intervalBounds: [true, false],
+					fill: "#d7191c"
+				},
+				{
+					interval: [-3,-1],
+					intervalBounds: [true, false],
+					fill: "#fdae61"
+				},{
+					interval: [-1,1],
+					intervalBounds: [true, false],
+					fill: "#ffffbf"
+				},{
+					interval: [1,3],
+					intervalBounds: [true, false],
+					fill: "#a6d96a"
+				},{
+					interval: [3,5],
+					intervalBounds: [true, false],
+					fill: "#1a9641"
+				}
+			]
+		}]
+	}]};
+
+const polygonLayers_countries = [{
+	key: "countries",
+	type: "diagram",
+	options: {
+		features: nuts_2.features,
+		style: diagramChoroplethStyle,
+		fidColumnName: "id"
+	}
+}];
+
 
 // World wind large data layer
 const largeDataLayers = [{
@@ -459,6 +520,8 @@ class Index extends React.PureComponent {
 
 				<h3 id="diagrams">Diagrams</h3>
 				<ImplementationToDo>This functionality is not implemented in WorldWind</ImplementationToDo>
+
+				<h4>Basic diagrams</h4>
 				<SyntaxHighlighter language="js">{`{
 \tstyles: [{
 \t\tfill: "#cccccc",
@@ -476,6 +539,53 @@ class Index extends React.PureComponent {
 }`}
 				</SyntaxHighlighter>
 				<MapContainer layers={polygonLayers_diagrams} view={czView} hideWorldWind/>
+
+
+				<h4>Basic diagrams with choropleth</h4>
+				<SyntaxHighlighter language="js">{`{
+\t\tstyles: [{
+\t\t\toutlineWidth: 1,
+\t\t\toutlineColor: "#666",
+\t\t\tdiagramShape: "circle",
+\t\t\tdiagramFillOpacity: 1
+\t\t}, {
+\t\t\tattributeKey: "positive_attr",
+\t\t\tattributeScale: {
+\t\t\t\tdiagramSize: {
+\t\t\t\t\t"inputInterval": [0,10],
+\t\t\t\t\t"outputInterval": [2000, 20000]
+\t\t\t\t}
+\t\t\t}
+\t\t}, {
+\t\t\tattributeKey: "diverging_attr",
+\t\t\tattributeClasses: [
+\t\t\t\t{
+\t\t\t\t\tinterval: [-5,-3],
+\t\t\t\t\tintervalBounds: [true, false],
+\t\t\t\t\tfill: "#d7191c"
+\t\t\t\t},
+\t\t\t\t{
+\t\t\t\t\tinterval: [-3,-1],
+\t\t\t\t\tintervalBounds: [true, false],
+\t\t\t\t\tfill: "#fdae61"
+\t\t\t\t},{
+\t\t\t\t\tinterval: [-1,1],
+\t\t\t\t\tintervalBounds: [true, false],
+\t\t\t\t\tfill: "#ffffbf"
+\t\t\t\t},{
+\t\t\t\t\tinterval: [1,3],
+\t\t\t\t\tintervalBounds: [true, false],
+\t\t\t\t\tfill: "#a6d96a"
+\t\t\t\t},{
+\t\t\t\t\tinterval: [3,5],
+\t\t\t\t\tintervalBounds: [true, false],
+\t\t\t\t\tfill: "#1a9641"
+\t\t\t\t}
+\t\t\t]
+\t\t}]
+}`}
+				</SyntaxHighlighter>
+				<MapContainer layers={polygonLayers_countries} view={europeView} hideWorldWind/>
 
 
 
