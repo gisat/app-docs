@@ -195,7 +195,8 @@ const pointLayers_scales_size = [{
 	type: "vector",
 	options: {
 		features: points_50,
-		style: scalesStyleSize
+		style: scalesStyleSize,
+		pointAsMarker: true
 	}
 }];
 
@@ -204,7 +205,8 @@ const pointLayers_scales_volume = [{
 	type: "vector",
 	options: {
 		features: points_50,
-		style: scalesStyleVolume
+		style: scalesStyleVolume,
+		pointAsMarker: true
 	}
 }];
 

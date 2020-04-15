@@ -37,6 +37,8 @@ import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewD
 import StyleDoc from "./components/pages/architecture/commonDataTypes/StyleDoc";
 import ReactLeafletMapDoc from "./components/pages/components/maps/ReactLeafletMapDoc";
 import WorldWindMapDoc from "./components/pages/components/maps/WorldWindMapDoc";
+import LeafletVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer";
+import LeafletDiagramLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer";
 
 
 const path = process.env.PUBLIC_URL;
@@ -95,7 +97,15 @@ ReactDOM.render(
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
                         <Directory label="Presentational" path="presentational">
                             <Page label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}/>
-                            <Page label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}/>
+                            <Directory label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}>
+                                <Page label="Vector layer" path="vectorLayer" component={LeafletVectorLayer}>
+                                    <Anchor label="Props" path="props"/>
+                                    <Anchor label="Polygons" path="polygons"/>
+                                    <Anchor label="Points" path="points"/>
+                                    <Anchor label="Lines" path="lines"/>
+                                </Page>
+                                <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
+                            </Directory>
                             <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
                         <Directory label="Controls" path="controls">
