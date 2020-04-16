@@ -11,12 +11,9 @@ import Page, {
 import {MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
 import ComponentPropsTable, {Prop} from "../../../../ComponentPropsTable/ComponentPropsTable";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
-import style from "../../../../mockData/map/czGadm1WithStyles/style.json";
-import pointData from "../../../../mockData/map/largePointData/geometries.json";
-import largePointDataFeatures from "../../../../mockData/map/largePointData/sample_points_5000_mini.json";
-import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import {utils} from "@gisatcz/ptr-utils";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
+import {HoverHandler} from "@gisatcz/ptr-core";
 
 const europeView = {
     center: {lat: 49.8, lon: 12},
@@ -43,11 +40,11 @@ const diagramStyle = {rules: [{
             diagramShape: "circle",
             diagramFillOpacity: 0.85
         }, {
-            attributeKey: "22a43eb3-6552-476f-97a5-b47490519642",
+            attributeKey: "e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
             attributeScale: {
                 diagramSize: {
-                    "inputInterval": [-10,10],
-                    "outputInterval": [2000, 30000]
+                    "inputInterval": [0,10],
+                    "outputInterval": [10000, 30000]
                 }
             }
         }]
@@ -59,7 +56,12 @@ const polygonLayers_diagrams = [{
     options: {
         features: cz_gadm.features,
         style: diagramStyle,
-        fidColumnName: "GID_1"
+        fidColumnName: "GID_1",
+        selected: {
+            "testSelection": {
+                keys: ["CZE.12_1"]
+            }
+        }
     }
 }];
 
@@ -113,43 +115,94 @@ const polygonLayers_countries = [{
     options: {
         features: nuts_2.features,
         style: diagramChoroplethStyle,
-        fidColumnName: "id"
+        fidColumnName: "id",
+        selected: {
+            "testSelection": {
+                keys: ["PL41"]
+            }
+        }
     }
 }];
 
-// Large data
-
 class LeafletDiagramLayer extends React.PureComponent {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            polygonLayers_diagrams,
+            polygonLayers_countries
+        }
+
+        this.onLayerClick = this.onLayerClick.bind(this);
+    }
+
+    onLayerClick(map, layer, features) {
+        if (map === 'czechia') {
+            let updatedLayers = _.cloneDeep(this.state.polygonLayers_diagrams);
+            updatedLayers[0].options.selected.testSelection.keys = features;
+
+            this.setState({
+                polygonLayers_diagrams: updatedLayers
+            })
+        } else if (map === 'europe') {
+            let updatedLayers = _.cloneDeep(this.state.polygonLayers_countries);
+            updatedLayers[0].options.selected.testSelection.keys = features;
+
+            this.setState({
+                polygonLayers_countries: updatedLayers
+            })
+        }
+    }
+
     render() {
         return (
             <Page title="Leaflet diagram layer">
-                <ImplementationToDo>Refactoring, interactivity</ImplementationToDo>
-
                 <h2>Basic diagrams</h2>
                 <div style={{height: 500, marginBottom: 10}}>
-                    <PresentationMap
-                        mapComponent={ReactLeafletMap}
-                        backgroundLayer={backgroundLayer}
-                        layers={polygonLayers_diagrams}
-                        view={czView}
-                        mapKey={utils.uuid()}
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<><b>{props.data["GID_1"]}</b>: {props.data["e575b4d4-7c7a-4658-bb9a-a9b61fcc2587"] ? props.data["e575b4d4-7c7a-4658-bb9a-a9b61fcc2587"].toFixed(2): null}</>);
+                            }
+                        }
                     >
-                        <MapControls zoomOnly levelsBased/>
-                    </PresentationMap>
+                        <PresentationMap
+                            mapComponent={ReactLeafletMap}
+                            backgroundLayer={backgroundLayer}
+                            layers={this.state.polygonLayers_diagrams}
+                            view={czView}
+                            mapKey={"czechia"}
+                            onLayerClick={this.onLayerClick}
+                        >
+                            <MapControls zoomOnly levelsBased/>
+                        </PresentationMap>
+                    </HoverHandler>
                 </div>
 
 
                 <h2>Basic diagrams with choropleth</h2>
                 <div style={{height: 500, marginBottom: 10}}>
-                    <PresentationMap
-                        mapComponent={ReactLeafletMap}
-                        backgroundLayer={backgroundLayer}
-                        layers={polygonLayers_countries}
-                        view={europeView}
-                        mapKey={utils.uuid()}
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<><b>{props.data["id"]}</b>:<br/>
+                                    Diagram: {props.data["positive_attr"].toFixed(2)}<br/>
+                                    Choropleth: {props.data["diverging_attr"].toFixed(2)}<br/>
+                                </>);
+                            }
+                        }
                     >
-                        <MapControls zoomOnly levelsBased/>
-                    </PresentationMap>
+                        <PresentationMap
+                            mapComponent={ReactLeafletMap}
+                            backgroundLayer={backgroundLayer}
+                            layers={this.state.polygonLayers_countries}
+                            view={europeView}
+                            mapKey={"europe"}
+                            onLayerClick={this.onLayerClick}
+                        >
+                            <MapControls zoomOnly levelsBased/>
+                        </PresentationMap>
+                    </HoverHandler>
                 </div>
             </Page>
         );
