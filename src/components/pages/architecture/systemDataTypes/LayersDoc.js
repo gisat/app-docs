@@ -65,7 +65,7 @@ class LayersDoc extends React.PureComponent {
 					}
 				</SyntaxHighlighter>
 				
-				<h3>Vector</h3>
+				<h3 id="vector">Vector</h3>
 				<SyntaxHighlighter language="javascript">
 					{
 `{
@@ -74,11 +74,21 @@ class LayersDoc extends React.PureComponent {
 	opacity: 0.7,
 	
 	options: {
-		features: {} //geojson with or without properties
-		style: TODO
-		selected: {selectionKey: {}, selectionKey2: {}} //keys and style
-		filtered: {} //keys and style
-		hovered: {} //keys and style
+		features: [], //list of GeoJSON features
+		style: {}, //see Style section
+		selected: {
+			selectionKey: {
+				keys: [], //list of fids
+				style: {}, //style definition
+				hoveredStyle: {} //style definition
+			}, 
+			selectionKey2: {}},
+		filtered: {}, //TODO
+		hovered: {
+			keys: [], //list of fids
+			style: {} //style definition
+		},
+		fidColumnName: "string"
 	}
 }`
 					}

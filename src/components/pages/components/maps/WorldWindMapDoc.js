@@ -5,7 +5,7 @@ import {WorldWindMap} from "@gisatcz/ptr-maps";
 import cz_gadm from "../../../mockData/map/czGadm1WithStyles/geometries";
 import style from "../../../mockData/map/czGadm1WithStyles/style";
 import pointData from "../../../mockData/map/largePointData/geometries";
-import largePointDataFeatures from "../../../mockData/map/largePointData/sample_points_10000_mini";
+import largePointDataFeatures from "../../../mockData/map/largePointData/sample_points_5000_mini.json";
 import pointStyle from "../../../mockData/map/largePointData/style-simple-point";
 
 const view = {
@@ -94,17 +94,17 @@ class WorldWindMapDoc extends React.PureComponent {
 					/>
 				</div>
 				<SyntaxHighlighter language="jsx">{`<WorldWindMap
-	view={
+	view={{
 		center: {lat: 50, lon: 15},
 		boxRange: 2000000
-	}
-	backgroundLayer={
+	}}
+	backgroundLayer={{
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
 			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
-	}
+	}}
 />
 `}
 				</SyntaxHighlighter>
@@ -118,17 +118,17 @@ class WorldWindMapDoc extends React.PureComponent {
 					/>
 				</div>
 				<SyntaxHighlighter language="jsx">{`<WorldWindMap
-	view={
+	view={{
 		center: {lat: 50, lon: 15},
 		boxRange: 2000000
-	}
-	backgroundLayer={
+	}}
+	backgroundLayer={{
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
 			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
-	}
+	}}
 	layers={[
 		{
 			key: 'cuzk_ortofoto',
@@ -144,7 +144,7 @@ class WorldWindMapDoc extends React.PureComponent {
 			key: "gadm-1-cz",
 			type: "vector",
 			options: {
-				features: [...],
+				features: [],
 				style: {...} //see Style documentation
 			}
 		}

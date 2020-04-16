@@ -13,7 +13,7 @@ import ComponentPropsTable, {Prop} from "../../../../ComponentPropsTable/Compone
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
 import style from "../../../../mockData/map/czGadm1WithStyles/style.json";
 import pointData from "../../../../mockData/map/largePointData/geometries.json";
-import largePointDataFeatures from "../../../../mockData/map/largePointData/sample_points_10000_mini.json";
+import largePointDataFeatures from "../../../../mockData/map/largePointData/sample_points_5000_mini.json";
 import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import {utils} from "@gisatcz/ptr-utils";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
