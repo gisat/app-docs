@@ -30,8 +30,8 @@ const viewEurope = {
 };
 
 const viewLargeData = {
-    center: {lat: 50, lon: 15},
-    boxRange: 1000000
+    center: {lat: 50.2, lon: 15.8},
+    boxRange: 50000
 };
 
 const viewHradec = {
@@ -141,7 +141,8 @@ const pointsInPx = {
     options: {
         features: pointData.features,
         style: pointsStyle,
-        pointAsMarker: true
+        pointAsMarker: true,
+        fidColumnName: "gid"
     }
 };
 
@@ -153,7 +154,8 @@ const pointsInMeters = {
     type: "vector",
     options: {
         features: pointData.features,
-        style: pointsInMetersStyle
+        style: pointsInMetersStyle,
+        fidColumnName: "gid"
     }
 };
 
@@ -164,7 +166,8 @@ const largeDataPoints = {
     options: {
         features: largePointDataFeatures,
         style: pointsStyle,
-        pointAsMarker: true
+        pointAsMarker: true,
+        fidColumnName: "gid"
     }
 };
 
@@ -188,15 +191,37 @@ class LeafletVectorLayer extends React.PureComponent {
 
     onLayerClick(map, layer, features) {
         if (map === 'basic-polygon-selection') {
-            let updatedLayers = _.cloneDeep(this.state.basicPolygonLayersWithSelection);
-            updatedLayers[0].options.selected.testSelection.keys = features;
+            let updatedLayers = [{
+               ...polygonsWithSelection,
+               options: {
+                   ...polygonsWithSelection.options,
+                   selected: {
+                       ...polygonsWithSelection.options.selected,
+                       testSelection: {
+                           ...polygonsWithSelection.options.selected.testSelection,
+                           keys: features
+                       }
+                   }
+               }
+            }];
 
             this.setState({
                 basicPolygonLayersWithSelection: updatedLayers
             })
         } else if (map === 'choropleth-map') {
-            let updatedLayers = _.cloneDeep(this.state.choroplethLayers);
-            updatedLayers[0].options.selected.testSelection.keys = features;
+            let updatedLayers = [{
+                ...choropleth,
+                options: {
+                    ...choropleth.options,
+                    selected: {
+                        ...choropleth.options.selected,
+                        testSelection: {
+                            ...choropleth.options.selected.testSelection,
+                            keys: features
+                        }
+                    }
+                }
+            }];
 
             this.setState({
                 choroplethLayers: updatedLayers
@@ -207,6 +232,7 @@ class LeafletVectorLayer extends React.PureComponent {
     render() {
         return (
             <Page title="Leaflet Vector layer">
+
                 <p>Use this type of layer to display analytical units, for interactive layers or choropleths. It works well for layers with hundreds of polygon features or thousands of point features.</p>
 
                 <p>VectorLayer component is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
@@ -371,33 +397,57 @@ class LeafletVectorLayer extends React.PureComponent {
                 <h3>Render as markers - size in pixels</h3>
                 <p>Try to zoom in and out. The size of circle is the same for each zoom level (independent of zoom) and varies between 5 and 20 px.</p>
                 <div style={{height: 500, marginBottom: 10}}>
-                    <ReactLeafletMap
-                        mapKey='react-leaflet-map-3'
-                        view={viewHradec}
-                        backgroundLayer={backgroundLayer}
-                        layers={pointsInPxLayers}
-                    />
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<p>Value: {props.data["attr1"]}</p>);
+                            }
+                        }
+                    >
+                        <ReactLeafletMap
+                            mapKey='react-leaflet-map-3'
+                            view={viewHradec}
+                            backgroundLayer={backgroundLayer}
+                            layers={pointsInPxLayers}
+                        />
+                    </HoverHandler>
                 </div>
 
                 <h3>Size in meters</h3>
                 <p>Try to zoom in and out. The size of circle is in meters and varies between 500 and 2000 meters.</p>
                 <div style={{height: 500, marginBottom: 10}}>
-                    <ReactLeafletMap
-                        mapKey='react-leaflet-map-4'
-                        view={viewHradec}
-                        backgroundLayer={backgroundLayer}
-                        layers={pointsInMetersLayers}
-                    />
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<p>Value: {props.data["attr1"]}</p>);
+                            }
+                        }
+                    >
+                        <ReactLeafletMap
+                            mapKey='react-leaflet-map-4'
+                            view={viewHradec}
+                            backgroundLayer={backgroundLayer}
+                            layers={pointsInMetersLayers}
+                        />
+                    </HoverHandler>
                 </div>
 
                 <h3>Large dataset - 5 000 of points</h3>
                 <div style={{height: 500, marginBottom: 10}}>
-                    <ReactLeafletMap
-                        mapKey='react-leaflet-map-5'
-                        view={viewLargeData}
-                        backgroundLayer={backgroundLayer}
-                        layers={largeDataPointLayers}
-                    />
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<p>Value: {props.data["attr1"]}</p>);
+                            }
+                        }
+                    >
+                        <ReactLeafletMap
+                            mapKey='react-leaflet-map-5'
+                            view={viewLargeData}
+                            backgroundLayer={backgroundLayer}
+                            layers={largeDataPointLayers}
+                        />
+                    </HoverHandler>
                 </div>
 
                 <h2 id="lines">Lines</h2>
