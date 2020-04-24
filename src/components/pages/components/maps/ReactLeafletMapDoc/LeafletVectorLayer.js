@@ -11,10 +11,8 @@ import Page, {
 import {ReactLeafletMap} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
 import {Link} from "@gisatcz/ptr-state";
-import ComponentPropsTable, {Prop} from "../../../../ComponentPropsTable/ComponentPropsTable";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
 import pointData from "../../../../mockData/map/largePointData/geometries.json";
-import largePointDataFeatures from "../../../../mockData/map/largePointData/sample_points_5000_mini.json";
 import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
 
@@ -159,21 +157,78 @@ const pointsInMeters = {
     }
 };
 
-// Vector layer - 10 000 points
-const largeDataPoints = {
-    key: "large-data-layer",
+
+const pointsInPxLayers = [pointsInPx];
+const pointsInMetersLayers = [pointsInMeters];
+
+// Shapes
+const shapesStyle = {
+    "rules":[
+        {
+            "styles": [
+                {
+                    "fillOpacity": 0.85,
+                    "outlineWidth": 1
+                },
+                {
+                    "attributeKey": "attr1",
+                    "attributeClasses": [
+                        {
+                            "interval": [0,25],
+                            "fill": "#edf8fb"
+                        },
+                        {
+                            "interval": [25,50],
+                            "fill": "#b3cde3"
+                        },{
+                            "interval": [50,75],
+                            "fill": "#8c96c6"
+                        },{
+                            "interval": [75,101],
+                            "fill": "#88419d"
+                        }
+                    ]
+                }, {
+                    "attributeKey": "attr3",
+                    "attributeScale": {
+                        "size": {
+                            "inputInterval": [0,1],
+                            "outputInterval": [5,20]
+                        }
+                    }
+                },{
+                    "attributeKey": "attr2",
+                    "attributeClasses": [
+                        {
+                            "interval": [-10, -3],
+                            "shape": "square",
+                        },
+                        {
+                            "interval": [-3,3],
+                            "shape": "circle"
+                        },{
+                            "interval": [3,10],
+                            "shape": "diamond"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+const shapes = {
+    key: "shapes",
     type: "vector",
     options: {
-        features: largePointDataFeatures,
-        style: pointsStyle,
+        features: pointData.features,
+        style: shapesStyle,
         pointAsMarker: true,
         fidColumnName: "gid"
     }
 };
 
-const pointsInPxLayers = [pointsInPx];
-const pointsInMetersLayers = [pointsInMeters];
-const largeDataPointLayers = [largeDataPoints];
+const shapeLayers = [shapes];
 
 
 
@@ -232,7 +287,6 @@ class LeafletVectorLayer extends React.PureComponent {
     render() {
         return (
             <Page title="Leaflet Vector layer">
-
                 <p>Use this type of layer to display analytical units, for interactive layers or choropleths. It works well for layers with hundreds of polygon features or thousands of point features.</p>
 
                 <p>VectorLayer component is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
@@ -413,6 +467,28 @@ class LeafletVectorLayer extends React.PureComponent {
                     </HoverHandler>
                 </div>
 
+                <p>Markers can have different shapes. Currently, circle, square and diamond is implemented.</p>
+                <div style={{height: 500, marginBottom: 10}}>
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<p>
+                                    Color: {props.data["attr1"]}<br/>
+                                    Shape: {props.data["attr2"]}<br/>
+                                    Size: {props.data["attr3"]}
+                                </p>);
+                            }
+                        }
+                    >
+                        <ReactLeafletMap
+                            mapKey='react-leaflet-map-3'
+                            view={viewHradec}
+                            backgroundLayer={backgroundLayer}
+                            layers={shapeLayers}
+                        />
+                    </HoverHandler>
+                </div>
+
                 <h3>Size in meters</h3>
                 <p>Try to zoom in and out. The size of circle is in meters and varies between 500 and 2000 meters.</p>
                 <div style={{height: 500, marginBottom: 10}}>
@@ -431,27 +507,6 @@ class LeafletVectorLayer extends React.PureComponent {
                         />
                     </HoverHandler>
                 </div>
-
-                <h3>Large dataset - 5 000 of points</h3>
-                <div style={{height: 500, marginBottom: 10}}>
-                    <HoverHandler
-                        popupContentComponent={
-                            (props) => {
-                                return (<p>Value: {props.data["attr1"]}</p>);
-                            }
-                        }
-                    >
-                        <ReactLeafletMap
-                            mapKey='react-leaflet-map-5'
-                            view={viewLargeData}
-                            backgroundLayer={backgroundLayer}
-                            layers={largeDataPointLayers}
-                        />
-                    </HoverHandler>
-                </div>
-
-                <h2 id="lines">Lines</h2>
-                <ImplementationToDo>TODO: implement</ImplementationToDo>
 
             </Page>
         );
