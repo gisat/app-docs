@@ -31,8 +31,13 @@ const backgroundLayer = {
 const diagramStyle = {rules: [{
         styles: [{
             fill: "#cccccc",
+            outlineWidth: 1,
+            outlineColor: "#000000",
             diagramShape: "circle",
-            diagramFillOpacity: 0.85
+            diagramFillOpacity: 0.5,
+            diagramFill: "#ffffff",
+            diagramOutlineWidth: 1,
+            diagramOutlineColor: "#256293"
         }, {
             attributeKey: "e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
             attributeScale: {
@@ -66,6 +71,8 @@ const diagramChoroplethStyle = {rules: [{
             outlineColor: "#666",
             diagramShape: "circle",
             diagramFill: "#14a8b4",
+            diagramFillOpacity: 0.7,
+            diagramOutlineWidth: 1,
             diagramOutlineColor: "#0d393d"
         }, {
             attributeKey: "positive_attr",
@@ -186,8 +193,13 @@ class LeafletDiagramLayer extends React.PureComponent {
             style: {rules: [{
                 styles: [{
                     fill: "#cccccc",
+                    outlineWidth: 1,
+                    outlineColor: "#000000",
                     diagramShape: "circle",
-                    diagramFillOpacity: 0.85
+                    diagramFillOpacity: 0.5,
+                    diagramFill: "#ffffff",
+                    diagramOutlineWidth: 1,
+                    diagramOutlineColor: "#256293"
                 }, {
                     attributeKey: "e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
                     attributeScale: {
@@ -253,6 +265,8 @@ class LeafletDiagramLayer extends React.PureComponent {
                     outlineColor: "#666",
                     diagramShape: "circle",
                     diagramFill: "#14a8b4",
+                    diagramFillOpacity: 0.7,
+                    diagramOutlineWidth: 1,
                     diagramOutlineColor: "#0d393d"
                 }, {
                     attributeKey: "positive_attr",
