@@ -78,7 +78,7 @@ const polygonsWithSelection = {
 const choroplethStyle = {rules: [{
     styles: [{
         outlineWidth: 1,
-        outlineColor: "#666"
+        outlineColor: "#666666"
     },{
         attributeKey: "diverging_attr",
         attributeClasses: [
@@ -168,7 +168,8 @@ const shapesStyle = {
             "styles": [
                 {
                     "fillOpacity": 0.85,
-                    "outlineWidth": 1
+                    "outlineWidth": 1,
+                    "outlineColor": "#333333"
                 },
                 {
                     "attributeKey": "attr1",

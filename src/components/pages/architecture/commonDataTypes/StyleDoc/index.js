@@ -72,7 +72,9 @@ const polygonLayers_basicStyle = [{
 // Polygons - attribute values
 const attributeValuesStyle = {rules: [{
 	styles: [{
-		fill: "#cccccc"
+		fill: "#cccccc",
+		outlineColor: "#000000",
+		outlineWidth: 2
 	}, {
 		attributeKey: 'attr-2',
 		attributeValues: {
@@ -102,7 +104,9 @@ const polygonLayers_attributeValues = [{
 // Polygons - intervals
 const intervalsStyle = {rules: [{
 	styles: [{
-		fill: "#cccccc"
+		fill: "#cccccc",
+		outlineColor: "#000000",
+		outlineWidth: 2
 	}, {
 		attributeKey: "e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
 		attributeClasses: [
@@ -136,7 +140,9 @@ const polygonLayers_intervals = [{
 // Polygons - scales
 const scalesStyle = {rules: [{
 	styles: [{
-		fill: "#cccccc"
+		fill: "#cccccc",
+		outlineColor: "#000000",
+		outlineWidth: 2
 	}, {
 		attributeKey: "22a43eb3-6552-476f-97a5-b47490519642",
 		attributeScale: {
@@ -168,6 +174,10 @@ const polygonLayers_scales = [{
 // Points - scales (size & volume)
 const scalesStyleSize = {rules: [{
 	styles: [{
+		outlineColor: "#000000",
+		outlineWidth: 1,
+		fill: "#ffffff"
+	}, {
 		attributeKey: "attr1",
 		attributeScale: {
 			size: {
@@ -180,6 +190,10 @@ const scalesStyleSize = {rules: [{
 
 const scalesStyleVolume = {rules: [{
 	styles: [{
+		outlineColor: "#000000",
+		outlineWidth: 1,
+		fill: "#ffffff"
+	},{
 		attributeKey: "attr1",
 		attributeScale: {
 			volume: {
@@ -215,8 +229,13 @@ const pointLayers_scales_volume = [{
 const diagramStyle = {rules: [{
 	styles: [{
 		fill: "#cccccc",
+		outlineColor: "#000000",
+		outlineWidth: 1,
 		diagramShape: "circle",
-		diagramFillOpacity: 0.85
+		diagramFillOpacity: 1,
+		diagramFill: "#ff88ff",
+		diagramOutlineWidth: 1,
+		diagramOutlineColor: "#b61db6"
 	}, {
 		attributeKey: "22a43eb3-6552-476f-97a5-b47490519642",
 		attributeScale: {
@@ -244,7 +263,10 @@ const diagramChoroplethStyle = {rules: [{
 			outlineWidth: 1,
 			outlineColor: "#666",
 			diagramShape: "circle",
-			diagramFillOpacity: 1
+			diagramFillOpacity: 1,
+			diagramFill: "#ff88ff",
+			diagramOutlineWidth: 1,
+			diagramOutlineColor: "#681968",
 		}, {
 			attributeKey: "positive_attr",
 			attributeScale: {
@@ -664,6 +686,7 @@ class Index extends React.PureComponent {
 								lon: 15.75
 							}
 						}}
+						pointAsMarker
 					>
 						<MapControls levelsBased={levelsRange}/>
 					</PresentationMap>

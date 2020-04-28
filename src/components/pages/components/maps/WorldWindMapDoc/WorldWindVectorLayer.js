@@ -15,10 +15,16 @@ import pointData from "../../../../mockData/map/largePointData/geometries.json";
 import largePointDataFeatures from "../../../../mockData/map/largePointData/sample_points_5000_mini.json";
 import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import {HoverHandler} from "@gisatcz/ptr-core";
+import nuts_2 from "../../../../mockData/map/nuts_2.json";
 
 const view = {
     center: {lat: 50, lon: 15},
     boxRange: 1000000
+};
+
+const viewEurope = {
+    center: {lat: 50, lon: 15},
+    boxRange: 3000000
 };
 
 const backgroundLayer = {
@@ -45,7 +51,9 @@ const polygonsStyle = {
         {
             "styles":[
                 {
-                    "fillOpacity": 0.5
+                    "fillOpacity": 0.8,
+                    "outlineColor": "#262626",
+                    "fill": "#d2d2d2"
                 },
                 {
                     "attributeKey":"e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
@@ -94,7 +102,53 @@ const polygonsWithStyle = {
 };
 
 // Hundreds of polygons
-// TODO
+const choroplethStyle = {rules: [{
+        styles: [{
+            outlineWidth: 1,
+            outlineColor: "#666666"
+        },{
+            attributeKey: "diverging_attr",
+            attributeClasses: [
+                {
+                    interval: [-5,-3],
+                    intervalBounds: [true, false],
+                    fill: "#d7191c"
+                },
+                {
+                    interval: [-3,-1],
+                    intervalBounds: [true, false],
+                    fill: "#fdae61"
+                },{
+                    interval: [-1,1],
+                    intervalBounds: [true, false],
+                    fill: "#ffffbf"
+                },{
+                    interval: [1,3],
+                    intervalBounds: [true, false],
+                    fill: "#a6d96a"
+                },{
+                    interval: [3,5],
+                    intervalBounds: [true, false],
+                    fill: "#1a9641"
+                }
+            ]
+        }]
+    }]};
+
+const choropleth = {
+    key: "choropleth",
+    type: "vector",
+    options: {
+        features: nuts_2.features,
+        style: choroplethStyle,
+        selected: {
+            "testSelection": {
+                keys: []
+            }
+        },
+        fidColumnName: "id"
+    }
+};
 
 /* Points */
 // TODO
@@ -104,13 +158,14 @@ const polygonsWithStyle = {
 
 const polygonsWithoutStyleLayers = [polygonsWithoutStyle];
 const polygonsWithStyleLayers = [polygonsWithStyle];
-const hundredsOfPolygonsLayers = [];
+const hundredsOfPolygonsLayers = [choropleth];
 
 class WorldWindVectorLayer extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            polygonsWithStyleLayers
+            polygonsWithStyleLayers,
+            hundredsOfPolygonsLayers
         }
 
         this.onLayerClick = this.onLayerClick.bind(this);
@@ -135,6 +190,24 @@ class WorldWindVectorLayer extends React.PureComponent {
             this.setState({
                 polygonsWithStyleLayers: updatedLayers
             })
+        } else if (map === "choropleth") {
+            let updatedLayers2 = [{
+                ...choropleth,
+                options: {
+                    ...choropleth.options,
+                    selected: {
+                        ...choropleth.options.selected,
+                        testSelection: {
+                            ...choropleth.options.selected.testSelection,
+                            keys: features
+                        }
+                    }
+                }
+            }];
+
+            this.setState({
+                hundredsOfPolygonsLayers: updatedLayers2
+            })
         }
     }
 
@@ -145,20 +218,20 @@ class WorldWindVectorLayer extends React.PureComponent {
 
                 <h3>Basic usage</h3>
                 <p>If style is not defined, fallback style is used.</p>
-                <HoverHandler>
                 <div style={{height: 500, marginBottom: 10}}>
                     <WorldWindMap
                         view={view}
                         backgroundLayer={backgroundLayer}
+                        layers={polygonsWithoutStyleLayers}
                     />
                 </div>
-                </HoverHandler>
 
                 <h3>With defined style & interactive</h3>
                 <p>Move cursor over area to see the popup. Click on the area to select it.</p>
                 <HoverHandler>
                     <div style={{height: 500, marginBottom: 10}}>
                         <WorldWindMap
+                            mapKey="polygons-with-style-map"
                             view={view}
                             backgroundLayer={backgroundLayer}
                             layers={this.state.polygonsWithStyleLayers}
@@ -168,7 +241,17 @@ class WorldWindVectorLayer extends React.PureComponent {
                 </HoverHandler>
 
                 <h3>Hundreds of polygons</h3>
-                <DocsToDo>Missing docs</DocsToDo>
+                <HoverHandler>
+                    <div style={{height: 500, marginBottom: 10}}>
+                        <WorldWindMap
+                            mapKey="choropleth"
+                            view={viewEurope}
+                            backgroundLayer={backgroundLayer}
+                            layers={this.state.hundredsOfPolygonsLayers}
+                            onLayerClick={this.onLayerClick}
+                        />
+                    </div>
+                </HoverHandler>
 
                 <h2 id="points">Points</h2>
                 <h3>Markers - size in px</h3>

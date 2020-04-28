@@ -11,7 +11,8 @@
 		{
 		  "styles": [
 			{
-			  "outlineWidth": 1
+			  "outlineWidth": 1,
+			  "outlineColor": "#000000"
 			},
 			{
 			  "attributeKey": "attr1",
