@@ -39,6 +39,7 @@ import ReactLeafletMapDoc from "./components/pages/components/maps/ReactLeafletM
 import WorldWindMapDoc from "./components/pages/components/maps/WorldWindMapDoc";
 import LeafletVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer";
 import LeafletDiagramLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer";
+import WorldWindVectorLayer from "./components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer";
 
 
 const path = process.env.PUBLIC_URL;
@@ -96,7 +97,9 @@ ReactDOM.render(
                         <Page label="Map" path="map" component={MapDoc}/>
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
                         <Directory label="Presentational" path="presentational">
-                            <Page label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}/>
+                            <Directory label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}>
+                                <Page label="Vector layer" path="vectorLayer" component={WorldWindVectorLayer}/>
+                            </Directory>
                             <Directory label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}>
                                 <Page label="Vector layer" path="vectorLayer" component={LeafletVectorLayer}>
                                     <Anchor label="Props" path="props"/>
