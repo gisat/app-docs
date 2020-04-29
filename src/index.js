@@ -72,7 +72,9 @@ ReactDOM.render(
                         <Directory label="Common data types" path="common">
                             <Page label="Style" path="style" component={StyleDoc}>
                                 <Anchor label="Without style" path="without-style"/>
-                                <Anchor label="Basic" path="basic"/>
+                                <Anchor label="Fill styling" path="fill"/>
+                                <Anchor label="Outline styling" path="outline"/>
+                                <Anchor label="Hovered & selected" path="hovered-selected"/>
                                 <Anchor label="Attribute values" path="values"/>
                                 <Anchor label="Intervals" path="intervals"/>
                                 <Anchor label="Scales" path="scales"/>

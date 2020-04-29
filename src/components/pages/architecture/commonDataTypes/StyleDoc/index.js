@@ -14,6 +14,7 @@ import './style.scss';
 
 import largePointData from "../../../../mockData/map/largePointData/geometries";
 import largeDataStyle from "../../../../mockData/map/largePointData/style";
+import {HoverHandler} from "@gisatcz/ptr-core";
 
 const europeView = {
 	center: {lat: 49.8, lon: 12},
@@ -47,26 +48,88 @@ const polygonLayers_noStyles = [{
 	}
 }];
 
+// Polygons - fill
+const fillStyle = {rules: [{
+		styles: [{
+			fill: "#10421c",
+			fillOpacity: 0.5
+		}]
+	}]};
 
-// Polygons - basic styling
-const basicStyle = {rules: [{
-	styles: [{
-		fill: "#ff9248",
-		fillOpacity: 0.7,
-		outlineColor: "#ff3e0e",
-		outlineWidth: 7,
-		outlineOpacity: 0.4
-	}]
-}]};
-
-const polygonLayers_basicStyle = [{
-	key: "polygons",
+const polygonLayers_fill = [{
+	key: "polygons_fill",
 	type: "vector",
 	options: {
 		features: cz_gadm.features,
-		style: basicStyle
+		style: fillStyle
 	}
 }];
+
+// Polygons - outline
+const outlineStyle = {rules: [{
+		styles: [{
+			outlineColor: "#10421c",
+			outlineWidth: 5,
+			outlineOpacity: 0.5
+		}]
+	}]};
+
+const polygonLayers_outline = [{
+	key: "polygons_outline",
+	type: "vector",
+	options: {
+		features: cz_gadm.features,
+		style: outlineStyle
+	}
+}];
+
+// Hovered and selected - default
+const hoveredSelectedDefault = {
+	key: "polygons_hoveredSelectedDefault",
+	type: "vector",
+	options: {
+		features: cz_gadm.features,
+		fidColumnName: "GID_1",
+		selected: {
+			testSelection: {
+				keys: ["CZE.1_1"]
+			}
+		}
+	}
+}
+
+const polygonLayers_hoveredSelectedDefault = [hoveredSelectedDefault];
+
+// Hovered and selected - default
+const hoveredSelectedDefined = {
+	key: "polygons_hoveredSelectedDefined",
+	type: "vector",
+	options: {
+		features: cz_gadm.features,
+		fidColumnName: "GID_1",
+		hovered: {
+			style: {
+				outlineColor: "#33c21e",
+				outlineWidth: 5
+			}
+		},
+		selected: {
+			testSelection: {
+				keys: ["CZE.1_1"],
+				style: {
+					fill: "#ff0000"
+				},
+				hoveredStyle: {
+					outlineColor: "#c21ebf",
+					outlineWidth: 5,
+					fill: "#ff0066"
+				}
+			}
+		}
+	}
+}
+
+const polygonLayers_hoveredSelectedDefined = [hoveredSelectedDefined];
 
 
 // Polygons - attribute values
@@ -321,7 +384,8 @@ const largeDataLayers = [{
 	type: "vector",
 	options: {
 		features: largePointData.features,
-		style: largeDataStyle.data.definition
+		style: largeDataStyle.data.definition,
+		fidColumnName: "gid"
 	}
 }];
 
@@ -332,10 +396,12 @@ const MapContainer = (props) => (
 		{props.hideWorldWind ? null : (
 			<div>
 				<PresentationMap
+					mapKey={utils.uuid()}
 					mapComponent={WorldWindMap}
 					backgroundLayer={backgroundLayer}
 					layers={props.layers}
 					view={props.view}
+					onLayerClick={props.onSelect}
 				>
 					<MapControls/>
 				</PresentationMap>
@@ -348,6 +414,7 @@ const MapContainer = (props) => (
 					backgroundLayer={backgroundLayer}
 					layers={props.layers}
 					view={props.view}
+					onLayerClick={props.onSelect}
 					mapKey={utils.uuid()}
 				>
 					<MapControls zoomOnly levelsBased/>
@@ -358,6 +425,57 @@ const MapContainer = (props) => (
 );
 
 class Index extends React.PureComponent {
+
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			hoveredSelectedDefault: polygonLayers_hoveredSelectedDefault,
+			hoveredSelectedDefined: polygonLayers_hoveredSelectedDefined
+		}
+
+		this.onLayerClick = this.onLayerClick.bind(this);
+	}
+
+	onLayerClick(map, layer, features) {
+		if (layer === 'polygons_hoveredSelectedDefault') {
+			let updatedLayers = [{
+				...hoveredSelectedDefault,
+				options: {
+					...hoveredSelectedDefault.options,
+					selected: {
+						...hoveredSelectedDefault.options.selected,
+						testSelection: {
+							...hoveredSelectedDefault.options.selected.testSelection,
+							keys: features
+						}
+					}
+				}
+			}];
+
+			this.setState({
+				hoveredSelectedDefault: updatedLayers
+			})
+		} else if (layer === 'polygons_hoveredSelectedDefined') {
+			let updatedLayers = [{
+				...hoveredSelectedDefined,
+				options: {
+					...hoveredSelectedDefined.options,
+					selected: {
+						...hoveredSelectedDefined.options.selected,
+						testSelection: {
+							...hoveredSelectedDefined.options.selected.testSelection,
+							keys: features
+						}
+					}
+				}
+			}];
+
+			this.setState({
+				hoveredSelectedDefined: updatedLayers
+			})
+		}
+	}
 
 	render() {
 		return (
@@ -418,32 +536,90 @@ class Index extends React.PureComponent {
 				<h2>Filter</h2>
 				<ImplementationToDo>Not implemented yet</ImplementationToDo>
 
+
+
 				<h2>Styles</h2>
 				<h3 id="without-style">Without styles</h3>
 				<p>If styles are not defined default styles will be used.</p>
 				<MapContainer layers={polygonLayers_noStyles} view={czView}/>
 
 
-
-
-				<h3 id="basic">Basic styling</h3>
-				<p>Add custom fill, outline and opacity.</p>
-
+				<h3 id="fill">Fill styling</h3>
+				<p>For interior of shapes, it is possible to set color and opacity. If color is not defined, the interior will be fully transparent. If opacity is not defined, the interior will be opaque.</p>
 				<SyntaxHighlighter language="js">{`{
 \tstyles: [{
-\t\tfill: "#ff9248",
-\t\tfillOpacity: 0.7,
-\t\toutlineColor: "#ff3e0e",
-\t\toutlineWidth: 7,
-\t\toutlineOpacity: 0.4
+\t\tfill: "#10421c",
+\t\tfillOpacity: 0.5
 \t}]
 }`}
 				</SyntaxHighlighter>
-				<MapContainer layers={polygonLayers_basicStyle} view={czView}/>
+				<MapContainer layers={polygonLayers_fill} view={czView}/>
+
+
+				<h3 id="outline">Outline styling</h3>
+				<p>Three properties of outline can be defined - color, width and opacity. To draw the outline, both color and width must be defined. If opacity is not defined, the outline will be opaque.</p>
+				<SyntaxHighlighter language="js">{`{
+\tstyles: [{
+\t\toutlineColor: "#10421c",
+\t\toutlineWidth: 5,
+\t\toutlineOpacity: 0.5
+\t}]
+}`}
+				</SyntaxHighlighter>
+				<MapContainer layers={polygonLayers_outline} view={czView}/>
+
+
+				<h3 id="hovered-selected">Hovered and selected</h3>
+				<p>If styles for hovered, selected or hovered selected are not defined, default styles will be used. Move cursor over area to see the popup and hovered style. Click on the area to select it.</p>
+				<HoverHandler
+					popupContentComponent={
+						(props) => <b>{props.data["NAME_1"]}</b>
+					}
+				>
+					<MapContainer layers={this.state.hoveredSelectedDefault} view={czView} onSelect={this.onLayerClick}/>
+				</HoverHandler>
+
+
+				<p>Hovered, selected or hovered selected styles could be defined in <Link to="/architecture/systemDataTypes/layers#vector">layer definition</Link>.</p>
+				<SyntaxHighlighter language="js">{`{
+\tkey: "polygons_hoveredSelectedDefined",
+\ttype: "vector",
+\toptions: {
+\t\tfeatures: cz_gadm.features,
+\t\tfidColumnName: "GID_1",
+\t\thovered: {
+\t\t\tstyle: {
+\t\t\t\toutlineColor: "#33c21e",
+\t\t\t\toutlineWidth: 5
+\t\t\t}
+\t\t},
+\t\tselected: {
+\t\t\ttestSelection: {
+\t\t\t\tkeys: ["CZE.1_1"],
+\t\t\t\tstyle: {
+\t\t\t\t\tfill: "#ff0000"
+\t\t\t\t},
+\t\t\t\thoveredStyle: {
+\t\t\t\t\toutlineColor: "#c21ebf",
+\t\t\t\t\toutlineWidth: 5,
+\t\t\t\t\tfill: "#ff0066"
+\t\t\t\t}
+\t\t\t}
+\t\t}
+\t}
+}`}
+				</SyntaxHighlighter>
+				<HoverHandler
+					popupContentComponent={
+						(props) => <b>{props.data["NAME_1"]}</b>
+					}
+				>
+					<MapContainer layers={this.state.hoveredSelectedDefined} view={czView} onSelect={this.onLayerClick}/>
+				</HoverHandler>
 
 
 
-				<h3 id="values">Values</h3>
+				<h3 id="values">Attribute values</h3>
 				<SyntaxHighlighter language="js">{`{
 \tstyles: [{
 \t\tfill: "#cccccc"
@@ -539,7 +715,7 @@ class Index extends React.PureComponent {
 
 
 				<h3 id="symbols">Symbols</h3>
-				<ImplementationToDo>Currently implemented for arrows in WorldWind LargeDataLayer only. <Link to="#large-data-layer">See usage.</Link></ImplementationToDo>
+				<ImplementationToDo>Currently implemented for Markers only. <Link to="#large-data-layer">See WorldWind LargeDataLayer usage</Link> or <Link to="/components/maps/presentational/reactLeaflet/vectorLayer#points">ReactLeaflet Vector layer usage</Link>.</ImplementationToDo>
 
 
 				<h3 id="diagrams">Diagrams</h3>
