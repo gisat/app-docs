@@ -40,6 +40,7 @@ import WorldWindMapDoc from "./components/pages/components/maps/WorldWindMapDoc"
 import LeafletVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer";
 import LeafletDiagramLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer";
 import WorldWindVectorLayer from "./components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer";
+import LeafletLargeDataLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletLargeDataLayer";
 
 
 const path = process.env.PUBLIC_URL;
@@ -110,6 +111,7 @@ ReactDOM.render(
                                     <Anchor label="Lines" path="lines"/>
                                 </Page>
                                 <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
+                                <Page label="Large data layer" path="largeDataLayer" component={LeafletLargeDataLayer}/>
                             </Directory>
                             <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
