@@ -109,6 +109,7 @@ ReactDOM.render(
                                     <Anchor label="Polygons" path="polygons"/>
                                     <Anchor label="Points" path="points"/>
                                     <Anchor label="Lines" path="lines"/>
+                                    <Anchor label="Mixed" path="mixed"/>
                                 </Page>
                                 <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
                                 <Page label="Large data layer" path="largeDataLayer" component={LeafletLargeDataLayer}/>

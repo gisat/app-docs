@@ -12,6 +12,7 @@ import {ReactLeafletMap} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
 import {Link} from "@gisatcz/ptr-state";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
+import mixed_features from "../../../../mockData/map/mixedVectorFeaturesLayer/geometries.json";
 import pointData from "../../../../mockData/map/largePointData/geometries.json";
 import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
@@ -232,6 +233,52 @@ const shapes = {
 const shapeLayers = [shapes];
 
 
+/* MIXED */
+const mixedFeaturesStyle = {rules: [{
+    styles: [{
+        fill: "#cccccc",
+        outlineColor: "#000000",
+        outlineWidth: 2,
+        size: 20
+    }, {
+        attributeKey: "e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
+        attributeClasses: [
+            {
+                interval: [0,5],
+                intervalBounds: [true, false],
+                fill: "#edf8fb"
+            },
+            {
+                interval: [5,10],
+                intervalBounds: [true, false],
+                fill: "#b3cde3"
+            },{
+                interval: [10,20],
+                intervalBounds: [true, false],
+                fill: "#8c96c6"
+            }
+        ]
+    }]
+}]};
+
+const mixedFeaturesLayer = {
+    key: "mixed-features-layer",
+    type: "vector",
+    options: {
+        features: mixed_features.features,
+        selected: {
+            "testSelection": {
+                keys: ["CZE.12_1"]
+            }
+        },
+        fidColumnName: "GID_1",
+        pointAsMarker: true,
+        style: mixedFeaturesStyle
+    }
+};
+
+const mixedFeaturesLayers = [mixedFeaturesLayer];
+
 
 class LeafletVectorLayer extends React.PureComponent {
     constructor(props) {
@@ -239,7 +286,8 @@ class LeafletVectorLayer extends React.PureComponent {
 
         this.state = {
             basicPolygonLayersWithSelection,
-            choroplethLayers
+            choroplethLayers,
+            mixedFeaturesLayers
         }
 
         this.onLayerClick = this.onLayerClick.bind(this);
@@ -281,6 +329,24 @@ class LeafletVectorLayer extends React.PureComponent {
 
             this.setState({
                 choroplethLayers: updatedLayers
+            })
+        } else if (map === 'mixed-features-map') {
+            let updatedLayers = [{
+                ...mixedFeaturesLayer,
+                options: {
+                    ...mixedFeaturesLayer.options,
+                    selected: {
+                        ...mixedFeaturesLayer.options.selected,
+                        testSelection: {
+                            ...mixedFeaturesLayer.options.selected.testSelection,
+                            keys: features
+                        }
+                    }
+                }
+            }];
+
+            this.setState({
+                mixedFeaturesLayers: updatedLayers
             })
         }
     }
@@ -509,6 +575,28 @@ class LeafletVectorLayer extends React.PureComponent {
                     </HoverHandler>
                 </div>
 
+                <h2 id="lines">Lines</h2>
+                <ImplementationToDo>Lines are not implemented currently</ImplementationToDo>
+
+                <h2 id="mixed">Mixed</h2>
+                <p>The source GeoJSON contains features of different types.</p>
+                <div style={{height: 500, marginBottom: 10}}>
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<><b>{props.data["NAME_1"]}</b></>);
+                            }
+                        }
+                    >
+                        <ReactLeafletMap
+                            mapKey='mixed-features-map'
+                            view={view}
+                            backgroundLayer={backgroundLayer}
+                            layers={this.state.mixedFeaturesLayers}
+                            onLayerClick={this.onLayerClick}
+                        />
+                    </HoverHandler>
+                </div>
             </Page>
         );
     }
