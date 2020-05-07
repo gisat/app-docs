@@ -15,10 +15,18 @@ import {Button, Buttons, ButtonSwitchOption, ButtonGroup} from "@gisatcz/ptr-ato
 import utils from "../../../../../utils";
 import config from "../../../../../config";
 
+const default_points_boxRangeRange = [null, 50000];
+const default_polygons_boxRangeRange = [500000, 3000000];
+
 // *** VIEWS ***
 const view = {
     center: {lat: 50.05, lon: 15.15},
     boxRange: 30000
+};
+
+const viewEurope = {
+    center: {lat: 50.05, lon: 15.15},
+    boxRange: 1000000
 };
 
 const backgroundLayer = {
@@ -87,7 +95,6 @@ const cz_large_data_style = {
     ]
 }
 
-const defaultMaxBoxRange = 50000;
 
 const cz_large_data_layer = {
     key: "cz_large_data_layer",
@@ -100,30 +107,85 @@ const cz_large_data_layer = {
         style: cz_large_data_style,
         pointAsMarker: true,
         fidColumnName: "gid",
-        boxRangeRange: [null, defaultMaxBoxRange]
+        boxRangeRange: default_points_boxRangeRange
     }
 };
 
 const cz_large_data_layers = [cz_large_data_layer];
+
+// *** POLYGONS ***
+const polygons_style = {
+    "rules":[
+        {
+            "styles": [
+                {
+                    "fillOpacity": 0.85,
+                    "outlineWidth": 1,
+                    "outlineColor": "#333333"
+                },
+                {
+                    "attributeKey": "attr_3",
+                    "attributeClasses": [
+                        {
+                            "interval": [0,25],
+                            "fill": "#edf8fb"
+                        },
+                        {
+                            "interval": [25,50],
+                            "fill": "#b3cde3"
+                        },{
+                            "interval": [50,75],
+                            "fill": "#6d99d0"
+                        },{
+                            "interval": [75,101],
+                            "fill": "#264d7b"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+
+const polygon_layer = {
+    key: "polygon_layer",
+    type: "vector-large",
+    options: {
+        features: [],
+        style: polygons_style,
+        fidColumnName: "id",
+        boxRangeRange: default_polygons_boxRangeRange
+    }
+};
+
+const polygon_layers = [polygon_layer];
 
 class LeafletLargeDataLayer extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             cz_large_data_layers,
-            maxBoxRange: defaultMaxBoxRange,
-            currentBoxRange: view.boxRange
+            polygon_layers,
+            maxBoxRange: default_points_boxRangeRange[1],
+            currentPointsBoxRange: view.boxRange,
+            currentPolygonsBoxRange: viewEurope.boxRange
         };
 
         this.onLayerClick = this.onLayerClick.bind(this);
-        this.removeAll = this.removeAll.bind(this);
+        this.removeAllPoints = this.removeAllPoints.bind(this);
         this.onViewChange = this.onViewChange.bind(this);
     }
 
-    onViewChange(view) {
-        this.setState({
-            currentBoxRange: view.boxRange
-        });
+    onViewChange(mapKey, view) {
+        if (mapKey === 'large-data') {
+            this.setState({
+                currentPointsBoxRange: view.boxRange
+            });
+        } else if (mapKey === 'large-data-polygons') {
+            this.setState({
+                currentPolygonsBoxRange: view.boxRange
+            });
+        }
     }
 
     onLayerClick(map, layer, features) {
@@ -167,8 +229,21 @@ class LeafletLargeDataLayer extends React.PureComponent {
         }
     }
 
-    removeAll() {
+    addPolygonData() {
+        let url = `${config.mockDataRepositoryUrl}pvlach/largeData/nutsrg_3.json`;
+        utils.request(url, "GET").then(data => {
+           if (data) {
+               this.populateLayer('polygon_layer', data.features);
+           }
+        }).catch(err => new Error(err));
+    }
+
+    removeAllPoints() {
         this.populateLayer('cz_large_data_layer', []);
+    }
+
+    removePolygonData() {
+        this.populateLayer('polygon_layer', []);
     }
 
     populateLayer(layer, features) {
@@ -183,7 +258,19 @@ class LeafletLargeDataLayer extends React.PureComponent {
 
             this.setState({
                 cz_large_data_layers: updatedLayers,
-                loading: features.length ? [...this.state.loading, "Add data to map"] : ["Remove data"]
+                loading: features.length ? [...this.state.loading, "Add data to map"] : ["Remove data from map"]
+            });
+        } else if (layer === 'polygon_layer') {
+            let updatedLayers = [{
+                ...this.state.polygon_layers[0],
+                options: {
+                    ...this.state.polygon_layers[0].options,
+                    features
+                }
+            }];
+
+            this.setState({
+                polygon_layers: updatedLayers,
             });
         }
     }
@@ -205,17 +292,30 @@ class LeafletLargeDataLayer extends React.PureComponent {
 
     render() {
         return (
-            <Page title="Leaflet Large Data Layer">
-                <div>
-                    <div>Current boxRange: {Math.round(this.state.currentBoxRange/1000)} km</div>
-                    <div>Maximum boxRange to draw features:</div>
-                    <ButtonGroup>
-                        <ButtonSwitchOption primary={this.state.maxBoxRange === 20000} onClick={this.onMaxRangeChange.bind(this, 20000)}>20 km</ButtonSwitchOption>
-                        <ButtonSwitchOption primary={this.state.maxBoxRange === 50000} onClick={this.onMaxRangeChange.bind(this, 50000)}>50 km</ButtonSwitchOption>
-                        <ButtonSwitchOption primary={this.state.maxBoxRange === 100000} onClick={this.onMaxRangeChange.bind(this, 100000)}>100 km</ButtonSwitchOption>
-                    </ButtonGroup>
+            <Page title="Indexed Vector layer">
+                <DocsToDo>Add description</DocsToDo>
+                <h2>Points</h2>
+                <div>First, load desired amount of point features (and then optionally remove them again):</div>
+                <Buttons>
+                    <Button onClick={this.addData.bind(this,1)}>Add 20 000 points</Button>
+                    <Button onClick={this.addData.bind(this,10)}>Add 200 000 points</Button>
+                    <Button onClick={this.removeAllPoints}>Remove all point data</Button>
+                </Buttons>
+
+                <div className="ptr-docs-process-info-box">
+                {this.state.loading && this.state.loading.map((step, i) => <div key={i}>{step}</div>)}
                 </div>
-                <div style={{height: 500, marginBottom: 10, marginTop: 10}}>
+
+                <div>Next, you can optionaly switch the maximum range to draw the features: </div>
+                <ButtonGroup>
+                    <ButtonSwitchOption primary={this.state.maxBoxRange === 20000} onClick={this.onMaxRangeChange.bind(this, 20000)}>20 km</ButtonSwitchOption>
+                    <ButtonSwitchOption primary={this.state.maxBoxRange === 50000} onClick={this.onMaxRangeChange.bind(this, 50000)}>50 km</ButtonSwitchOption>
+                    <ButtonSwitchOption primary={this.state.maxBoxRange === 100000} onClick={this.onMaxRangeChange.bind(this, 100000)}>100 km</ButtonSwitchOption>
+                </ButtonGroup>
+
+                <div style={{marginTop: '1rem'}}>Zoom in/out to see current range change: <b>{Math.round(this.state.currentPointsBoxRange/1000)}</b> km</div>
+
+                <div style={{height: 500, marginBottom: 10}}>
                     <HoverHandler
                         popupContentComponent={
                             (props) => <>
@@ -232,16 +332,39 @@ class LeafletLargeDataLayer extends React.PureComponent {
                             backgroundLayer={backgroundLayer}
                             layers={this.state.cz_large_data_layers}
                             onLayerClick={this.onLayerClick}
-                            onViewChange={this.onViewChange}
+                            onViewChange={this.onViewChange.bind(this, 'large-data')}
                         />
                     </HoverHandler>
                 </div>
+
+                <h2>Polygons</h2>
+
+                <div>First, load point features (and then optionally remove them again):</div>
                 <Buttons>
-                    <Button onClick={this.addData.bind(this,1)}>Add 20 000 points</Button>
-                    <Button onClick={this.addData.bind(this,10)}>Add 200 000 points</Button>
-                    <Button onClick={this.removeAll}>Remove all data</Button>
+                    <Button onClick={this.addPolygonData.bind(this)}>Add 1500 polygons</Button>
+                    <Button onClick={this.removePolygonData.bind(this)}>Remove polygon data</Button>
                 </Buttons>
-                {this.state.loading && this.state.loading.map((step, i) => <div key={i}>{step}</div>)}
+                <div style={{marginTop: '1rem'}}>Min box range to draw features: {default_polygons_boxRangeRange[0]/1000} km</div>
+                <div>Max box range to draw features: {default_polygons_boxRangeRange[1]/1000} km</div>
+                <div>Zoom in/out to see current range change: <b>{Math.round(this.state.currentPolygonsBoxRange/1000)}</b> km</div>
+                <div style={{height: 500, marginBottom: 10, marginTop: 10}}>
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => <>
+                                Name: <b>{props.data["na"]}</b>
+                            </>
+                        }
+                    >
+                        <PresentationMap
+                            mapComponent={ReactLeafletMap}
+                            mapKey='large-data-polygons'
+                            view={viewEurope}
+                            backgroundLayer={backgroundLayer}
+                            layers={this.state.polygon_layers}
+                            onViewChange={this.onViewChange.bind(this, 'large-data-polygons')}
+                        />
+                    </HoverHandler>
+                </div>
             </Page>
         );
     }

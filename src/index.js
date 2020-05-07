@@ -59,6 +59,8 @@ Store.dispatch(Action.users.apiLoadCurrentUser());
 // Set local configuration
 Store.dispatch(Action.app.updateLocalConfiguration(config));
 
+
+
 ReactDOM.render(
     <Provider store={Store}>
         <Helmet
