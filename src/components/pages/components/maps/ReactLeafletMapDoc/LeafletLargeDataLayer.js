@@ -98,7 +98,7 @@ const cz_large_data_style = {
 
 const cz_large_data_layer = {
     key: "cz_large_data_layer",
-    type: "vector-large",
+    type: "vector",
     options: {
         features: [],
         selected: {
@@ -149,7 +149,7 @@ const polygons_style = {
 
 const polygon_layer = {
     key: "polygon_layer",
-    type: "vector-large",
+    type: "vector",
     options: {
         features: [],
         style: polygons_style,
