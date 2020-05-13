@@ -88,7 +88,8 @@ class LayersDoc extends React.PureComponent {
 			keys: [], //list of fids
 			style: {} //style definition
 		},
-		fidColumnName: "string"
+		fidColumnName: "string",
+		boxRangeRange: [] //boxRange limits where layer is rendered (e.g. [5000, 1000000])
 	}
 }`
 					}

@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from "lodash";
 import Page, {
+    InlineCodeHighlighter,
     SyntaxHighlighter
 } from "../../../../Page";
 import {MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
@@ -11,12 +12,12 @@ import {Link} from "@gisatcz/ptr-state";
 
 const europeView = {
     center: {lat: 49.8, lon: 12},
-    boxRange: 5000000
+    boxRange: 2000000
 };
 
 const czView = {
     center: {lat: 49.8, lon: 15},
-    boxRange: 2000000
+    boxRange: 1000000
 };
 
 const backgroundLayer = {
@@ -37,13 +38,26 @@ const diagramStyle = {rules: [{
             diagramFillOpacity: 0.5,
             diagramFill: "#ffffff",
             diagramOutlineWidth: 1,
-            diagramOutlineColor: "#256293"
+            diagramOutlineColor: "#364049"
         }, {
             attributeKey: "e575b4d4-7c7a-4658-bb9a-a9b61fcc2587",
             attributeScale: {
                 diagramSize: {
                     "inputInterval": [0,10],
                     "outputInterval": [10000, 30000]
+                }
+            }
+        }, {
+            attributeKey: "attr-2",
+            attributeValues: {
+                red: {
+                    diagramFill: "#ff0000",
+                },
+                blue: {
+                    diagramFill: "#0000ff",
+                },
+                green: {
+                    diagramFill: "#00ff00",
                 }
             }
         }]
@@ -160,7 +174,11 @@ class LeafletDiagramLayer extends React.PureComponent {
         return (
             <Page title="Leaflet diagram layer">
                 <p>Use diagram to visualize absolute value for area. See the examples bellow how diagrams can be drawn on the top of choropleth map.</p>
+
                 <p>DiagramLayer component extends <Link to="./vectorLayer">VectorLayer</Link> component and is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
+
+                <p>All features are indexed using <a target="_blank" href="https://www.npmjs.com/package/geojson-rbush">B-tree</a>. Only features in visible area (bounding box) are rendered. Consider using <Link to="/architecture/systemDataTypes/layers#vector"><InlineCodeHighlighter>boxRangeRange</InlineCodeHighlighter></Link> property to limit range where layer is rendered - useful for <Link to="/components/maps/presentational/reactLeaflet/largeVectorData">large data</Link>.</p>
+
                 <p>In case of Diagram layer, following options are different from Vector layer data type definition:</p>
                 <SyntaxHighlighter language="javascript">
                     {
@@ -206,6 +224,19 @@ class LeafletDiagramLayer extends React.PureComponent {
                         diagramSize: {
                             "inputInterval": [0,10],
                             "outputInterval": [10000, 30000]
+                        }
+                    }
+                }, {
+                    attributeKey: "attr-2",
+                    attributeValues: {
+                        red: {
+                            diagramFill: "#ff0000",
+                        },
+                        blue: {
+                            diagramFill: "#0000ff",
+                        },
+                        green: {
+                            diagramFill: "#00ff00",
                         }
                     }
                 }]

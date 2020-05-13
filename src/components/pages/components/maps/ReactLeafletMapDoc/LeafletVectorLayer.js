@@ -20,22 +20,17 @@ import nuts_2 from "../../../../mockData/map/nuts_2.json";
 // *** VIEWS ***
 const view = {
     center: {lat: 50, lon: 15},
-    boxRange: 2000000
+    boxRange: 1000000
 };
 
 const viewEurope = {
     center: {lat: 50, lon: 15},
-    boxRange: 7000000
-};
-
-const viewLargeData = {
-    center: {lat: 50.2, lon: 15.8},
-    boxRange: 50000
+    boxRange: 2000000
 };
 
 const viewHradec = {
     center: {lat: 50.2, lon: 15.8},
-    boxRange: 100000
+    boxRange: 50000
 };
 
 const backgroundLayer = {
@@ -354,9 +349,11 @@ class LeafletVectorLayer extends React.PureComponent {
     render() {
         return (
             <Page title="Leaflet Vector layer">
-                <p>Use this type of layer to display analytical units, for interactive layers or choropleths. It works well for layers with hundreds of polygon features or thousands of point features.</p>
+                <p>Use this type of layer to display analytical units, for interactive layers or choropleths.</p>
 
                 <p>VectorLayer component is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
+
+                <p>All features are indexed using <a target="_blank" href="https://www.npmjs.com/package/geojson-rbush">B-tree</a>. Only features in visible area (bounding box) are rendered. Consider using <Link to="/architecture/systemDataTypes/layers#vector"><InlineCodeHighlighter>boxRangeRange</InlineCodeHighlighter></Link> property to limit range where layer is rendered - useful for <Link to="/components/maps/presentational/reactLeaflet/largeVectorData">large data</Link>.</p>
 
                 <p>In case of Leaflet Vector layer, following options can be added to Vector layer data type definition:</p>
                 <SyntaxHighlighter language="javascript">
@@ -371,7 +368,7 @@ class LeafletVectorLayer extends React.PureComponent {
                     }
                 </SyntaxHighlighter>
 
-                <h2 id="polygons">Polygon layer</h2>
+                <h2 id="polygons">Polygons</h2>
                 <h3>Basic</h3>
                 <p>Basic usage with default style.</p>
                 <SyntaxHighlighter language="jsx">{`<ReactLeafletMap
@@ -459,40 +456,46 @@ class LeafletVectorLayer extends React.PureComponent {
 >
     <ReactLeafletMap
         //...
-        style: {
-            {rules: [{
-                styles: [{
-                    outlineWidth: 1,
-                    outlineColor: "#666"
-                },{
-                    attributeKey: "diverging_attr",
-                    attributeClasses: [
-                        {
-                            interval: [-5,-3],
-                            intervalBounds: [true, false],
-                            fill: "#d7191c"
-                        },
-                        {
-                            interval: [-3,-1],
-                            intervalBounds: [true, false],
-                            fill: "#fdae61"
+        layers={[{
+            //...
+            options: {
+                //...
+                style: {
+                    rules: [{
+                        styles: [{
+                            outlineWidth: 1,
+                            outlineColor: "#666"
                         },{
-                            interval: [-1,1],
-                            intervalBounds: [true, false],
-                            fill: "#ffffbf"
-                        },{
-                            interval: [1,3],
-                            intervalBounds: [true, false],
-                            fill: "#a6d96a"
-                        },{
-                            interval: [3,5],
-                            intervalBounds: [true, false],
-                            fill: "#1a9641"
-                        }
-                    ]
-                }]
-            }]}
-        }
+                            attributeKey: "diverging_attr",
+                            attributeClasses: [
+                                {
+                                    interval: [-5,-3],
+                                    intervalBounds: [true, false],
+                                    fill: "#d7191c"
+                                },
+                                {
+                                    interval: [-3,-1],
+                                    intervalBounds: [true, false],
+                                    fill: "#fdae61"
+                                },{
+                                    interval: [-1,1],
+                                    intervalBounds: [true, false],
+                                    fill: "#ffffbf"
+                                },{
+                                    interval: [1,3],
+                                    intervalBounds: [true, false],
+                                    fill: "#a6d96a"
+                                },{
+                                    interval: [3,5],
+                                    intervalBounds: [true, false],
+                                    fill: "#1a9641"
+                                }
+                            ]
+                        }]
+                    }
+                ]}
+            }
+        }]}
     />
 </HoverHandler>`}
                 </SyntaxHighlighter>
@@ -535,6 +538,82 @@ class LeafletVectorLayer extends React.PureComponent {
                 </div>
 
                 <p>Markers can have different shapes. Currently, circle, square and diamond is implemented.</p>
+                <SyntaxHighlighter language="jsx">{`<HoverHandler
+    popupContentComponent={
+        (props) => {
+            return (<p>
+                Color: {props.data["attr1"]}<br/>
+                Shape: {props.data["attr2"]}<br/>
+                Size: {props.data["attr3"]}
+            </p>);
+        }
+    }
+>
+    <ReactLeafletMap
+        //...
+        layers={[{
+            //...
+            options: {
+                //...
+                pointAsMarker: true,
+                style: {
+                    "rules":[{
+                        "styles": [
+                            {
+                                "fillOpacity": 0.85,
+                                "outlineWidth": 1,
+                                "outlineColor": "#333333"
+                            },
+                            {
+                                "attributeKey": "attr1",
+                                "attributeClasses": [
+                                    {
+                                        "interval": [0,25],
+                                        "fill": "#edf8fb"
+                                    },
+                                    {
+                                        "interval": [25,50],
+                                        "fill": "#b3cde3"
+                                    },{
+                                        "interval": [50,75],
+                                        "fill": "#8c96c6"
+                                    },{
+                                        "interval": [75,101],
+                                        "fill": "#88419d"
+                                    }
+                                ]
+                            }, {
+                                "attributeKey": "attr3",
+                                "attributeScale": {
+                                    "size": {
+                                        "inputInterval": [0,1],
+                                        "outputInterval": [5,20]
+                                    }
+                                }
+                            },{
+                                "attributeKey": "attr2",
+                                "attributeClasses": [
+                                    {
+                                        "interval": [-10, -3],
+                                        "shape": "square",
+                                    },
+                                    {
+                                        "interval": [-3,3],
+                                        "shape": "circle"
+                                    },{
+                                        "interval": [3,10],
+                                        "shape": "diamond"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]}
+            }
+        }]}
+    />
+</HoverHandler>`}
+                </SyntaxHighlighter>
                 <div style={{height: 500, marginBottom: 10}}>
                     <HoverHandler
                         popupContentComponent={

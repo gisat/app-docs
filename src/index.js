@@ -114,7 +114,7 @@ ReactDOM.render(
                                     <Anchor label="Mixed" path="mixed"/>
                                 </Page>
                                 <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
-                                <Page label="Large data layer" path="largeDataLayer" component={LeafletLargeDataLayer}/>
+                                <Page label="Large vector data" path="largeVectorData" component={LeafletLargeDataLayer}/>
                             </Directory>
                             <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
