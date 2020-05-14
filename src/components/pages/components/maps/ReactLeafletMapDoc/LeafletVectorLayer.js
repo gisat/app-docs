@@ -16,6 +16,8 @@ import mixed_features from "../../../../mockData/map/mixedVectorFeaturesLayer/ge
 import pointData from "../../../../mockData/map/largePointData/geometries.json";
 import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
+import config from "../../../../../config";
+import utils from "../../../../../utils";
 
 // *** VIEWS ***
 const view = {
@@ -227,6 +229,41 @@ const shapes = {
 
 const shapeLayers = [shapes];
 
+/* LINES */
+const lineFeaturesStyle = {rules: [{
+        styles: [{
+            outlineColor: "#000000",
+            outlineWidth: 2,
+        },{
+            attributeKey: "TRIDA",
+            attributeValues: {
+                1: {
+                    outlineColor: "#b43300",
+                    outlineWidth: 6
+                },
+                2: {
+                    outlineColor: "#f89b7a",
+                    outlineWidth: 6
+                },
+                3: {
+                    outlineColor: "#6c92d0",
+                    outlineWidth: 3
+                }
+            }
+        }]
+    }]};
+
+const lineFeaturesLayer = {
+    key: "mixed-features-layer",
+    type: "vector",
+    options: {
+        features: [],
+        style: lineFeaturesStyle,
+        fidColumnName: "OBJECTID"
+    }
+};
+
+const lineFeaturesLayers = [lineFeaturesLayer];
 
 /* MIXED */
 const mixedFeaturesStyle = {rules: [{
@@ -282,10 +319,34 @@ class LeafletVectorLayer extends React.PureComponent {
         this.state = {
             basicPolygonLayersWithSelection,
             choroplethLayers,
+            lineFeaturesLayers,
             mixedFeaturesLayers
         }
 
         this.onLayerClick = this.onLayerClick.bind(this);
+    }
+
+    componentDidMount() {
+        this.addLineData();
+    }
+
+    addLineData() {
+        let url = `${config.mockDataRepositoryUrl}pvlach/lines/cz-main-roads.geojson`;
+        return utils.request(url, "GET").then(data => {
+            if (data) {
+                let updatedLayers = [{
+                    ...this.state.lineFeaturesLayers[0],
+                    options: {
+                        ...this.state.lineFeaturesLayers[0].options,
+                        features: data.features
+                    }
+                }];
+
+                this.setState({
+                    lineFeaturesLayers: updatedLayers
+                });
+            }
+        }).catch(err => new Error(err));
     }
 
     onLayerClick(map, layer, features) {
@@ -349,6 +410,7 @@ class LeafletVectorLayer extends React.PureComponent {
     render() {
         return (
             <Page title="Leaflet Vector layer">
+
                 <p>Use this type of layer to display analytical units, for interactive layers or choropleths.</p>
 
                 <p>VectorLayer component is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
@@ -655,7 +717,60 @@ class LeafletVectorLayer extends React.PureComponent {
                 </div>
 
                 <h2 id="lines">Lines</h2>
-                <ImplementationToDo>Lines are not implemented currently</ImplementationToDo>
+                <SyntaxHighlighter language="jsx">{`<HoverHandler
+//...
+>
+    <ReactLeafletMap
+        //...
+        layers={[{
+            //...
+            options: {
+                //...
+                style: {
+                    rules: [{
+                        styles: [{
+                            outlineColor: "#000000",
+                            outlineWidth: 2,
+                        },{
+                            attributeKey: "TRIDA",
+                            attributeValues: {
+                                1: {
+                                    outlineColor: "#b43300",
+                                    outlineWidth: 6
+                                },
+                                2: {
+                                    outlineColor: "#f89b7a",
+                                    outlineWidth: 6
+                                },
+                                3: {
+                                    outlineColor: "#6c92d0",
+                                    outlineWidth: 3
+                                }
+                            }
+                        }]
+                    }]
+                }
+            }
+        }]}
+    />
+</HoverHandler>`}
+                </SyntaxHighlighter>
+                <div style={{height: 500, marginBottom: 10}}>
+                    <HoverHandler
+                        popupContentComponent={
+                            (props) => {
+                                return (<><b>{props.data["CISLO_SILNICE"]}</b></>);
+                            }
+                        }
+                    >
+                        <ReactLeafletMap
+                            mapKey='lines-map'
+                            view={view}
+                            backgroundLayer={backgroundLayer}
+                            layers={this.state.lineFeaturesLayers}
+                        />
+                    </HoverHandler>
+                </div>
 
                 <h2 id="mixed">Mixed</h2>
                 <p>The source GeoJSON contains features of different types.</p>
