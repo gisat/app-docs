@@ -411,11 +411,9 @@ class LeafletVectorLayer extends React.PureComponent {
         return (
             <Page title="Leaflet Vector layer">
 
-                <p>Use this type of layer to display analytical units, for interactive layers or choropleths.</p>
+                <p>Use this type of layer to display analytical units, for interactive layers or choropleths (see examples below).</p>
 
-                <p>VectorLayer component is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
-
-                <p>All features are indexed using <a target="_blank" href="https://www.npmjs.com/package/geojson-rbush">B-tree</a>. Only features in visible area (bounding box) are rendered. Consider using <Link to="/architecture/systemDataTypes/layers#vector"><InlineCodeHighlighter>boxRangeRange</InlineCodeHighlighter></Link> property to limit range where layer is rendered - useful for <Link to="/components/maps/presentational/reactLeaflet/largeVectorData">large data</Link>.</p>
+                <p>VectorLayer component is always used inside ReactLeafletMap component and wrapped by <Link to="indexedVectorLayer">Indexed Vector Layer</Link> component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
 
                 <p>In case of Leaflet Vector layer, following options can be added to Vector layer data type definition:</p>
                 <SyntaxHighlighter language="javascript">

@@ -175,9 +175,7 @@ class LeafletDiagramLayer extends React.PureComponent {
             <Page title="Leaflet diagram layer">
                 <p>Use diagram to visualize absolute value for area. See the examples bellow how diagrams can be drawn on the top of choropleth map.</p>
 
-                <p>DiagramLayer component extends <Link to="./vectorLayer">VectorLayer</Link> component and is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
-
-                <p>All features are indexed using <a target="_blank" href="https://www.npmjs.com/package/geojson-rbush">B-tree</a>. Only features in visible area (bounding box) are rendered. Consider using <Link to="/architecture/systemDataTypes/layers#vector"><InlineCodeHighlighter>boxRangeRange</InlineCodeHighlighter></Link> property to limit range where layer is rendered - useful for <Link to="/components/maps/presentational/reactLeaflet/largeVectorData">large data</Link>.</p>
+                <p>DiagramLayer component extends <Link to="./vectorLayer">VectorLayer</Link> component and it is always used inside ReactLeafletMap component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
 
                 <p>In case of Diagram layer, following options are different from Vector layer data type definition:</p>
                 <SyntaxHighlighter language="javascript">
@@ -190,7 +188,7 @@ class LeafletDiagramLayer extends React.PureComponent {
                 </SyntaxHighlighter>
                 <h2>Basic diagrams</h2>
                 <SyntaxHighlighter language="jsx">{`<PresentationMap
-    mapKey={"czechia"}
+    mapKey="czechia"
     mapComponent={ReactLeafletMap}
     view={{
         center: {lat: 50, lon: 15},
@@ -267,7 +265,7 @@ class LeafletDiagramLayer extends React.PureComponent {
                             backgroundLayer={backgroundLayer}
                             layers={this.state.polygonLayers_diagrams}
                             view={czView}
-                            mapKey={"czechia"}
+                            mapKey="czechia"
                             onLayerClick={this.onLayerClick}
                         >
                             <MapControls zoomOnly levelsBased/>

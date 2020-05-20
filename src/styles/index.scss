@@ -337,3 +337,13 @@
 	font-style: italic;
 	padding-bottom: .5rem;
 }
+
+/* Basic list */
+.ptr-docs-basic-list {
+	margin-left: m(1);
+	margin-bottom: m(1);
+}
+
+.ptr-docs-basic-list .ptr-docs-basic-list {
+	margin-bottom: m(1/3);
+}

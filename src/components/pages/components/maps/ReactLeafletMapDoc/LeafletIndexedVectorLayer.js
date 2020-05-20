@@ -12,6 +12,7 @@ import Page, {
 import {ReactLeafletMap, PresentationMap} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
 import {Button, Buttons, ButtonSwitchOption, ButtonGroup} from "@gisatcz/ptr-atoms";
+import {Link} from "@gisatcz/ptr-state";
 import utils from "../../../../../utils";
 import config from "../../../../../config";
 
@@ -160,7 +161,7 @@ const polygon_layer = {
 
 const polygon_layers = [polygon_layer];
 
-class LeafletLargeDataLayer extends React.PureComponent {
+class LeafletIndexedVectorLayer extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -293,8 +294,10 @@ class LeafletLargeDataLayer extends React.PureComponent {
     render() {
         return (
             <Page title="Indexed Vector layer">
-                <DocsToDo>Add description</DocsToDo>
-                <h2>Points</h2>
+                <p>Indexed Vector layer wraps both <Link to="vectorLayer">Vector layer</Link> and <Link to="diagramLayer">Diagram layer</Link>. All features are indexed using <a target="_blank" href="https://www.npmjs.com/package/geojson-rbush">B-tree</a>. Only features in visible area (bounding box) are rendered. Consider using <Link to="/architecture/systemDataTypes/layers#vector"><InlineCodeHighlighter>boxRangeRange</InlineCodeHighlighter></Link> property to limit range where layer is rendered - useful for layers with big amount of features.</p>
+
+                <h2>Playground</h2>
+                <h3>Point</h3>
                 <div>First, load desired amount of point features (and then optionally remove them again):</div>
                 <Buttons>
                     <Button onClick={this.addData.bind(this,1)}>Add 20 000 points</Button>
@@ -337,8 +340,7 @@ class LeafletLargeDataLayer extends React.PureComponent {
                     </HoverHandler>
                 </div>
 
-                <h2>Polygons</h2>
-
+                <h3>Polygons</h3>
                 <div>First, load point features (and then optionally remove them again):</div>
                 <Buttons>
                     <Button onClick={this.addPolygonData.bind(this)}>Add 1500 polygons</Button>
@@ -370,4 +372,4 @@ class LeafletLargeDataLayer extends React.PureComponent {
     }
 }
 
-export default LeafletLargeDataLayer;
+export default LeafletIndexedVectorLayer;
