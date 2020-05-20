@@ -89,7 +89,8 @@ class LayersDoc extends React.PureComponent {
 			style: {} //style definition
 		},
 		fidColumnName: "string",
-		boxRangeRange: [] //boxRange limits where layer is rendered (e.g. [5000, 1000000])
+		boxRangeRange: [] //boxRange limits where layer is rendered (e.g. [5000, 1000000]),
+		pointAsMarker: true //point features will be displayed as markers (with fixed size i pixels)
 	}
 }`
 					}

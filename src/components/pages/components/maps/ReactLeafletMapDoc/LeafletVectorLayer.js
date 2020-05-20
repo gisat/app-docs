@@ -415,19 +415,6 @@ class LeafletVectorLayer extends React.PureComponent {
 
                 <p>VectorLayer component is always used inside ReactLeafletMap component and wrapped by <Link to="indexedVectorLayer">Indexed Vector Layer</Link> component. The data are passed via layers prop (see <Link to="/components/maps/map">Map</Link> documentation), where each layer is represented by Vector layer data type. For general information about Vector layer system data type, see <Link to="/architecture/systemDataTypes/layers#vector">Layers</Link> section.</p>
 
-                <p>In case of Leaflet Vector layer, following options can be added to Vector layer data type definition:</p>
-                <SyntaxHighlighter language="javascript">
-                    {
-                        `{
-    // ...
-	options: {
-		// ...
-		pointAsMarker: true //point features will be displayed as markers (with fixed size i pixels)
-	}
-}`
-                    }
-                </SyntaxHighlighter>
-
                 <h2 id="polygons">Polygons</h2>
                 <h3>Basic</h3>
                 <p>Basic usage with default style.</p>
