@@ -81,7 +81,18 @@ class MapDoc extends React.PureComponent {
 	render() {
 		return (
 			<Page title="Map">
-				<DocsToDo>Add description</DocsToDo>
+				<div style={{marginBottom: 10, height: 300}}>
+					<PresentationMap
+						mapComponent={WorldWindMap}
+						backgroundLayer={presentational_backgroundLayer}
+						layers={presentationalLayers}
+						view={view}
+					>
+						<MapControls/>
+					</PresentationMap>
+				</div>
+
+				<p>The Map is a fundamental component for spatial data visualization. It wraps <Link to="./presentational">Presentational map component</Link> together with other optional components useful for visualization and control (e.g. <Link to="./controls/MapControls">MapControls</Link>). </p>
 
 				<h2>Props</h2>
 				<ComponentPropsTable>
@@ -98,13 +109,14 @@ class MapDoc extends React.PureComponent {
 						</Prop>
 						<Prop name="onViewChange" type="function">Function called when a view change is initiated inside the Presentation component</Prop>
 						<Prop name="onClick" type="function">Function called on click</Prop>
+						<Prop name="onLayerClick" type="function">Function called on layer click</Prop>
 						<Prop name="wrapperClasses" type="string">Class names for wrapper component</Prop>
 					</Section>
-					<DocsToDoInline>Add missing props</DocsToDoInline>
 				</ComponentPropsTable>
 
-				<h2>Uncontrolled unconnected</h2>
-				<p>Presentational components only.</p>
+				<h2>Component types</h2>
+				<h3>Uncontrolled unconnected</h3>
+				<p>Presentational components only. The map is not controlled from store. Layers and backgroundLayer have to be defined directly.</p>
 
 				<div style={{marginTop: 10, height: 400}}>
 					<PresentationMap
@@ -152,8 +164,8 @@ class MapDoc extends React.PureComponent {
 
 
 
-				<h2>Uncontrolled</h2>
-				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
+				<h3>Uncontrolled</h3>
+				<p>The map is not controlled from store, but layer data is collected based on stored metadata.</p>
 				<div style={{marginTop: 10, height: 400}}>
 					<Map
 						mapKey="uncontrolled-map"
@@ -165,6 +177,7 @@ class MapDoc extends React.PureComponent {
 						<MapControls/>
 					</Map>
 				</div>
+				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map.</p>
 				<SyntaxHighlighter language="jsx">{`import {WorldWindMap, MapControls, Map} from "@gisatcz/ptr-maps";
 
 <Map
@@ -182,7 +195,7 @@ class MapDoc extends React.PureComponent {
 		metadataModifiers: {
 			applicationKey: 'docs'
 		}
-	]}
+	}]}
 	view={{
 		center: {lat: 50, lon: 15},
 		boxRange: 2000000
@@ -197,8 +210,8 @@ class MapDoc extends React.PureComponent {
 
 
 
-				<h2>Connected to store</h2>
-				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
+				<h3>Connected to store</h3>
+				<p>The map is completely controlled from store. The map with given key should already be in the store.</p>
 				<div style={{marginTop: 10, height: 400}}>
 					<Map
 						mapComponent={WorldWindMap}
@@ -207,6 +220,7 @@ class MapDoc extends React.PureComponent {
 						<MapControls/>
 					</Map>
 				</div>
+				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map.</p>
 				<SyntaxHighlighter language="jsx">{`import {ReactLeafletMap, MapControls, Map} from "@gisatcz/ptr-maps";
 
 // Map with key 'docs-connected-map' should already be in the store
