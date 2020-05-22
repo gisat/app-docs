@@ -42,6 +42,7 @@ import LeafletDiagramLayer from "./components/pages/components/maps/ReactLeaflet
 import WorldWindVectorLayer from "./components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer";
 import LeafletIndexedVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletIndexedVectorLayer";
 import MapPresentational from "./components/pages/components/maps/MapPresentational";
+import MapControls from "./components/pages/components/maps/MapControls";
 
 
 const path = process.env.PUBLIC_URL;
@@ -120,7 +121,7 @@ ReactDOM.render(
                             <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
                         <Directory label="Controls" path="controls">
-                            <Page label="GoToPlace" path="goToPlace"/>
+                            <Page label="Map controls" path="mapControls" component={MapControls}/>
                         </Directory>
                     </Directory>
                     <Directory label="Visualizations" path="visualizations">
