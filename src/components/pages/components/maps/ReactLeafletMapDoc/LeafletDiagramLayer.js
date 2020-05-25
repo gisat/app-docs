@@ -31,11 +31,11 @@ const backgroundLayer = {
 // Polygons & diagrams
 const diagramStyle = {rules: [{
         styles: [{
-            fill: "#cccccc",
+            fill: "#aaaaaa",
             outlineWidth: 1,
             outlineColor: "#000000",
             diagramShape: "circle",
-            diagramFillOpacity: 0.5,
+            diagramFillOpacity: 1,
             diagramFill: "#ffffff",
             diagramOutlineWidth: 1,
             diagramOutlineColor: "#364049"
