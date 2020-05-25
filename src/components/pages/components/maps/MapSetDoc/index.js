@@ -29,6 +29,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 		removeSetBackgroundLayer: (setKey) => {
 			dispatch(Action.maps.setSetBackgroundLayer(setKey, null))
 		},
+		removeSet: (setKey) => {
+			dispatch(Action.maps.removeSet(setKey));
+		},
+		removeMap: (mapKey) => {
+			dispatch(Action.maps.removeMap(mapKey));
+		},
 	}
 };
 

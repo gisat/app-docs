@@ -37,6 +37,12 @@ import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewD
 import StyleDoc from "./components/pages/architecture/commonDataTypes/StyleDoc";
 import ReactLeafletMapDoc from "./components/pages/components/maps/ReactLeafletMapDoc";
 import WorldWindMapDoc from "./components/pages/components/maps/WorldWindMapDoc";
+import LeafletVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer";
+import LeafletDiagramLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer";
+import WorldWindVectorLayer from "./components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer";
+import LeafletIndexedVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletIndexedVectorLayer";
+import MapPresentational from "./components/pages/components/maps/MapPresentational";
+import MapControls from "./components/pages/components/maps/MapControls";
 
 
 const path = process.env.PUBLIC_URL;
@@ -55,6 +61,8 @@ Store.dispatch(Action.users.apiLoadCurrentUser());
 // Set local configuration
 Store.dispatch(Action.app.updateLocalConfiguration(config));
 
+
+
 ReactDOM.render(
     <Provider store={Store}>
         <Helmet
@@ -69,12 +77,15 @@ ReactDOM.render(
                         <Directory label="Common data types" path="common">
                             <Page label="Style" path="style" component={StyleDoc}>
                                 <Anchor label="Without style" path="without-style"/>
-                                <Anchor label="Basic" path="basic"/>
+                                <Anchor label="Fill styling" path="fill"/>
+                                <Anchor label="Outline styling" path="outline"/>
+                                <Anchor label="Hovered & selected" path="hovered-selected"/>
                                 <Anchor label="Attribute values" path="values"/>
                                 <Anchor label="Intervals" path="intervals"/>
                                 <Anchor label="Scales" path="scales"/>
                                 <Anchor label="Transformations" path="transformations"/>
                                 <Anchor label="Symbols" path="symbols"/>
+                                <Anchor label="Diagrams" path="diagrams"/>
                             </Page>
                         </Directory>
                         <Page label="Specific data types" path="specific"/>
@@ -92,13 +103,25 @@ ReactDOM.render(
                     <Directory label="Maps" path="maps">
                         <Page label="Map" path="map" component={MapDoc}/>
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
-                        <Directory label="Presentational" path="presentational">
-                            <Page label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}/>
-                            <Page label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}/>
+                        <Directory label="Presentational" path="presentational" component={MapPresentational}>
+                            <Directory label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}>
+                                <Page label="Vector layer" path="vectorLayer" component={WorldWindVectorLayer}/>
+                            </Directory>
+                            <Directory label="ReactLeafletMap" path="reactLeaflet" component={ReactLeafletMapDoc}>
+                                <Page label="Vector layer" path="vectorLayer" component={LeafletVectorLayer}>
+                                    <Anchor label="Props" path="props"/>
+                                    <Anchor label="Polygons" path="polygons"/>
+                                    <Anchor label="Points" path="points"/>
+                                    <Anchor label="Lines" path="lines"/>
+                                    <Anchor label="Mixed" path="mixed"/>
+                                </Page>
+                                <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
+                                <Page label="Indexed Vector layer" path="indexedVectorLayer" component={LeafletIndexedVectorLayer}/>
+                            </Directory>
                             <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
                         <Directory label="Controls" path="controls">
-                            <Page label="GoToPlace" path="goToPlace"/>
+                            <Page label="Map controls" path="mapControls" component={MapControls}/>
                         </Directory>
                     </Directory>
                     <Directory label="Visualizations" path="visualizations">

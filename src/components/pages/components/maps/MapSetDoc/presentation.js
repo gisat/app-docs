@@ -65,7 +65,10 @@ const unconnectedLayersCuzk = [{
 class MapSetDoc extends React.PureComponent {
 	constructor(props){
 		super(props);
+	}
 
+	componentDidMount() {
+		const props = this.props;
 		props.addSet({
 			key: 'docs-MapSet',
 			data: {
@@ -95,8 +98,8 @@ class MapSetDoc extends React.PureComponent {
 				}
 			}
 		});
-		
-		
+
+
 		props.setSetSync('docs-MapSet', {center: true, boxRange: true, heading: true});
 		props.setSetSync('docs-MapSet-worldWind', {center: true, boxRange: true, heading: true});
 		props.addMap({key: 'docs-MapSet-Map1'});
@@ -114,6 +117,17 @@ class MapSetDoc extends React.PureComponent {
 		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map3');
 	}
 
+	componentWillUnmount() {
+		this.props.removeSet('docs-MapSet');
+		this.props.removeSet('docs-MapSet-worldWind');
+		this.props.removeMap('docs-MapSet-Map1');
+		this.props.removeMap('docs-MapSet-Map2');
+		this.props.removeMap('docs-MapSet-Map3');
+		this.props.removeMap('docs-MapSetWorldWind-Map1');
+		this.props.removeMap('docs-MapSetWorldWind-Map2');
+		this.props.removeMap('docs-MapSetWorldWind-Map3');
+	}
+
 	render() {
 		return (
 			<Page title="Map set">
@@ -121,7 +135,7 @@ class MapSetDoc extends React.PureComponent {
 				<ComponentPropsTable>
 					<Prop name="mapComponent" type="WorldWindMap|ReactLeafletMap" required>Presentational component to render the final map</Prop>
 					<Section name="Controlled">
-						<Prop name="connectedMapComponent" type="ConnectedMap" required><DocsToDoInline/></Prop>
+						<Prop name="connectedMapComponent" type="ConnectedMap" required><Link to="./map#connected">Map component connected to store</Link>.</Prop>
 						<Prop name="stateMapSetKey" required type="string">Valid key of a map set in map store</Prop>
 					</Section>
 					<Section name="Uncontrolled">
@@ -137,6 +151,7 @@ class MapSetDoc extends React.PureComponent {
 
 				<h2>ReactLeaflet</h2>
 				<h3>Connected to store</h3>
+				<p>The map is completely controlled from store. The map with given key should already be in the store.</p>
 				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
@@ -165,6 +180,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 				</SyntaxHighlighter>
 
 				<h3>Uncontrolled</h3>
+				<p>The map is not controlled from store, but layer data is collected based on stored metadata.</p>
 				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map below.</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
@@ -233,6 +249,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 				</SyntaxHighlighter>
 
 				<h3>Uncontrolled unconnected</h3>
+				<p>Presentational components only. The map is not controlled from store. Layers and backgroundLayer have to be defined directly.</p>
 				<div style={{height: 500}}>
 					<MapSet
 						activeMapKey='map-2'

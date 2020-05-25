@@ -8,7 +8,7 @@
 
 .ptr-docs-props-table {
 	max-width: 80rem;
-	font-size: $b1;
+	font-size: $a1;
 	background: var(--base10);
 }
 
@@ -47,7 +47,7 @@
 .ptr-docs-props-table .ptr-docs-props-table-type,
 .ptr-docs-props-table .ptr-docs-props-table-default {
 	font-family: monospace;
-	font-size: 1.05rem;
+	font-size: 1.15rem;
 }
 
 .ptr-docs-props-table tr td.ptr-docs-props-table-name {
@@ -73,7 +73,7 @@
 .ptr-docs-props-table-description-object > div > span,
 .ptr-docs-props-table-prop-option > span {
 	font-family: monospace;
-	font-size: 1.05rem;
+	font-size: 1.15rem;
 }
 
 .ptr-docs-props-table-prop-option > span > em {
