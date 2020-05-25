@@ -178,8 +178,8 @@ class MapDoc extends React.PureComponent {
 					</Map>
 				</div>
 				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map.</p>
-				<SyntaxHighlighter language="jsx">{`import {WorldWindMap, MapControls, Map} from "@gisatcz/ptr-maps";
-
+				<SyntaxHighlighter language="jsx">{`import {WorldWindMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
+const Map = connects.Map(PresentationMap);
 <Map
 	mapComponent={WorldWindMap}
 	backgroundLayer={{
@@ -210,8 +210,8 @@ class MapDoc extends React.PureComponent {
 
 
 
-				<h3>Connected to store</h3>
-				<p>The map is completely controlled from store. The map with given key should already be in the store.</p>
+				<h3 id="connected">Connected to store</h3>
+				<p>The map is completely controlled from store. The map with given key should already be present in the store.</p>
 				<div style={{marginTop: 10, height: 400}}>
 					<Map
 						mapComponent={WorldWindMap}
@@ -221,8 +221,8 @@ class MapDoc extends React.PureComponent {
 					</Map>
 				</div>
 				<p>Layers are served from 192.168.2.206. Check your configuration if there are no layers in the map.</p>
-				<SyntaxHighlighter language="jsx">{`import {ReactLeafletMap, MapControls, Map} from "@gisatcz/ptr-maps";
-
+				<SyntaxHighlighter language="jsx">{`import {WorldWindMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
+const Map = connects.Map(PresentationMap);
 // Map with key 'docs-connected-map' should already be in the store
 <Map
 	mapComponent={WorldWindMap}
