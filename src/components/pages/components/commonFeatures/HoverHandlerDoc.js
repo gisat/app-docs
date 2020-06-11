@@ -2,7 +2,6 @@ import React from 'react';
 import ComponentPropsTable from "../../../ComponentPropsTable/ComponentPropsTable";
 import Page, {DocsToDo} from "../../../Page";
 import {HoverHandler} from "@gisatcz/ptr-core";
-import {LeafletMap} from "@gisatcz/ptr-maps";
 import {AsterChart, ColumnChart, LineChart, ScatterChart} from '@gisatcz/ptr-charts';
 
 import sample_10 from "../../../mockData/scatterChart/serie_10";
@@ -74,37 +73,6 @@ class HoverHandlerDoc extends React.PureComponent {
 							nameSourcePath="data.name"
 							valueSourcePath="data.data[0].someStrangeValue"
 						/>
-						<div style={{height: '20rem'}}>
-							<LeafletMap
-								mapKey='hover-handler-docs-leaflet-map'
-								view={{
-									center: {
-										lat: -6.15,
-										lon: 35.75
-									},
-									boxRange: 70000
-								}}
-								backgroundLayer={{
-									key: 'background-osm',
-									type: 'wmts',
-									options: {
-										url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-									}
-								}}
-								layers={[
-									{
-										key: 'dodomaAuLevel3',
-										name: 'Analytical units 3',
-										type: 'vector',
-										options: {
-											features: dodoma,
-											keyProperty: 'AL3_ID',
-											nameProperty: 'AL3_NAMEF'
-										}
-									}
-								]}
-							/>
-						</div>
 					</HoverHandler>
 				</div>
 			</Page>

@@ -30,7 +30,6 @@ import FormsDoc from "./components/pages/components/atoms/FormsDoc";
 import ItemSelectDoc from "./components/pages/components/atoms/ItemSelectDoc";
 import MapDoc from "./components/pages/components/maps/MapDoc";
 import MapSetDoc from "./components/pages/components/maps/MapSetDoc";
-import LeafletDoc from "./components/pages/components/maps/LeafletDoc";
 import HoverHandlerDoc from "./components/pages/components/commonFeatures/HoverHandlerDoc";
 import LayersDoc from "./components/pages/architecture/systemDataTypes/LayersDoc";
 import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewDoc";
@@ -118,7 +117,6 @@ ReactDOM.render(
                                 <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
                                 <Page label="Indexed Vector layer" path="indexedVectorLayer" component={LeafletIndexedVectorLayer}/>
                             </Directory>
-                            <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
                         <Directory label="Controls" path="controls">
                             <Page label="Map controls" path="mapControls" component={MapControls}/>
