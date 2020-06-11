@@ -9,7 +9,7 @@ import Page, {
     SyntaxHighlighter
 } from "../../../../Page";
 
-import {ReactLeafletMap, PresentationMap} from "@gisatcz/ptr-maps";
+import {ReactLeafletMap, PresentationMap, MapControls} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
 import {Button, Buttons, ButtonSwitchOption, ButtonGroup} from "@gisatcz/ptr-atoms";
 import {Link} from "@gisatcz/ptr-state";
@@ -336,7 +336,9 @@ class LeafletIndexedVectorLayer extends React.PureComponent {
                             layers={this.state.cz_large_data_layers}
                             onLayerClick={this.onLayerClick}
                             onViewChange={this.onViewChange.bind(this, 'large-data')}
-                        />
+                        >
+                            <MapControls levelsBased zoomOnly/>
+                        </PresentationMap>
                     </HoverHandler>
                 </div>
 
@@ -364,7 +366,9 @@ class LeafletIndexedVectorLayer extends React.PureComponent {
                             backgroundLayer={backgroundLayer}
                             layers={this.state.polygon_layers}
                             onViewChange={this.onViewChange.bind(this, 'large-data-polygons')}
-                        />
+                        >
+                            <MapControls levelsBased zoomOnly/>
+                        </PresentationMap>
                     </HoverHandler>
                 </div>
             </Page>
