@@ -8,7 +8,7 @@ import {MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
 import {HoverHandler} from "@gisatcz/ptr-core";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 
 const europeView = {
     center: {lat: 49.8, lon: 12},

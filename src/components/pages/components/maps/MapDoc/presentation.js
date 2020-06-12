@@ -1,7 +1,8 @@
 import React from 'react';
 import Page, {DocsToDo, DocsToDoInline, InlineCodeHighlighter, LightDarkBlock, SyntaxHighlighter} from "../../../../Page";
 import {WorldWindMap, MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
-import {connects, Link} from "@gisatcz/ptr-state";
+import {connects} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import ComponentPropsTable, {Prop, Section} from "../../../../ComponentPropsTable/ComponentPropsTable";
 
 const Map = connects.Map(PresentationMap);

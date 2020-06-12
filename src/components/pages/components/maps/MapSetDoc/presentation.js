@@ -3,7 +3,8 @@ import Page, {DocsToDo, DocsToDoInline, InlineCodeHighlighter, LightDarkBlock, S
 
 import {ReactLeafletMap, WorldWindMap, MapControls, MapSet, MapSetPresentationMap, PresentationMap} from "@gisatcz/ptr-maps";
 
-import {connects, Link} from '@gisatcz/ptr-state';
+import {Link} from "react-router-dom";
+import {connects} from '@gisatcz/ptr-state';
 import ComponentPropsTable, {Prop, Section} from "../../../../ComponentPropsTable/ComponentPropsTable";
 
 const ConnectedMap = connects.Map(PresentationMap);

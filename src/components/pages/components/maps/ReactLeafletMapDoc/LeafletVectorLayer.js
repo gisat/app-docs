@@ -10,7 +10,7 @@ import Page, {
 } from "../../../../Page";
 import {ReactLeafletMap} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
 import mixed_features from "../../../../mockData/map/mixedVectorFeaturesLayer/geometries.json";
 import pointData from "../../../../mockData/map/largePointData/geometries.json";

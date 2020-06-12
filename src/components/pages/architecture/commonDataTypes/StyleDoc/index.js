@@ -1,7 +1,7 @@
 import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
 import {utils} from '@gisatcz/ptr-utils';
-import {Link} from '@gisatcz/ptr-state';
+import {Link} from "react-router-dom";
 
 import Page, {DocsToDo, SyntaxHighlighter, ImplementationToDo} from '../../../../Page';
 

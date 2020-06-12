@@ -2,7 +2,7 @@ import React from 'react';
 import Page, {InlineCodeHighlighter, SyntaxHighlighter} from "../../../../Page";
 import {MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
 import ComponentPropsTable, {Prop} from "../../../../ComponentPropsTable/ComponentPropsTable";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
 
 const view = {

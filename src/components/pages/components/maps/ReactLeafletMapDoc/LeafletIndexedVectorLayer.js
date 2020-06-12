@@ -12,7 +12,7 @@ import Page, {
 import {ReactLeafletMap, PresentationMap, MapControls} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
 import {Button, Buttons, ButtonSwitchOption, ButtonGroup} from "@gisatcz/ptr-atoms";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import utils from "../../../../../utils";
 import config from "../../../../../config";
 

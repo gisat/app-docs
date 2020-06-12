@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 
 import {AsterChart} from "@gisatcz/ptr-charts";
 import {HoverHandler} from "@gisatcz/ptr-core";

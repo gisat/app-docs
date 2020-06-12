@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@gisatcz/ptr-state';
+import {Link} from "react-router-dom";
 import Page, {
 	DocsToDo,
 	InlineCodeHighlighter,
