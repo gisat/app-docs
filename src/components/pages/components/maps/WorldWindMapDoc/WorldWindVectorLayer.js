@@ -16,7 +16,7 @@ import largePointDataFeatures from "../../../../mockData/map/largePointData/samp
 import pointStyle from "../../../../mockData/map/largePointData/style-simple-point.json";
 import {HoverHandler} from "@gisatcz/ptr-core";
 import nuts_2 from "../../../../mockData/map/nuts_2.json";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 
 const view = {
     center: {lat: 50, lon: 15},

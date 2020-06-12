@@ -2,7 +2,7 @@ import React from 'react';
 import Page, {SyntaxHighlighter} from "../../../../Page";
 import {WorldWindMap} from "@gisatcz/ptr-maps";
 import {HoverHandler} from "@gisatcz/ptr-core";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import ComponentPropsTable, {Prop} from "../../../../ComponentPropsTable/ComponentPropsTable";
 
 const view = {

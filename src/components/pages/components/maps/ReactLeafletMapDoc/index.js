@@ -2,7 +2,7 @@ import React from 'react';
 import Page, {InlineCodeHighlighter, SyntaxHighlighter} from "../../../../Page";
 import {MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
 import ComponentPropsTable, {Prop} from "../../../../ComponentPropsTable/ComponentPropsTable";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries.json";
 
 const view = {
@@ -174,6 +174,23 @@ class ReactLeafletMapDoc extends React.PureComponent {
 						<MapControls zoomOnly levelsBased/>
 					</PresentationMap>
 				</div>
+
+				<p>Alternatively, you can set crs for WMS layer only (e.g. in cases, where WMS is not provided in Leaflet's default crs - EPSG:3857) from the list above.</p>
+				<SyntaxHighlighter language="js">{`//...
+	layers={[{
+	    key: 'cuzk_ortofoto',
+		name: 'CUZK Ortofoto',
+		type: 'wms',
+		options: {
+			url: 'http://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx?',
+			params: {
+				layers: 'GR_ORTFOTORGB',
+				crs: 'EPSG:4326'
+			}
+		}
+	}]}
+//...`}
+				</SyntaxHighlighter>
 			</Page>
 		);
 	}

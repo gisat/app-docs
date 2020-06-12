@@ -14,7 +14,7 @@ import Page, {
 	SyntaxHighlighter
 } from "../../../../Page";
 import ComponentPropsTable from "../../../../ComponentPropsTable/ComponentPropsTable";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import ResizableContainer from "../../../../ResizableContainer/ResizableContainer";
 
 class ScatterChartDoc extends React.PureComponent {

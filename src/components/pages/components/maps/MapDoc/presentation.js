@@ -1,7 +1,8 @@
 import React from 'react';
 import Page, {DocsToDo, DocsToDoInline, InlineCodeHighlighter, LightDarkBlock, SyntaxHighlighter} from "../../../../Page";
 import {WorldWindMap, MapControls, PresentationMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
-import {connects, Link} from "@gisatcz/ptr-state";
+import {connects} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import ComponentPropsTable, {Prop, Section} from "../../../../ComponentPropsTable/ComponentPropsTable";
 
 const Map = connects.Map(PresentationMap);
@@ -103,6 +104,7 @@ class MapDoc extends React.PureComponent {
 					<Section name="Uncontrolled">
 						<Prop name="mapKey" type="string"/>
 						<Prop name="view" required type="map view"><Link to="/architecture/systemDataTypes/mapView">Presentation view</Link></Prop>
+						<Prop name="viewLimits" type="object">Restrict which part of the world is visible and how. See <Link to="#view-limits">View limits</Link> section.</Prop>
 						<Prop name="layers" type="layers"><Link to="/architecture/systemDataTypes/layers">Layers</Link></Prop>
 						<Prop name="backgroundLayer" type="background layer">
 							<Link to="/architecture/systemDataTypes/layers#backgroundLayer">Background layer</Link>
@@ -232,6 +234,77 @@ const Map = connects.Map(PresentationMap);
 </Map>
 `}
 				</SyntaxHighlighter>
+
+
+
+				<h2 id="view-limits">View limits</h2>
+				<p>Which part of the world is visible on the map and how is represented by <Link to="/architecture/systemDataTypes/mapView">view</Link> object. Currently, it is possible to restrict the zoom via <InlineCodeHighlighter>viewLimits</InlineCodeHighlighter> prop.</p>
+
+				<SyntaxHighlighter language="jsx">{`
+<Map
+	//...
+	view={{
+		center: {lat: 50, lon: 15},
+		boxRange: 16000
+	}}
+	viewLimits={{
+	    boxRangeRange: [4000, 64000]
+	}}
+>
+	<MapControls/>
+</Map>
+`}
+				</SyntaxHighlighter>
+				<div style={{display: 'flex', flexWrap: 'wrap'}}>
+					<div style={{margin: 5, height: 300, width: 500}}>
+						<PresentationMap
+							mapComponent={WorldWindMap}
+							backgroundLayer={presentational_backgroundLayer}
+							view={{
+								center: {lat: 50, lon: 15},
+								boxRange: 16000
+							}}
+							viewLimits={{
+								boxRangeRange: [4000, 64000]
+							}}
+						>
+							<MapControls/>
+						</PresentationMap>
+					</div>
+
+					<div style={{margin: 5, height: 300, width: 500}}>
+						<PresentationMap
+							mapComponent={WorldWindMap}
+							backgroundLayer={presentational_backgroundLayer}
+							view={{
+								center: {lat: 50, lon: 15},
+								boxRange: 16000
+							}}
+							viewLimits={{
+								boxRangeRange: [4000, 64000]
+							}}
+							levelsBased
+						>
+							<MapControls zoomOnly levelsBased/>
+						</PresentationMap>
+					</div>
+
+					<div style={{margin: 5, height: 300, width: 500}}>
+						<PresentationMap
+							mapComponent={ReactLeafletMap}
+							backgroundLayer={presentational_backgroundLayer}
+							view={{
+								center: {lat: 50, lon: 15},
+								boxRange: 16000
+							}}
+							viewLimits={{
+								boxRangeRange: [4000, 64000]
+							}}
+						>
+							<MapControls zoomOnly levelsBased/>
+						</PresentationMap>
+					</div>
+				</div>
 			</Page>
 		);
 	}

@@ -2,10 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import {Provider} from '@gisatcz/ptr-state';
-import { ConnectedRouter } from '@gisatcz/ptr-state';
+import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import Helmet from "react-helmet";
-import createStore, {createHistory} from './state/Store';
+import createStore,{history} from './state/Store';
 import {Action} from '@gisatcz/ptr-state';
+
 
 import config from "./config";
 
@@ -30,7 +31,6 @@ import FormsDoc from "./components/pages/components/atoms/FormsDoc";
 import ItemSelectDoc from "./components/pages/components/atoms/ItemSelectDoc";
 import MapDoc from "./components/pages/components/maps/MapDoc";
 import MapSetDoc from "./components/pages/components/maps/MapSetDoc";
-import LeafletDoc from "./components/pages/components/maps/LeafletDoc";
 import HoverHandlerDoc from "./components/pages/components/commonFeatures/HoverHandlerDoc";
 import LayersDoc from "./components/pages/architecture/systemDataTypes/LayersDoc";
 import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewDoc";
@@ -44,27 +44,23 @@ import LeafletIndexedVectorLayer from "./components/pages/components/maps/ReactL
 import MapPresentational from "./components/pages/components/maps/MapPresentational";
 import MapControls from "./components/pages/components/maps/MapControls";
 
+const {store} = createStore();
 
-const path = process.env.PUBLIC_URL;
-
-const history = createHistory({basename: path});
-const Store = createStore(history);
-
-Store.dispatch(Action.app.updateLocalConfiguration(config));
-Store.dispatch(Action.app.setKey('docs'));
+store.dispatch(Action.app.updateLocalConfiguration(config));
+store.dispatch(Action.app.setKey('docs'));
 // Store.dispatch(Action.app.setBaseUrl(baseUrl)); //TODO get base URL
 
 
 // Load Current User
-Store.dispatch(Action.users.apiLoadCurrentUser());
+store.dispatch(Action.users.apiLoadCurrentUser());
 
 // Set local configuration
-Store.dispatch(Action.app.updateLocalConfiguration(config));
+store.dispatch(Action.app.updateLocalConfiguration(config));
 
 
 
 ReactDOM.render(
-    <Provider store={Store}>
+    <Provider store={store}>
         <Helmet
             titleTemplate="%s | Panther docs"
             defaultTitle="Panther docs"
@@ -118,7 +114,6 @@ ReactDOM.render(
                                 <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
                                 <Page label="Indexed Vector layer" path="indexedVectorLayer" component={LeafletIndexedVectorLayer}/>
                             </Directory>
-                            <Page label="Leaflet (DEPRECATED)" path="leaflet" component={LeafletDoc}/>
                         </Directory>
                         <Directory label="Controls" path="controls">
                             <Page label="Map controls" path="mapControls" component={MapControls}/>

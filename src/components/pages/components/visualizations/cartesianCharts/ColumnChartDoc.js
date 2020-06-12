@@ -13,7 +13,7 @@ import Page, {
 	LightDarkBlock,
 	SyntaxHighlighter
 } from '../../../../Page';
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 import ResizableContainer from "../../../../ResizableContainer/ResizableContainer";
 import ComponentPropsTable from "../../../../ComponentPropsTable/ComponentPropsTable";
 

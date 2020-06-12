@@ -1,7 +1,7 @@
 import React from 'react';
 import Page, {SyntaxHighlighter} from "../../../Page";
 import {ReactLeafletMap, WorldWindMap} from "@gisatcz/ptr-maps";
-import {Link} from "@gisatcz/ptr-state";
+import {Link} from "react-router-dom";
 
 const view = {
     center: {lat: 50, lon: 15},
