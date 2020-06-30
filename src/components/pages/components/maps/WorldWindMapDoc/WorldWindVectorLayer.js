@@ -20,12 +20,12 @@ import {Link} from "react-router-dom";
 
 const view = {
     center: {lat: 50, lon: 15},
-    boxRange: 1000000
+    boxRange: 500000
 };
 
 const viewEurope = {
     center: {lat: 50, lon: 15},
-    boxRange: 3000000
+    boxRange: 2000000
 };
 
 const backgroundLayer = {
@@ -94,9 +94,16 @@ const polygonsWithStyle = {
         style: polygonsStyle,
         features: cz_gadm.features,
         fidColumnName: "GID_1",
+        hoverable: true,
+        hovered: {
+            style: "default"
+        },
+        selectable: true,
         selected: {
             "testSelection": {
-                keys: ["CZE.12_1"]
+                keys: ["CZE.12_1"],
+                style: "default",
+                hoveredStyle: "default"
             }
         }
     }
@@ -142,9 +149,16 @@ const choropleth = {
     options: {
         features: nuts_2.features,
         style: choroplethStyle,
+        hoverable: true,
+        hovered: {
+          style: "default"
+        },
+        selectable: true,
         selected: {
             "testSelection": {
-                keys: []
+                keys: ["PL41"],
+                style: "default",
+                hoveredStyle: "default"
             }
         },
         fidColumnName: "id"

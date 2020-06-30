@@ -12,12 +12,12 @@ import {Link} from "react-router-dom";
 
 const europeView = {
     center: {lat: 49.8, lon: 12},
-    boxRange: 2000000
+    boxRange: 1000000
 };
 
 const czView = {
     center: {lat: 49.8, lon: 15},
-    boxRange: 1000000
+    boxRange: 500000
 };
 
 const backgroundLayer = {
@@ -70,9 +70,16 @@ const polygonLayers_diagrams = [{
         features: cz_gadm.features,
         style: diagramStyle,
         fidColumnName: "GID_1",
+        hoverable: true,
+        hovered: {
+            style: "default",
+        },
+        selectable: true,
         selected: {
             "testSelection": {
-                keys: ["CZE.12_1"]
+                keys: ["CZE.12_1"],
+                style: "default",
+                hoveredStyle: "default"
             }
         }
     }
@@ -132,9 +139,16 @@ const polygonLayers_countries = [{
         features: nuts_2.features,
         style: diagramChoroplethStyle,
         fidColumnName: "id",
+        hoverable: true,
+        hovered: {
+            style: "default"
+        },
+        selectable: true,
         selected: {
             "testSelection": {
-                keys: ["PL41"]
+                keys: ["PL41"],
+                style: "default",
+                hoveredStyle: "default"
             }
         }
     }
@@ -240,9 +254,16 @@ class LeafletDiagramLayer extends React.PureComponent {
                 }]
             }]},
             fidColumnName: "GID_1",
+            hoverable: true,
+            hovered: {
+                style: "default"    
+            },
+            selectable: true,
             selected: {
                 "testSelection": {
-                    keys: ["CZE.12_1"]
+                    keys: ["CZE.12_1"],
+                    style: "default",
+                    hoveredStyle: "default"
                 }
             }
         }
@@ -283,9 +304,16 @@ class LeafletDiagramLayer extends React.PureComponent {
         options: {
             features: nuts_2.features,
             fidColumnName: "id",
+            hoverable: true,
+            hovered: {
+                style: "default"
+            },
+            selectable: true,
             selected: {
                 "testSelection": {
-                    keys: ["PL41"]
+                    keys: ["PL41"],
+                    style: "default",
+                    hoveredStyle: "default"
                 }
             },
             style: {rules: [{
