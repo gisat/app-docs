@@ -22,17 +22,17 @@ import utils from "../../../../../utils";
 // *** VIEWS ***
 const view = {
     center: {lat: 50, lon: 15},
-    boxRange: 1000000
+    boxRange: 300000
 };
 
 const viewEurope = {
     center: {lat: 50, lon: 15},
-    boxRange: 2000000
+    boxRange: 1000000
 };
 
 const viewHradec = {
     center: {lat: 50.2, lon: 15.8},
-    boxRange: 50000
+    boxRange: 20000
 };
 
 const backgroundLayer = {
@@ -63,9 +63,16 @@ const polygonsWithSelection = {
     type: "vector",
     options: {
         features: cz_gadm.features,
+        hoverable: true,
+        hovered: {
+            style: "default"
+        },
+        selectable: true,
         selected: {
             "testSelection": {
-                keys: ["CZE.12_1"]
+                keys: ["CZE.12_1"],
+                style: "default",
+                hoveredStyle: "default"
             }
         },
         fidColumnName: "GID_1"
@@ -465,9 +472,16 @@ class LeafletVectorLayer extends React.PureComponent {
             type: "vector",
             options: {
                 features: cz_gadm.features,
+                hoverable: true,
+                hovered: {
+                    style: "default"    
+                },
+                selectable: true,
                 selected: {
                     "testSelection": {
-                        keys: ["CZE.12_1"]
+                        keys: ["CZE.12_1"],
+                        style: "default",
+                        hoveredStyle: "default"
                     }
                 },
                 fidColumnName: "GID_1"
@@ -758,7 +772,7 @@ class LeafletVectorLayer extends React.PureComponent {
                 </div>
 
                 <h2 id="mixed">Mixed</h2>
-                <p>The source GeoJSON contains features of different types.</p>
+                <p>The source GeoJSON contains features of different types. Points are always rendered on the top of lines, lines are always rendered on the top of polygons.</p>
                 <div style={{height: 500, marginBottom: 10}}>
                     <HoverHandler
                         popupContentComponent={

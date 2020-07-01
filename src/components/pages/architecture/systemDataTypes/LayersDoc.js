@@ -76,17 +76,18 @@ class LayersDoc extends React.PureComponent {
 	options: {
 		features: [], //list of GeoJSON features
 		style: {}, //see Style section
+		selectable: true,
 		selected: {
 			selectionKey: {
 				keys: [], //list of fids
-				style: {}, //style definition
-				hoveredStyle: {} //style definition
+				style: "default" || {}, //style definition
+				hoveredStyle: "default" || {} //style definition
 			}, 
 			selectionKey2: {}},
 		filtered: {}, //TODO
+		hoverable: true, 
 		hovered: {
-			keys: [], //list of fids
-			style: {} //style definition
+			style: "default" || {} //style definition
 		},
 		fidColumnName: "string",
 		boxRangeRange: [] //boxRange limits where layer is rendered (e.g. [5000, 1000000]),
