@@ -44,6 +44,7 @@ import LeafletIndexedVectorLayer from "./components/pages/components/maps/ReactL
 import MapPresentational from "./components/pages/components/maps/MapPresentational";
 import MapControls from "./components/pages/components/maps/MapControls";
 import MapViewLimitsDoc from "./components/pages/architecture/systemDataTypes/MapViewLimits";
+import MapWrapperDoc from "./components/pages/components/maps/MapWrapperDoc";
 
 const {store} = createStore();
 
@@ -101,6 +102,7 @@ ReactDOM.render(
                     <Directory label="Maps" path="maps">
                         <Page label="Map" path="map" component={MapDoc}/>
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
+                        <Page label="Map wrapper" path="mapWrapper" component={MapWrapperDoc}/>
                         <Directory label="Presentational" path="presentational" component={MapPresentational}>
                             <Directory label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}>
                                 <Page label="Vector layer" path="vectorLayer" component={WorldWindVectorLayer}/>
