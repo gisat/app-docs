@@ -34,7 +34,7 @@ import MapSetDoc from "./components/pages/components/maps/MapSetDoc";
 import HoverHandlerDoc from "./components/pages/components/commonFeatures/HoverHandlerDoc";
 import LayersDoc from "./components/pages/architecture/systemDataTypes/LayersDoc";
 import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewDoc";
-import StyleDoc from "./components/pages/architecture/commonDataTypes/StyleDoc";
+import StyleDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc";
 import ReactLeafletMapDoc from "./components/pages/components/maps/ReactLeafletMapDoc";
 import WorldWindMapDoc from "./components/pages/components/maps/WorldWindMapDoc";
 import LeafletVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer";
@@ -43,6 +43,20 @@ import WorldWindVectorLayer from "./components/pages/components/maps/WorldWindMa
 import LeafletIndexedVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletIndexedVectorLayer";
 import MapPresentational from "./components/pages/components/maps/MapPresentational";
 import MapControls from "./components/pages/components/maps/MapControls";
+import Architecture from "./components/pages/architecture";
+import Applications from "./components/pages/architecture/Applications";
+import Packages from "./components/pages/architecture/Packages";
+import StoreDataTypes from "./components/pages/architecture/storeDataTypes";
+import SpecificDataTypes from "./components/pages/architecture/storeDataTypes/specificDataTypes";
+import CommonDataTypes from "./components/pages/architecture/storeDataTypes/commonDataTypes";
+import SystemDataTypes from "./components/pages/architecture/systemDataTypes";
+import Components from "./components/pages/components";
+import Maps from "./components/pages/components/maps";
+import Visualizations from "./components/pages/components/visualizations";
+import Code from "./components/pages/code";
+import UsingData from "./components/pages/code/UsingData";
+import Api from "./components/pages/code/Api";
+import CodeComponents from "./components/pages/code/CodeComponents";
 
 const {store} = createStore();
 
@@ -67,10 +81,11 @@ ReactDOM.render(
         />
         <ConnectedRouter history={history}>
             <Docs component={Index}>
-                <Directory label="Architecture" path="architecture">
-                    <Page label="Applications" path="applications"/>
-                    <Directory label="Store data types" path="storeDataTypes">
-                        <Directory label="Common data types" path="common">
+                <Directory label="Architecture" path="architecture" component={Architecture}>
+                    <Page label="Applications" path="applications" component={Applications}/>
+                    <Page label="Packages" path="packages" component={Packages}/>
+                    <Directory label="Store data types" path="storeDataTypes" component={StoreDataTypes}>
+                        <Directory label="Common data types" path="common" component={CommonDataTypes}>
                             <Page label="Style" path="style" component={StyleDoc}>
                                 <Anchor label="Without style" path="without-style"/>
                                 <Anchor label="Fill styling" path="fill"/>
@@ -84,9 +99,9 @@ ReactDOM.render(
                                 <Anchor label="Diagrams" path="diagrams"/>
                             </Page>
                         </Directory>
-                        <Page label="Specific data types" path="specific"/>
+                        <Page label="Specific data types" path="specific" component={SpecificDataTypes}/>
                     </Directory>
-                    <Directory label="System data types" path="systemDataTypes">
+                    <Directory label="System data types" path="systemDataTypes" component={SystemDataTypes}>
                         <Page label="Layers" path="layers" component={LayersDoc}/>
                         <Page label="Map view" path="mapView" component={MapViewDoc}/>
                     </Directory>
@@ -95,8 +110,8 @@ ReactDOM.render(
                     <Page label="Typography" path="typography" component={Typography} />
                     <Page label="Colours" path="colours"/>
                 </Directory>
-                <Directory label="Components" path="components">
-                    <Directory label="Maps" path="maps">
+                <Directory label="Components" path="components" component={Components}>
+                    <Directory label="Maps" path="maps" component={Maps}>
                         <Page label="Map" path="map" component={MapDoc}/>
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
                         <Directory label="Presentational" path="presentational" component={MapPresentational}>
@@ -119,7 +134,7 @@ ReactDOM.render(
                             <Page label="Map controls" path="mapControls" component={MapControls}/>
                         </Directory>
                     </Directory>
-                    <Directory label="Visualizations" path="visualizations">
+                    <Directory label="Visualizations" path="visualizations" component={Visualizations}>
                         <Directory label="Cartesian charts" path="cartesianCharts" component={CartesianCharts}>
                             <Page label="Line chart" path="lineChart" component={LineChartDoc}>
                                 <Anchor label="Props" path="props"/>
@@ -206,9 +221,16 @@ ReactDOM.render(
                         <Page label="WindowsContainer" path="windowsContainer"/>
                     </Directory>
                 </Directory>
-                <Directory label="Code" path="code">
-                    <Page label="Using data in applications ??" path="usingData" />
-                    <Page label="API" path="api" />
+                <Directory label="Code" path="code" component={Code}>
+                    <Page label="Components" path="components" component={CodeComponents}/>
+                    <Page label="Using data in applications ??" path="usingData" component={UsingData}/>
+                    <Page label="API" path="api" component={Api}/>
+                    <Page label="Configuration" path="configuration"/>
+                    <Page label="SSR" path="ssr"/>
+                    <Page label="Styles" path="styles"/>
+                    <Page label="State" path="state"/>
+                    <Page label="Internationalization" path="internationalization"/>
+                    <Directory label="Packages" path="packages"/>
                 </Directory>
                 <Page label="Panther 2" path="panther2" />
             </Docs>

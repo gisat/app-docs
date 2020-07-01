@@ -3,17 +3,17 @@ import {withNamespaces} from '@gisatcz/ptr-locales';
 import {utils} from '@gisatcz/ptr-utils';
 import {Link} from "react-router-dom";
 
-import Page, {DocsToDo, SyntaxHighlighter, ImplementationToDo} from '../../../../Page';
+import Page, {DocsToDo, SyntaxHighlighter, ImplementationToDo} from '../../../../../Page';
 
 import {WorldWindMap, ReactLeafletMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
-import cz_gadm from "../../../../mockData/map/czGadm1WithStyles/geometries";
-import points_50 from "../../../../mockData/map/points_50";
-import nuts_2 from "../../../../mockData/map/nuts_2";
+import cz_gadm from "../../../../../mockData/map/czGadm1WithStyles/geometries.json";
+import points_50 from "../../../../../mockData/map/points_50.json";
+import nuts_2 from "../../../../../mockData/map/nuts_2.json";
 
 import './style.scss';
 
-import largePointData from "../../../../mockData/map/largePointData/geometries";
-import largeDataStyle from "../../../../mockData/map/largePointData/style";
+import largePointData from "../../../../../mockData/map/largePointData/geometries";
+import largeDataStyle from "../../../../../mockData/map/largePointData/style";
 import {HoverHandler} from "@gisatcz/ptr-core";
 
 const europeView = {
