@@ -11,7 +11,8 @@
 	background: var(--base0);
 }
 
-.ptr-docs h2 > span {
+.ptr-docs h2 > span,
+.ptr-docs h3 > span {
 	font-size: $a1;
 }
 

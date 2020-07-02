@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const Packages = props => (
     <Page title="Packages">
-        <p>Panther packages contain common (core?) functionality used in the most of Panther-based applications.</p>
+            <p>Panther packages contain common (core?) functionality used in the most of Panther-based <Link to="/architecture/applications">applications</Link>.</p>
 
         <h2>ptr-core <span>(<a href="https://github.com/gisat-panther/ptr-core" target="_blank" rel="noopener noreferrer">GitHub</a>, <a href="https://www.npmjs.com/package/@gisatcz/ptr-core" target="_blank" rel="noopener noreferrer">npm</a>)</span></h2>
         <p>config defaults, constants, server side rendering, base style & style variables, HoverHandler</p>
