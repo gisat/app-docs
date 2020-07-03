@@ -8,7 +8,6 @@ const StoreDataTypes = props => (
             <ul>
                 <li>Data types stored in DB</li>
                 <li>Common & specific - differences</li>
-                <li>Modifiers (scope, place, period, case, scenario), templates (attr, attrSet, layerTemplate), tags, styles, areaTree & levels, users & groups, views, layerTrees, selections, data (dataSource, data, relations)</li>
             </ul>
         </DocsToDo>
     </Page>

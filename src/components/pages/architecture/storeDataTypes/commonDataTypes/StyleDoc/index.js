@@ -424,7 +424,7 @@ const MapContainer = (props) => (
 	</div>
 );
 
-class Index extends React.PureComponent {
+class StyleDoc extends React.PureComponent {
 
 	constructor(props) {
 		super(props);
@@ -479,7 +479,7 @@ class Index extends React.PureComponent {
 
 	render() {
 		return (
-			<Page title="Styles">
+			<Page title="Style">
 				<DocsToDo>Add description</DocsToDo>
 
 				<SyntaxHighlighter language="javascript">
@@ -539,11 +539,6 @@ class Index extends React.PureComponent {
 
 
 				<h2>Styles</h2>
-				<h3 id="without-style">Without styles</h3>
-				<p>If styles are not defined default styles will be used.</p>
-				<MapContainer layers={polygonLayers_noStyles} view={czView}/>
-
-
 				<h3 id="fill">Fill styling</h3>
 				<p>For interior of shapes, it is possible to set color and opacity. If color is not defined, the interior will be fully transparent. If opacity is not defined, the interior will be opaque.</p>
 				<SyntaxHighlighter language="js">{`{
@@ -872,4 +867,4 @@ class Index extends React.PureComponent {
 	}
 }
 
-export default withNamespaces()(Index);
+export default withNamespaces()(StyleDoc);

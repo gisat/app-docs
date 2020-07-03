@@ -57,6 +57,22 @@ import Code from "./components/pages/code";
 import UsingData from "./components/pages/code/UsingData";
 import Api from "./components/pages/code/Api";
 import CodeComponents from "./components/pages/code/CodeComponents";
+import AttributeDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/AttributeDoc";
+import AttributeSetDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/AttributeSetDoc";
+import AreaTreeDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/AreaTreeDoc";
+import AreaTreeLevelDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/AreaTreeLevelDoc";
+import CaseDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/CaseDoc";
+import LayerTemplateDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/LayerTemplateDoc";
+import LayerTreeDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/LayerTreeDoc";
+import PeriodDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/PeriodDoc";
+import PlaceDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/PlaceDoc";
+import ScenarioDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/ScenarioDoc";
+import ScopeDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/ScopeDoc";
+import SelectionDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/SelectionDoc";
+import TagDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/TagDoc";
+import UserDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/UserDoc";
+import UserGroupDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/UserGroupDoc";
+import ViewDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/ViewDoc";
 
 const {store} = createStore();
 
@@ -86,6 +102,18 @@ ReactDOM.render(
                     <Page label="Packages" path="packages" component={Packages}/>
                     <Directory label="Store data types" path="storeDataTypes" component={StoreDataTypes}>
                         <Directory label="Common data types" path="common" component={CommonDataTypes}>
+                            <Page label="Area tree" path="areaTree" component={AreaTreeDoc}/>
+                            <Page label="Area tree level" path="areaTreeLevel" component={AreaTreeLevelDoc}/>
+                            <Page label="Attribute" path="attribute" component={AttributeDoc}/>
+                            <Page label="Attribute set" path="attributeSet" component={AttributeSetDoc}/>
+                            <Page label="Case" path="case" component={CaseDoc}/>
+                            <Page label="Layer template" path="layerTemplate" component={LayerTemplateDoc}/>
+                            <Page label="Layer tree" path="layerTree" component={LayerTreeDoc}/>
+                            <Page label="Period" path="period" component={PeriodDoc}/>
+                            <Page label="Place" path="place" component={PlaceDoc}/>
+                            <Page label="Scenario" path="scenario" component={ScenarioDoc}/>
+                            <Page label="Scope" path="scope" component={ScopeDoc}/>
+                            <Page label="Selection" path="selection" component={SelectionDoc}/>
                             <Page label="Style" path="style" component={StyleDoc}>
                                 <Anchor label="Without style" path="without-style"/>
                                 <Anchor label="Fill styling" path="fill"/>
@@ -98,6 +126,10 @@ ReactDOM.render(
                                 <Anchor label="Symbols" path="symbols"/>
                                 <Anchor label="Diagrams" path="diagrams"/>
                             </Page>
+                            <Page label="Tag" path="tag" component={TagDoc}/>
+                            <Page label="User" path="user" component={UserDoc}/>
+                            <Page label="User group" path="userGroup" component={UserGroupDoc}/>
+                            <Page label="View" path="view" component={ViewDoc}/>
                         </Directory>
                         <Page label="Specific data types" path="specific" component={SpecificDataTypes}/>
                     </Directory>
