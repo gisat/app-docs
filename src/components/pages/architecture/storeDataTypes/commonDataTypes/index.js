@@ -12,18 +12,18 @@ const CommonDataTypes = props => (
 
         <ul>
             <li><Link to="./common/scope">Scope</Link></li>
-            <li><Link to="./common/place">Place</Link></li>
-            <li><Link to="./common/period">Period</Link></li>
-            <li><Link to="./common/case">Case</Link></li>
-            <li><Link to="./common/scenario">Scenario</Link></li>
+            <li><Link to="./common/place">Place</Link> - representing specific place (area) on the Earth (Downing Street 10, Moscow, Poland, ...)</li>
+            <li><Link to="./common/period">Period</Link> - representing specific time interval (2011-09-11T8:46:00.000 to 2011-09-11T8:47:00.000,  1939, ...)</li>
+            <li><Link to="./common/case">Case</Link> - (kangaroo, maple, ...)</li>
+            <li><Link to="./common/scenario">Scenario</Link> - representing possible scenario of a given phenomenon (a park instead of buildings, New York urban area in 2050)</li>
         </ul>
 
         <h2>Templates</h2>
         <DocsToDo>About templates</DocsToDo>
 
         <ul>
-            <li><Link to="./common/attribute">Attribute</Link></li>
-            <li><Link to="./common/attributeSet">Attribute set</Link></li>
+            <li><Link to="./common/attribute">Attribute</Link> - representing specific property of a feature (Population, Land Cover class, Displacement rate, ...)</li>
+            <li><Link to="./common/attributeSet">Attribute set</Link> - representing set of attributes grouped by common characteristics (Demography, Land Cover, Interferometry, ...)</li>
             <li><Link to="./common/layerTemplate">Layer template</Link></li>
         </ul>
 
@@ -41,11 +41,11 @@ const CommonDataTypes = props => (
         <h2>Other data types</h2>
 
         <ul>
-            <li><Link to="./common/areaTree">Area tree</Link></li>
-            <li><Link to="./common/areaTreeLevel">Area tree level</Link></li>
-            <li><Link to="./common/layerTree">Layer tree</Link></li>
+            <li><Link to="./common/areaTree">Area tree</Link> - representing the analytical units hierarchy system (NUTS, GADM)</li>
+            <li><Link to="./common/areaTreeLevel">Area tree level</Link> - representing the level of the analytical units hierarchy system (NUTS1, GADM2)</li>
+            <li><Link to="./common/layerTree">Layer tree</Link> - representing the hierarchy of layers</li>
             <li><Link to="./common/selection">Selection</Link></li>
-            <li><Link to="./common/style">Style</Link></li>
+            <li><Link to="./common/style">Style</Link> - representing set of rules for layer styling</li>
             <li><Link to="./common/tag">Tag</Link></li>
             <li><Link to="./common/user">User</Link></li>
             <li><Link to="./common/userGroup">User group</Link></li>
