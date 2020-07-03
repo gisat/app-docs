@@ -73,6 +73,9 @@ import TagDoc from "./components/pages/architecture/storeDataTypes/commonDataTyp
 import UserDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/UserDoc";
 import UserGroupDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/UserGroupDoc";
 import ViewDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/ViewDoc";
+import MapViewLimitsDoc from "./components/pages/architecture/systemDataTypes/MapViewLimits";
+import MapWrapperDoc from "./components/pages/components/maps/MapWrapperDoc";
+
 
 const {store} = createStore();
 
@@ -136,6 +139,7 @@ ReactDOM.render(
                     <Directory label="System data types" path="systemDataTypes" component={SystemDataTypes}>
                         <Page label="Layers" path="layers" component={LayersDoc}/>
                         <Page label="Map view" path="mapView" component={MapViewDoc}/>
+                        <Page label="Map view limits" path="mapViewLimits" component={MapViewLimitsDoc}/>
                     </Directory>
                 </Directory>
                 <Directory label="Design" path="design" component={Design}>
@@ -146,6 +150,7 @@ ReactDOM.render(
                     <Directory label="Maps" path="maps" component={Maps}>
                         <Page label="Map" path="map" component={MapDoc}/>
                         <Page label="Map set" path="mapSet" component={MapSetDoc}/>
+                        <Page label="Map wrapper" path="mapWrapper" component={MapWrapperDoc}/>
                         <Directory label="Presentational" path="presentational" component={MapPresentational}>
                             <Directory label="WebWorldWind" path="webWorldWind" component={WorldWindMapDoc}>
                                 <Page label="Vector layer" path="vectorLayer" component={WorldWindVectorLayer}/>
