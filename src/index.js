@@ -5,6 +5,7 @@ import {Provider} from '@gisatcz/ptr-state';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router';
 import Helmet from "react-helmet";
 import createStore,{history} from './state/Store';
+import { wrapHistory } from "oaf-react-router";
 import {Action} from '@gisatcz/ptr-state';
 
 
@@ -59,6 +60,7 @@ store.dispatch(Action.users.apiLoadCurrentUser());
 // Set local configuration
 store.dispatch(Action.app.updateLocalConfiguration(config));
 
+wrapHistory(history);
 
 
 ReactDOM.render(
