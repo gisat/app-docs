@@ -37,7 +37,7 @@ const polygonsStyle = {
     ]
 }
 
-class WorldWindMapDoc extends React.PureComponent {
+class TileGridDoc extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		
@@ -71,8 +71,8 @@ class WorldWindMapDoc extends React.PureComponent {
 		const viewportRange = this.getMapViewportRange(mapUpdate);
 		const level = grid.getLevelByViewport(mapUpdate.boxRange, viewportRange);
 		const center = [mapUpdate.center.lon, mapUpdate.center.lat];
-		const extent = utils.getExtentAroundCoortinates(viewportRange, level, center, undefined, 6);
-		
+		const bufferCoefficient = Math.max((mapUpdate.width / mapUpdate.height) * 2, 1);
+		const extent = utils.getExtentAroundCoortinates(viewportRange, level, center, undefined, bufferCoefficient);
 		const tileGrid = grid.getGridForLevelAndExtent(level, extent);
 		const size = utils.getGridSizeForLevel(level);
 
@@ -92,7 +92,7 @@ class WorldWindMapDoc extends React.PureComponent {
 	}
 
 	getMapViewportRange(map) {
-		return Math.max(map.height, map.width)
+		return Math.min(map.height, map.width)
 	}
 	render() {
 		const mergedView = {...view, center: {...view.center, ...this.state.map1.center}, boxRange: this.state.map1.boxRange || view.boxRange};
@@ -161,4 +161,4 @@ class WorldWindMapDoc extends React.PureComponent {
 	}
 }
 
-export default WorldWindMapDoc;
+export default TileGridDoc;
