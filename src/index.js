@@ -31,6 +31,7 @@ import FormsDoc from "./components/pages/components/atoms/FormsDoc";
 import ItemSelectDoc from "./components/pages/components/atoms/ItemSelectDoc";
 import MapDoc from "./components/pages/components/maps/MapDoc";
 import MapSetDoc from "./components/pages/components/maps/MapSetDoc";
+import TileGridDoc from "./components/pages/code/packages/TileGrid";
 import HoverHandlerDoc from "./components/pages/components/commonFeatures/HoverHandlerDoc";
 import LayersDoc from "./components/pages/architecture/systemDataTypes/LayersDoc";
 import MapViewDoc from "./components/pages/architecture/systemDataTypes/MapViewDoc";
@@ -213,6 +214,9 @@ ReactDOM.render(
                 <Directory label="Code" path="code">
                     <Page label="Using data in applications ??" path="usingData" />
                     <Page label="API" path="api" />
+                    <Directory label="Packages" path="packages">
+                        <Page label="TileGrid" path="tilegrid" component={TileGridDoc} />
+                    </Directory>
                 </Directory>
                 <Page label="Panther 2" path="panther2" />
             </Docs>
