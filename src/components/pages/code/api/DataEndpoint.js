@@ -1,5 +1,4 @@
 import React from 'react';
-import {withNamespaces} from '@gisatcz/ptr-locales';
 import Page, {DocsToDo, SyntaxHighlighter} from "../../../Page";
 
 const DataEndpoint = props => (
@@ -100,4 +99,4 @@ const DataEndpoint = props => (
     </Page>
 );
 
-export default withNamespaces()(DataEndpoint);
+export default DataEndpoint;
