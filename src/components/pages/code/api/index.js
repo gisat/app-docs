@@ -1,8 +1,8 @@
 import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
-import Page, {DocsToDo} from "../../Page";
+import Page, {DocsToDo} from "../../../Page";
 
-const Api = props => (
+const Index = props => (
     <Page>
         <DocsToDo>
             <ul>
@@ -12,4 +12,4 @@ const Api = props => (
     </Page>
 );
 
-export default withNamespaces()(Api);
+export default withNamespaces()(Index);
