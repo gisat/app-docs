@@ -8,6 +8,7 @@ import {
 	logger
 } from '@gisatcz/ptr-state';
 import {createBrowserHistory, createMemoryHistory} from 'history';
+import { wrapHistory } from "oaf-react-router";
 import {
 	createRequestCounter,
 	createAsyncMiddleware,
@@ -18,9 +19,19 @@ import { connectRouter } from 'connected-react-router';
 // base types
 import {baseStores} from '@gisatcz/ptr-state';
 
+export const createHistory = (options) => {
+	let history = createBrowserHistory(options);
+	const settings = {
+		primaryFocusTarget: "body",
+		smoothScroll: true
+	};
+	wrapHistory(history, settings); //todo review behaviour
+	return history;
+};
+
 export const history = isServer
 	? createMemoryHistory()
-	: createBrowserHistory();
+	: createHistory();
 
 function createMiddleware(requestCounter) {
 	const middlewares = [
