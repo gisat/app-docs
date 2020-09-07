@@ -7,60 +7,65 @@ const DataEndpoint = props => (
         <h3>Relations filter</h3>
         <SyntaxHighlighter language="json">{`
 {
-    relationsFilter: {
+    modifiers: {
         scopeKey: "",
-        periodKey: ""
-        ...
+        placeKey: "",
+        caseKey: "",
+        scenarioKey: "",
+        periodKey: {
+            in: []
+        }
     },
-    attributeKeys: [],
-    geometry: true,        
     
-    // common params
-    order: [["attributeKey", "ascending"], ...],
-    offset: 0,
-    limit: 100,
-    featureKeys: [],
-    spatialFilter: {
-        tiles: [[lon, lat], ...],
-        level: 3
+    // which attributes you want
+    attributeKeys: [], 
+    
+    // pagination for relations (& data sources)
+    relations: {
+        offset: 0,
+        limit: 100
     },
-    attributeFilter: {
-        'attributeKey': 12,
-        'attributeKey': {
-            in: [12, 13]
+    
+    // options for spatial & attributes data   
+    data: {
+        // list of features you want
+        featureKeys: [],
+        
+        // which tiles you want (pseudo-pagination)
+        spatialIndex: {
+            tiles: [[lon, lat], ...],
         },
-        ...
+        
+        // part of attribute endpoint 
+        // attributeIndex: {
+        //     order: [["attribute-uuid", "ascending"], ...],
+        //     offset: 0,
+        //     limit: 10 
+        // },
+    
+        // extent
+        spatialFilter: {
+            tiles: [[lon, lat], ...],
+            level: 3
+        },
+        
+        // filter features by attribute value
+        attributeFilter: {
+            'attribute-uuid': "blue",
+            'attribute-uuid': {
+                in: [12, 13]
+            },
+            ...
+        },
+        geometry: true,
+        
+        // use data source keys as filter or add them to filter
+        dataSourceKeys: ["dataSource-uuid",...] 
     }
 }
         `}
         </SyntaxHighlighter>
 
-        <h3>Data source filter</h3>
-        <SyntaxHighlighter language="json">{`
-{
-    dataSourceFilter: {
-        'relationKey': {
-            in: []
-        }
-    }     
-    // common params
-}
-        `}
-        </SyntaxHighlighter>
-
-        <h3>Data filter</h3>
-        <SyntaxHighlighter language="json">{`
-{
-    dataFilters: [
-        {
-           dataSourceKey: "",
-           fidColumnName: ""
-        }
-    ]  
-    // common params
-}
-        `}
-        </SyntaxHighlighter>
 
         <h2>Response</h2>
         <SyntaxHighlighter language="json">{`
@@ -73,23 +78,21 @@ const DataEndpoint = props => (
         spatialData: {
             'spatialDataSourceKey': {
                 data:  {
-                    'featureKey': {
+                    'feature-id': {
                         type: "Point",
                         coordinates: [125.6, 10.1]
                     }
                 },
-                index: {
+                spatialIndex: {
                     'level': {
-                        'tile_lon,tile_lat': [featureKey, featureKey, ...]
+                        'tile_lon,tile_lat': [feature-id, feature-id, ...]
                     }
                 }
             }
         },
         attributeData: {
             'attributeDataSourceKey': {
-                'featureKey': {
-                    "name": "Dinagat Islands"
-                }
+                'feature-id': "Dinagat Islands"
             }
         }
     }
