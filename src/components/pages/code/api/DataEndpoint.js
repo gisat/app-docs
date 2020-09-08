@@ -17,8 +17,11 @@ const DataEndpoint = props => (
         }
     },
     
-    // which attributes you want
-    attributeKeys: [], 
+    // which layer you want
+    layerTemplateKey | areaTreeLevelKey: "uuid",
+    
+    // get attributes from style
+    styleKey: "", 
     
     // pagination for relations (& data sources)
     relations: {
