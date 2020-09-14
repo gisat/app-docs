@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
-import mapUtils,{WorldWindMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
-import {grid, utils} from "@gisatcz/ptr-tile-grid";
+import {view as viewUtils, WorldWindMap, ReactLeafletMap} from "@gisatcz/ptr-maps";
+import {utils as tileGridUtils, grid} from "@gisatcz/ptr-tile-grid";
+import {map as mapUtils} from '@gisatcz/ptr-utils';
 import {HoverHandler} from "@gisatcz/ptr-core";
 import Page, {SyntaxHighlighter} from "../../../../Page";
 
@@ -31,6 +32,19 @@ const polygonsStyle = {
                     "fillOpacity": 0.5,
 					"outlineColor": "#262626",
 					"outlineWidth": 1,
+                }
+            ]
+        }
+    ]
+}
+
+const extentStyle = {
+    "rules":[
+        {
+            "styles":[
+                {
+					"outlineColor": "#ff0000",
+					"outlineWidth": 2,
                 }
             ]
         }
@@ -90,17 +104,11 @@ class TileGridDoc extends React.PureComponent {
         }
 	}
 
-	getBoxRangeRelatedToZoom(width, height, boxRange) {
-		const zoom = mapUtils.view.getZoomLevelFromBoxRange(boxRange, width, height);
-		const newBoxRange = mapUtils.view.getBoxRangeFromZoomLevel(zoom, width, height);
-		return newBoxRange;
-	}
-
 	componentDidMount() {
 		const map1Bounds = this.map1Ref.current.getBoundingClientRect();
 		const width = map1Bounds.width;
 		const height = map1Bounds.height;
-		const boxRange = this.getBoxRangeRelatedToZoom(width, height, view.boxRange);
+		const boxRange = mapUtils.view.getNearestZoomLevelBoxRange(view.boxRange, width, height);
 
 		this.updateMap({
 			width,
@@ -121,19 +129,19 @@ class TileGridDoc extends React.PureComponent {
 			}
 		};
 
-		const viewportRange = this.getMapViewportRange(mapUpdate);
-		const boxRange = this.getBoxRangeRelatedToZoom(mapUpdate.width, mapUpdate.height, mapUpdate.boxRange);
+		const viewportRange = mapUtils.view.getMapViewportRange(mapUpdate.width, mapUpdate.height);
+		const boxRange = mapUtils.view.getNearestZoomLevelBoxRange(mapUpdate.width, mapUpdate.height, mapUpdate.boxRange);
 		const level = grid.getLevelByViewport(boxRange, viewportRange);
 		const center = [mapUpdate.center.lon, mapUpdate.center.lat];
 		const ratio =  mapUpdate.width / mapUpdate.height;
-		const extent = utils.getExtentAroundCoordinates(center, mapUpdate.boxRange, ratio, 50);
-		const tileGrid = grid.getGridForLevelAndExtent(level, extent);
-		// todo 
-		// add buffer for leveles bigger than 5
-		const size = utils.getGridSizeForLevel(level);
+		const extent = tileGridUtils.getExtentAroundCoordinates(center, mapUpdate.boxRange, ratio, 50);
+		const tileGrid = grid.getTileGrid(mapUpdate.width, mapUpdate.height, mapUpdate.boxRange, [mapUpdate.center.lon, mapUpdate.center.lat]);
+		// // todo 
+		// // add buffer for leveles bigger than 5
+		const size = tileGridUtils.getGridSizeForLevel(level);
 
-		//consider caching levels
-		const geojsonTileGrid = utils.getTileGridAsGeoJSON(tileGrid, size);
+		// //consider caching levels
+		const geojsonTileGrid = tileGridUtils.getTileGridAsGeoJSON(tileGrid, size);
 		mapUpdate.geojsonTileGrid[level] = geojsonTileGrid;
 		const geoJSONextent = getGeoJSONFromExtent(extent);
         this.setState({map1: {...mapUpdate, level, tileGrid, extent: geoJSONextent}});
@@ -147,9 +155,6 @@ class TileGridDoc extends React.PureComponent {
 		this.updateMap({width, height});
 	}
 
-	getMapViewportRange(map) {
-		return Math.min(map.height, map.width)
-	}
 	render() {
 		const mergedView = {...view, center: {...view.center, ...this.state.map1.center}, boxRange: this.state.map1.boxRange || view.boxRange};
 
@@ -173,6 +178,7 @@ class TileGridDoc extends React.PureComponent {
 			type: "vector",
 			options: {
 				features: this.state.map1.extent.features,
+				style: extentStyle,
 			}
 		}
 
