@@ -64,7 +64,7 @@ class ReactLeafletMapDoc extends React.PureComponent {
 				<p>It is possible to use following layer types inside ReactLeafletMap component:</p>
 				<ul className="ptr-docs-basic-list">
 					<li><Link to="#wmts">WMTS layer</Link></li>
-					<li><Link to="#wms">WMS layer</Link></li>
+					<li><Link to="./reactLeaflet/WMSLayer">WMS layer</Link></li>
 					<li><Link to="./reactLeaflet/vectorLayer">Vector layer</Link></li>
 					<li><Link to="./reactLeaflet/diagramLayer">Diagram layer</Link></li>
 				</ul>

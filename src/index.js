@@ -42,6 +42,7 @@ import LeafletVectorLayer from "./components/pages/components/maps/ReactLeafletM
 import LeafletDiagramLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer";
 import WorldWindVectorLayer from "./components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer";
 import LeafletIndexedVectorLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletIndexedVectorLayer";
+import LeafletWMSLayer from "./components/pages/components/maps/ReactLeafletMapDoc/LeafletWMSLayer";
 import MapPresentational from "./components/pages/components/maps/MapPresentational";
 import MapControls from "./components/pages/components/maps/MapControls";
 import Architecture from "./components/pages/architecture";
@@ -167,6 +168,7 @@ ReactDOM.render(
                                 </Page>
                                 <Page label="Diagram layer" path="diagramLayer" component={LeafletDiagramLayer}/>
                                 <Page label="Indexed Vector layer" path="indexedVectorLayer" component={LeafletIndexedVectorLayer}/>
+                                <Page label="WMS layer" path="WMSLayer" component={LeafletWMSLayer}/>
                             </Directory>
                         </Directory>
                         <Directory label="Controls" path="controls">
