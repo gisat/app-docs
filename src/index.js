@@ -56,7 +56,7 @@ import Maps from "./components/pages/components/maps";
 import Visualizations from "./components/pages/components/visualizations";
 import Code from "./components/pages/code";
 import UsingData from "./components/pages/code/UsingData";
-import Api from "./components/pages/code/Api";
+import Api from "./components/pages/code/api";
 import CodeComponents from "./components/pages/code/CodeComponents";
 import AttributeDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/AttributeDoc";
 import AttributeSetDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/AttributeSetDoc";
@@ -76,6 +76,7 @@ import UserGroupDoc from "./components/pages/architecture/storeDataTypes/commonD
 import ViewDoc from "./components/pages/architecture/storeDataTypes/commonDataTypes/ViewDoc";
 import MapViewLimitsDoc from "./components/pages/architecture/systemDataTypes/MapViewLimits";
 import MapWrapperDoc from "./components/pages/components/maps/MapWrapperDoc";
+import DataEndpoint from "./components/pages/code/api/DataEndpoint";
 
 
 const {store} = createStore();
@@ -262,7 +263,9 @@ ReactDOM.render(
                 <Directory label="Code" path="code" component={Code}>
                     <Page label="Components" path="components" component={CodeComponents}/>
                     <Page label="Using data in applications ??" path="usingData" component={UsingData}/>
-                    <Page label="API" path="api" component={Api}/>
+                    <Directory label="API" path="api" component={Api}>
+                        <Page label="Data endpoint" path="dataEndpoint" component={DataEndpoint} />
+                    </Directory>
                     <Page label="Configuration" path="configuration"/>
                     <Page label="SSR" path="ssr"/>
                     <Page label="Styles" path="styles"/>
