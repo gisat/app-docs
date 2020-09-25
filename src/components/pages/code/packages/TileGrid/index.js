@@ -148,6 +148,10 @@ class TileGridDoc extends React.PureComponent {
 		// quick solution just for Martin's needs
 		console.log("Level: ", level);
 		console.log("Tiles: ", _.flatten(tileGrid));
+		this.setState({
+			level,
+			tiles: _.flatten(tileGrid)
+		});
 
 
 
@@ -234,6 +238,20 @@ class TileGridDoc extends React.PureComponent {
 							</ReactResizeDetector>
 						</div>
 					</div>
+				</div>
+				<div>
+					<h3>Current tiles</h3>
+					{this.state.level && this.state.tiles ? (
+						<SyntaxHighlighter language="js">{`
+{
+	level: ${this.state.level}
+	tiles: [
+		${this.state.tiles.map(tile => '[' + tile + ']')}
+	]
+}
+`}
+						</SyntaxHighlighter>
+					): null}
 				</div>
 			</Page>
 		);
