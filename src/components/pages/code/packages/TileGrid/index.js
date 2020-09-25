@@ -10,8 +10,8 @@ import _ from "lodash";
 import './style.css';
 
 const view = {
-	center: {lat: 50, lon: 15},
-	boxRange: 2000000
+	center: {lat: 51, lon: 13},
+	boxRange: 200000000000
 };
 
 const backgroundLayer = {
@@ -135,8 +135,8 @@ class TileGridDoc extends React.PureComponent {
 		const level = grid.getLevelByViewport(boxRange, viewportRange);
 		const center = [mapUpdate.center.lon, mapUpdate.center.lat];
 		const ratio =  mapUpdate.width / mapUpdate.height;
-		const extent = tileGridUtils.getExtentAroundCoordinates(center, mapUpdate.boxRange, ratio, 50);
-		const tileGrid = grid.getTileGrid(mapUpdate.width, mapUpdate.height, mapUpdate.boxRange, [mapUpdate.center.lon, mapUpdate.center.lat]);
+		const extent = tileGridUtils.getExtentAroundCoordinates(center, boxRange, ratio, 50, true);
+		const tileGrid = grid.getTileGrid(mapUpdate.width, mapUpdate.height, boxRange, [mapUpdate.center.lon, mapUpdate.center.lat], true);
 		// // todo 
 		// // add buffer for leveles bigger than 5
 		const size = tileGridUtils.getGridSizeForLevel(level);
@@ -157,7 +157,8 @@ class TileGridDoc extends React.PureComponent {
 	}
 
     onViewChange(view) {
-		this.updateMap({center: view.center, boxRange: view.boxRange});
+		let update = {center: view.center, boxRange: view.boxRange};
+		this.updateMap(update);
     }
 
     onResize(width, height) {
