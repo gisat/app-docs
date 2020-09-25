@@ -5,6 +5,7 @@ import {utils as tileGridUtils, grid} from "@gisatcz/ptr-tile-grid";
 import {map as mapUtils} from '@gisatcz/ptr-utils';
 import {HoverHandler} from "@gisatcz/ptr-core";
 import Page, {SyntaxHighlighter} from "../../../../Page";
+import _ from "lodash";
 
 import './style.css';
 
@@ -142,6 +143,14 @@ class TileGridDoc extends React.PureComponent {
 
 		// //consider caching levels
 		const geojsonTileGrid = tileGridUtils.getTileGridAsGeoJSON(tileGrid, size);
+
+
+		// quick solution just for Martin's needs
+		console.log("Level: ", level);
+		console.log("Tiles: ", _.flatten(tileGrid));
+
+
+
 		mapUpdate.geojsonTileGrid[level] = geojsonTileGrid;
 		const geoJSONextent = getGeoJSONFromExtent(extent);
         this.setState({map1: {...mapUpdate, level, tileGrid, extent: geoJSONextent}});
