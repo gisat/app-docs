@@ -16,6 +16,7 @@ import mixed_features from '../../../../mockData/map/mixedVectorFeaturesLayer/ge
 import pointData from '../../../../mockData/map/largePointData/geometries.json';
 import pointStyle from '../../../../mockData/map/largePointData/style-simple-point.json';
 import nuts_2 from '../../../../mockData/map/nuts_2.json';
+import cz_lines from '../../../../mockData/map/lines/cz.json';
 import config from '../../../../../config';
 import utils from '../../../../../utils';
 
@@ -125,6 +126,7 @@ const choropleth = {
 	type: 'vector',
 	options: {
 		features: nuts_2.features,
+		hoverable: true,
 		style: choroplethStyle,
 		selected: {
 			testSelection: {
@@ -147,6 +149,7 @@ const pointsInPx = {
 	type: 'vector',
 	options: {
 		features: pointData.features,
+		hoverable: true,
 		style: pointsStyle,
 		pointAsMarker: true,
 		fidColumnName: 'gid',
@@ -164,6 +167,7 @@ const pointsInMeters = {
 	type: 'vector',
 	options: {
 		features: pointData.features,
+		hoverable: true,
 		style: pointsInMetersStyle,
 		fidColumnName: 'gid',
 	},
@@ -239,6 +243,7 @@ const shapes = {
 	type: 'vector',
 	options: {
 		features: pointData.features,
+		hoverable: true,
 		style: shapesStyle,
 		pointAsMarker: true,
 		fidColumnName: 'gid',
@@ -282,7 +287,8 @@ const lineFeaturesLayer = {
 	key: 'mixed-features-layer',
 	type: 'vector',
 	options: {
-		features: [],
+		features: cz_lines.features,
+		hoverable: true,
 		style: lineFeaturesStyle,
 		fidColumnName: 'OBJECTID',
 	},
@@ -331,6 +337,7 @@ const mixedFeaturesLayer = {
 	type: 'vector',
 	options: {
 		features: mixed_features.features,
+		hoverable: true,
 		selected: {
 			testSelection: {
 				keys: ['CZE.12_1'],
@@ -356,34 +363,6 @@ class LeafletVectorLayer extends React.PureComponent {
 		};
 
 		this.onLayerClick = this.onLayerClick.bind(this);
-	}
-
-	componentDidMount() {
-		this.addLineData();
-	}
-
-	addLineData() {
-		let url = `${config.mockDataRepositoryUrl}pvlach/lines/cz-main-roads.geojson`;
-		return utils
-			.request(url, 'GET')
-			.then(data => {
-				if (data) {
-					let updatedLayers = [
-						{
-							...this.state.lineFeaturesLayers[0],
-							options: {
-								...this.state.lineFeaturesLayers[0].options,
-								features: data.features,
-							},
-						},
-					];
-
-					this.setState({
-						lineFeaturesLayers: updatedLayers,
-					});
-				}
-			})
-			.catch(err => new Error(err));
 	}
 
 	onLayerClick(map, layer, features) {
