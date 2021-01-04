@@ -5,33 +5,31 @@ import {
 	compose,
 	thunk,
 	reduxBatch,
-	logger
+	logger,
 } from '@gisatcz/ptr-state';
 import {createBrowserHistory, createMemoryHistory} from 'history';
-import { wrapHistory } from "oaf-react-router";
+import {wrapHistory} from 'oaf-react-router';
 import {
 	createRequestCounter,
 	createAsyncMiddleware,
 	isServer,
 } from '@gisatcz/ptr-core';
-import { connectRouter } from 'connected-react-router';
+import {connectRouter} from 'connected-react-router';
 
 // base types
 import {baseStores} from '@gisatcz/ptr-state';
 
-export const createHistory = (options) => {
+export const createHistory = options => {
 	let history = createBrowserHistory(options);
 	const settings = {
-		primaryFocusTarget: "body",
-		smoothScroll: true
+		primaryFocusTarget: 'body',
+		smoothScroll: true,
 	};
 	wrapHistory(history, settings); //todo review behaviour
 	return history;
 };
 
-export const history = isServer
-	? createMemoryHistory()
-	: createHistory();
+export const history = isServer ? createMemoryHistory() : createHistory();
 
 function createMiddleware(requestCounter) {
 	const middlewares = [
@@ -40,7 +38,7 @@ function createMiddleware(requestCounter) {
 		process.env.NODE_ENV === 'development' && !isServer && logger,
 	];
 
-	return applyMiddleware(...middlewares.filter((v) => v !== false));
+	return applyMiddleware(...middlewares.filter(v => v !== false));
 }
 
 function createReducer() {

@@ -1,19 +1,19 @@
 import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
 
-import Page, {
-	SyntaxHighlighter
-} from '../../../Page';
+import Page, {SyntaxHighlighter} from '../../../Page';
 
 class MapViewDoc extends React.PureComponent {
-	
 	render() {
 		return (
 			<Page title="Map view">
-				<p>Universal framework-agnostic representation of map view (what part of the world is visible on the map and how).</p>{/* todo */}
+				<p>
+					Universal framework-agnostic representation of map view (what part of
+					the world is visible on the map and how).
+				</p>
+				{/* todo */}
 				<SyntaxHighlighter language="javascript">
-					{
-`{
+					{`{
 	center: {
 		lat: 50.1,
 		lon: 14.5
@@ -23,10 +23,8 @@ class MapViewDoc extends React.PureComponent {
 	tilt: 0,
 	heading: 0,
 	elevationExaggeration: 0
-}`
-					}
+}`}
 				</SyntaxHighlighter>
-				
 			</Page>
 		);
 	}

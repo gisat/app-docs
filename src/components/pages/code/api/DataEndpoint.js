@@ -1,11 +1,12 @@
 import React from 'react';
-import Page, {DocsToDo, SyntaxHighlighter} from "../../../Page";
+import Page, {DocsToDo, SyntaxHighlighter} from '../../../Page';
 
 const DataEndpoint = props => (
-    <Page title="Data Endpoint">
-        <h2>Payload</h2>
-        <h3>Relations filter</h3>
-        <SyntaxHighlighter language="json">{`
+	<Page title="Data Endpoint">
+		<h2>Payload</h2>
+		<h3>Relations filter</h3>
+		<SyntaxHighlighter language="json">
+			{`
 {
     modifiers: {
         scopeKey: "",
@@ -67,11 +68,11 @@ const DataEndpoint = props => (
     }
 }
         `}
-        </SyntaxHighlighter>
+		</SyntaxHighlighter>
 
-
-        <h2>Response</h2>
-        <SyntaxHighlighter language="json">{`
+		<h2>Response</h2>
+		<SyntaxHighlighter language="json">
+			{`
 {
     data: {
         spatialRelations: [],
@@ -101,8 +102,8 @@ const DataEndpoint = props => (
     }
 }
         `}
-        </SyntaxHighlighter>
-    </Page>
+		</SyntaxHighlighter>
+	</Page>
 );
 
 export default DataEndpoint;

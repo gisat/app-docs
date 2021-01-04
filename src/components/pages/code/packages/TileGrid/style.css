@@ -1,13 +1,13 @@
-.ptr-maps-wrapper{
-    display: flex;
-    flex-wrap: wrap;
+.ptr-maps-wrapper {
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.ptr-maps-wrapper-map{
-    min-width: 20rem;
-    flex-grow: 1;
+.ptr-maps-wrapper-map {
+	min-width: 20rem;
+	flex-grow: 1;
 }
 
-.ptr-maps-wrapper-map:nth-child(2){ 
-    margin-left: 1rem;
+.ptr-maps-wrapper-map:nth-child(2) {
+	margin-left: 1rem;
 }

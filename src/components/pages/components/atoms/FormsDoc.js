@@ -5,74 +5,54 @@ import Page from '../../../Page';
 import {Input, InputWrapper, InputWrapperInfo} from '@gisatcz/ptr-atoms';
 
 class FormsDoc extends React.PureComponent {
-
 	render() {
 		return (
 			<Page title="Forms">
 				<h2>Basic text</h2>
 				<div className="ptr-docs-panel-section">
-					<Input/>
+					<Input />
 				</div>
-				
+
 				<h2>Basic text with deafult value</h2>
 				<div className="ptr-docs-panel-section">
-					<Input
-						value="Strawberry"
-					/>
+					<Input value="Strawberry" />
 				</div>
-				
+
 				<h2>Basic text with placeholder</h2>
 				<div className="ptr-docs-panel-section">
-					<Input
-						placeholder="Placeholder"
-					/>
+					<Input placeholder="Placeholder" />
 				</div>
-				
+
 				<h2>Basic text disabled</h2>
 				<div className="ptr-docs-panel-section">
-					<Input
-						disabled
-						value="Strawberry"
-					/>
+					<Input disabled value="Strawberry" />
 				</div>
-				
+
 				<h2>Basic text</h2>
 				<div className="ptr-docs-panel-section inverted">
-					<Input inverted/>
+					<Input inverted />
 				</div>
-				
+
 				<h2>Basic text with deafult value</h2>
 				<div className="ptr-docs-panel-section inverted">
-					<Input
-						inverted
-						value="Strawberry"
-					/>
+					<Input inverted value="Strawberry" />
 				</div>
-				
+
 				<h2>Basic text with placeholder</h2>
 				<div className="ptr-docs-panel-section inverted">
-					<Input
-						inverted
-						placeholder="Placeholder"
-					/>
+					<Input inverted placeholder="Placeholder" />
 				</div>
-				
+
 				<h2>Basic text disabled</h2>
 				<div className="ptr-docs-panel-section inverted">
-					<Input
-						disabled
-						inverted
-						value="Strawberry"
-					/>
+					<Input disabled inverted value="Strawberry" />
 				</div>
-				
+
 				<h2>Multiline text</h2>
 				<div className="ptr-docs-panel-section">
-					<Input
-						multiline
-					/>
+					<Input multiline />
 				</div>
-				
+
 				<h2>Multiline text with value</h2>
 				<div className="ptr-docs-panel-section">
 					<Input
@@ -80,7 +60,7 @@ class FormsDoc extends React.PureComponent {
 						value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
 					/>
 				</div>
-				
+
 				<h2>Multiline text disabled</h2>
 				<div className="ptr-docs-panel-section">
 					<Input
@@ -89,54 +69,31 @@ class FormsDoc extends React.PureComponent {
 						value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
 					/>
 				</div>
-				
-				
-				
+
 				<div className="ptr-docs-panel-section">
 					<h2>Basic</h2>
-					<InputWrapper
-						label="Input"
-					>
-						<Input
-							value="Blueberry"
-						/>
+					<InputWrapper label="Input">
+						<Input value="Blueberry" />
 					</InputWrapper>
 				</div>
-				
+
 				<div className="ptr-docs-panel-section">
 					<h2>Basic required</h2>
-					<InputWrapper
-						label="Input"
-						required
-					>
-						<Input
-							value="Cranberry"
-						/>
+					<InputWrapper label="Input" required>
+						<Input value="Cranberry" />
 					</InputWrapper>
 				</div>
-				
+
 				<div className="ptr-docs-panel-section">
 					<h2>With info</h2>
-					<InputWrapper
-						label="Input"
-						required
-					>
-						<Input
-							value="Cranberry"
-						/>
+					<InputWrapper label="Input" required>
+						<Input value="Cranberry" />
 						<InputWrapperInfo>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+							eiusmod tempor incididunt ut labore et dolore magna aliqua.
 						</InputWrapperInfo>
 					</InputWrapper>
 				</div>
-				
-				
-				
-				
-				
-				
-				
-				
 			</Page>
 		);
 	}
