@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 
 const view = {
 	center: {lat: 50, lon: 15},
-	boxRange: 10000000,
+	boxRange: 5000000,
 };
 
 const backgroundLayer = {
@@ -48,7 +48,7 @@ class MapPresentational extends React.PureComponent {
     mapKey="world-wind-map"
     view={{
         center: {lat: 50, lon: 15},
-        boxRange: 10000000
+        boxRange: 5000000
     }}
     backgroundLayer={{
         key: 'background-osm',
@@ -60,7 +60,7 @@ class MapPresentational extends React.PureComponent {
 />
 `}
 				</SyntaxHighlighter>
-				<div style={{height: 300, marginBottom: 10}}>
+				<div style={{height: 400, marginBottom: 10}}>
 					<WorldWindMap
 						mapKey="world-wind-map"
 						view={view}
@@ -77,7 +77,7 @@ class MapPresentational extends React.PureComponent {
     mapKey="leaflet-map"
     view={{
         center: {lat: 50, lon: 15},
-        boxRange: 10000000
+        boxRange: 5000000
     }}
     backgroundLayer={{
         key: 'background-osm',
@@ -89,7 +89,7 @@ class MapPresentational extends React.PureComponent {
 />
 `}
 				</SyntaxHighlighter>
-				<div style={{height: 300, marginBottom: 10}}>
+				<div style={{height: 400, marginBottom: 10}}>
 					<ReactLeafletMap
 						mapKey="leaflet-map"
 						view={view}

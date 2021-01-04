@@ -23,7 +23,7 @@ const Map = connects.Map(PresentationMap);
 
 const view = {
 	center: {lat: 50, lon: 15},
-	boxRange: 2000000,
+	boxRange: 500000,
 };
 
 const presentational_backgroundLayer = {
@@ -76,7 +76,7 @@ class MapDoc extends React.PureComponent {
 			data: {
 				view: {
 					center: {lat: 50, lon: 14},
-					boxRange: 2000000,
+					boxRange: 500000,
 				},
 				backgroundLayer: {
 					layerTemplateKey: 'd54f7782-976b-4fb2-9066-5f1ca4f3b703',
@@ -199,7 +199,7 @@ class MapDoc extends React.PureComponent {
 	}]}
 	view={{
 		center: {lat: 50, lon: 15},
-		boxRange: 2000000
+		boxRange: 500000
 	}}
 >
 	<MapControls/>
@@ -248,7 +248,7 @@ const Map = connects.Map(PresentationMap);
 	}]}
 	view={{
 		center: {lat: 50, lon: 15},
-		boxRange: 2000000
+		boxRange: 500000
 	}}
 >
 	<MapControls/>

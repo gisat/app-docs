@@ -241,16 +241,16 @@ ReactDOM.render(
 									<Anchor label="Lines" path="lines" />
 									<Anchor label="Mixed" path="mixed" />
 								</Page>
-								<Page
-									label="Diagram layer"
-									path="diagramLayer"
-									component={LeafletDiagramLayer}
-								/>
-								<Page
-									label="Indexed Vector layer"
-									path="indexedVectorLayer"
-									component={LeafletIndexedVectorLayer}
-								/>
+								{/*<Page*/}
+								{/*	label="Diagram layer"*/}
+								{/*	path="diagramLayer"*/}
+								{/*	component={LeafletDiagramLayer}*/}
+								{/*/>*/}
+								{/*<Page*/}
+								{/*	label="Indexed Vector layer"*/}
+								{/*	path="indexedVectorLayer"*/}
+								{/*	component={LeafletIndexedVectorLayer}*/}
+								{/*/>*/}
 								<Page
 									label="WMS layer"
 									path="WMSLayer"
