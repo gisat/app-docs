@@ -23,11 +23,7 @@ class FadeInDoc extends React.PureComponent {
 
 				<div className="ptr-docs-panel-section">
 					<h2>Vertical with custom duration and delay</h2>
-					<FadeIn
-						duration={1000}
-						delay={500}
-						vertical
-					>
+					<FadeIn duration={1000} delay={500} vertical>
 						<p>Item 1</p>
 						<p>Item 2</p>
 						<p>Item 3</p>

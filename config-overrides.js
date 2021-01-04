@@ -11,7 +11,7 @@ module.exports = function override(config, env) {
 			// "@gisatcz/ptr-state": "C:/Users/pvlach/DATA/ptr-state",
 			// "@gisatcz/ptr-components": "C:/Users/pvlach/DATA/ptr-components",
 			// "@gisatcz/ptr-deprecated": "C:/Users/pvlach/DATA/ptr-deprecated",
-		}
+		},
 	};
 
 	return config;

@@ -1,20 +1,18 @@
 import {connect} from '@gisatcz/ptr-state';
 import {Action, Select} from '@gisatcz/ptr-state';
 
-import presentation from "./presentation";
+import presentation from './presentation';
 
 const mapStateToProps = (state, ownProps) => {
-    return {
-
-    }
+	return {};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        addMap: (map) => {
-            dispatch(Action.maps.addMap(map));
-        }
-    }
+	return {
+		addMap: map => {
+			dispatch(Action.maps.addMap(map));
+		},
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(presentation);

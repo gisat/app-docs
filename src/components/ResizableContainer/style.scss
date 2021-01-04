@@ -20,12 +20,12 @@
 }
 
 .ptr-resizable-container .react-draggable:before {
-	content: "\25C0";
+	content: '\25C0';
 	right: 0;
 }
 
 .ptr-resizable-container .react-draggable:after {
-	content: "\25B6";
+	content: '\25B6';
 	right: 0;
-	margin-right: -.9rem;
+	margin-right: -0.9rem;
 }

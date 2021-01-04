@@ -12,7 +12,7 @@ import {configDefaults} from '@gisatcz/ptr-core';
 /**
  * APP SPECIFIC DEFAULT VALUES
  */
-import appDefaults from "./appDefaults";
+import appDefaults from './appDefaults';
 
 /**
  * CONFIG PROPER

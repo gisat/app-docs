@@ -2,21 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Rnd} from 'react-rnd';
 import './style.scss';
-import {utils} from '@gisatcz/ptr-utils'
+import {utils} from '@gisatcz/ptr-utils';
 
 class ResizableContainer extends React.PureComponent {
-
 	/* Sizes in rem */
 	static defaultProps = {
 		width: 40,
 		minWidth: 10,
-		maxWidth: null
+		maxWidth: null,
 	};
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			width: this.props.width
+			width: this.props.width,
 		};
 		this.ref = React.createRef();
 
@@ -26,7 +25,7 @@ class ResizableContainer extends React.PureComponent {
 	componentDidMount() {
 		let self = this;
 		setTimeout(() => {
-			let maxWidth = self.ref.current.offsetWidth/utils.getRemSize();
+			let maxWidth = self.ref.current.offsetWidth / utils.getRemSize();
 			if (maxWidth < self.state.width) {
 				self.setState({width: maxWidth});
 			}
@@ -34,29 +33,40 @@ class ResizableContainer extends React.PureComponent {
 	}
 
 	resize(e, direction, ref, delta, coord) {
-		this.setState({width: ref.offsetWidth/utils.getRemSize()});
+		this.setState({width: ref.offsetWidth / utils.getRemSize()});
 	}
 
 	render() {
 		const remSize = utils.getRemSize();
-		let size = {width: this.state.width*remSize};
+		let size = {width: this.state.width * remSize};
 
 		return (
 			<div className="ptr-resizable-container" ref={this.ref}>
 				<Rnd
 					size={size}
 					style={{position: 'relative'}}
-					minWidth={this.props.minWidth*remSize}
-					maxWidth={this.props.maxWidth ? this.props.maxWidth*remSize : '100%'}
+					minWidth={this.props.minWidth * remSize}
+					maxWidth={
+						this.props.maxWidth ? this.props.maxWidth * remSize : '100%'
+					}
 					onResize={this.resize}
 					disableDragging={true}
-					bounds='parent'
+					bounds="parent"
 					default={{
 						x: 0,
 						y: 0,
-						width: '100%'
+						width: '100%',
 					}}
-					enableResizing={{ top:false, right:true, bottom:false, left:false, topRight:false, bottomRight:false, bottomLeft:false, topLeft:false }}
+					enableResizing={{
+						top: false,
+						right: true,
+						bottom: false,
+						left: false,
+						topRight: false,
+						bottomRight: false,
+						bottomLeft: false,
+						topLeft: false,
+					}}
 				>
 					{React.cloneElement(this.props.children, {width: this.state.width})}
 				</Rnd>
