@@ -274,6 +274,7 @@
 
 .ptr-docs-todo.implementation {
 	border: 2px dashed rgb(45, 133, 255);
+	margin: m(1/3) 0;
 }
 
 .ptr-docs-todo-title {
@@ -311,6 +312,28 @@
 	font-size: $a1;
 	padding: 0.15rem m(1/3);
 	margin-right: 0.5rem;
+}
+
+/* Property description */
+.ptr-docs-property-description {
+	margin-bottom: m(1);
+}
+
+.ptr-docs-property-description-header {
+	display: flex;
+	align-items: baseline;
+}
+
+.ptr-docs-property-description-title {
+	margin-right: 0.5rem;
+	font-size: $b2;
+	font-weight: bold;
+}
+
+.ptr-docs-property-description-header > span {
+	font-family: monospace;
+	font-size: $b2;
+	color: var(--base60);
 }
 
 /* Visualizations */

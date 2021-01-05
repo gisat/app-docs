@@ -58,6 +58,16 @@ export const DocsToDoInline = ({children}) => (
 	</span>
 );
 
+export const PropertyDescription = ({id, name, dataType, children}) => (
+	<div id={id} className="ptr-docs-property-description">
+		<div className="ptr-docs-property-description-header">
+			<div className="ptr-docs-property-description-title">{name}</div>
+			<span>{dataType}</span>
+		</div>
+		<div className="ptr-docs-property-description-content">{children}</div>
+	</div>
+);
+
 const Page = ({title, lightDark, children}) => (
 	<div className={classNames('ptr-docs-page', {lightDark})}>
 		{title ? <PageTitle>{title}</PageTitle> : null}
