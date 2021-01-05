@@ -127,19 +127,34 @@ const choropleth = {
 	options: {
 		features: nuts_2.features,
 		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
 		style: choroplethStyle,
+		selectable: true,
 		selected: {
 			testSelection: {
 				keys: [],
+				style: 'default',
 			},
 		},
 		fidColumnName: 'id',
 	},
 };
 
+const choroplethCanvas = {
+	...choropleth,
+	key: 'choropleth-canvas',
+	options: {
+		...choropleth.options,
+		renderingTechnique: 'canvas',
+	},
+};
+
 const basicPolygonLayers = [polygons];
 const basicPolygonLayersWithSelection = [polygonsWithSelection];
 const choroplethLayers = [choropleth];
+const choroplethLayersCanvas = [choroplethCanvas];
 
 // *** POINTS ***
 // Vector layer - hundreds of points - size independent of zoom
@@ -358,6 +373,7 @@ class LeafletVectorLayer extends React.PureComponent {
 		this.state = {
 			basicPolygonLayersWithSelection,
 			choroplethLayers,
+			choroplethLayersCanvas,
 			lineFeaturesLayers,
 			mixedFeaturesLayers,
 		};
@@ -406,6 +422,26 @@ class LeafletVectorLayer extends React.PureComponent {
 			this.setState({
 				choroplethLayers: updatedLayers,
 			});
+		} else if (map === 'choropleth-map-canvas') {
+			let updatedLayers = [
+				{
+					...choroplethCanvas,
+					options: {
+						...choroplethCanvas.options,
+						selected: {
+							...choroplethCanvas.options.selected,
+							testSelection: {
+								...choroplethCanvas.options.selected.testSelection,
+								keys: features,
+							},
+						},
+					},
+				},
+			];
+
+			this.setState({
+				choroplethLayersCanvas: updatedLayers,
+			});
 		} else if (map === 'mixed-features-map') {
 			let updatedLayers = [
 				{
@@ -438,9 +474,7 @@ class LeafletVectorLayer extends React.PureComponent {
 				</p>
 
 				<p>
-					VectorLayer component is always used inside ReactLeafletMap component
-					and wrapped by{' '}
-					<Link to="indexedVectorLayer">Indexed Vector Layer</Link> component.
+					VectorLayer component is always used inside ReactLeafletMap component.
 					The data are passed via layers prop (see{' '}
 					<Link to="/components/maps/map">Map</Link> documentation), where each
 					layer is represented by Vector layer data type. For general
@@ -448,6 +482,34 @@ class LeafletVectorLayer extends React.PureComponent {
 					<Link to="/architecture/systemDataTypes/layers#vector">Layers</Link>{' '}
 					section.
 				</p>
+
+				<p>
+					VectorLayer could be rendered either as SVG, or canvas. For details
+					see the examples below.
+				</p>
+
+				<ImplementationToDo>
+					<b>
+						The rendering of features has to be unified together with popups
+						refactoring. Currently:
+					</b>
+					<ul>
+						<li>
+							Vector layer redered as <b>canvas</b> has limited interactivity
+							(no hover effects due to performance). In canvas could be
+							polygons, lines, as well as points rendered (both pixel-fixed or
+							geographically-fixed). However, the shapes which could be rendered
+							are not unified with the SVG technique.
+						</li>
+						<li>
+							Vector layer could be rendered as <b>SVG</b> using two ways. The
+							first way is fully interactive (including tooltips), it could draw
+							basic shapes, but it's quite slow. It is used for rendering of
+							layers with 499 features or less. The second way is faster, but
+							without the tooltips option.
+						</li>
+					</ul>
+				</ImplementationToDo>
 
 				<h2 id="polygons">Polygons</h2>
 				<h3>Basic</h3>
@@ -538,17 +600,11 @@ class LeafletVectorLayer extends React.PureComponent {
 
 				<h3>Choropleth with hundreds of polygons</h3>
 				<p>
-					Move cursor over area to see the popup. Click on the area to select
+					Move cursor over area to see hover effect. Click on the area to select
 					it.
 				</p>
 				<SyntaxHighlighter language="jsx">
-					{`<HoverHandler
-    popupContentComponent={
-        (props) => {
-            return (<><b>{props.data["id"]}</b>: {props.data["diverging_attr"].toFixed(2)}</>);
-        }
-    }
->
+					{`
     <ReactLeafletMap
         //...
         layers={[{
@@ -591,28 +647,40 @@ class LeafletVectorLayer extends React.PureComponent {
                 ]}
             }
         }]}
-    />
-</HoverHandler>`}
+    />`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
-					<HoverHandler
-						popupContentComponent={props => {
-							return (
-								<>
-									<b>{props.data['id']}</b>:{' '}
-									{props.data['diverging_attr'].toFixed(2)}
-								</>
-							);
-						}}
-					>
-						<ReactLeafletMap
-							mapKey="choropleth-map"
-							view={viewEurope}
-							backgroundLayer={backgroundLayer}
-							layers={this.state.choroplethLayers}
-							onLayerClick={this.onLayerClick}
-						/>
-					</HoverHandler>
+					<ReactLeafletMap
+						mapKey="choropleth-map"
+						view={viewEurope}
+						backgroundLayer={backgroundLayer}
+						layers={this.state.choroplethLayers}
+						onLayerClick={this.onLayerClick}
+					/>
+				</div>
+
+				<p>The same layer as above is now rendered using canvas technique.</p>
+				<SyntaxHighlighter language="jsx">
+					{`
+    <ReactLeafletMap
+        //...
+        layers={[{
+            //...
+            options: {
+                //...
+                renderingTechnique: "canvas"
+            }
+        }]}
+    />`}
+				</SyntaxHighlighter>
+				<div style={{height: 500, marginBottom: 10}}>
+					<ReactLeafletMap
+						mapKey="choropleth-map-canvas"
+						view={viewEurope}
+						backgroundLayer={backgroundLayer}
+						layers={this.state.choroplethLayersCanvas}
+						onLayerClick={this.onLayerClick}
+					/>
 				</div>
 
 				<h2 id="points">Points</h2>
