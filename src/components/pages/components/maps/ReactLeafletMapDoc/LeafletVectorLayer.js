@@ -165,6 +165,9 @@ const pointsInPx = {
 	options: {
 		features: pointData.features,
 		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
 		style: pointsStyle,
 		pointAsMarker: true,
 		fidColumnName: 'gid',
@@ -182,6 +185,9 @@ const pointsInMeters = {
 	type: 'vector',
 	options: {
 		features: pointData.features,
+		hovered: {
+			style: 'default',
+		},
 		hoverable: true,
 		style: pointsInMetersStyle,
 		fidColumnName: 'gid',
