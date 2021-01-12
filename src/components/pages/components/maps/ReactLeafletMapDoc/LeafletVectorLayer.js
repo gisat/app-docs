@@ -9,6 +9,7 @@ import Page, {
 	SyntaxHighlighter,
 } from '../../../../Page';
 import {ReactLeafletMap} from '@gisatcz/ptr-maps';
+import {Icon} from '@gisatcz/ptr-atoms';
 import {HoverHandler} from '@gisatcz/ptr-core';
 import {Link} from 'react-router-dom';
 import cz_gadm from '../../../../mockData/map/czGadm1WithStyles/geometries.json';
@@ -17,8 +18,104 @@ import pointData from '../../../../mockData/map/largePointData/geometries.json';
 import pointStyle from '../../../../mockData/map/largePointData/style-simple-point.json';
 import nuts_2 from '../../../../mockData/map/nuts_2.json';
 import cz_lines from '../../../../mockData/map/lines/cz.json';
-import config from '../../../../../config';
-import utils from '../../../../../utils';
+
+// *** DATA ***
+const letnaPoints = {
+	type: 'FeatureCollection',
+	features: [
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.4042, 50.09722],
+			},
+			properties: {
+				id: 'point-1',
+				type: 'metro',
+				line: 'A',
+				name: 'Hradčanská',
+				description: '',
+			},
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.438525, 50.09965],
+			},
+			properties: {
+				id: 'point-2',
+				type: 'metro',
+				line: 'C',
+				name: 'Vltavská',
+				description: '',
+			},
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.42328, 50.1],
+			},
+			properties: {
+				id: 'point-3',
+				type: 'tram',
+				name: 'Letenské náměstí',
+				description: '',
+			},
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.4174, 50.09904],
+			},
+			properties: {
+				id: 'point-parking-letna',
+				type: 'parking',
+				name: 'Parking Letná',
+				description: '',
+			},
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.4259981, 50.0995436],
+			},
+			properties: {
+				id: 'point-gisat',
+				type: 'gisat',
+				name: 'Gisat',
+				description: 'Budova ve dvoře :)',
+			},
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.42145, 50.10087],
+			},
+			properties: {
+				id: 'point-vegtral',
+				type: 'vegtral',
+				name: 'Vegtral',
+			},
+		},
+		{
+			type: 'Feature',
+			geometry: {
+				type: 'Point',
+				coordinates: [14.426811, 50.09774],
+			},
+			properties: {
+				id: 'point-ntm',
+				type: 'ntm',
+				name: 'NTM',
+			},
+		},
+	],
+};
 
 // *** VIEWS ***
 const view = {
@@ -36,11 +133,25 @@ const viewHradec = {
 	boxRange: 20000,
 };
 
+const viewLetna = {
+	center: {lat: 50.0995436, lon: 14.4225},
+	boxRange: 500,
+};
+
 const backgroundLayer = {
 	key: 'background-osm',
 	type: 'wmts',
 	options: {
 		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+	},
+};
+
+const backgroundCartoLayer = {
+	key: 'background-cdb',
+	type: 'wmts',
+	options: {
+		url:
+			'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}@2x.png',
 	},
 };
 
@@ -197,62 +308,89 @@ const pointsInMeters = {
 const pointsInPxLayers = [pointsInPx];
 const pointsInMetersLayers = [pointsInMeters];
 
-// Shapes
-const shapesStyle = {
+// Shapes & icons
+const iconResources = {
+	icons: {
+		gisat: {
+			component: Icon,
+			componentProps: {icon: 'gisat'},
+			anchorPoint: [0.5, 0.5],
+		},
+		monitoring: {
+			component: Icon,
+			componentProps: {icon: 'monitoring'},
+			anchorPoint: [0.5, 1],
+		},
+		crop: {
+			component: Icon,
+			componentProps: {icon: 'crop'},
+			anchorPoint: [0, 1],
+		},
+		cross: {
+			component: Icon,
+			componentProps: {icon: 'cross'},
+			anchorPoint: [0.5, 0.5],
+		},
+	},
+};
+
+const shapeStyle = {
 	rules: [
 		{
 			styles: [
 				{
-					fillOpacity: 0.85,
-					outlineWidth: 1,
-					outlineColor: '#333333',
-				},
-				{
-					attributeKey: 'attr1',
-					attributeClasses: [
-						{
-							interval: [0, 25],
-							fill: '#edf8fb',
+					attributeKey: 'type',
+					attributeValues: {
+						metro: {
+							fill: '#efefef',
+							shape: 'pin',
+							size: 16,
+							outlineWidth: 2,
 						},
-						{
-							interval: [25, 50],
-							fill: '#b3cde3',
+						tram: {
+							fill: '#992f2f',
+							icon: 'monitoring',
+							size: 16,
 						},
-						{
-							interval: [50, 75],
-							fill: '#8c96c6',
+						vegtral: {
+							fill: '#724e25',
+							icon: 'crop',
+							size: 16,
 						},
-						{
-							interval: [75, 101],
-							fill: '#88419d',
+						parking: {
+							shape: 'cross',
+							size: 16,
+							outlineWidth: 4,
+							outlineColor: '#27b0c4',
 						},
-					],
-				},
-				{
-					attributeKey: 'attr3',
-					attributeScale: {
-						size: {
-							inputInterval: [0, 1],
-							outputInterval: [5, 20],
+						ntm: {
+							shape: 'square',
+							size: 16,
+							outlineWidth: 2,
+							outlineColor: '#4d8c6e',
+							fill: '#89d6ae',
+						},
+						gisat: {
+							size: 48,
+							shape: 'pin',
+							outlineWidth: 3,
+							outlineColor: '#395fab',
+							fill: '#efefef',
+							iconFill: '#122f64',
+							icon: 'gisat',
 						},
 					},
 				},
 				{
-					attributeKey: 'attr2',
-					attributeClasses: [
-						{
-							interval: [-10, -3],
-							shape: 'square',
+					attributeKey: 'line',
+					attributeValues: {
+						A: {
+							outlineColor: '#2d9b2d',
 						},
-						{
-							interval: [-3, 3],
-							shape: 'circle',
+						C: {
+							outlineColor: '#ff0000',
 						},
-						{
-							interval: [3, 10],
-							shape: 'diamond',
-						},
-					],
+					},
 				},
 			],
 		},
@@ -263,11 +401,11 @@ const shapes = {
 	key: 'shapes',
 	type: 'vector',
 	options: {
-		features: pointData.features,
+		features: letnaPoints.features,
+		style: shapeStyle,
 		hoverable: true,
-		style: shapesStyle,
 		pointAsMarker: true,
-		fidColumnName: 'gid',
+		fidColumnName: 'id',
 	},
 };
 
@@ -511,7 +649,7 @@ class LeafletVectorLayer extends React.PureComponent {
 							Vector layer could be rendered as <b>SVG</b> using two ways. The
 							first way is fully interactive (including tooltips), it could draw
 							basic shapes, but it's quite slow. It is used for rendering of
-							layers with 499 features or less. The second way is faster, but
+							layers with 100 features or less. The second way is faster, but
 							without the tooltips option.
 						</li>
 					</ul>
@@ -690,6 +828,26 @@ class LeafletVectorLayer extends React.PureComponent {
 				</div>
 
 				<h2 id="points">Points</h2>
+				<h3>Render as markers - Size in meters</h3>
+				<p>
+					Try to zoom in and out. The size of circle is in meters and varies
+					between 500 and 2000 meters.
+				</p>
+				<div style={{height: 500, marginBottom: 10}}>
+					<HoverHandler
+						popupContentComponent={props => {
+							return <p>Value: {props.data['attr1']}</p>;
+						}}
+					>
+						<ReactLeafletMap
+							mapKey="react-leaflet-map-4"
+							view={viewHradec}
+							backgroundLayer={backgroundLayer}
+							layers={pointsInMetersLayers}
+						/>
+					</HoverHandler>
+				</div>
+
 				<h3>Render as markers - size in pixels</h3>
 				<p>
 					Try to zoom in and out. The size of circle is the same for each zoom
@@ -710,25 +868,164 @@ class LeafletVectorLayer extends React.PureComponent {
 					</HoverHandler>
 				</div>
 
-				<h3>Size in meters</h3>
+				<h3 id="shapesIcons">Render as markers - shapes & icons</h3>
 				<p>
-					Try to zoom in and out. The size of circle is in meters and varies
-					between 500 and 2000 meters.
+					Markers can be represented by various shapes, icons or their
+					combination.
 				</p>
-				<div style={{height: 500, marginBottom: 10}}>
+				<p>
+					Shapes are defined within the map component. Currently, "pin",
+					"cross", "square", "diamond" and "circle" (default) shape are
+					supported. You can define which shape to use in style rule.
+				</p>
+				<p>
+					Whereas shapes are built-in, icons have to be passed to the map in the
+					resources prop (see how in{' '}
+					<Link to="../../map#resources">Resources section</Link>). If the icon
+					is defined, but the shape is not, the icon is used as the shape.
+					Again, define which shape to use in style rule.
+				</p>
+				<p>
+					It is possible to combine shape with icon. Currently, only "pin" shape
+					allows this combination.
+				</p>
+				<p>
+					See the examples below with different uses of shapes, icons or their
+					combination.
+				</p>
+				<ImplementationToDo>
+					Currently for layers with max. 100 points!
+				</ImplementationToDo>
+				<DocsToDo>
+					List of available shapes. Currently "pin", "cross", "square",
+					"diamond" and "circle" are supported.
+				</DocsToDo>
+				<div style={{height: 300, marginBottom: 10}}>
 					<HoverHandler
 						popupContentComponent={props => {
-							return <p>Value: {props.data['attr1']}</p>;
+							return <b>{props.data.name}</b>;
 						}}
 					>
 						<ReactLeafletMap
-							mapKey="react-leaflet-map-4"
-							view={viewHradec}
-							backgroundLayer={backgroundLayer}
-							layers={pointsInMetersLayers}
+							mapKey="react-leaflet-map-icons"
+							view={viewLetna}
+							backgroundLayer={backgroundCartoLayer}
+							layers={shapeLayers}
+							resources={iconResources}
 						/>
 					</HoverHandler>
 				</div>
+				<SyntaxHighlighter language="jsx">
+					{`<ReactLeafletMap
+	mapKey="react-leaflet-map-icons"
+	view={{
+		center: {lat: 50.0995436, lon: 14.4225},
+		boxRange: 500
+	}}
+	backgroundLayer={{
+		key: 'background-cdb',
+		type: 'wmts',
+		options: {
+		url: 'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}@2x.png'}
+	}}
+	layers={[{
+		key: 'shapes',
+		type: 'vector',
+		options: {
+			features: [], //features
+			style: {
+					rules: [
+						{
+							styles: [
+								{
+									attributeKey: 'type',
+									attributeValues: {
+										metro: {
+											fill: '#efefef',
+											shape: 'pin',
+											size: 16,
+											outlineWidth: 2
+										},
+										tram: {
+											fill: '#992f2f',
+											icon: 'monitoring',
+											size: 16
+										},
+										vegtral: {
+											fill: '#724e25',
+											icon: 'crop',
+											size: 16
+										},
+										parking: {
+											shape: 'cross',
+											size: 16,
+											outlineWidth: 4,
+											outlineColor: '#27b0c4'
+										},
+										ntm: {
+											shape: 'square',
+											size: 16,
+											outlineWidth: 2,
+											outlineColor: '#4d8c6e',
+											fill: '#89d6ae'
+										},
+										gisat: {
+											size: 48,
+											shape: 'pin',
+											outlineWidth: 3,
+											outlineColor: '#395fab',
+											fill: '#efefef',
+											iconFill: '#122f64',
+											icon: 'gisat'
+										}
+									}
+								},
+								{
+									attributeKey: 'line',
+									attributeValues: {
+										A: {
+											outlineColor: '#2d9b2d'
+										},
+										C: {
+											outlineColor: '#ff0000'
+										}
+									}
+								}
+							]
+						}
+					]
+				},
+			hoverable: true,
+			pointAsMarker: true,
+			fidColumnName: 'id'
+		}
+	}]}
+	resources={{
+		icons: {
+			gisat: {
+				component: Icon,
+				componentProps: {icon: 'gisat'},
+				anchorPoint: [0.5, 0.5]
+			},
+			monitoring: {
+				component: Icon,
+				componentProps: {icon: 'monitoring'},
+				anchorPoint: [0.5, 1]
+			},
+			crop: {
+				component: Icon,
+				componentProps: {icon: 'crop'},
+				anchorPoint: [0, 1]
+			},
+			cross: {
+				component: Icon,
+				componentProps: {icon: 'cross'},
+				anchorPoint: [0.5, 0.5]
+			}
+		}
+	}}
+/>`}
+				</SyntaxHighlighter>
 
 				<h2 id="lines">Lines</h2>
 				<SyntaxHighlighter language="jsx">

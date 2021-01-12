@@ -151,6 +151,10 @@ class MapDoc extends React.PureComponent {
 						<Prop name="onLayerClick" type="function">
 							Function called on layer click
 						</Prop>
+						<Prop name="resources" type="object">
+							External resources for the map. See{' '}
+							<Link to="#resources">Resources</Link> section.
+						</Prop>
 						<Prop name="wrapperClasses" type="string">
 							Class names for wrapper component
 						</Prop>
@@ -357,6 +361,25 @@ const Map = connects.Map(PresentationMap);
 						</PresentationMap>
 					</div>
 				</div>
+
+				<h2 id="resources">Resources</h2>
+				<p>
+					Pass external resources to the map. Currently, the icons are
+					implemented.
+				</p>
+				<SyntaxHighlighter language="javascript">
+					{`
+{
+	icons: {
+		'iconKey': {
+			component: Icon, // React component
+			componentProps: {icon: 'crop'}, 
+			anchorPoint: [0.5, 1] // relative anchor position (it means that the icon reference point is placed in the middle horizontally and at the bottom vertically)
+		}
+	}
+}
+`}
+				</SyntaxHighlighter>
 			</Page>
 		);
 	}
