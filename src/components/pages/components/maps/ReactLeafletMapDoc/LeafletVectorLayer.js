@@ -448,6 +448,9 @@ const lineFeaturesLayer = {
 	options: {
 		features: cz_lines.features,
 		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
 		style: lineFeaturesStyle,
 		fidColumnName: 'OBJECTID',
 	},
@@ -497,6 +500,9 @@ const mixedFeaturesLayer = {
 	options: {
 		features: mixed_features.features,
 		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
 		selected: {
 			testSelection: {
 				keys: ['CZE.12_1'],
@@ -648,9 +654,10 @@ class LeafletVectorLayer extends React.PureComponent {
 						<li>
 							Vector layer could be rendered as <b>SVG</b> using two ways. The
 							first way is fully interactive (including tooltips), it could draw
-							basic shapes, but it's quite slow. It is used for rendering of
+							custom shapes as markers and circles as points with geographically
+							fixed size, but it's quite slow. It is used for rendering of
 							layers with 100 features or less. The second way is faster, but
-							without the tooltips option.
+							without the tooltip option.
 						</li>
 					</ul>
 				</ImplementationToDo>
@@ -828,7 +835,7 @@ class LeafletVectorLayer extends React.PureComponent {
 				</div>
 
 				<h2 id="points">Points</h2>
-				<h3>Render as markers - Size in meters</h3>
+				<h3>Size in meters</h3>
 				<p>
 					Try to zoom in and out. The size of circle is in meters and varies
 					between 500 and 2000 meters.
@@ -893,9 +900,6 @@ class LeafletVectorLayer extends React.PureComponent {
 					See the examples below with different uses of shapes, icons or their
 					combination.
 				</p>
-				<ImplementationToDo>
-					Currently for layers with max. 100 points!
-				</ImplementationToDo>
 				<DocsToDo>
 					List of available shapes. Currently "pin", "cross", "square",
 					"diamond" and "circle" are supported.
