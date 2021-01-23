@@ -8,7 +8,7 @@ import Page, {
 	LightDarkBlock,
 	SyntaxHighlighter,
 } from '../../../../Page';
-import {ReactLeafletMap} from '@gisatcz/ptr-maps';
+import {ReactLeafletMap, PresentationMap, MapControls} from '@gisatcz/ptr-maps';
 import {Icon} from '@gisatcz/ptr-atoms';
 import {HoverHandler} from '@gisatcz/ptr-core';
 import {Link} from 'react-router-dom';
@@ -801,13 +801,16 @@ class LeafletVectorLayer extends React.PureComponent {
     />`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
-					<ReactLeafletMap
+					<PresentationMap
+						mapComponent={ReactLeafletMap}
 						mapKey="choropleth-map"
 						view={viewEurope}
 						backgroundLayer={backgroundLayer}
 						layers={this.state.choroplethLayers}
 						onLayerClick={this.onLayerClick}
-					/>
+					>
+						<MapControls zoomOnly levelsBased />
+					</PresentationMap>
 				</div>
 
 				<p>The same layer as above is now rendered using canvas technique.</p>
