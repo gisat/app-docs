@@ -4,7 +4,6 @@ import Page, {DocsToDo, SyntaxHighlighter} from '../../../Page';
 const DataEndpoint = props => (
 	<Page title="Data Endpoint">
 		<h2>Payload</h2>
-		<h3>Relations filter</h3>
 		<SyntaxHighlighter language="json">
 			{`
 {
@@ -22,7 +21,7 @@ const DataEndpoint = props => (
     layerTemplateKey | areaTreeLevelKey: "uuid",
     
     // get attributes from style
-    styleKey: "", 
+    styleKey: "uuid", 
     
     // pagination for relations (& data sources)
     relations: {
@@ -39,13 +38,6 @@ const DataEndpoint = props => (
         spatialIndex: {
             tiles: [[lon, lat], ...],
         },
-        
-        // part of attribute endpoint 
-        // attributeIndex: {
-        //     order: [["attribute-uuid", "ascending"], ...],
-        //     offset: 0,
-        //     limit: 10 
-        // },
     
         // extent
         spatialFilter: {
@@ -61,7 +53,12 @@ const DataEndpoint = props => (
             },
             ...
         },
+        
+        // return geometries in response. Set to false, if only style was changed
         geometry: true,
+        
+        // return relations & data sources in response
+        relations: true,
         
         // use data source keys as filter or add them to filter
         dataSourceKeys: ["dataSource-uuid",...] 

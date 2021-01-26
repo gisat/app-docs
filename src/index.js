@@ -80,6 +80,7 @@ import ViewDoc from './components/pages/architecture/storeDataTypes/commonDataTy
 import MapViewLimitsDoc from './components/pages/architecture/systemDataTypes/MapViewLimits';
 import MapWrapperDoc from './components/pages/components/maps/MapWrapperDoc';
 import DataEndpoint from './components/pages/code/api/DataEndpoint';
+import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
 
 const {store} = createStore();
 
@@ -406,6 +407,11 @@ ReactDOM.render(
 							label="Data endpoint"
 							path="dataEndpoint"
 							component={DataEndpoint}
+						/>
+						<Page
+							label="Attribute data endpoint"
+							path="attributeDataEndpoint"
+							component={AttributeDataEndpoint}
 						/>
 					</Directory>
 					<Page label="Configuration" path="configuration" />
