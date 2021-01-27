@@ -61,10 +61,15 @@ const AttributeDataEndpoint = props => (
 			{`
 {
     data: {
-        relations: [],
-        data: {
+        attributeRelations: [],
+        attributeData: {
             'attributeDataSourceKey': {
-                'feature-id': "Dinagat Islands"
+                data: {
+                	'feature-id': "Dinagat Islands",
+                	'feature-id': "Gisatland"
+                },
+                offset: 100,
+                limit: 100
             }
         },
     },
