@@ -60,7 +60,7 @@ const DataEndpoint = props => (
         // return relations & data sources in response
         relations: true,
         
-        // use data source keys as filter or add them to filter
+        // use data source keys instead of LayerTemplateKey/AreaTreeLevelKey + modifiers
         dataSourceKeys: ["dataSource-uuid",...] 
     }
 }
