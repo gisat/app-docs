@@ -71,13 +71,20 @@ const DataEndpoint = props => (
 		<SyntaxHighlighter language="json">
 			{`
 {
-    data: {
-        spatialRelations: [],
+	spatialAttributeRelationsDataSources: {
+		total: {
+			attributeRelations: 45,
+			spatialRelations: 147
+		},
+		offset: 0,
+		limit: 100.
+		spatialRelations: [],
         attributeRelations: [],
         spatialDataSources: [],
         attributeDataSources: [],
-        spatialData: {
-            'spatialDataSourceKey': {
+	},
+	spatialData: {
+		'spatialDataSourceKey': {
                 data:  {
                     'feature-id': {
                         type: "Point",
@@ -90,13 +97,12 @@ const DataEndpoint = props => (
                     }
                 }
             }
-        },
-        attributeData: {
-            'attributeDataSourceKey': {
+	},
+	attributeData: {
+		'attributeDataSourceKey': {
                 'feature-id': "Dinagat Islands"
-            }
         }
-    }
+	}
 }
         `}
 		</SyntaxHighlighter>

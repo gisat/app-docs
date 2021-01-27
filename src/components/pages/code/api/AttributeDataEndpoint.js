@@ -47,7 +47,13 @@ const AttributeDataEndpoint = props => (
         featureKeys: [],
     
         // extent
-        spatialFilter: GeoJSON,
+        spatialFilter: {
+        	geoJson: {},
+        	tiles: {
+				tiles: [[lon, lat], ...],
+				level: 3
+			}
+        },
         
         // use data source keys instead of LayerTemplateKey/AreaTreeLevelKey + modifiers
         dataSourceKeys: ["dataSource-uuid",...] 
@@ -60,25 +66,24 @@ const AttributeDataEndpoint = props => (
 		<SyntaxHighlighter language="json">
 			{`
 {
-    data: {
-        attributeRelations: [],
-        attributeData: {
+	attributeRelationsDataSources: {
+		total: 124,
+		offset: 0,
+		limit: 100,
+		attributeRelations: []
+		// attributeDataSources: []
+	},
+	attributeData: {
+		total: 14756,
+		offset: 0, 
+		limit: 100,
+		attributeData: {
             'attributeDataSourceKey': {
-                data: {
-                	'feature-id': "Dinagat Islands",
-                	'feature-id': "Gisatland"
-                },
-                offset: 100,
-                limit: 100
+                'feature-id': "Dinagat Islands",
+                'feature-id': "Gisatland"
             }
-        },
-    },
-    total: {
-        attributeRelations: 74,
-        features: 148
-    },
-    offset: 0,
-    limit: 100  
+        }
+	}      
 }
         `}
 		</SyntaxHighlighter>
