@@ -24,9 +24,12 @@ const DataEndpoint = props => (
     styleKey: "uuid", 
     
     // pagination for relations (& data sources)
+    // return relations & data sources in response (spatial and/or attribute) 
     relations: {
         offset: 0,
-        limit: 100
+		limit: 100,
+		spatial: true,
+		attribute: true
     },
     
     // options for spatial & attributes data   
@@ -56,9 +59,6 @@ const DataEndpoint = props => (
         
         // return geometries in response. Set to false, if only style was changed
         geometry: true,
-        
-        // return relations & data sources in response
-        relations: true,
         
         // use data source keys instead of LayerTemplateKey/AreaTreeLevelKey + modifiers
         dataSourceKeys: ["dataSource-uuid",...] 
