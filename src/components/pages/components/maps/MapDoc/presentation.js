@@ -23,7 +23,46 @@ const Map = connects.Map(PresentationMap);
 
 const view = {
 	center: {lat: 50, lon: 15},
-	boxRange: 2000000,
+	boxRange: 500000,
+};
+
+const limited_center_area = {
+	key: 'limited_center_area',
+	name: 'limited_center_area',
+	type: 'vector',
+	options: {
+		features: [
+			{
+				type: 'Feature',
+				properties: {},
+				geometry: {
+					type: 'Polygon',
+					coordinates: [
+						[
+							[14, 49.5],
+							[14, 50.5],
+							[17, 50.5],
+							[17, 49.5],
+							[14, 49.5],
+						],
+					],
+				},
+			},
+		],
+		style: {
+			rules: [
+				{
+					styles: [
+						{
+							outlineColor: '#333333',
+							outlineWidth: 4,
+							outlineOpacity: 0.5,
+						},
+					],
+				},
+			],
+		},
+	},
 };
 
 const presentational_backgroundLayer = {
@@ -76,7 +115,7 @@ class MapDoc extends React.PureComponent {
 			data: {
 				view: {
 					center: {lat: 50, lon: 14},
-					boxRange: 2000000,
+					boxRange: 500000,
 				},
 				backgroundLayer: {
 					layerTemplateKey: 'd54f7782-976b-4fb2-9066-5f1ca4f3b703',
@@ -151,6 +190,10 @@ class MapDoc extends React.PureComponent {
 						<Prop name="onLayerClick" type="function">
 							Function called on layer click
 						</Prop>
+						<Prop name="resources" type="object">
+							External resources for the map. See{' '}
+							<Link to="#resources">Resources</Link> section.
+						</Prop>
 						<Prop name="wrapperClasses" type="string">
 							Class names for wrapper component
 						</Prop>
@@ -199,7 +242,7 @@ class MapDoc extends React.PureComponent {
 	}]}
 	view={{
 		center: {lat: 50, lon: 15},
-		boxRange: 2000000
+		boxRange: 500000
 	}}
 >
 	<MapControls/>
@@ -248,7 +291,7 @@ const Map = connects.Map(PresentationMap);
 	}]}
 	view={{
 		center: {lat: 50, lon: 15},
-		boxRange: 2000000
+		boxRange: 500000
 	}}
 >
 	<MapControls/>
@@ -287,10 +330,12 @@ const Map = connects.Map(PresentationMap);
 				<p>
 					Which part of the world is visible on the map and how is represented
 					by <Link to="/architecture/systemDataTypes/mapView">view</Link>{' '}
-					object. Currently, it is possible to restrict the zoom via{' '}
+					object. Currently, it is possible to restrict the zoom (Leaflet,
+					WorldWind) and center (just Leaflet) via{' '}
 					<InlineCodeHighlighter>viewLimits</InlineCodeHighlighter> prop.
 				</p>
 
+				<h3>Limited zoom</h3>
 				<SyntaxHighlighter language="jsx">
 					{`
 <Map
@@ -357,6 +402,102 @@ const Map = connects.Map(PresentationMap);
 						</PresentationMap>
 					</div>
 				</div>
+
+				<h3>Limited center</h3>
+				<p>The limited center area is shown as polygon.</p>
+
+				<SyntaxHighlighter language="jsx">
+					{`
+<Map
+	//...
+	view={{
+		center: {lat: 50.5, lon: 15.5},
+		boxRange: 100000
+	}}
+	viewLimits={{
+	    center: {
+	    	maxLat: 50.5,
+	    	minLat: 49.5,
+	    	maxLon: 17,
+	    	minLon: 14
+	    }
+	}}
+>
+	<MapControls zoomOnly levelsBased />
+</Map>
+`}
+				</SyntaxHighlighter>
+
+				<div style={{margin: 5, height: 400, width: 600}}>
+					<PresentationMap
+						mapComponent={ReactLeafletMap}
+						backgroundLayer={presentational_backgroundLayer}
+						layers={[limited_center_area]}
+						view={{
+							center: {lat: 50.5, lon: 15.5},
+							boxRange: 100000,
+						}}
+						viewLimits={{
+							center: {
+								maxLat: 50.5,
+								minLat: 49.5,
+								maxLon: 17,
+								minLon: 14,
+							},
+						}}
+					>
+						<MapControls zoomOnly levelsBased />
+					</PresentationMap>
+				</div>
+
+				<h3>Limits combination</h3>
+				<p>
+					By combining of the limits, we can only allow a certain area to be
+					displayed. In the example below, the map view is limited to the Czech
+					Republic area.
+				</p>
+
+				<div style={{margin: 5, height: 400, width: 800}}>
+					<PresentationMap
+						mapComponent={ReactLeafletMap}
+						backgroundLayer={presentational_backgroundLayer}
+						layers={[limited_center_area]}
+						view={{
+							center: {lat: 49.8, lon: 15.5},
+							boxRange: 200000,
+						}}
+						viewLimits={{
+							boxRangeRange: [null, 200000],
+							center: {
+								maxLat: 50.5,
+								minLat: 49.5,
+								maxLon: 17,
+								minLon: 14,
+							},
+						}}
+					>
+						<MapControls zoomOnly levelsBased />
+					</PresentationMap>
+				</div>
+
+				<h2 id="resources">Resources</h2>
+				<p>
+					Pass external resources to the map. Currently, the icons are
+					implemented.
+				</p>
+				<SyntaxHighlighter language="javascript">
+					{`
+{
+	icons: {
+		'iconKey': {
+			component: Icon, // React component
+			componentProps: {icon: 'crop'}, 
+			anchorPoint: [0.5, 1] // relative anchor position (it means that the icon reference point is placed in the middle horizontally and at the bottom vertically)
+		}
+	}
+}
+`}
+				</SyntaxHighlighter>
 			</Page>
 		);
 	}

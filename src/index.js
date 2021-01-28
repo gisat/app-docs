@@ -35,7 +35,7 @@ import MapDoc from './components/pages/components/maps/MapDoc';
 import MapSetDoc from './components/pages/components/maps/MapSetDoc';
 import TileGridDoc from './components/pages/code/packages/TileGrid';
 import HoverHandlerDoc from './components/pages/components/commonFeatures/HoverHandlerDoc';
-import LayersDoc from './components/pages/architecture/systemDataTypes/LayersDoc';
+import LayersDoc from './components/pages/architecture/systemDataTypes/layers';
 import MapViewDoc from './components/pages/architecture/systemDataTypes/MapViewDoc';
 import StyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc';
 import ReactLeafletMapDoc from './components/pages/components/maps/ReactLeafletMapDoc';
@@ -80,6 +80,7 @@ import ViewDoc from './components/pages/architecture/storeDataTypes/commonDataTy
 import MapViewLimitsDoc from './components/pages/architecture/systemDataTypes/MapViewLimits';
 import MapWrapperDoc from './components/pages/components/maps/MapWrapperDoc';
 import DataEndpoint from './components/pages/code/api/DataEndpoint';
+import VectorLayers from './components/pages/architecture/systemDataTypes/layers/VectorLayers';
 import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
 
 const {store} = createStore();
@@ -188,7 +189,13 @@ ReactDOM.render(
 						path="systemDataTypes"
 						component={SystemDataTypes}
 					>
-						<Page label="Layers" path="layers" component={LayersDoc} />
+						<Directory label="Layers" path="layers" component={LayersDoc}>
+							<Page
+								label="Vector (full format)"
+								path="vector"
+								component={VectorLayers}
+							/>
+						</Directory>
 						<Page label="Map view" path="mapView" component={MapViewDoc} />
 						<Page
 							label="Map view limits"
@@ -242,16 +249,16 @@ ReactDOM.render(
 									<Anchor label="Lines" path="lines" />
 									<Anchor label="Mixed" path="mixed" />
 								</Page>
-								<Page
-									label="Diagram layer"
-									path="diagramLayer"
-									component={LeafletDiagramLayer}
-								/>
-								<Page
-									label="Indexed Vector layer"
-									path="indexedVectorLayer"
-									component={LeafletIndexedVectorLayer}
-								/>
+								{/*<Page*/}
+								{/*	label="Diagram layer"*/}
+								{/*	path="diagramLayer"*/}
+								{/*	component={LeafletDiagramLayer}*/}
+								{/*/>*/}
+								{/*<Page*/}
+								{/*	label="Indexed Vector layer"*/}
+								{/*	path="indexedVectorLayer"*/}
+								{/*	component={LeafletIndexedVectorLayer}*/}
+								{/*/>*/}
 								<Page
 									label="WMS layer"
 									path="WMSLayer"

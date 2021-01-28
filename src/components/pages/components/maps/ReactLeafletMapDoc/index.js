@@ -9,7 +9,7 @@ import cz_gadm from '../../../../mockData/map/czGadm1WithStyles/geometries.json'
 
 const view = {
 	center: {lat: 50, lon: 15},
-	boxRange: 1000000,
+	boxRange: 400000,
 };
 
 const backgroundLayer = {
@@ -108,9 +108,9 @@ class ReactLeafletMapDoc extends React.PureComponent {
 					<li>
 						<Link to="./reactLeaflet/vectorLayer">Vector layer</Link>
 					</li>
-					<li>
-						<Link to="./reactLeaflet/diagramLayer">Diagram layer</Link>
-					</li>
+					{/*<li>*/}
+					{/*	<Link to="./reactLeaflet/diagramLayer">Diagram layer</Link>*/}
+					{/*</li>*/}
 				</ul>
 
 				<h3 id="wmts">WMTS layer</h3>
@@ -127,7 +127,7 @@ class ReactLeafletMapDoc extends React.PureComponent {
 	mapKey='react-leaflet-map'
 	view={{
 		center: {lat: 50, lon: 15},
-		boxRange: 2000000
+		boxRange: 400000
 	}}
 	backgroundLayer={{
 		key: 'background-osm',
@@ -154,7 +154,7 @@ class ReactLeafletMapDoc extends React.PureComponent {
 	mapKey='react-leaflet-map-2'
 	view={{
 		center: {lat: 50, lon: 15},
-		boxRange: 2000000
+		boxRange: 400000
 	}}
 	backgroundLayer={{
 		key: 'background-osm',
