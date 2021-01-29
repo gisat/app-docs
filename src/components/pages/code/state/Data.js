@@ -36,8 +36,10 @@ const Data = props => (
 				...
 			},
 			'level2': {
+				'tile4': true, //true is loading indicator for tile
 				'tile3': {
-					...
+					'attributeDataSourceKey1': [], //No data for tile 
+					'attributeDataSourceKey2': [], //No data for tile 
 				}
 			}
 		}
@@ -174,6 +176,13 @@ const Data = props => (
 				'tile3': {
 					...
 				}
+			},
+			'level3': {
+				'tile3': true,	//true is loading indicator for tile
+				'tile4': {
+					'spatialDataSourceKey1': [], //No data for tile 
+					'spatialDataSourceKey2': ['featureKey5']
+				},
 			}
 		}
 	}, {
