@@ -53,7 +53,7 @@ const Data = props => (
 			scopeKey: "c81d59c8-0b4c-4df3-9c20-375f977660d3",
 			styleKey: "55f48ed1-ee67-47bd-a044-8985662ec29f"
 		},
-		order: [['attributeKey1', 'ascending'], ['attribueKey2', 'descending'], ...],
+		order: [['attributeKey1', 'ascending'], ['attributeKey2', 'descending'], ...],
 		count: 4788,
 		index: {0: 'attributeKey745', 1: 'attributeKey147', ...}
 	}, {
@@ -244,6 +244,53 @@ const Data = props => (
 		},
 		index: {0: "spatialRelationKey1"}
 	}, ...]
+}`}
+		</SyntaxHighlighter>
+
+		<h2>components</h2>
+		<SyntaxHighlighter language="javascript">
+			{`{
+	components: {
+		'componentKey': {
+			metadataModifiers: {
+				placeKey: "8b65f2c9-bd6a-4d92-bc09-af604761f2f1",
+				caseKeys: ["4c2afea6-0964-458e-88a7-a65318554487", "758b72dd-76a8-4792-8e9f-bbf13784e992"],
+				...
+			},
+			filterByActive: {
+				scope: true,
+				period: true,
+				place: true,
+				...
+			},
+			layerTemplateKey | areaTreeLevelKey: "c81d59c8-0b4c-4df3-9c20-375f977660d3",
+			attributeKeys: ["c043af5a-ec2b-4126-b047-f203c058662e", "fa37b062-bd5a-4888-9e38-aef103d03e3c", ...],
+			
+			// filter features by attribute value
+			attributeFilter: {
+				'attributeKey1': "blue",
+				'attributeKey2': {
+					in: [12, 13]
+				},
+				...
+			},
+			attributeOrder: [['attributeKey1', 'ascending'], ['attributeKey2', 'descending'], ...]
+			spatialFilter: {
+				geoJson: {},
+				tiles: {
+					tiles: [[lon, lat], ...],
+					level: 3
+				}
+			},
+			// list of specific features you want
+        	featureKeys: [],
+        	start: 11,
+        	length: 10
+		}, ...
+	},
+	sets: {
+		components: ['componentKey', ...]
+	}
 }`}
 		</SyntaxHighlighter>
 	</Page>
