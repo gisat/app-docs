@@ -10,6 +10,7 @@ import {
 import Helmet from 'react-helmet';
 import createStore, {history} from './state/Store';
 import {Action} from '@gisatcz/ptr-state';
+import {localesUtils, i18n} from '@gisatcz/ptr-locales';
 
 import config from './config';
 
@@ -93,6 +94,8 @@ store.dispatch(Action.users.apiLoadCurrentUser());
 
 // Set local configuration
 store.dispatch(Action.app.updateLocalConfiguration(config));
+
+i18n.changeLanguage('en');
 
 ReactDOM.render(
 	<Provider store={store}>
