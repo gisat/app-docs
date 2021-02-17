@@ -82,6 +82,8 @@ import MapViewLimitsDoc from './components/pages/architecture/systemDataTypes/Ma
 import MapWrapperDoc from './components/pages/components/maps/MapWrapperDoc';
 import DataEndpoint from './components/pages/code/api/DataEndpoint';
 import VectorLayers from './components/pages/architecture/systemDataTypes/layers/VectorLayers';
+import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
+import Data from './components/pages/code/state/Data';
 
 const {store} = createStore();
 
@@ -417,11 +419,18 @@ ReactDOM.render(
 							path="dataEndpoint"
 							component={DataEndpoint}
 						/>
+						<Page
+							label="Attribute data endpoint"
+							path="attributeDataEndpoint"
+							component={AttributeDataEndpoint}
+						/>
 					</Directory>
 					<Page label="Configuration" path="configuration" />
 					<Page label="SSR" path="ssr" />
 					<Page label="Styles" path="styles" />
-					<Page label="State" path="state" />
+					<Directory label="State" path="state">
+						<Page label="Data" path="data" component={Data} />
+					</Directory>
 					<Page label="Internationalization" path="internationalization" />
 					<Directory label="Packages" path="packages">
 						<Page label="TileGrid" path="tilegrid" component={TileGridDoc} />

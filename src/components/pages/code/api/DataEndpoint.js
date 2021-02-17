@@ -4,7 +4,6 @@ import Page, {DocsToDo, SyntaxHighlighter} from '../../../Page';
 const DataEndpoint = props => (
 	<Page title="Data Endpoint">
 		<h2>Payload</h2>
-		<h3>Relations filter</h3>
 		<SyntaxHighlighter language="json">
 			{`
 {
@@ -22,12 +21,15 @@ const DataEndpoint = props => (
     layerTemplateKey | areaTreeLevelKey: "uuid",
     
     // get attributes from style
-    styleKey: "", 
+    styleKey: "uuid", 
     
     // pagination for relations (& data sources)
+    // return relations & data sources in response (spatial and/or attribute) 
     relations: {
         offset: 0,
-        limit: 100
+		limit: 100,
+		spatial: true,
+		attribute: true
     },
     
     // options for spatial & attributes data   
@@ -39,13 +41,6 @@ const DataEndpoint = props => (
         spatialIndex: {
             tiles: [[lon, lat], ...],
         },
-        
-        // part of attribute endpoint 
-        // attributeIndex: {
-        //     order: [["attribute-uuid", "ascending"], ...],
-        //     offset: 0,
-        //     limit: 10 
-        // },
     
         // extent
         spatialFilter: {
@@ -61,9 +56,11 @@ const DataEndpoint = props => (
             },
             ...
         },
+        
+        // return geometries in response. Set to false, if only style was changed
         geometry: true,
         
-        // use data source keys as filter or add them to filter
+        // use data source keys instead of LayerTemplateKey/AreaTreeLevelKey + modifiers
         dataSourceKeys: ["dataSource-uuid",...] 
     }
 }
@@ -74,13 +71,20 @@ const DataEndpoint = props => (
 		<SyntaxHighlighter language="json">
 			{`
 {
-    data: {
-        spatialRelations: [],
+	spatialAttributeRelationsDataSources: {
+		total: {
+			attributeRelations: 45,
+			spatialRelations: 147
+		},
+		offset: 0,
+		limit: 100.
+		spatialRelations: [],
         attributeRelations: [],
         spatialDataSources: [],
         attributeDataSources: [],
-        spatialData: {
-            'spatialDataSourceKey': {
+	},
+	spatialData: {
+		'spatialDataSourceKey': {
                 data:  {
                     'feature-id': {
                         type: "Point",
@@ -93,13 +97,12 @@ const DataEndpoint = props => (
                     }
                 }
             }
-        },
-        attributeData: {
-            'attributeDataSourceKey': {
+	},
+	attributeData: {
+		'attributeDataSourceKey': {
                 'feature-id': "Dinagat Islands"
-            }
         }
-    }
+	}
 }
         `}
 		</SyntaxHighlighter>
