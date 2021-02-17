@@ -1,18 +1,23 @@
 import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
 
-import Page, {SyntaxHighlighter} from '../../../Page';
+import Page, {
+	DocsToDo,
+	ImplementationToDo,
+	SyntaxHighlighter,
+} from '../../../../Page';
+import {Link} from 'react-router-dom';
 
 class LayersDoc extends React.PureComponent {
 	render() {
 		return (
 			<Page title="Layers">
-				<p>
-					Layers are for layering. Full format (End? Absolute? Complete?
-					Explicit? Pink?) for presentational map components, state-dependent
-					(Relative? Implicit? Magic? Fuchsia?) for connected.
-				</p>
-				{/* todo */}
+				<DocsToDo>
+					Add description: Layers are for layering. Full format (End? Absolute?
+					Complete? Explicit? Pink?) for presentational map components,
+					state-dependent (Relative? Implicit? Magic? Fuchsia?) for connected.
+				</DocsToDo>
+
 				<SyntaxHighlighter language="javascript">
 					{`{
 	key: "example_layer",
@@ -66,34 +71,10 @@ class LayersDoc extends React.PureComponent {
 				</SyntaxHighlighter>
 
 				<h3 id="vector">Vector</h3>
-				<SyntaxHighlighter language="javascript">
-					{`{
-	key: "snezka_example_layer",
-	type: "vector",
-	opacity: 0.7,
-	
-	options: {
-		features: [], //list of GeoJSON features
-		style: {}, //see Style section
-		selectable: true,
-		selected: {
-			selectionKey: {
-				keys: [], //list of fids
-				style: "default" || {}, //style definition
-				hoveredStyle: "default" || {} //style definition
-			}, 
-			selectionKey2: {}},
-		filtered: {}, //TODO
-		hoverable: true, 
-		hovered: {
-			style: "default" || {} //style definition
-		},
-		fidColumnName: "string",
-		boxRangeRange: [] //boxRange limits where layer is rendered (e.g. [5000, 1000000]),
-		pointAsMarker: true //point features will be displayed as markers (with fixed size i pixels)
-	}
-}`}
-				</SyntaxHighlighter>
+				<p>
+					See <Link to="./layers/vector">Vector layers (full format)</Link>{' '}
+					section
+				</p>
 
 				<h3>Raster</h3>
 

@@ -12,11 +12,20 @@ class MapViewLimitsDoc extends React.PureComponent {
 					Universal framework-agnostic representation of map view limitations.
 					It is used to restrict <Link to="./mapView">map view</Link>.
 				</p>
-				<ImplementationToDo>Other map view parameters</ImplementationToDo>
+				<ImplementationToDo>
+					Center is implemented for Leaflet only. Add center, tilt, roll for
+					WorldWind.
+				</ImplementationToDo>
 
 				<SyntaxHighlighter language="javascript">
 					{`{
-	boxRangeRange: [1000, 50000]
+	boxRangeRange: [1000, 50000],
+	center: {
+		minLat: 50,
+		minLon: 14.2,
+		maxLat: 50.2,
+		maxLon: 14.6
+	}
 }`}
 				</SyntaxHighlighter>
 			</Page>

@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom';
 
 const view = {
 	center: {lat: 50, lon: 15},
-	boxRange: 1000000,
+	boxRange: 400000,
 };
 
 const backgroundLayer = {
