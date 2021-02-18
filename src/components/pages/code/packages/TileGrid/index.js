@@ -7,7 +7,7 @@ import {
 } from '@gisatcz/ptr-maps';
 import {utils as tileGridUtils, grid} from '@gisatcz/ptr-tile-grid';
 import {map as mapUtils} from '@gisatcz/ptr-utils';
-import {HoverHandler} from '@gisatcz/ptr-core';
+import {HoverHandler, mapConstants} from '@gisatcz/ptr-core';
 import Page, {SyntaxHighlighter} from '../../../../Page';
 import _ from 'lodash';
 
@@ -149,22 +149,21 @@ class TileGridDoc extends React.PureComponent {
 			mapUpdate.boxRange
 		);
 		const level = grid.getLevelByViewport(boxRange, viewportRange);
-		const center = [mapUpdate.center.lon, mapUpdate.center.lat];
 		const ratio = mapUpdate.width / mapUpdate.height;
-		const extent = tileGridUtils.getExtentAroundCoordinates(
-			center,
+		const extent = mapUtils.view.getBoundingBoxFromViewForEpsg3857(
+			mapUpdate.center,
 			boxRange,
 			ratio,
-			50,
-			true
+			mapConstants.averageLatitude
 		);
+
 		const tileGrid = grid.getTileGrid(
 			mapUpdate.width,
 			mapUpdate.height,
 			boxRange,
-			[mapUpdate.center.lon, mapUpdate.center.lat],
-			true
+			mapUpdate.center,
 		);
+
 		// // todo
 		// // add buffer for leveles bigger than 5
 		const size = tileGridUtils.getGridSizeForLevel(level);
@@ -181,7 +180,9 @@ class TileGridDoc extends React.PureComponent {
 		});
 
 		mapUpdate.geojsonTileGrid[level] = geojsonTileGrid;
-		const geoJSONextent = getGeoJSONFromExtent(extent);
+		const extentAsArray = [[extent.minLon, extent.minLat], [extent.maxLon, extent.maxLat]];
+		const extentAsArrayInWorldExtent = tileGridUtils.ensureExtentInWorldBBox(extentAsArray);
+		const geoJSONextent = getGeoJSONFromExtent(extentAsArrayInWorldExtent);
 		this.setState({
 			map1: {...mapUpdate, level, tileGrid, extent: geoJSONextent},
 		});

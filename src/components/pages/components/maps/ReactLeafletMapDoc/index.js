@@ -1,6 +1,7 @@
 import React from 'react';
 import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
 import {MapControls, PresentationMap, ReactLeafletMap} from '@gisatcz/ptr-maps';
+import {Button} from '@gisatcz/ptr-atoms';
 import ComponentPropsTable, {
 	Prop,
 } from '../../../../ComponentPropsTable/ComponentPropsTable';
@@ -48,6 +49,16 @@ const wmsExampleLayers = [cuzk];
 const polygonLayers = [polygons];
 
 class ReactLeafletMapDoc extends React.PureComponent {
+	constructor(props) {
+		super(props);
+		this.setDebug = this.setDebug.bind(this);
+		this.state = {
+			debugType: {bottom: true},
+		};
+	}
+	setDebug(type) {
+		this.setState({debugType: type});
+	}
 	render() {
 		return (
 			<Page title="ReactLeafletMap">
@@ -80,6 +91,14 @@ class ReactLeafletMapDoc extends React.PureComponent {
 							EPSG:3857 (Pseudo-Mercator)
 						</a>
 						. <Link to="#crs">See complete list of available crs</Link>.
+					</Prop>
+					<Prop name="debugTileGrid" type="bool|Object" defaultValue="false">
+						Display <Link to="/code/packages/tilegrid">TileGrid</Link> in map.
+						If <InlineCodeHighlighter>debugTileGrid=true</InlineCodeHighlighter>{' '}
+						TileGrid is on the top of all layers by default. Optionaly is
+						possible to display tilegrid in the bottom by{' '}
+						<InlineCodeHighlighter>{`debugTileGrid={'bottom': true}`}</InlineCodeHighlighter>
+						. See examples <Link to="#debugTileGrid">examples</Link>.
 					</Prop>
 				</ComponentPropsTable>
 
@@ -273,6 +292,70 @@ class ReactLeafletMapDoc extends React.PureComponent {
 	}]}
 //...`}
 				</SyntaxHighlighter>
+
+				<h2 id="debugTileGrid">Debugging with tilegrid</h2>
+				<p>
+					See possible settings of{' '}
+					<InlineCodeHighlighter>'debugTileGrid'</InlineCodeHighlighter> prop.
+				</p>
+				<p>
+					Debug TileGrid displays text{' '}
+					<InlineCodeHighlighter>
+						level - longitude - latitude
+					</InlineCodeHighlighter>{' '}
+					of the left bottom corner of the tile.
+				</p>
+				<p>
+					DebugTileGrid can be displayed on any{' '}
+					<InlineCodeHighlighter>{`<ReactLeafletMap />`}</InlineCodeHighlighter>{' '}
+					with use of Developer tools in Chrome browser with React Developer
+					Tools Pluggin.
+				</p>
+
+				<SyntaxHighlighter language="jsx">
+					{`<div style={{height: 500, marginBottom: 10}}>
+	<ReactLeafletMap
+			mapKey="react-leaflet-map"
+			view={view}
+			backgroundLayer={backgroundLayer}
+			layers={wmsExampleLayers}
+			debugTileGrid={this.state.debugType}
+		/>
+</div>
+<Button primary={this.state.debugType === null} onClick={() => this.setDebug(null)} ghost>None</Button>
+<Button primary={this.state.debugType === true} onClick={() => this.setDebug(true)} ghost>TileGrid UP</Button>
+<Button primary={this.state.debugType?.bottom === true} onClick={() => this.setDebug({bottom:true})} ghost>TileGrid Bottom</Button>`}
+				</SyntaxHighlighter>
+				<div style={{height: 500, marginBottom: 10}}>
+					<ReactLeafletMap
+						mapKey="react-leaflet-map"
+						view={view}
+						backgroundLayer={backgroundLayer}
+						layers={wmsExampleLayers}
+						debugTileGrid={this.state.debugType}
+					/>
+				</div>
+				<Button
+					primary={this.state.debugType === null}
+					onClick={() => this.setDebug(null)}
+					ghost
+				>
+					None
+				</Button>
+				<Button
+					primary={this.state.debugType === true}
+					onClick={() => this.setDebug(true)}
+					ghost
+				>
+					TileGrid UP
+				</Button>
+				<Button
+					primary={this.state.debugType?.bottom === true}
+					onClick={() => this.setDebug({bottom: true})}
+					ghost
+				>
+					TileGrid Bottom
+				</Button>
 			</Page>
 		);
 	}
