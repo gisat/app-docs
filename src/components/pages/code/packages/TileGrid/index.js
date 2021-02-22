@@ -161,7 +161,7 @@ class TileGridDoc extends React.PureComponent {
 			mapUpdate.width,
 			mapUpdate.height,
 			boxRange,
-			mapUpdate.center,
+			mapUpdate.center
 		);
 
 		// // todo
@@ -180,8 +180,13 @@ class TileGridDoc extends React.PureComponent {
 		});
 
 		mapUpdate.geojsonTileGrid[level] = geojsonTileGrid;
-		const extentAsArray = [[extent.minLon, extent.minLat], [extent.maxLon, extent.maxLat]];
-		const extentAsArrayInWorldExtent = tileGridUtils.ensureExtentInWorldBBox(extentAsArray);
+		const extentAsArray = [
+			[extent.minLon, extent.minLat],
+			[extent.maxLon, extent.maxLat],
+		];
+		const extentAsArrayInWorldExtent = tileGridUtils.ensureExtentInWorldBBox(
+			extentAsArray
+		);
 		const geoJSONextent = getGeoJSONFromExtent(extentAsArrayInWorldExtent);
 		this.setState({
 			map1: {...mapUpdate, level, tileGrid, extent: geoJSONextent},
