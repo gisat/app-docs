@@ -78,11 +78,17 @@ const AttributeDataEndpoint = props => (
 		offset: 0, 
 		limit: 100,
 		attributeData: {
-            'attributeDataSourceKey': {
-                'feature-id': "Dinagat Islands",
-                'feature-id': "Gisatland"
-            }
-        }
+            'attributeDataSourceKey1': {
+                'feature-id1': "Dinagat Islands",
+                'feature-id2': "Gisatland"
+            },
+            'attributeDataSourceKey2': {
+                'feature-id3': "Satellites",
+                'feature-id4': "Resolution"
+            },
+            'attributeDataSourceKey3': {}  //Empty datasource caused by order
+        },
+        index: ['feature-id1','feature-id3','feature-id2','feature-id4'] //index reflects order throught all dataSources.
 	}      
 }
         `}
