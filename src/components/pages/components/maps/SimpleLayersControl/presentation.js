@@ -1,21 +1,16 @@
 import React from 'react';
 import {find as _find} from 'lodash';
-import Page, {
-	DocsToDo,
-	InlineCodeHighlighter,
-	SyntaxHighlighter,
-} from '../../../../Page';
+import Page, {SyntaxHighlighter} from '../../../../Page';
 import {
 	ReactLeafletMap,
 	SimpleLayersControl,
 	PresentationMap,
 	MapControls,
-	MapSet,
 } from '@gisatcz/ptr-maps';
-import {connects} from '@gisatcz/ptr-state';
 import ComponentPropsTable, {
 	Prop,
 } from '../../../../ComponentPropsTable/ComponentPropsTable';
+import './style.scss';
 
 // import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
 import images from 'D:/Panther/ptr-maps/src/controls/SimpleLayersControl/images';
@@ -94,18 +89,47 @@ class SimpleLayersControlDoc extends React.PureComponent {
 
 				<h3>Props</h3>
 				<ComponentPropsTable>
-					<Prop name="mainMapKey" defaultValue="" type="string">
+					<Prop name="mainMapKey" required defaultValue="" type="string">
 						main map key
 					</Prop>
+					<Prop name="layerTemplates" required defaultValue="" type="array">
+						List containing available background layers.
+					</Prop>
+					<Prop name="layers" required defaultValue="" type="array">
+						List containing available background layers.
+					</Prop>
+					<Prop
+						name="activeLayerTemplateKey"
+						required
+						defaultValue=""
+						type="string"
+					>
+						Active layer key.
+					</Prop>
+					<Prop name="opensRight" defaultValue="false" type="boolean">
+						If true, content menu opens to the right of the layer control
+						button.
+					</Prop>
+					<Prop name="left" defaultValue="undefined" type="number">
+						Specifies the horizontal position of layer control button. *
+					</Prop>
+					<Prop name="top" defaultValue="undefined" type="number">
+						Specifies the vertical position of layer control button. *
+					</Prop>
+					<Prop name="right" defaultValue="0.5" type="number">
+						Specifies the horizontal position of layer control button. *
+					</Prop>
+					<Prop name="bottom" defaultValue="4.5" type="number">
+						Specifies the vertical position of layer control button. *
+					</Prop>
 				</ComponentPropsTable>
+				<p>
+					* Position is specified in <i>rem</i> units.
+				</p>
 
-				<h2>Default wrapper</h2>
-				<h3>With map framework component</h3>
+				<h3>Default layers control</h3>
 				<SyntaxHighlighter language="jsx">
-					{`<div className="ptr-map-controls">
-	<SimpleLayersControl mainMapKey={mainMapKey} />
-</div>
-`}
+					{`<SimpleLayersControl mainMapKey={mainMapKey} />`}
 				</SyntaxHighlighter>
 
 				{/*map preview*/}
@@ -116,39 +140,33 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						view={view}
 						levelsBased={true}
 					>
-						<div className="ptr-map-controls">
-							<SimpleLayersControl
-								onSelect={this.onSelect}
-								layerTemplates={layerTemplates}
-								right={false}
-								layers={layerTemplates}
-								activeLayerTemplateKey={this.state.activeLayerTemplateKey}
-							/>
-						</div>
+						<SimpleLayersControl
+							onSelect={this.onSelect}
+							layerTemplates={layerTemplates}
+							layers={layerTemplates}
+							activeLayerTemplateKey={this.state.activeLayerTemplateKey}
+						/>
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
 				</div>
 
-				<h2>Background Layer Overview</h2>
-				<table style={{border: '1px solid black', borderCollapse: 'collapse'}}>
+				<h2>Layers Overview</h2>
+				<table className="ptr-docs-props-table">
 					<tr>
 						<th>Preview</th>
 						<th>Thubnail name</th>
-						<th>...</th>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.bing_Aerial} alt={'bing_Aerial'} />
 						</td>
-						<td>bing_Aerial</td>
-						<td>a</td>
+						<td className="preview-table">bing_Aerial</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.cartoDB_DarkMatter} alt={'cartoDB_DarkMatter'} />
 						</td>
-						<td>cartoDB_DarkMatter</td>
-						<td>a</td>
+						<td className="preview-table">cartoDB_DarkMatter</td>
 					</tr>
 					<tr>
 						<td>
@@ -157,8 +175,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 								alt={'cartoDB_VoyagerNoLabels'}
 							/>
 						</td>
-						<td>cartoDB_VoyagerNoLabels</td>
-						<td>a</td>
+						<td className="preview-table">cartoDB_VoyagerNoLabels</td>
 					</tr>
 					<tr>
 						<td>
@@ -167,22 +184,19 @@ class SimpleLayersControlDoc extends React.PureComponent {
 								alt={'esri_WorldGrayCanvas'}
 							/>
 						</td>
-						<td>esri_WorldGrayCanvas</td>
-						<td>a</td>
+						<td className="preview-table">esri_WorldGrayCanvas</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.esri_WorldImagery} alt={'esri_WorldImagery'} />
 						</td>
-						<td>esri_WorldImagery</td>
-						<td>a</td>
+						<td className="preview-table">esri_WorldImagery</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.esri_WorldTopoMap} alt={'esri_WorldTopoMap'} />
 						</td>
-						<td>esri_WorldTopoMap</td>
-						<td>a</td>
+						<td className="preview-table">esri_WorldTopoMap</td>
 					</tr>
 					<tr>
 						<td>
@@ -191,22 +205,19 @@ class SimpleLayersControlDoc extends React.PureComponent {
 								alt={'openStreetMap_Mapnik'}
 							/>
 						</td>
-						<td>openStreetMap_Mapnik</td>
-						<td>a</td>
+						<td className="preview-table">openStreetMap_Mapnik</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.wikimedia} alt={'wikimedia'} />
 						</td>
-						<td>wikimedia</td>
-						<td>a</td>
+						<td className="preview-table">wikimedia</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.noPreview} alt={'noPreview'} />
 						</td>
-						<td>noPreview</td>
-						<td>a</td>
+						<td className="preview-table">noPreview</td>
 					</tr>
 				</table>
 			</Page>
