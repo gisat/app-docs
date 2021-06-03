@@ -12,12 +12,12 @@ import ComponentPropsTable, {
 } from '../../../../ComponentPropsTable/ComponentPropsTable';
 import './style.scss';
 
-// import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
-import images from 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/src/controls/SimpleLayersControl/images';
+import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
+// import images from 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/src/controls/SimpleLayersControl/images';
 
 const view = {
 	center: {lat: 50, lon: 15},
-	boxRange: 10000000,
+	boxRange: 1000000,
 };
 
 const backgroundLayers = [
@@ -49,18 +49,15 @@ const backgroundLayers = [
 const layerTemplates = [
 	{
 		key: 'dark_key',
-		thumbnail: 'cartoDB_VoyagerNoLabels',
-		data: {nameDisplay: 'Carto'},
+		data: {nameDisplay: 'Carto', thumbnail: 'cartoDB_VoyagerNoLabels'},
 	},
 	{
 		key: 'esri_imagery_key',
-		thumbnail: 'esri_WorldImagery',
-		data: {nameDisplay: 'Esri'},
+		data: {nameDisplay: 'Esri', thumbnail: 'esri_WorldImagery'},
 	},
 	{
 		key: 'osm_key',
-		thumbnail: 'openStreetMap_Mapnik',
-		data: {nameDisplay: 'Open street'},
+		data: {nameDisplay: 'Open street', thumbnail: 'openStreetMap_Mapnik'},
 	},
 ];
 
@@ -90,9 +87,6 @@ class SimpleLayersControlDoc extends React.PureComponent {
 				<h3>Props</h3>
 				<ComponentPropsTable>
 					<Prop name="layerTemplates" required defaultValue="" type="array">
-						List containing available background layers.
-					</Prop>
-					<Prop name="layers" required defaultValue="" type="array">
 						List containing available background layers.
 					</Prop>
 					<Prop
