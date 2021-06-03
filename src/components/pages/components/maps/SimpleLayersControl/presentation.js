@@ -13,7 +13,7 @@ import ComponentPropsTable, {
 import './style.scss';
 
 // import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
-import images from 'D:/Panther/ptr-maps/src/controls/SimpleLayersControl/images';
+import images from 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/src/controls/SimpleLayersControl/images';
 
 const view = {
 	center: {lat: 50, lon: 15},
@@ -89,9 +89,6 @@ class SimpleLayersControlDoc extends React.PureComponent {
 
 				<h3>Props</h3>
 				<ComponentPropsTable>
-					<Prop name="mainMapKey" required defaultValue="" type="string">
-						main map key
-					</Prop>
 					<Prop name="layerTemplates" required defaultValue="" type="array">
 						List containing available background layers.
 					</Prop>
@@ -129,7 +126,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 
 				<h3>Default layers control</h3>
 				<SyntaxHighlighter language="jsx">
-					{`<SimpleLayersControl mainMapKey={mainMapKey} />`}
+					{`<SimpleLayersControl/>`}
 				</SyntaxHighlighter>
 
 				{/*map preview*/}
