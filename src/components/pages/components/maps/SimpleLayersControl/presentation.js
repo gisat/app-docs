@@ -22,7 +22,7 @@ const view = {
 
 const backgroundLayers = [
 	{
-		key: 'dark_key',
+		key: 'cartoDB_key',
 		type: 'wmts',
 		options: {
 			url:
@@ -48,7 +48,7 @@ const backgroundLayers = [
 
 const layerTemplates = [
 	{
-		key: 'dark_key',
+		key: 'cartoDB_key',
 		data: {nameDisplay: 'Carto', thumbnail: 'cartoDB_VoyagerNoLabels'},
 	},
 	{
@@ -65,15 +65,27 @@ class SimpleLayersControlDoc extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeLayerTemplateKey: 'esri_imagery_key',
-			activeBackgroundLayer: backgroundLayers[1],
+			activeLayerTemplateKeyMap1: 'esri_imagery_key',
+			activeBackgroundLayerMap1: backgroundLayers[1],
+			activeLayerTemplateKeyMap2: 'carto_noLabels_key',
+			activeBackgroundLayerMap2: backgroundLayers[0],
 		};
-		this.onSelect = this.onSelect.bind(this);
 	}
 
-	onSelect(key) {
-		const activeBackgroundLayer = _find(backgroundLayers, bl => bl.key === key);
-		this.setState({activeLayerTemplateKey: key, activeBackgroundLayer});
+	onSelectMap1(key) {
+		const activeBackgroundLayerMap1 = _find(
+			backgroundLayers,
+			bl => bl.key === key
+		);
+		this.setState({activeLayerTemplateKeyMap1: key, activeBackgroundLayerMap1});
+	}
+
+	onSelectMap2(key) {
+		const activeBackgroundLayerMap2 = _find(
+			backgroundLayers,
+			bl => bl.key === key
+		);
+		this.setState({activeLayerTemplateKeyMap2: key, activeBackgroundLayerMap2});
 	}
 
 	render() {
@@ -86,6 +98,12 @@ class SimpleLayersControlDoc extends React.PureComponent {
 
 				<h3>Props</h3>
 				<ComponentPropsTable>
+					<Prop name="onSelect" required defaultValue="" type="func">
+						Assign selected layer's key as map's new active background key.
+					</Prop>
+					<Prop name="onMount" required defaultValue="" type="func">
+						tbd
+					</Prop>
 					<Prop name="layerTemplates" required defaultValue="" type="array">
 						List containing available background layers.
 					</Prop>
@@ -118,24 +136,59 @@ class SimpleLayersControlDoc extends React.PureComponent {
 					* Position is specified in <i>rem</i> units.
 				</p>
 
-				<h3>Default layers control</h3>
+				<h3>Default Control</h3>
 				<SyntaxHighlighter language="jsx">
-					{`<SimpleLayersControl/>`}
+					{`<SimpleLayersControl
+	onSelect={this.onSelect}
+	layerTemplates={layerTemplates}
+	activeLayerTemplateKey={this.state.activeLayerTemplateKey}
+/>`}
 				</SyntaxHighlighter>
 
-				{/*map preview*/}
+				{/*Map 1: default control preview*/}
 				<div className="ptr-light" style={{height: 400, width: 500, margin: 5}}>
 					<PresentationMap
 						mapComponent={ReactLeafletMap}
-						backgroundLayer={this.state.activeBackgroundLayer}
+						backgroundLayer={this.state.activeBackgroundLayerMap1}
 						view={view}
 						levelsBased={true}
 					>
 						<SimpleLayersControl
-							onSelect={this.onSelect}
+							onSelect={this.onSelectMap1.bind(this)}
 							layerTemplates={layerTemplates}
-							layers={layerTemplates}
-							activeLayerTemplateKey={this.state.activeLayerTemplateKey}
+							activeLayerTemplateKey={this.state.activeLayerTemplateKeyMap1}
+						/>
+						<MapControls zoomOnly levelsBased />
+					</PresentationMap>
+				</div>
+
+				<h3>Customized Control</h3>
+				<SyntaxHighlighter language="jsx">
+					{`<SimpleLayersControl
+	opensRight
+	left={0.5}
+	bottom={0.5}
+	onSelect={this.onSelect}
+	layerTemplates={layerTemplates}
+	activeLayerTemplateKey={this.state.activeLayerTemplateKey}
+/>`}
+				</SyntaxHighlighter>
+
+				{/*Map 2: customized control preview*/}
+				<div className="ptr-light" style={{height: 400, width: 500, margin: 5}}>
+					<PresentationMap
+						mapComponent={ReactLeafletMap}
+						backgroundLayer={this.state.activeBackgroundLayerMap2}
+						view={view}
+						levelsBased={true}
+					>
+						<SimpleLayersControl
+							opensRight
+							left={0.5}
+							bottom={0.5}
+							onSelect={this.onSelectMap2.bind(this)}
+							layerTemplates={layerTemplates}
+							activeLayerTemplateKey={this.state.activeLayerTemplateKeyMap2}
 						/>
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
