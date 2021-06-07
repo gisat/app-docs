@@ -134,7 +134,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 />`}
 				</SyntaxHighlighter>
 				{/*Map 1: default control preview*/}
-				<div className="ptr-light" style={{height: 400, width: 500, margin: 5}}>
+				<div className="ptr-light" style={{height: 600, margin: 5}}>
 					<PresentationMap
 						mapComponent={ReactLeafletMap}
 						backgroundLayer={this.state.activeBackgroundLayerMap1}
@@ -161,7 +161,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 />`}
 				</SyntaxHighlighter>
 				{/*Map 2: customized control preview*/}
-				<div className="ptr-light" style={{height: 400, width: 500, margin: 5}}>
+				<div className="ptr-light" style={{height: 600, margin: 5}}>
 					<PresentationMap
 						mapComponent={ReactLeafletMap}
 						backgroundLayer={this.state.activeBackgroundLayerMap2}
