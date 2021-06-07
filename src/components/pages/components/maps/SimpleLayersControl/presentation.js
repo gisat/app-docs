@@ -278,18 +278,23 @@ export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl)
 					<tr>
 						<th>Preview</th>
 						<th>Thubnail name</th>
+						<th>Possible Source URL</th>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.bing_Aerial} alt={'bing_Aerial'} />
 						</td>
 						<td className="preview-table">bing_Aerial</td>
+						<td></td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.cartoDB_DarkMatter} alt={'cartoDB_DarkMatter'} />
 						</td>
 						<td className="preview-table">cartoDB_DarkMatter</td>
+						<td className="preview-table">
+							{'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'}
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -299,6 +304,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl)
 							/>
 						</td>
 						<td className="preview-table">cartoDB_VoyagerNoLabels</td>
+						<td className="preview-table">
+							{
+								'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
+							}
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -308,18 +318,33 @@ export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl)
 							/>
 						</td>
 						<td className="preview-table">esri_WorldGrayCanvas</td>
+						<td className="preview-table">
+							{
+								'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+							}
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.esri_WorldImagery} alt={'esri_WorldImagery'} />
 						</td>
 						<td className="preview-table">esri_WorldImagery</td>
+						<td className="preview-table">
+							{
+								'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+							}
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.esri_WorldTopoMap} alt={'esri_WorldTopoMap'} />
 						</td>
 						<td className="preview-table">esri_WorldTopoMap</td>
+						<td className="preview-table">
+							{
+								'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
+							}
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -329,12 +354,18 @@ export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl)
 							/>
 						</td>
 						<td className="preview-table">openStreetMap_Mapnik</td>
+						<td className="preview-table">
+							{'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+						</td>
 					</tr>
 					<tr>
 						<td>
 							<img src={images.wikimedia} alt={'wikimedia'} />
 						</td>
 						<td className="preview-table">wikimedia</td>
+						<td className="preview-table">
+							{'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png'}
+						</td>
 					</tr>
 					<tr>
 						<td>
@@ -343,6 +374,63 @@ export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl)
 						<td className="preview-table">noPreview</td>
 					</tr>
 				</table>
+				<h2>More basemaps</h2>
+				There exists various other basemaps. For instance,{' '}
+				<a href={'https://leaflet-extras.github.io/leaflet-providers/preview/'}>
+					{' '}
+					this page
+				</a>{' '}
+				contains nice presentation of available Leaflet basemaps providers.
+				<br />
+				If creating new thumbnail image, you can use and modify the below code
+				to get same parameters as for the existing thumbnails.
+				<br />
+				Compression tool like <a href={'https://tinypng.com/'}>
+					tinypng.com{' '}
+				</a>{' '}
+				should be then used to compress the images.
+				<SyntaxHighlighter language="javascript">
+					{`<!doctype html>
+<html lang='en'>
+<head>
+    <meta charset='utf-8'>
+    <title>Leaflet Map with a Basemap</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <script src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js'
+            integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=='
+            crossorigin=''></script>
+    <script src='https://unpkg.com/leaflet-image@0.4.0/leaflet-image.js'></script>
+    <style>
+        html, body, #map {height: 166px; width: 200px; margin: auto;}
+    </style>
+</head>
+<body>
+<p>Interactive map</p>
+<div id='map'></div>
+<p style='padding-top: 10rem'>Right click for download image</p>
+<div id='images'></div>
+<script>
+    const map = L.map('map', {center: [43.971492543039126, 7.273551406051902], zoom: 6});
+
+    // Change the tile layer url source here
+    const basemap = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png');
+
+    basemap.addTo(map)
+
+    leafletImage(map, function (err, canvas) {
+        let img = document.createElement('img');
+        let dimensions = map.getSize();
+        img.width = dimensions.x;
+        img.height = dimensions.y;
+        img.src = canvas.toDataURL();
+        document.getElementById('images').innerHTML = '';
+        document.getElementById('images').appendChild(img);
+    })
+</script>
+</body>
+</html>
+`}
+				</SyntaxHighlighter>
 			</Page>
 		);
 	}
