@@ -1,18 +1,18 @@
 import React from 'react';
 import {find as _find} from 'lodash';
-import Page, {SyntaxHighlighter} from '../../../../Page';
+import {Link} from 'react-router-dom';
 import {
 	ReactLeafletMap,
 	SimpleLayersControl,
 	PresentationMap,
 	MapControls,
 } from '@gisatcz/ptr-maps';
+import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
+import Page, {SyntaxHighlighter} from '../../../../Page';
 import ComponentPropsTable, {
 	Prop,
 } from '../../../../ComponentPropsTable/ComponentPropsTable';
 import './style.scss';
-
-import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
 
 const view = {
 	center: {lat: 50, lon: 15},
@@ -88,14 +88,17 @@ class SimpleLayersControlDoc extends React.PureComponent {
 				<h3>Props</h3>
 				<ComponentPropsTable>
 					<Prop name="onSelect" required defaultValue="" type="func">
-						Assign selected layer's key as map's new active background key.
+						A function called after the layer was selected.
 					</Prop>
 					<Prop name="onMount" required defaultValue="" type="func">
-						tbd
+						A function called after the component was mounted.
 					</Prop>
 					<Prop name="layerTemplates" required defaultValue="" type="array">
-						List containing objects with properties of available background
-						layers.
+						A collection of available{' '}
+						<Link to="../../../architecture/storeDataTypes/common/layerTemplate">
+							layer templates
+						</Link>
+						.
 					</Prop>
 					<Prop
 						name="activeLayerTemplateKey"
@@ -103,7 +106,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						defaultValue=""
 						type="string"
 					>
-						Active layer key.
+						Active/selected layer template key.
 					</Prop>
 					<Prop name="opensRight" defaultValue="false" type="boolean">
 						If true, content menu opens to the right of the layer control
@@ -126,11 +129,15 @@ class SimpleLayersControlDoc extends React.PureComponent {
 					* Position is specified in <i>rem</i> units.
 				</p>
 				<h3>Default control settings</h3>
+				<p>
+					Required props are usually passed from{' '}
+					<Link to="#container">container component</Link>.
+				</p>
 				<SyntaxHighlighter language="jsx">
 					{`<SimpleLayersControl
-	onSelect={this.onSelect}
-	layerTemplates={layerTemplates}
-	activeLayerTemplateKey={this.state.activeLayerTemplateKey}
+	onSelect={this.props.onSelect}
+	layerTemplates={this.props.layerTemplates} 
+	activeLayerTemplateKey={this.props.activeLayerTemplateKey} 
 />`}
 				</SyntaxHighlighter>
 				{/*Map 1: default control preview*/}
@@ -155,9 +162,9 @@ class SimpleLayersControlDoc extends React.PureComponent {
 	opensRight
 	left={0.5}
 	bottom={0.5}
-	onSelect={this.onSelect}
-	layerTemplates={layerTemplates}
-	activeLayerTemplateKey={this.state.activeLayerTemplateKey}
+	onSelect={this.props.onSelect}
+	layerTemplates={this.props.layerTemplates}
+	activeLayerTemplateKey={this.props.activeLayerTemplateKey}
 />`}
 				</SyntaxHighlighter>
 				{/*Map 2: customized control preview*/}
@@ -179,7 +186,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
 				</div>
-				<h2>Example of usage in application</h2>
+				<h2 id="container">Example of usage in application</h2>
 				This component consists only of the presentation part. The container
 				part has to be defined within the application.
 				<br />
