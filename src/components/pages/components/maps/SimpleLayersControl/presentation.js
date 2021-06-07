@@ -59,20 +59,23 @@ class SimpleLayersControlDoc extends React.PureComponent {
 		};
 	}
 
-	onSelectMap1(key) {
-		const activeBackgroundLayerMap1 = _find(
+	onSelectLayer(mapKey, layerKey) {
+		const activeBackgroundLayer = _find(
 			layerTemplates,
-			bl => bl.key === key
+			bl => bl.key === layerKey
 		);
-		this.setState({activeLayerTemplateKeyMap1: key, activeBackgroundLayerMap1});
-	}
 
-	onSelectMap2(key) {
-		const activeBackgroundLayerMap2 = _find(
-			layerTemplates,
-			bl => bl.key === key
-		);
-		this.setState({activeLayerTemplateKeyMap2: key, activeBackgroundLayerMap2});
+		if (mapKey === 'map1') {
+			this.setState({
+				activeLayerTemplateKeyMap1: layerKey,
+				activeBackgroundLayerMap1: activeBackgroundLayer,
+			});
+		} else if (mapKey === 'map2') {
+			this.setState({
+				activeLayerTemplateKeyMap2: layerKey,
+				activeBackgroundLayerMap2: activeBackgroundLayer,
+			});
+		}
 	}
 
 	render() {
@@ -139,7 +142,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						levelsBased={true}
 					>
 						<SimpleLayersControl
-							onSelect={this.onSelectMap1.bind(this)}
+							onSelect={this.onSelectLayer.bind(this, 'map1')}
 							layerTemplates={layerTemplates}
 							activeLayerTemplateKey={this.state.activeLayerTemplateKeyMap1}
 						/>
@@ -169,7 +172,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 							opensRight
 							left={0.5}
 							bottom={0.5}
-							onSelect={this.onSelectMap2.bind(this)}
+							onSelect={this.onSelectLayer.bind(this, 'map2')}
 							layerTemplates={layerTemplates}
 							activeLayerTemplateKey={this.state.activeLayerTemplateKeyMap2}
 						/>
