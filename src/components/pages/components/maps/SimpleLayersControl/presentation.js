@@ -90,9 +90,6 @@ class SimpleLayersControlDoc extends React.PureComponent {
 					<Prop name="onSelect" required defaultValue="" type="func">
 						A function called after the layer was selected.
 					</Prop>
-					<Prop name="onMount" required defaultValue="" type="func">
-						A function called after the component was mounted.
-					</Prop>
 					<Prop name="layerTemplates" required defaultValue="" type="array">
 						A collection of available{' '}
 						<Link to="../../../architecture/storeDataTypes/common/layerTemplate">
@@ -107,6 +104,9 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						type="string"
 					>
 						Active/selected layer template key.
+					</Prop>
+					<Prop name="onMount" defaultValue="" type="func">
+						A function called after the component was mounted.
 					</Prop>
 					<Prop name="opensRight" defaultValue="false" type="boolean">
 						If true, content menu opens to the right of the layer control
