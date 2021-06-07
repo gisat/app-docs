@@ -183,28 +183,24 @@ class SimpleLayersControlDoc extends React.PureComponent {
 				This component consists only of the presentation part. The container
 				part has to be defined within the application.
 				<br />
-				Below is an example of container part definition:
-				<SyntaxHighlighter language="jsx">
+				Below is an example of container part definition. In this way, the
+				component could be used for map background layer handling.
+				<SyntaxHighlighter language="javascript">
 					{`import {connect} from '@gisatcz/ptr-state';
+import {SimpleLayersControl} from '@gisatcz/ptr-maps';
 import Select from '../../../state/Select';
 import Action from '../../../state/Action';
-import {SimpleLayersControl} from '@gisatcz/ptr-maps';
 
 const mapStateToProps = (state, ownProps) => {
-\tconst activeLayerTemplateKey = Select.maps.getBackgroundLayerStateByMapKey(
-\t\tstate,
-\t\townProps.mainMapKey
-\t)?.layerTemplateKey;
-
 \treturn {
-\t\tactiveLayerTemplateKey,
-\t\tlayerTemplates: Select.specific.getAvailableBackgroundLayers(state),
+\t\tactiveLayerTemplateKey: Select.layerTemplates.getActiveLayerTemplateKey(state, null, null, null, 1, 100),
+\t\tlayerTemplates: Select.layerTemplates.getIndexed(state),
 \t};
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 \treturn () => {
-\t\tconst componentId = 'worldWaterPreliminaryDataReview_BackgroundLayers';
+\t\tconst componentId = 'app_BackgroundLayersControl';
 \t\treturn {
 \t\t\tonMount: () => {
 \t\t\t\tdispatch(
@@ -222,20 +218,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 \t\t\t\tdispatch(Action.layerTemplates.useKeysClear(componentId));
 \t\t\t},
 \t\t\tonSelect: layerTemplateKey => {
-\t\t\t\tdispatch(
-\t\t\t\t\tAction.maps.setMapBackgroundLayer(ownProps.mainMapKey, {
-\t\t\t\t\t\tlayerTemplateKey: layerTemplateKey,
-\t\t\t\t\t})
-\t\t\t\t);
+\t\t\t\tdispatch(Action.maps.setMapBackgroundLayer(ownProps.mapKey, {layerTemplateKey}));
 \t\t\t},
 \t\t};
 \t};
 };
 
-export default connect(
-\tmapStateToProps,
-\tmapDispatchToProps
-)(SimpleLayersControl);
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl);
 `}
 				</SyntaxHighlighter>
 				<h2>Layers overview</h2>
