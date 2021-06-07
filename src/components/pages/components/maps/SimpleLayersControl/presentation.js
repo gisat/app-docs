@@ -13,16 +13,16 @@ import ComponentPropsTable, {
 import './style.scss';
 
 import images from '@gisatcz/ptr-maps/lib/controls/SimpleLayersControl/images';
-// import images from 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/src/controls/SimpleLayersControl/images';
 
 const view = {
 	center: {lat: 50, lon: 15},
 	boxRange: 1000000,
 };
 
-const backgroundLayers = [
+const layerTemplates = [
 	{
 		key: 'cartoDB_key',
+		data: {nameDisplay: 'Carto', thumbnail: 'cartoDB_VoyagerNoLabels'},
 		type: 'wmts',
 		options: {
 			url:
@@ -31,6 +31,7 @@ const backgroundLayers = [
 	},
 	{
 		key: 'esri_imagery_key',
+		data: {nameDisplay: 'Esri', thumbnail: 'esri_WorldImagery'},
 		type: 'wmts',
 		options: {
 			url:
@@ -39,25 +40,11 @@ const backgroundLayers = [
 	},
 	{
 		key: 'osm_key',
+		data: {nameDisplay: 'Open street', thumbnail: 'openStreetMap_Mapnik'},
 		type: 'wmts',
 		options: {
 			url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 		},
-	},
-];
-
-const layerTemplates = [
-	{
-		key: 'cartoDB_key',
-		data: {nameDisplay: 'Carto', thumbnail: 'cartoDB_VoyagerNoLabels'},
-	},
-	{
-		key: 'esri_imagery_key',
-		data: {nameDisplay: 'Esri', thumbnail: 'esri_WorldImagery'},
-	},
-	{
-		key: 'osm_key',
-		data: {nameDisplay: 'Open street', thumbnail: 'openStreetMap_Mapnik'},
 	},
 ];
 
@@ -66,15 +53,15 @@ class SimpleLayersControlDoc extends React.PureComponent {
 		super(props);
 		this.state = {
 			activeLayerTemplateKeyMap1: 'esri_imagery_key',
-			activeBackgroundLayerMap1: backgroundLayers[1],
-			activeLayerTemplateKeyMap2: 'carto_noLabels_key',
-			activeBackgroundLayerMap2: backgroundLayers[0],
+			activeBackgroundLayerMap1: layerTemplates[1],
+			activeLayerTemplateKeyMap2: 'cartoDB_key',
+			activeBackgroundLayerMap2: layerTemplates[0],
 		};
 	}
 
 	onSelectMap1(key) {
 		const activeBackgroundLayerMap1 = _find(
-			backgroundLayers,
+			layerTemplates,
 			bl => bl.key === key
 		);
 		this.setState({activeLayerTemplateKeyMap1: key, activeBackgroundLayerMap1});
@@ -82,7 +69,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 
 	onSelectMap2(key) {
 		const activeBackgroundLayerMap2 = _find(
-			backgroundLayers,
+			layerTemplates,
 			bl => bl.key === key
 		);
 		this.setState({activeLayerTemplateKeyMap2: key, activeBackgroundLayerMap2});
@@ -95,7 +82,6 @@ class SimpleLayersControlDoc extends React.PureComponent {
 					Simple Layers Control is used to switch between background base layers
 					that are used in the map component.
 				</p>
-
 				<h3>Props</h3>
 				<ComponentPropsTable>
 					<Prop name="onSelect" required defaultValue="" type="func">
@@ -105,7 +91,8 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						tbd
 					</Prop>
 					<Prop name="layerTemplates" required defaultValue="" type="array">
-						List containing available background layers.
+						List containing objects with properties of available background
+						layers.
 					</Prop>
 					<Prop
 						name="activeLayerTemplateKey"
@@ -135,8 +122,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 				<p>
 					* Position is specified in <i>rem</i> units.
 				</p>
-
-				<h3>Default Control</h3>
+				<h3>Default control settings</h3>
 				<SyntaxHighlighter language="jsx">
 					{`<SimpleLayersControl
 	onSelect={this.onSelect}
@@ -144,7 +130,6 @@ class SimpleLayersControlDoc extends React.PureComponent {
 	activeLayerTemplateKey={this.state.activeLayerTemplateKey}
 />`}
 				</SyntaxHighlighter>
-
 				{/*Map 1: default control preview*/}
 				<div className="ptr-light" style={{height: 400, width: 500, margin: 5}}>
 					<PresentationMap
@@ -161,8 +146,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
 				</div>
-
-				<h3>Customized Control</h3>
+				<h3>Customized control settings</h3>
 				<SyntaxHighlighter language="jsx">
 					{`<SimpleLayersControl
 	opensRight
@@ -173,7 +157,6 @@ class SimpleLayersControlDoc extends React.PureComponent {
 	activeLayerTemplateKey={this.state.activeLayerTemplateKey}
 />`}
 				</SyntaxHighlighter>
-
 				{/*Map 2: customized control preview*/}
 				<div className="ptr-light" style={{height: 400, width: 500, margin: 5}}>
 					<PresentationMap
@@ -193,8 +176,66 @@ class SimpleLayersControlDoc extends React.PureComponent {
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
 				</div>
+				<h2>Example of usage in application</h2>
+				This component consists only of the presentation part. The container
+				part has to be defined within the application.
+				<br />
+				Below is an example of container part definition:
+				<SyntaxHighlighter language="jsx">
+					{`import {connect} from '@gisatcz/ptr-state';
+import Select from '../../../state/Select';
+import Action from '../../../state/Action';
+import {SimpleLayersControl} from '@gisatcz/ptr-maps';
 
-				<h2>Layers Overview</h2>
+const mapStateToProps = (state, ownProps) => {
+\tconst activeLayerTemplateKey = Select.maps.getBackgroundLayerStateByMapKey(
+\t\tstate,
+\t\townProps.mainMapKey
+\t)?.layerTemplateKey;
+
+\treturn {
+\t\tactiveLayerTemplateKey,
+\t\tlayerTemplates: Select.specific.getAvailableBackgroundLayers(state),
+\t};
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+\treturn () => {
+\t\tconst componentId = 'worldWaterPreliminaryDataReview_BackgroundLayers';
+\t\treturn {
+\t\t\tonMount: () => {
+\t\t\t\tdispatch(
+\t\t\t\t\tAction.layerTemplates.useIndexed(
+\t\t\t\t\t\tnull,
+\t\t\t\t\t\tnull,
+\t\t\t\t\t\tnull,
+\t\t\t\t\t\t1,
+\t\t\t\t\t\t100,
+\t\t\t\t\t\tcomponentId
+\t\t\t\t\t)
+\t\t\t\t);
+\t\t\t},
+\t\t\tonUnMount: () => {
+\t\t\t\tdispatch(Action.layerTemplates.useKeysClear(componentId));
+\t\t\t},
+\t\t\tonSelect: layerTemplateKey => {
+\t\t\t\tdispatch(
+\t\t\t\t\tAction.maps.setMapBackgroundLayer(ownProps.mainMapKey, {
+\t\t\t\t\t\tlayerTemplateKey: layerTemplateKey,
+\t\t\t\t\t})
+\t\t\t\t);
+\t\t\t},
+\t\t};
+\t};
+};
+
+export default connect(
+\tmapStateToProps,
+\tmapDispatchToProps
+)(SimpleLayersControl);
+`}
+				</SyntaxHighlighter>
+				<h2>Layers overview</h2>
 				<table className="ptr-docs-props-table">
 					<tr>
 						<th>Preview</th>
