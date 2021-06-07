@@ -21,8 +21,19 @@ const view = {
 
 const layerTemplates = [
 	{
-		key: 'cartoDB_key',
-		data: {nameDisplay: 'Carto', thumbnail: 'cartoDB_VoyagerNoLabels'},
+		key: 'cartoDB_DarkMatter_key',
+		data: {nameDisplay: 'cartoDB Dark', thumbnail: 'cartoDB_DarkMatter'},
+		type: 'wmts',
+		options: {
+			url: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+		},
+	},
+	{
+		key: 'cartoDB_VoyagerNoLabels_key',
+		data: {
+			nameDisplay: 'cartoDB NoLabels',
+			thumbnail: 'cartoDB_VoyagerNoLabels',
+		},
 		type: 'wmts',
 		options: {
 			url:
@@ -30,8 +41,17 @@ const layerTemplates = [
 		},
 	},
 	{
-		key: 'esri_imagery_key',
-		data: {nameDisplay: 'Esri', thumbnail: 'esri_WorldImagery'},
+		key: 'esri_WorldGrayCanvas_key',
+		data: {nameDisplay: 'esri WorldGray', thumbnail: 'esri_WorldGrayCanvas'},
+		type: 'wmts',
+		options: {
+			url:
+				'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+		},
+	},
+	{
+		key: 'esri_WorldImagery_key',
+		data: {nameDisplay: 'esri WorldImagery', thumbnail: 'esri_WorldImagery'},
 		type: 'wmts',
 		options: {
 			url:
@@ -39,12 +59,31 @@ const layerTemplates = [
 		},
 	},
 	{
-		key: 'osm_key',
-		data: {nameDisplay: 'Open street', thumbnail: 'openStreetMap_Mapnik'},
+		key: 'esri_WorldTopoMap_key',
+		data: {nameDisplay: 'esri TopoMap', thumbnail: 'esri_WorldTopoMap'},
 		type: 'wmts',
 		options: {
-			url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+			url:
+				'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
 		},
+	},
+	{
+		key: 'openStreetMap_Mapnik_key',
+		data: {nameDisplay: 'openStreetMap', thumbnail: 'openStreetMap_Mapnik'},
+		type: 'wmts',
+		options: {url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'},
+	},
+	{
+		key: 'wikimedia_key',
+		data: {nameDisplay: 'wikimedia', thumbnail: 'wikimedia'},
+		type: 'wmts',
+		options: {url: 'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png'},
+	},
+	{
+		key: 'OSM HOT_key',
+		data: {nameDisplay: 'OSM HOT', thumbnail: 'OSM_HOT'},
+		type: 'wmts',
+		options: {url: 'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png'},
 	},
 ];
 
@@ -52,10 +91,10 @@ class SimpleLayersControlDoc extends React.PureComponent {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeLayerTemplateKeyMap1: 'esri_imagery_key',
-			activeBackgroundLayerMap1: layerTemplates[1],
-			activeLayerTemplateKeyMap2: 'cartoDB_key',
-			activeBackgroundLayerMap2: layerTemplates[0],
+			activeLayerTemplateKeyMap1: 'esri_WorldImagery_key',
+			activeBackgroundLayerMap1: layerTemplates[3],
+			activeLayerTemplateKeyMap2: 'openStreetMap_Mapnik_key',
+			activeBackgroundLayerMap2: layerTemplates[5],
 		};
 	}
 
@@ -180,7 +219,7 @@ class SimpleLayersControlDoc extends React.PureComponent {
 							left={0.5}
 							bottom={0.5}
 							onSelect={this.onSelectLayer.bind(this, 'map2')}
-							layerTemplates={layerTemplates}
+							layerTemplates={layerTemplates.slice(4, 7)}
 							activeLayerTemplateKey={this.state.activeLayerTemplateKeyMap2}
 						/>
 						<MapControls zoomOnly levelsBased />
