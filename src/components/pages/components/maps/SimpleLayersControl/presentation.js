@@ -274,106 +274,113 @@ export default connect(mapStateToProps, mapDispatchToProps)(SimpleLayersControl)
 `}
 				</SyntaxHighlighter>
 				<h2>Layers overview</h2>
-				<table className="ptr-docs-props-table">
-					<tr>
-						<th>Preview</th>
-						<th>Thubnail name</th>
-						<th>Possible Source URL</th>
-					</tr>
-					<tr>
-						<td>
-							<img src={images.bing_Aerial} alt={'bing_Aerial'} />
-						</td>
-						<td className="preview-table">bing_Aerial</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>
-							<img src={images.cartoDB_DarkMatter} alt={'cartoDB_DarkMatter'} />
-						</td>
-						<td className="preview-table">cartoDB_DarkMatter</td>
-						<td className="preview-table">
-							{'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img
-								src={images.cartoDB_VoyagerNoLabels}
-								alt={'cartoDB_VoyagerNoLabels'}
-							/>
-						</td>
-						<td className="preview-table">cartoDB_VoyagerNoLabels</td>
-						<td className="preview-table">
-							{
-								'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
-							}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img
-								src={images.esri_WorldGrayCanvas}
-								alt={'esri_WorldGrayCanvas'}
-							/>
-						</td>
-						<td className="preview-table">esri_WorldGrayCanvas</td>
-						<td className="preview-table">
-							{
-								'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
-							}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img src={images.esri_WorldImagery} alt={'esri_WorldImagery'} />
-						</td>
-						<td className="preview-table">esri_WorldImagery</td>
-						<td className="preview-table">
-							{
-								'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
-							}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img src={images.esri_WorldTopoMap} alt={'esri_WorldTopoMap'} />
-						</td>
-						<td className="preview-table">esri_WorldTopoMap</td>
-						<td className="preview-table">
-							{
-								'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
-							}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img
-								src={images.openStreetMap_Mapnik}
-								alt={'openStreetMap_Mapnik'}
-							/>
-						</td>
-						<td className="preview-table">openStreetMap_Mapnik</td>
-						<td className="preview-table">
-							{'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img src={images.wikimedia} alt={'wikimedia'} />
-						</td>
-						<td className="preview-table">wikimedia</td>
-						<td className="preview-table">
-							{'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png'}
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<img src={images.noPreview} alt={'noPreview'} />
-						</td>
-						<td className="preview-table">noPreview</td>
-					</tr>
-				</table>
+				<div className="ptr-docs-props-table-container">
+					<table className="ptr-docs-props-table">
+						<tr>
+							<th>Preview</th>
+							<th>Thubnail name</th>
+							<th>Possible Source URL</th>
+						</tr>
+						<tr>
+							<td>
+								<img src={images.bing_Aerial} alt={'bing_Aerial'} />
+							</td>
+							<td className="preview-table">bing_Aerial</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>
+								<img
+									src={images.cartoDB_DarkMatter}
+									alt={'cartoDB_DarkMatter'}
+								/>
+							</td>
+							<td className="preview-table">cartoDB_DarkMatter</td>
+							<td className="preview-table">
+								{
+									'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
+								}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img
+									src={images.cartoDB_VoyagerNoLabels}
+									alt={'cartoDB_VoyagerNoLabels'}
+								/>
+							</td>
+							<td className="preview-table">cartoDB_VoyagerNoLabels</td>
+							<td className="preview-table">
+								{
+									'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png'
+								}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img
+									src={images.esri_WorldGrayCanvas}
+									alt={'esri_WorldGrayCanvas'}
+								/>
+							</td>
+							<td className="preview-table">esri_WorldGrayCanvas</td>
+							<td className="preview-table">
+								{
+									'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'
+								}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src={images.esri_WorldImagery} alt={'esri_WorldImagery'} />
+							</td>
+							<td className="preview-table">esri_WorldImagery</td>
+							<td className="preview-table">
+								{
+									'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'
+								}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src={images.esri_WorldTopoMap} alt={'esri_WorldTopoMap'} />
+							</td>
+							<td className="preview-table">esri_WorldTopoMap</td>
+							<td className="preview-table">
+								{
+									'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
+								}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img
+									src={images.openStreetMap_Mapnik}
+									alt={'openStreetMap_Mapnik'}
+								/>
+							</td>
+							<td className="preview-table">openStreetMap_Mapnik</td>
+							<td className="preview-table">
+								{'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src={images.wikimedia} alt={'wikimedia'} />
+							</td>
+							<td className="preview-table">wikimedia</td>
+							<td className="preview-table">
+								{'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png'}
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<img src={images.noPreview} alt={'noPreview'} />
+							</td>
+							<td className="preview-table">noPreview</td>
+						</tr>
+					</table>
+				</div>
 				<h2>More basemaps</h2>
 				There exists various other basemaps. For instance,{' '}
 				<a href={'https://leaflet-extras.github.io/leaflet-providers/preview/'}>
