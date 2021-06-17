@@ -48,6 +48,7 @@ import LeafletIndexedVectorLayer from './components/pages/components/maps/ReactL
 import LeafletWMSLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletWMSLayer';
 import MapPresentational from './components/pages/components/maps/MapPresentational';
 import MapControls from './components/pages/components/maps/MapControls';
+import SimpleLayersControl from './components/pages/components/maps/SimpleLayersControl';
 import Architecture from './components/pages/architecture';
 import Applications from './components/pages/architecture/Applications';
 import Packages from './components/pages/architecture/Packages';
@@ -275,6 +276,11 @@ ReactDOM.render(
 								label="Map controls"
 								path="mapControls"
 								component={MapControls}
+							/>
+							<Page
+								label="Simple Layers Control"
+								path="simpleLayersControl"
+								component={SimpleLayersControl}
 							/>
 						</Directory>
 					</Directory>
