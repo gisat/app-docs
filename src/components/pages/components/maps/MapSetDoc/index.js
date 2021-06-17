@@ -24,13 +24,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			dispatch(Action.maps.setSetSync(setKey, sync));
 		},
 		setSetBackgroundLayer: (setKey, backgroundLayer) => {
-			dispatch(Action.maps.setSetBackgroundLayer(setKey, backgroundLayer));
+			dispatch(Action.maps.setMapSetBackgroundLayer(setKey, backgroundLayer));
 		},
 		removeSetBackgroundLayer: setKey => {
-			dispatch(Action.maps.setSetBackgroundLayer(setKey, null));
+			dispatch(Action.maps.setMapSetBackgroundLayer(setKey, null));
 		},
 		removeSet: setKey => {
-			dispatch(Action.maps.removeSet(setKey));
+			dispatch(Action.maps.removeMapSet(setKey));
 		},
 		removeMap: mapKey => {
 			dispatch(Action.maps.removeMap(mapKey));

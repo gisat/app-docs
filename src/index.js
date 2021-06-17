@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import {Provider} from '@gisatcz/ptr-state';
+import {Provider, ReactReduxContext} from '@gisatcz/ptr-state';
 import {
 	connectRouter,
 	routerMiddleware,
@@ -101,9 +101,9 @@ store.dispatch(Action.app.updateLocalConfiguration(config));
 i18n.changeLanguage('en');
 
 ReactDOM.render(
-	<Provider store={store}>
+	<Provider store={store} context={ReactReduxContext}>
 		<Helmet titleTemplate="%s | Panther docs" defaultTitle="Panther docs" />
-		<ConnectedRouter history={history}>
+		<ConnectedRouter history={history} context={ReactReduxContext}>
 			<Docs component={Index}>
 				<Directory
 					label="Architecture"
