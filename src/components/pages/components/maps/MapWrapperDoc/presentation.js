@@ -91,11 +91,11 @@ class MapWrapperDoc extends React.PureComponent {
 		props.addMap({key: 'map-wrapper-map-3'});
 		props.addMap({key: 'map-wrapper-map-4'});
 		props.addMap({key: 'map-wrapper-map-5'});
-		props.addMapToSet('map-wrapper-map-set', 'map-wrapper-map-1');
-		props.addMapToSet('map-wrapper-map-set', 'map-wrapper-map-2');
-		props.addMapToSet('map-wrapper-map-set', 'map-wrapper-map-3');
-		props.addMapToSet('map-wrapper-map-set', 'map-wrapper-map-4');
-		props.addMapToSet('map-wrapper-map-set', 'map-wrapper-map-5');
+		props.addMapToSet('map-wrapper-map-1', 'map-wrapper-map-set');
+		props.addMapToSet('map-wrapper-map-2', 'map-wrapper-map-set');
+		props.addMapToSet('map-wrapper-map-3', 'map-wrapper-map-set');
+		props.addMapToSet('map-wrapper-map-4', 'map-wrapper-map-set');
+		props.addMapToSet('map-wrapper-map-5', 'map-wrapper-map-set');
 	}
 
 	render() {

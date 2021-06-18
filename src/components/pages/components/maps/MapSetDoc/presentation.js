@@ -136,16 +136,16 @@ class MapSetDoc extends React.PureComponent {
 		props.addMap({key: 'docs-MapSet-Map1'});
 		props.addMap({key: 'docs-MapSet-Map2'});
 		props.addMap({key: 'docs-MapSet-Map3'});
-		props.addMapToSet('docs-MapSet', 'docs-MapSet-Map1');
-		props.addMapToSet('docs-MapSet', 'docs-MapSet-Map2');
-		props.addMapToSet('docs-MapSet', 'docs-MapSet-Map3');
+		props.addMapToSet('docs-MapSet-Map1', 'docs-MapSet');
+		props.addMapToSet('docs-MapSet-Map2', 'docs-MapSet');
+		props.addMapToSet('docs-MapSet-Map3', 'docs-MapSet');
 
 		props.addMap({key: 'docs-MapSetWorldWind-Map1'});
 		props.addMap({key: 'docs-MapSetWorldWind-Map2'});
 		props.addMap({key: 'docs-MapSetWorldWind-Map3'});
-		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map1');
-		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map2');
-		props.addMapToSet('docs-MapSet-worldWind', 'docs-MapSetWorldWind-Map3');
+		props.addMapToSet('docs-MapSetWorldWind-Map1', 'docs-MapSet-worldWind');
+		props.addMapToSet('docs-MapSetWorldWind-Map2', 'docs-MapSet-worldWind');
+		props.addMapToSet('docs-MapSetWorldWind-Map3', 'docs-MapSet-worldWind');
 	}
 
 	componentWillUnmount() {

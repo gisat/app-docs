@@ -12,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 	return {
 		addSet: set => {
-			dispatch(Action.maps.addSet(set));
+			dispatch(Action.maps.addMapSet(set));
 		},
 		addMap: map => {
 			dispatch(Action.maps.addMap(map));
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 			dispatch(Action.maps.addMapToSet(setKey, mapKey));
 		},
 		setSetSync: (setKey, sync) => {
-			dispatch(Action.maps.setSetSync(setKey, sync));
+			dispatch(Action.maps.setMapSetSync(setKey, sync));
 		},
 		setSetBackgroundLayer: (setKey, backgroundLayer) => {
 			dispatch(Action.maps.setMapSetBackgroundLayer(setKey, backgroundLayer));
