@@ -46,10 +46,12 @@
     "no-cors-proxy": "^1.0.5",
     "prettier": "^2.3.1",
     "pretty-quick": "^3.1.0",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.8",
+    "local-cors-proxy": "^1.1.0"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "proxy": "lcp --proxyUrl https://ptr.gisat.cz --port 4444 --origin http://localhost:3000 --proxyPartial \"\" --credentials",
+    "start": "npm run proxy | react-app-rewired start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -b gh-pages -d build",
     "build": "react-scripts build",

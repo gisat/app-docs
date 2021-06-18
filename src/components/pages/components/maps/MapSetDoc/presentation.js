@@ -31,10 +31,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 /* ===== Connected to store ===== */
 
 const connectedBackgroundLayer = {
-	layerTemplateKey: 'd54f7782-976b-4fb2-9066-5f1ca4f3b703',
-	metadataModifiers: {
-		applicationKey: 'docs',
-	},
+	layerTemplateKey: '6fa5a08d-4247-49bf-9a7d-a65c19929aef',
 };
 
 const connectedLayers = [
@@ -96,8 +93,9 @@ class MapSetDoc extends React.PureComponent {
 		props.addSet({
 			key: 'docs-MapSet',
 			data: {
+				activeMapKey: 'docs-MapSet-Map1',
 				backgroundLayer: connectedBackgroundLayer,
-				layers: connectedLayers,
+				// layers: connectedLayers,
 				view: {
 					center: {
 						lat: 50,
@@ -112,7 +110,7 @@ class MapSetDoc extends React.PureComponent {
 			key: 'docs-MapSet-worldWind',
 			data: {
 				backgroundLayer: connectedBackgroundLayer,
-				layers: connectedLayers,
+				// layers: connectedLayers,
 				view: {
 					center: {
 						lat: 50,
