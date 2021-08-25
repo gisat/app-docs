@@ -31,32 +31,8 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 /* ===== Connected to store ===== */
 
 const connectedBackgroundLayer = {
-	layerTemplateKey: '6fa5a08d-4247-49bf-9a7d-a65c19929aef',
+	layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
 };
-
-const connectedLayers = [
-	{
-		key: 'layer-cz',
-		layerTemplateKey: 'b5afa739-7828-4ed0-8844-306a5470e7e0',
-	},
-	{
-		key: 'layer-geoinv',
-		layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
-		metadataModifiers: {
-			applicationKey: 'docs',
-		},
-	},
-];
-
-const connectedLayers2 = [
-	{
-		key: 'layer-geoinv',
-		layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
-		metadataModifiers: {
-			applicationKey: 'docs',
-		},
-	},
-];
 
 /* ===== Unconnected to store ===== */
 
@@ -92,10 +68,9 @@ class MapSetDoc extends React.PureComponent {
 		const props = this.props;
 		props.addSet({
 			key: 'docs-MapSet',
+			activeMapKey: 'docs-MapSet-Map1',
 			data: {
-				activeMapKey: 'docs-MapSet-Map1',
 				backgroundLayer: connectedBackgroundLayer,
-				// layers: connectedLayers,
 				view: {
 					center: {
 						lat: 50,
@@ -110,7 +85,6 @@ class MapSetDoc extends React.PureComponent {
 			key: 'docs-MapSet-worldWind',
 			data: {
 				backgroundLayer: connectedBackgroundLayer,
-				// layers: connectedLayers,
 				view: {
 					center: {
 						lat: 50,
@@ -208,8 +182,8 @@ class MapSetDoc extends React.PureComponent {
 					should already be in the store.
 				</p>
 				<p>
-					Layers are served from 192.168.2.206. Check your configuration if
-					there are no layers in the map below.
+					Layers are served from ptr.gisat.cz. Check your configuration if there
+					are no layers in the map below.
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
@@ -244,8 +218,8 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 					based on stored metadata.
 				</p>
 				<p>
-					Layers are served from 192.168.2.206. Check your configuration if
-					there are no layers in the map below.
+					Layers are served from ptr.gisat.cz. Check your configuration if there
+					are no layers in the map below.
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
@@ -259,8 +233,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 							boxRange: true,
 							center: true,
 						}}
-						backgroundLayer={unconnectedBackgroundOsm}
-						layers={connectedLayers2}
+						backgroundLayer={connectedBackgroundLayer}
 					>
 						<MapSetPresentationMap mapKey="map-1" />
 						<MapSetPresentationMap mapKey="map-2" />
@@ -286,19 +259,8 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 		center: true
 	}}
 	backgroundLayer={{
-		key: 'background-osm',
-		type: 'wmts',
-		options: {
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-		}
+		layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
 	}}
-	layers={[{
-		key: 'layer-geoinv',
-		layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
-		metadataModifiers: {
-			applicationKey: 'docs'
-		}
-	}]}
 >
 	<MapSetPresentationMap mapKey='map-1'/>
 	<MapSetPresentationMap mapKey='map-2'/>
@@ -336,7 +298,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 					{`import {connects} from '@gisatcz/ptr-state';
 import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 
-<ConnectedMapSet
+<MapSet
 	activeMapKey='map-2'
 	mapComponent={ReactLeafletMap}
 	view={{
@@ -358,15 +320,15 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 	<MapSetPresentationMap mapKey='map-2'/>
 	<MapSetPresentationMap mapKey='map-3'/>
 	<MapControls levelsBased zoomOnly/>
-</ConnectedMapSet>
+</MapSet>
 `}
 				</SyntaxHighlighter>
 
 				<h2>World Wind</h2>
 				<h3>Connected to store</h3>
 				<p>
-					Layers are served from 192.168.2.206. Check your configuration if
-					there are no layers in the map below.
+					Layers are served from ptr.gisat.cz. Check your configuration if there
+					are no layers in the map below.
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
@@ -380,8 +342,8 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 
 				<h3>Uncontrolled</h3>
 				<p>
-					Layers are served from 192.168.2.206. Check your configuration if
-					there are no layers in the map below.
+					Layers are served from ptr.gisat.cz. Check your configuration if there
+					are no layers in the map below.
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
@@ -397,7 +359,6 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 							center: true,
 						}}
 						backgroundLayer={unconnectedBackgroundOsm}
-						layers={connectedLayers2}
 					>
 						<MapSetPresentationMap mapKey="map-1" />
 						<MapSetPresentationMap mapKey="map-2" />

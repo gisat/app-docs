@@ -75,10 +75,7 @@ const presentational_backgroundLayer = {
 
 // Connected background
 const connectedBackgroundLayer = {
-	layerTemplateKey: 'd54f7782-976b-4fb2-9066-5f1ca4f3b703',
-	metadataModifiers: {
-		applicationKey: 'docs',
-	},
+	layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
 };
 
 // WMS layer
@@ -118,14 +115,8 @@ class MapDoc extends React.PureComponent {
 					boxRange: 500000,
 				},
 				backgroundLayer: {
-					layerTemplateKey: 'd54f7782-976b-4fb2-9066-5f1ca4f3b703',
+					layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
 				},
-				layers: [
-					{
-						key: 'layer-cz',
-						layerTemplateKey: 'b5afa739-7828-4ed0-8844-306a5470e7e0',
-					},
-				],
 			},
 		});
 	}
@@ -259,42 +250,31 @@ class MapDoc extends React.PureComponent {
 					<Map
 						mapKey="uncontrolled-map"
 						view={view}
-						mapComponent={WorldWindMap}
+						mapComponent={ReactLeafletMap}
 						backgroundLayer={connectedBackgroundLayer}
-						layers={connectedLayers}
 					>
-						<MapControls />
+						<MapControls levelsBased zoomOnly />
 					</Map>
 				</div>
 				<p>
-					Layers are served from 192.168.2.206. Check your configuration if
-					there are no layers in the map.
+					Layers are served from ptr.gisat.cz. Check your configuration if there
+					are no layers in the map.
 				</p>
 				<SyntaxHighlighter language="jsx">
-					{`import {WorldWindMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
+					{`import {ReactLeafletMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
 const Map = connects.Map(PresentationMap);
 <Map
-	mapComponent={WorldWindMap}
+	mapComponent={ReactLeafletMap}
 	backgroundLayer={{
-		key: 'layer-geoinv',
-		layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
-		metadataModifiers: {
-			applicationKey: 'docs'
-		}
+		key: 'osm',
+		layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
 	}}
-	layers={[{
-		key: 'layer-geoinv',
-		layerTemplateKey: '097d3fed-e6da-4f08-833e-839c88513b8b',
-		metadataModifiers: {
-			applicationKey: 'docs'
-		}
-	}]}
 	view={{
 		center: {lat: 50, lon: 15},
 		boxRange: 500000
 	}}
 >
-	<MapControls/>
+	<MapControls levelsBased zoomOnly/>
 </Map>
 `}
 				</SyntaxHighlighter>
@@ -305,23 +285,23 @@ const Map = connects.Map(PresentationMap);
 					should already be present in the store.
 				</p>
 				<div style={{marginTop: 10, height: 400}}>
-					<Map mapComponent={WorldWindMap} stateMapKey="docs-connected-map">
-						<MapControls />
+					<Map mapComponent={ReactLeafletMap} stateMapKey="docs-connected-map">
+						<MapControls levelsBased zoomOnly />
 					</Map>
 				</div>
 				<p>
-					Layers are served from 192.168.2.206. Check your configuration if
-					there are no layers in the map.
+					Layers are served from ptr.gisat.cz. Check your configuration if there
+					are no layers in the map.
 				</p>
 				<SyntaxHighlighter language="jsx">
-					{`import {WorldWindMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
+					{`import {ReactLeafletMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
 const Map = connects.Map(PresentationMap);
 // Map with key 'docs-connected-map' should already be in the store
 <Map
-	mapComponent={WorldWindMap}
+	mapComponent={ReactLeafletMap}
 	stateMapKey="docs-connected-map"
 >
-	<MapControls/>
+	<MapControls levelsBased zoomOnly/>
 </Map>
 `}
 				</SyntaxHighlighter>
