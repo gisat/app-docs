@@ -92,6 +92,22 @@ const pointAsMarkerLayer = {
 	},
 };
 
+const tooltipLayer = {
+	key: 'tooltipLayer',
+	type: 'vector',
+	options: {
+		features: largePointDataFeatures,
+		style: pointAsMarkerStyle,
+		pointAsMarker: true,
+		fidColumnName: 'gid',
+		hoverable: true,
+	},
+};
+
+const CustomTooltip = props => {
+	return <div style={{background: '#ffffff'}}>{props.featureKey}</div>;
+};
+
 class DeckGlMapDoc extends React.PureComponent {
 	constructor(props) {
 		super(props);
@@ -237,6 +253,47 @@ class DeckGlMapDoc extends React.PureComponent {
 				</SyntaxHighlighter>
 
 				<h3 id="tooltip">Tooltip</h3>
+				<div style={{height: 400, marginBottom: 10}}>
+					<DeckGlMap
+						view={pointsView}
+						backgroundLayer={backgroundLayer}
+						layers={[tooltipLayer]}
+						Tooltip={CustomTooltip}
+					/>
+				</div>
+
+				<SyntaxHighlighter language="js">
+					{`
+
+const TooltipComponent = (props) => <div style={{background: "#ffffff"}}>{props.featureKey}</div>
+
+<DeckGlMap
+	view={{
+		center: {lat: 50.35, lon: 15.8},
+		boxRange: 10000
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+	layers={[
+		key: 'points',
+		type: 'vector',
+		options: {
+			features: largePointDataFeatures,
+			style: pointStyleAsMarkers,
+			fidColumnName: 'gid',
+			pointAsMarker: true
+			hoverable: true
+		},
+	]}
+	Tooltip={TooltipComponent}
+/>
+`}
+				</SyntaxHighlighter>
 			</Page>
 		);
 	}
