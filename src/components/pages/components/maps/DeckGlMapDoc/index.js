@@ -1,15 +1,26 @@
 import React from 'react';
-import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
-import {MapControls, PresentationMap, DeckGlMap} from '@gisatcz/ptr-maps';
-import {Button} from '@gisatcz/ptr-atoms';
+import {cloneDeep as _cloneDeep} from 'lodash';
+import Page, {
+	ImplementationToDo,
+	InlineCodeHighlighter,
+	SyntaxHighlighter,
+} from '../../../../Page';
+import {DeckGlMap} from '@gisatcz/ptr-maps';
 import ComponentPropsTable, {
 	Prop,
 } from '../../../../ComponentPropsTable/ComponentPropsTable';
 import {Link} from 'react-router-dom';
 
-const view = {
+import largePointDataFeatures from '../../../../mockData/map/largePointData/sample_points_5000_mini.json';
+
+const wmtsView = {
 	center: {lat: 50, lon: 15},
 	boxRange: 400000,
+};
+
+const pointsView = {
+	center: {lat: 50.35, lon: 15.8},
+	boxRange: 10000,
 };
 
 const backgroundLayer = {
@@ -17,6 +28,67 @@ const backgroundLayer = {
 	type: 'wmts',
 	options: {
 		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+	},
+};
+
+const pointStyle = {
+	rules: [
+		{
+			styles: [
+				{
+					fill: '#cccccc',
+					fillOpacity: 0.85,
+					outlineColor: '#555555',
+					outlineWidth: 1,
+					outlineOpacity: 1,
+					size: 1000,
+				},
+				{
+					attributeKey: 'attr1',
+					attributeClasses: [
+						{
+							fill: '#b1001d',
+							interval: [0, 30],
+							intervalBounds: [true, false],
+						},
+						{
+							fill: '#ffff00',
+							interval: [30, 70],
+							intervalBounds: [true, false],
+						},
+						{
+							fill: '#50d48e',
+							interval: [70, 100],
+							intervalBounds: [true, false],
+						},
+					],
+				},
+			],
+		},
+	],
+};
+
+const pointAsMarkerStyle = _cloneDeep(pointStyle);
+pointAsMarkerStyle.rules[0].styles[0].size = 40;
+
+const pointLayer = {
+	key: 'points',
+	type: 'vector',
+	options: {
+		features: largePointDataFeatures,
+		style: pointStyle,
+		fidColumnName: 'gid',
+	},
+};
+
+const pointAsMarkerLayer = {
+	key: 'points',
+	type: 'vector',
+	options: {
+		features: largePointDataFeatures,
+		style: pointAsMarkerStyle,
+		pointAsMarker: true,
+		fidColumnName: 'gid',
 	},
 };
 
@@ -68,8 +140,8 @@ class DeckGlMapDoc extends React.PureComponent {
 
 				<h3 id="wmts">WMTS layer</h3>
 				<p>Typical usage of WMTS layer as background.</p>
-				<div style={{height: 400, marginBottom: 10, position: 'relative'}}>
-					<DeckGlMap view={view} backgroundLayer={backgroundLayer} />
+				<div style={{height: 400, marginBottom: 10}}>
+					<DeckGlMap view={wmtsView} backgroundLayer={backgroundLayer} />
 				</div>
 				<SyntaxHighlighter language="jsx">
 					{`<DeckGlMap
@@ -89,6 +161,82 @@ class DeckGlMapDoc extends React.PureComponent {
 				</SyntaxHighlighter>
 
 				<h3 id="vector">Vector layer</h3>
+				<ImplementationToDo>
+					Currently, only points are implemented
+				</ImplementationToDo>
+
+				<h4>Points</h4>
+				<p>The points retain their geographical dimension (in meters).</p>
+				<div style={{height: 400, marginBottom: 10}}>
+					<DeckGlMap
+						view={pointsView}
+						backgroundLayer={backgroundLayer}
+						layers={[pointLayer]}
+					/>
+				</div>
+				<SyntaxHighlighter language="jsx">
+					{`<DeckGlMap
+	view={{
+		center: {lat: 50.35, lon: 15.8},
+		boxRange: 10000
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+	layers={[
+		key: 'points',
+		type: 'vector',
+		options: {
+			features: largePointDataFeatures,
+			style: pointStyle,
+			fidColumnName: 'gid'
+		},
+	]}
+/>
+`}
+				</SyntaxHighlighter>
+
+				<h4>Points as markers</h4>
+				<p>The points retain their dimension on screen (in pixels).</p>
+				<div style={{height: 400, marginBottom: 10}}>
+					<DeckGlMap
+						view={pointsView}
+						backgroundLayer={backgroundLayer}
+						layers={[pointAsMarkerLayer]}
+					/>
+				</div>
+				<SyntaxHighlighter language="jsx">
+					{`<DeckGlMap
+	view={{
+		center: {lat: 50.35, lon: 15.8},
+		boxRange: 10000
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+	layers={[
+		key: 'points',
+		type: 'vector',
+		options: {
+			features: largePointDataFeatures,
+			style: pointStyleAsMarkers,
+			fidColumnName: 'gid',
+			pointAsMarker: true
+		},
+	]}
+/>
+`}
+				</SyntaxHighlighter>
+
+				<h3 id="tooltip">Tooltip</h3>
 			</Page>
 		);
 	}

@@ -236,6 +236,7 @@ ReactDOM.render(
 								<Anchor label="Props" path="props" />
 								<Anchor label="WMTS layer" path="wmts" />
 								<Anchor label="Vector layer" path="vector" />
+								<Anchor label="Tooltip" path="tooltip" />
 							</Directory>
 							<Directory
 								label="WebWorldWind"
