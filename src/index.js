@@ -39,6 +39,7 @@ import HoverHandlerDoc from './components/pages/components/commonFeatures/HoverH
 import LayersDoc from './components/pages/architecture/systemDataTypes/layers';
 import MapViewDoc from './components/pages/architecture/systemDataTypes/MapViewDoc';
 import StyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc';
+import DeckGlMapDoc from './components/pages/components/maps/DeckGlMapDoc';
 import ReactLeafletMapDoc from './components/pages/components/maps/ReactLeafletMapDoc';
 import WorldWindMapDoc from './components/pages/components/maps/WorldWindMapDoc';
 import LeafletVectorLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer';
@@ -227,6 +228,15 @@ ReactDOM.render(
 							path="presentational"
 							component={MapPresentational}
 						>
+							<Directory
+								label="DeckGlMap"
+								path="deckGl"
+								component={DeckGlMapDoc}
+							>
+								<Anchor label="Props" path="props" />
+								<Anchor label="WMTS layer" path="wmts" />
+								<Anchor label="Vector layer" path="vector" />
+							</Directory>
 							<Directory
 								label="WebWorldWind"
 								path="webWorldWind"
