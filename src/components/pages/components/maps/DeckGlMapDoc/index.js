@@ -23,7 +23,7 @@ const backgroundLayer = {
 	key: 'background-osm',
 	type: 'wmts',
 	options: {
-		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+		url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
 	},
 };
 
@@ -163,7 +163,7 @@ class DeckGlMapDoc extends React.PureComponent {
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+			url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
 	}}
 />
@@ -198,7 +198,7 @@ class DeckGlMapDoc extends React.PureComponent {
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+			url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
 	}}
 	layers={[
@@ -239,7 +239,7 @@ class DeckGlMapDoc extends React.PureComponent {
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+			url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
 	}}
 	layers={[
@@ -282,7 +282,7 @@ const TooltipComponent = (props) => <div style={{background: "#ffffff"}}>ID: {pr
 		key: 'background-osm',
 		type: 'wmts',
 		options: {
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+			url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png'
 		}
 	}}
 	layers={[
