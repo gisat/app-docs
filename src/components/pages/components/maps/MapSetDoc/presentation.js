@@ -213,7 +213,6 @@ class MapSetDoc extends React.PureComponent {
 					Layers are served from ptr.gisat.cz. Check your configuration if there
 					are no layers in the map below.
 				</p>
-				<ImplementationToDo>Not working, need fix</ImplementationToDo>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
 						stateMapSetKey="docs-MapSetDeck"
@@ -339,6 +338,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 				</SyntaxHighlighter>
 
 				<h3>Uncontrolled</h3>
+				<ImplementationToDo>Missing in ptr-state v2</ImplementationToDo>
 				<p>
 					The map is not controlled from store, but layer data is collected
 					based on stored metadata.
@@ -468,6 +468,7 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 				</div>
 
 				<h3>Uncontrolled</h3>
+				<ImplementationToDo>Missing in ptr-state v2</ImplementationToDo>
 				<p>
 					Layers are served from ptr.gisat.cz. Check your configuration if there
 					are no layers in the map below.

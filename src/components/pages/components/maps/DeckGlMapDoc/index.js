@@ -1,15 +1,11 @@
 import React from 'react';
 import {cloneDeep as _cloneDeep} from 'lodash';
-import Page, {
-	ImplementationToDo,
-	InlineCodeHighlighter,
-	SyntaxHighlighter,
-} from '../../../../Page';
-import {DeckGlMap} from '@gisatcz/ptr-maps';
+import {Link} from 'react-router-dom';
+import Page, {ImplementationToDo, SyntaxHighlighter} from '../../../../Page';
+import {DeckGlMap, PresentationMap, MapControls} from '@gisatcz/ptr-maps';
 import ComponentPropsTable, {
 	Prop,
 } from '../../../../ComponentPropsTable/ComponentPropsTable';
-import {Link} from 'react-router-dom';
 
 import largePointDataFeatures from '../../../../mockData/map/largePointData/sample_points_5000_mini.json';
 
@@ -105,7 +101,7 @@ const tooltipLayer = {
 };
 
 const CustomTooltip = props => {
-	return <div style={{background: '#ffffff'}}>{props.featureKey}</div>;
+	return <div style={{background: '#ffffff'}}>ID: {props.featureKey}</div>;
 };
 
 class DeckGlMapDoc extends React.PureComponent {
@@ -116,8 +112,6 @@ class DeckGlMapDoc extends React.PureComponent {
 	render() {
 		return (
 			<Page title="DeckGlMap">
-				<p></p>
-
 				<h2 id="props">Props</h2>
 				<p>
 					Bellow are listed specific props for DeckGlMap. Other props are common
@@ -184,14 +178,18 @@ class DeckGlMapDoc extends React.PureComponent {
 				<h4>Points</h4>
 				<p>The points retain their geographical dimension (in meters).</p>
 				<div style={{height: 400, marginBottom: 10}}>
-					<DeckGlMap
+					<PresentationMap
+						mapComponent={DeckGlMap}
 						view={pointsView}
 						backgroundLayer={backgroundLayer}
 						layers={[pointLayer]}
-					/>
+					>
+						<MapControls levelsBased zoomOnly />
+					</PresentationMap>
 				</div>
 				<SyntaxHighlighter language="jsx">
-					{`<DeckGlMap
+					{`<PresentationMap
+	mapComponent={DeckGlMap}
 	view={{
 		center: {lat: 50.35, lon: 15.8},
 		boxRange: 10000
@@ -212,21 +210,27 @@ class DeckGlMapDoc extends React.PureComponent {
 			fidColumnName: 'gid'
 		},
 	]}
-/>
+>
+	<MapControls levelsBased zoomOnly/>
+</PresentationMap>
 `}
 				</SyntaxHighlighter>
 
 				<h4>Points as markers</h4>
 				<p>The points retain their dimension on screen (in pixels).</p>
 				<div style={{height: 400, marginBottom: 10}}>
-					<DeckGlMap
+					<PresentationMap
+						mapComponent={DeckGlMap}
 						view={pointsView}
 						backgroundLayer={backgroundLayer}
 						layers={[pointAsMarkerLayer]}
-					/>
+					>
+						<MapControls levelsBased zoomOnly />
+					</PresentationMap>
 				</div>
 				<SyntaxHighlighter language="jsx">
-					{`<DeckGlMap
+					{`<PresentationMap
+	mapComponent={DeckGlMap}
 	view={{
 		center: {lat: 50.35, lon: 15.8},
 		boxRange: 10000
@@ -248,7 +252,9 @@ class DeckGlMapDoc extends React.PureComponent {
 			pointAsMarker: true
 		},
 	]}
-/>
+>
+	<MapControls levelsBased zoomOnly/>
+</PresentationMap>
 `}
 				</SyntaxHighlighter>
 
@@ -265,7 +271,7 @@ class DeckGlMapDoc extends React.PureComponent {
 				<SyntaxHighlighter language="js">
 					{`
 
-const TooltipComponent = (props) => <div style={{background: "#ffffff"}}>{props.featureKey}</div>
+const TooltipComponent = (props) => <div style={{background: "#ffffff"}}>ID: {props.featureKey}</div>
 
 <DeckGlMap
 	view={{
