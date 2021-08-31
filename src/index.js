@@ -42,6 +42,7 @@ import StyleDoc from './components/pages/architecture/storeDataTypes/commonDataT
 import DeckGlMapDoc from './components/pages/components/maps/DeckGlMapDoc';
 import ReactLeafletMapDoc from './components/pages/components/maps/ReactLeafletMapDoc';
 import WorldWindMapDoc from './components/pages/components/maps/WorldWindMapDoc';
+import LeafletCogLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletCogLayer';
 import LeafletVectorLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer';
 import LeafletDiagramLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer';
 import WorldWindVectorLayer from './components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer';
@@ -265,6 +266,11 @@ ReactDOM.render(
 									<Anchor label="Lines" path="lines" />
 									<Anchor label="Mixed" path="mixed" />
 								</Page>
+								<Page
+									label="COG layer"
+									path="cogLayer"
+									component={LeafletCogLayer}
+								></Page>
 								{/*<Page*/}
 								{/*	label="Diagram layer"*/}
 								{/*	path="diagramLayer"*/}
