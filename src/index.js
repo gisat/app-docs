@@ -39,6 +39,7 @@ import HoverHandlerDoc from './components/pages/components/commonFeatures/HoverH
 import LayersDoc from './components/pages/architecture/systemDataTypes/layers';
 import MapViewDoc from './components/pages/architecture/systemDataTypes/MapViewDoc';
 import StyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc';
+import VectorStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/VectorStyleDoc';
 import DeckGlMapDoc from './components/pages/components/maps/DeckGlMapDoc';
 import ReactLeafletMapDoc from './components/pages/components/maps/ReactLeafletMapDoc';
 import WorldWindMapDoc from './components/pages/components/maps/WorldWindMapDoc';
@@ -164,18 +165,19 @@ ReactDOM.render(
 								path="selection"
 								component={SelectionDoc}
 							/>
-							<Page label="Style" path="style" component={StyleDoc}>
-								<Anchor label="Without style" path="without-style" />
-								<Anchor label="Fill styling" path="fill" />
-								<Anchor label="Outline styling" path="outline" />
-								<Anchor label="Hovered & selected" path="hovered-selected" />
-								<Anchor label="Attribute values" path="values" />
-								<Anchor label="Intervals" path="intervals" />
-								<Anchor label="Scales" path="scales" />
-								<Anchor label="Transformations" path="transformations" />
-								<Anchor label="Symbols" path="symbols" />
-								<Anchor label="Diagrams" path="diagrams" />
-							</Page>
+							<Directory label="Style" path="style" component={StyleDoc}>
+								<Page label="Vectors" path="vectors" component={VectorStyleDoc}>
+									<Anchor label="Fill styling" path="fill" />
+									<Anchor label="Outline styling" path="outline" />
+									<Anchor label="Hovered & selected" path="hovered-selected" />
+									<Anchor label="Attribute values" path="values" />
+									<Anchor label="Intervals" path="intervals" />
+									<Anchor label="Scales" path="scales" />
+									<Anchor label="Transformations" path="transformations" />
+									<Anchor label="Symbols" path="symbols" />
+									<Anchor label="Diagrams" path="diagrams" />
+								</Page>
+							</Directory>
 							<Page label="Tag" path="tag" component={TagDoc} />
 							<Page label="User" path="user" component={UserDoc} />
 							<Page
