@@ -88,6 +88,7 @@ import DataEndpoint from './components/pages/code/api/DataEndpoint';
 import VectorLayers from './components/pages/architecture/systemDataTypes/layers/VectorLayers';
 import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
 import Data from './components/pages/code/state/Data';
+import RasterStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/RasterStyleDoc';
 
 const {store} = createStore();
 
@@ -177,6 +178,11 @@ ReactDOM.render(
 									<Anchor label="Symbols" path="symbols" />
 									<Anchor label="Diagrams" path="diagrams" />
 								</Page>
+								<Page
+									label="Rasters"
+									path="rasters"
+									component={RasterStyleDoc}
+								></Page>
 							</Directory>
 							<Page label="Tag" path="tag" component={TagDoc} />
 							<Page label="User" path="user" component={UserDoc} />

@@ -68,10 +68,10 @@ class StyleDoc extends React.PureComponent {
 				<h2>Styles by type</h2>
 				<ul className="ptr-docs-basic-list">
 					<li>
-						<Link to="./styles/vectors">Vectors</Link>
+						<Link to="./style/vectors">Vectors</Link>
 					</li>
 					<li>
-						<Link>Rasters</Link>
+						<Link to="./style/rasters">Rasters</Link>
 					</li>
 				</ul>
 			</Page>
