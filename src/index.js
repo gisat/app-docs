@@ -90,6 +90,8 @@ import VectorLayers from './components/pages/architecture/systemDataTypes/layers
 import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
 import Data from './components/pages/code/state/Data';
 import RasterStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/RasterStyleDoc';
+import TimelineDoc from './components/pages/components/controls/timeline/Timeline';
+import MapTimelineDoc from './components/pages/components/controls/timeline/MapTimeline';
 
 const {store} = createStore();
 
@@ -417,8 +419,12 @@ ReactDOM.render(
 						<Page label="ScreenAnimator" path="screenAnimator" />
 					</Directory>
 					<Directory label="Controls" path="controls">
-						<Directory label="Timeline" path="timeline">
-							<Page label="Map Timeline" path="mapTimeline" />
+						<Directory label="Timeline" path="timeline" component={TimelineDoc}>
+							<Page
+								label="Map Timeline"
+								path="mapTimeline"
+								component={MapTimelineDoc}
+							/>
 						</Directory>
 						<Page label="Areas" path="areas" />
 						<Page label="Layers" path="layers" />
