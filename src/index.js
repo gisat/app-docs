@@ -11,6 +11,7 @@ import Helmet from 'react-helmet';
 import createStore, {history} from './state/Store';
 import {Action} from '@gisatcz/ptr-state';
 import {localesUtils, i18n} from '@gisatcz/ptr-locales';
+import {proj} from '@gisatcz/ptr-maps';
 
 import config from './config';
 
@@ -103,6 +104,7 @@ store.dispatch(Action.users.apiLoadCurrentUser());
 store.dispatch(Action.app.updateLocalConfiguration(config));
 
 i18n.changeLanguage('en');
+proj.addProjections(proj.projections.utms);
 
 ReactDOM.render(
 	<Provider store={store} context={ReactReduxContext}>
