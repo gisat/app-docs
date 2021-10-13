@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import {Provider} from '@gisatcz/ptr-state';
+import {Provider, ReactReduxContext} from '@gisatcz/ptr-state';
 import {
 	connectRouter,
 	routerMiddleware,
@@ -11,6 +11,7 @@ import Helmet from 'react-helmet';
 import createStore, {history} from './state/Store';
 import {Action} from '@gisatcz/ptr-state';
 import {localesUtils, i18n} from '@gisatcz/ptr-locales';
+import {proj} from '@gisatcz/ptr-maps';
 
 import config from './config';
 
@@ -39,8 +40,11 @@ import HoverHandlerDoc from './components/pages/components/commonFeatures/HoverH
 import LayersDoc from './components/pages/architecture/systemDataTypes/layers';
 import MapViewDoc from './components/pages/architecture/systemDataTypes/MapViewDoc';
 import StyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc';
+import VectorStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/VectorStyleDoc';
+import DeckGlMapDoc from './components/pages/components/maps/DeckGlMapDoc';
 import ReactLeafletMapDoc from './components/pages/components/maps/ReactLeafletMapDoc';
 import WorldWindMapDoc from './components/pages/components/maps/WorldWindMapDoc';
+import LeafletCogLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletCogLayer';
 import LeafletVectorLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer';
 import LeafletDiagramLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer';
 import WorldWindVectorLayer from './components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer';
@@ -85,6 +89,7 @@ import DataEndpoint from './components/pages/code/api/DataEndpoint';
 import VectorLayers from './components/pages/architecture/systemDataTypes/layers/VectorLayers';
 import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
 import Data from './components/pages/code/state/Data';
+import RasterStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/RasterStyleDoc';
 
 const {store} = createStore();
 
@@ -99,11 +104,12 @@ store.dispatch(Action.users.apiLoadCurrentUser());
 store.dispatch(Action.app.updateLocalConfiguration(config));
 
 i18n.changeLanguage('en');
+proj.addProjections(proj.projections.utms);
 
 ReactDOM.render(
-	<Provider store={store}>
+	<Provider store={store} context={ReactReduxContext}>
 		<Helmet titleTemplate="%s | Panther docs" defaultTitle="Panther docs" />
-		<ConnectedRouter history={history}>
+		<ConnectedRouter history={history} context={ReactReduxContext}>
 			<Docs component={Index}>
 				<Directory
 					label="Architecture"
@@ -162,18 +168,24 @@ ReactDOM.render(
 								path="selection"
 								component={SelectionDoc}
 							/>
-							<Page label="Style" path="style" component={StyleDoc}>
-								<Anchor label="Without style" path="without-style" />
-								<Anchor label="Fill styling" path="fill" />
-								<Anchor label="Outline styling" path="outline" />
-								<Anchor label="Hovered & selected" path="hovered-selected" />
-								<Anchor label="Attribute values" path="values" />
-								<Anchor label="Intervals" path="intervals" />
-								<Anchor label="Scales" path="scales" />
-								<Anchor label="Transformations" path="transformations" />
-								<Anchor label="Symbols" path="symbols" />
-								<Anchor label="Diagrams" path="diagrams" />
-							</Page>
+							<Directory label="Style" path="style" component={StyleDoc}>
+								<Page label="Vectors" path="vectors" component={VectorStyleDoc}>
+									<Anchor label="Fill styling" path="fill" />
+									<Anchor label="Outline styling" path="outline" />
+									<Anchor label="Hovered & selected" path="hovered-selected" />
+									<Anchor label="Attribute values" path="values" />
+									<Anchor label="Intervals" path="intervals" />
+									<Anchor label="Scales" path="scales" />
+									<Anchor label="Transformations" path="transformations" />
+									<Anchor label="Symbols" path="symbols" />
+									<Anchor label="Diagrams" path="diagrams" />
+								</Page>
+								<Page
+									label="Rasters"
+									path="rasters"
+									component={RasterStyleDoc}
+								></Page>
+							</Directory>
 							<Page label="Tag" path="tag" component={TagDoc} />
 							<Page label="User" path="user" component={UserDoc} />
 							<Page
@@ -228,6 +240,16 @@ ReactDOM.render(
 							component={MapPresentational}
 						>
 							<Directory
+								label="DeckGlMap"
+								path="deckGl"
+								component={DeckGlMapDoc}
+							>
+								<Anchor label="Props" path="props" />
+								<Anchor label="WMTS layer" path="wmts" />
+								<Anchor label="Vector layer" path="vector" />
+								<Anchor label="Tooltip" path="tooltip" />
+							</Directory>
+							<Directory
 								label="WebWorldWind"
 								path="webWorldWind"
 								component={WorldWindMapDoc}
@@ -254,6 +276,11 @@ ReactDOM.render(
 									<Anchor label="Lines" path="lines" />
 									<Anchor label="Mixed" path="mixed" />
 								</Page>
+								<Page
+									label="COG layer"
+									path="cogLayer"
+									component={LeafletCogLayer}
+								></Page>
 								{/*<Page*/}
 								{/*	label="Diagram layer"*/}
 								{/*	path="diagramLayer"*/}
