@@ -471,7 +471,7 @@ const Levels = (props) => {
 `}
 				</SyntaxHighlighter>
 
-				<div style={{height: '400px', width: '70px'}}>
+				<div className={'ptr-timeline'} style={{height: '400px', width: '70px'}}>
 					<Timeline
 						periodLimit={periodLimit}
 						onChange={timelineState => {
@@ -574,7 +574,7 @@ const getHorizontalTootlipStyle = () => {
 					<InlineCodeHighlighter>['left', 'right']</InlineCodeHighlighter>.
 				</p>
 
-				<div style={{height: '500px', width: '70px', marginTop: '40px'}}>
+				<div className={'ptr-timeline-wrapper'} style={{height: '500px', width: '70px', marginTop: '40px'}}>
 					<HoverHandler getStyle={this.getVerticalTootlipStyle()}>
 						<TimeLineHover getHoverContent={this.getHoverContent}>
 							<Timeline

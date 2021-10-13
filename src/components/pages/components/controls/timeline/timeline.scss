@@ -39,3 +39,19 @@
 	border-radius: 50%;
 	display: inline-block;
 }
+
+.ptr-maptimeline{
+	:nth-child(2) > div {
+		width: 100%;
+	}
+}
+
+.ptr-timeline > div {
+	height: 100%;
+	width: 100%;
+}
+
+.ptr-timeline-wrapper > div > div {
+	height: 100%;
+	width: 100%;
+}
