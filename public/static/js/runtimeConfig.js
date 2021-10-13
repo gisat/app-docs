@@ -1,6 +1,6 @@
-export default {
-	mockDataRepositoryUrl: 'http://gisat-static.kralicinora.cz/',
+window.runtimeConfig = {
 	apiBackendProtocol: 'https',
 	apiBackendHost: 'ptr.gisat.cz',
 	apiBackendPath: 'backend',
+	requestPageSize: 5000
 };

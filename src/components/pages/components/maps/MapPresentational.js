@@ -1,6 +1,6 @@
 import React from 'react';
 import Page, {SyntaxHighlighter} from '../../../Page';
-import {ReactLeafletMap, WorldWindMap} from '@gisatcz/ptr-maps';
+import {ReactLeafletMap, WorldWindMap, DeckGlMap} from '@gisatcz/ptr-maps';
 import {Link} from 'react-router-dom';
 
 const view = {
@@ -40,12 +40,12 @@ class MapPresentational extends React.PureComponent {
 					data (see examples below) or as mapComponent prop of the{' '}
 					<Link to="./Map">Map component</Link>.
 				</p>
-				<h2>WorldWindMap</h2>
-				Go to <Link to="./presentational/webWorldWind">WorldWindMap</Link>{' '}
-				section for details.
+				<h2>DeckGlMap</h2>
+				Go to <Link to="./presentational/deckGl">DeckGlMap</Link> section for
+				details.
 				<SyntaxHighlighter language="jsx">
-					{`<WorldWindMap
-    mapKey="world-wind-map"
+					{`<DeckGlMap
+    mapKey="deck-map"
     view={{
         center: {lat: 50, lon: 15},
         boxRange: 5000000
@@ -61,8 +61,8 @@ class MapPresentational extends React.PureComponent {
 `}
 				</SyntaxHighlighter>
 				<div style={{height: 400, marginBottom: 10}}>
-					<WorldWindMap
-						mapKey="world-wind-map"
+					<DeckGlMap
+						mapKey="leaflet-map"
 						view={view}
 						backgroundLayer={backgroundLayer}
 					/>
@@ -92,6 +92,33 @@ class MapPresentational extends React.PureComponent {
 				<div style={{height: 400, marginBottom: 10}}>
 					<ReactLeafletMap
 						mapKey="leaflet-map"
+						view={view}
+						backgroundLayer={backgroundLayer}
+					/>
+				</div>
+				<h2>WorldWindMap</h2>
+				Go to <Link to="./presentational/webWorldWind">WorldWindMap</Link>{' '}
+				section for details.
+				<SyntaxHighlighter language="jsx">
+					{`<WorldWindMap
+    mapKey="world-wind-map"
+    view={{
+        center: {lat: 50, lon: 15},
+        boxRange: 5000000
+    }}
+    backgroundLayer={{
+        key: 'background-osm',
+        type: 'wmts',
+        options: {
+            url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+        }
+    }}
+/>
+`}
+				</SyntaxHighlighter>
+				<div style={{height: 400, marginBottom: 10}}>
+					<WorldWindMap
+						mapKey="world-wind-map"
 						view={view}
 						backgroundLayer={backgroundLayer}
 					/>
