@@ -1,6 +1,6 @@
 window.runtimeConfig = {
-	apiBackendProtocol: 'http',
-	apiBackendHost: 'localhost:4444',
+	apiBackendProtocol: 'https',
+	apiBackendHost: 'ptr.gisat.cz',
 	apiBackendPath: 'backend',
-	requestPageSize: 5000,
-}
+	requestPageSize: 5000
+};
