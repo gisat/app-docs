@@ -465,7 +465,7 @@ ReactDOM.render(
 							component={AttributeDataEndpoint}
 						/>
 						<Page
-							label="TimeSerie endpoint endpoint"
+							label="TimeSerie endpoint"
 							path="timeSerieEndpoint"
 							component={TimeSerieEndpoint}
 						/>
