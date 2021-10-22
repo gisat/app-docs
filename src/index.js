@@ -88,6 +88,7 @@ import MapWrapperDoc from './components/pages/components/maps/MapWrapperDoc';
 import DataEndpoint from './components/pages/code/api/DataEndpoint';
 import VectorLayers from './components/pages/architecture/systemDataTypes/layers/VectorLayers';
 import AttributeDataEndpoint from './components/pages/code/api/AttributeDataEndpoint';
+import TimeSerieEndpoint from './components/pages/code/api/TimeSerieEndpoint';
 import Data from './components/pages/code/state/Data';
 import RasterStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/RasterStyleDoc';
 import TimelineDoc from './components/pages/components/controls/timeline/Timeline';
@@ -462,6 +463,11 @@ ReactDOM.render(
 							label="Attribute data endpoint"
 							path="attributeDataEndpoint"
 							component={AttributeDataEndpoint}
+						/>
+						<Page
+							label="TimeSerie endpoint endpoint"
+							path="timeSerieEndpoint"
+							component={TimeSerieEndpoint}
 						/>
 					</Directory>
 					<Page label="Configuration" path="configuration" />
