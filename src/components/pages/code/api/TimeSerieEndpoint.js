@@ -36,7 +36,7 @@ const TimeSerieEndpoint = props => (
 		"offset": 0,
 		"limit": 100,
 
-		"order": "ascending|descending",
+		"orderPeriods": "ascending|descending",
 
         // list of specific features you want
 		"featureKeys": [],
