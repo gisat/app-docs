@@ -25,7 +25,7 @@ const TimeSerieEndpoint = props => (
 
 	"attributeKeys": ["uuid"],
 
-    // pagination for relations (& data sources)
+    // pagination for relations
 	"relations": {
 		"offset": 0,
 		"limit": 100
@@ -33,6 +33,7 @@ const TimeSerieEndpoint = props => (
 
     // options for time serie data   
 	"data": {
+		// pagination for features
 		"offset": 0,
 		"limit": 100,
 
@@ -63,8 +64,9 @@ const TimeSerieEndpoint = props => (
 		"timeSerieRelations": []
 	},
 	"timeSerieData": {
-        // Maximum length of period/value from any feature.
+        // Count of features
 		"total": 14756,
+
 		"offset": 0,
 		"limit": 100,
 		"timeSerieData": {
