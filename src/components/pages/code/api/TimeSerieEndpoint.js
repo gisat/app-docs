@@ -58,17 +58,41 @@ const TimeSerieEndpoint = props => (
 			{`
 {
 	"timeSerieRelations": {
-		"total": 124,
+		"total": 1,
 		"offset": 0,
-		"limit": 100,
-		"timeSerieRelations": []
+		"limit": 1,
+		"timeSerieRelations": [
+			// List of relations for each Attribute/AttributeDataSource
+			// Every timeSerieDataSourceKey corresponds to one Attribute/AttributeDataSource
+			{
+				key: '530c6982-af2a-4c2a-8fad-69c07f7d76e7',
+				data: {
+					scopeKey: null,
+					periodKey: null,
+					placeKey: null,
+					attributeDataSourceKey: 'attributeDataSourceKey1',
+					layerTemplateKey: null,
+					scenarioKey: null,
+					caseKey: null,
+					attributeSetKey: null,
+					attributeKey: 'attributeKey1',
+					areaTreeLevelKey: null,
+					applicationKey: 'testKey',
+					timeSerieDataSourceKey: 'timeSerieDataSourceKey1'
+				}
+			}
+		}
+		]
 	},
 	"timeSerieData": {
         // Count of features
 		"total": 14756,
 
 		"offset": 0,
-		"limit": 100,
+		
+		// limit for features in timeSerieDataSource
+		"limit": 2, 
+
 		"timeSerieData": {
 			"timeSerieDataSourceKey1": {
 				"feature-id1": [{
@@ -82,13 +106,21 @@ const TimeSerieEndpoint = props => (
 					"period": "2021-10",
 					"value": 1
 				}, {
+					"period": "2021-11",
+					"value": 22
+				},
+				{
 					"period": "2021-12",
-					"value": "hehe"
+					"value": 38
 				}]
 			}
 		},
 
-		"index": ["feature-id1", "feature-id3", "feature-id2", "feature-id4"]
+		"index": {
+			//list of features for each timeSerieDataSourceKey
+			"timeSerieDataSourceKey1": ["feature-id1", "feature-id2"]
+		}
+		
 	}
 }
         `}
