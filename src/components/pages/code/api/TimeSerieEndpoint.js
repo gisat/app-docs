@@ -65,20 +65,20 @@ const TimeSerieEndpoint = props => (
 			// List of relations for each Attribute/AttributeDataSource
 			// Every timeSerieDataSourceKey corresponds to one Attribute/AttributeDataSource
 			{
-				key: '530c6982-af2a-4c2a-8fad-69c07f7d76e7',
-				data: {
-					scopeKey: null,
-					periodKey: null,
-					placeKey: null,
-					attributeDataSourceKey: 'attributeDataSourceKey1',
-					layerTemplateKey: null,
-					scenarioKey: null,
-					caseKey: null,
-					attributeSetKey: null,
-					attributeKey: 'attributeKey1',
-					areaTreeLevelKey: null,
-					applicationKey: 'testKey',
-					timeSerieDataSourceKey: 'timeSerieDataSourceKey1'
+				"key": "530c6982-af2a-4c2a-8fad-69c07f7d76e7",
+				"data": {
+					"scopeKey": null,
+					"periodKey": null,
+					"placeKey": null,
+					"attributeDataSourceKey": "attributeDataSourceKey1",
+					"layerTemplateKey": null,
+					"scenarioKey": null,
+					"caseKey": null,
+					"attributeSetKey": null,
+					"attributeKey": "attributeKey1",
+					"areaTreeLevelKey": null,
+					"applicationKey": "testKey",
+					"timeSerieDataSourceKey": "timeSerieDataSourceKey1"
 				}
 			}
 		}
