@@ -1,5 +1,5 @@
 import React from 'react';
-import Page, {DocsToDo, SyntaxHighlighter} from '../../../Page';
+import Page, { SyntaxHighlighter} from '../../../Page';
 
 const TimeSerieEndpoint = props => (
 	<Page title="TimeSerie endpoint">

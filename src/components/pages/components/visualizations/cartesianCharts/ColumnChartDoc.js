@@ -8,7 +8,6 @@ import {ColumnChart} from '@gisatcz/ptr-charts';
 import {HoverHandler} from '@gisatcz/ptr-core';
 
 import Page, {
-	DocsToDoInline,
 	InlineCodeHighlighter,
 	LightDarkBlock,
 	SyntaxHighlighter,

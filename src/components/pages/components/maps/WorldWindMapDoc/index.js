@@ -45,7 +45,7 @@ class WorldWindMapDoc extends React.PureComponent {
 			<Page title="WorldWindMap">
 				<p>
 					This component is based on{' '}
-					<a href="https://worldwind.arc.nasa.gov/web/" target="_blank">
+					<a href="https://worldwind.arc.nasa.gov/web/" target="_blank" rel="noreferrer">
 						NASA Web World Wind
 					</a>{' '}
 					map library.

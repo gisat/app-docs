@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link, NavLink, withRouter} from 'react-router-dom';
-import {Redirect, Route, Switch, matchPath} from 'react-router';
+import { NavLink, withRouter} from 'react-router-dom';
+import { Route} from 'react-router';
 import pathUtils from 'path';
 import classNames from 'classnames';
 

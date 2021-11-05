@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactResizeDetector from 'react-resize-detector';
 import {
-	view as viewUtils,
 	WorldWindMap,
 	ReactLeafletMap,
 } from '@gisatcz/ptr-maps';

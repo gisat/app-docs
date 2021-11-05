@@ -1,9 +1,6 @@
 import React from 'react';
 import Page, {
-	DocsToDo,
-	DocsToDoInline,
 	InlineCodeHighlighter,
-	LightDarkBlock,
 	SyntaxHighlighter,
 } from '../../../../Page';
 import {

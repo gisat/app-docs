@@ -10,7 +10,6 @@ import {
 } from '@gisatcz/ptr-charts';
 
 import sample_10 from '../../../mockData/scatterChart/serie_10';
-import dodoma from '../../../mockData/map/dodoma_districts_as_us_states';
 
 class HoverHandlerDoc extends React.PureComponent {
 	constructor(props) {

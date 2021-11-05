@@ -1,12 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import Page, {
-	DocsToDo,
-	DocsToDoInline,
-	ImplementationToDo,
 	InlineCodeHighlighter,
-	LightDarkBlock,
-	SyntaxHighlighter,
 } from '../../../../Page';
 
 import {ReactLeafletMap, PresentationMap, MapControls} from '@gisatcz/ptr-maps';
@@ -326,7 +321,7 @@ class LeafletIndexedVectorLayer extends React.PureComponent {
 					<Link to="vectorLayer">Vector layer</Link> and{' '}
 					<Link to="diagramLayer">Diagram layer</Link>. All features are indexed
 					using{' '}
-					<a target="_blank" href="https://www.npmjs.com/package/geojson-rbush">
+					<a target="_blank" href="https://www.npmjs.com/package/geojson-rbush" rel="noreferrer">
 						B-tree
 					</a>
 					. Only features in visible area (bounding box) are rendered. Consider

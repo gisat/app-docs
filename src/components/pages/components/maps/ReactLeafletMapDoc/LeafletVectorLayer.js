@@ -2,10 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Page, {
 	DocsToDo,
-	DocsToDoInline,
 	ImplementationToDo,
-	InlineCodeHighlighter,
-	LightDarkBlock,
 	SyntaxHighlighter,
 } from '../../../../Page';
 import {ReactLeafletMap, PresentationMap, MapControls} from '@gisatcz/ptr-maps';

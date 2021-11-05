@@ -64,11 +64,11 @@ class ReactLeafletMapDoc extends React.PureComponent {
 			<Page title="ReactLeafletMap">
 				<p>
 					This component is based on{' '}
-					<a href="https://react-leaflet.js.org/en/" target="_blank">
+					<a href="https://react-leaflet.js.org/en/" target="_blank" rel="noreferrer">
 						React-Leaflet
 					</a>{' '}
 					library, an abstraction of popular{' '}
-					<a href="https://leafletjs.com/" target="_blank">
+					<a href="https://leafletjs.com/" target="_blank" rel="noreferrer">
 						Leaflet
 					</a>{' '}
 					map library as React components.
@@ -87,7 +87,7 @@ class ReactLeafletMapDoc extends React.PureComponent {
 					<Prop name="crs" defaultValue="EPSG:3857" type="string">
 						<Link to="#crs">Coordinates reference system</Link> used for map.
 						Default is{' '}
-						<a href="https://epsg.io/3857" target="_blank">
+						<a href="https://epsg.io/3857" target="_blank" rel="noreferrer">
 							EPSG:3857 (Pseudo-Mercator)
 						</a>
 						. <Link to="#crs">See complete list of available crs</Link>.
@@ -214,7 +214,7 @@ class ReactLeafletMapDoc extends React.PureComponent {
 					<li>Geographic coordinate systems (GCS):</li>
 					<ul className="ptr-docs-basic-list">
 						<li>
-							<a href="https://epsg.io/4326" target="_blank">
+							<a href="https://epsg.io/4326" target="_blank" rel="noreferrer">
 								WGS-84
 							</a>{' '}
 							(<InlineCodeHighlighter>'EPSG:4326'</InlineCodeHighlighter>)
@@ -223,14 +223,14 @@ class ReactLeafletMapDoc extends React.PureComponent {
 					<li>Projected coordinate reference systems (PCRS):</li>
 					<ul className="ptr-docs-basic-list">
 						<li>
-							<a href="https://epsg.io/3857" target="_blank">
+							<a href="https://epsg.io/3857" target="_blank" rel="noreferrer">
 								Pseudo-Mercator
 							</a>{' '}
 							(<InlineCodeHighlighter>'EPSG:3857'</InlineCodeHighlighter>) -
 							default value
 						</li>
 						<li>
-							<a href="https://epsg.io/5514" target="_blank">
+							<a href="https://epsg.io/5514" target="_blank" rel="noreferrer">
 								S-JTSK/Krovak East-North
 							</a>{' '}
 							(<InlineCodeHighlighter>'EPSG:5514'</InlineCodeHighlighter>)

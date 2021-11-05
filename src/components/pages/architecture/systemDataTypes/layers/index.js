@@ -3,7 +3,6 @@ import {withNamespaces} from '@gisatcz/ptr-locales';
 
 import Page, {
 	DocsToDo,
-	ImplementationToDo,
 	SyntaxHighlighter,
 } from '../../../../Page';
 import {Link} from 'react-router-dom';

@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
+import Page, { SyntaxHighlighter} from '../../../../Page';
 import {MapControls, PresentationMap, ReactLeafletMap} from '@gisatcz/ptr-maps';
 import cz_gadm from '../../../../mockData/map/czGadm1WithStyles/geometries.json';
 import nuts_2 from '../../../../mockData/map/nuts_2.json';

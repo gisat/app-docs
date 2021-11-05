@@ -3,14 +3,12 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import {Provider, ReactReduxContext} from '@gisatcz/ptr-state';
 import {
-	connectRouter,
-	routerMiddleware,
 	ConnectedRouter,
 } from 'connected-react-router';
 import Helmet from 'react-helmet';
 import createStore, {history} from './state/Store';
 import {Action} from '@gisatcz/ptr-state';
-import {localesUtils, i18n} from '@gisatcz/ptr-locales';
+import { i18n} from '@gisatcz/ptr-locales';
 import {proj} from '@gisatcz/ptr-maps';
 
 import config from './config';
@@ -46,9 +44,7 @@ import ReactLeafletMapDoc from './components/pages/components/maps/ReactLeafletM
 import WorldWindMapDoc from './components/pages/components/maps/WorldWindMapDoc';
 import LeafletCogLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletCogLayer';
 import LeafletVectorLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletVectorLayer';
-import LeafletDiagramLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletDiagramLayer';
 import WorldWindVectorLayer from './components/pages/components/maps/WorldWindMapDoc/WorldWindVectorLayer';
-import LeafletIndexedVectorLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletIndexedVectorLayer';
 import LeafletWMSLayer from './components/pages/components/maps/ReactLeafletMapDoc/LeafletWMSLayer';
 import MapPresentational from './components/pages/components/maps/MapPresentational';
 import MapControls from './components/pages/components/maps/MapControls';

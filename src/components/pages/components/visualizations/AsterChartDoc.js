@@ -4,8 +4,6 @@ import {Link} from 'react-router-dom';
 import {AsterChart} from '@gisatcz/ptr-charts';
 import {HoverHandler} from '@gisatcz/ptr-core';
 import Page, {
-	DocsToDo,
-	DocsToDoInline,
 	InlineCodeHighlighter,
 	LightDarkBlock,
 	SyntaxHighlighter,
@@ -13,7 +11,6 @@ import Page, {
 import ResizableContainer from '../../../ResizableContainer/ResizableContainer';
 import ComponentPropsTable from '../../../ComponentPropsTable/ComponentPropsTable';
 
-import sample_4 from '../../../mockData/asterChart/sample_4';
 import sample_7 from '../../../mockData/asterChart/sample_7';
 import sample_30 from '../../../mockData/asterChart/sample_30';
 
@@ -246,7 +243,7 @@ class AsterChartDoc extends React.PureComponent {
 									the angle is based on{' '}
 									<a
 										href="https://en.wikipedia.org/wiki/Unit_circle"
-										target="_blank"
+										target="_blank" rel="noreferrer"
 									>
 										unit circle
 									</a>

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import Page, {
-	DocsToDo,
 	InlineCodeHighlighter,
 	LightDarkBlock,
 	SyntaxHighlighter,
@@ -316,7 +315,7 @@ class CartesianCharts extends React.PureComponent {
 											xScaleType='time'. See{' '}
 											<a
 												href="https://momentjs.com/docs/#/displaying/"
-												target="_blank"
+												target="_blank" rel="noreferrer"
 											>
 												MomentJS documentation
 											</a>{' '}
@@ -333,7 +332,7 @@ class CartesianCharts extends React.PureComponent {
 											xScaleType='time'. See{' '}
 											<a
 												href="https://momentjs.com/docs/#/displaying/"
-												target="_blank"
+												target="_blank" rel="noreferrer"
 											>
 												MomentJS documentation
 											</a>{' '}
@@ -353,7 +352,7 @@ class CartesianCharts extends React.PureComponent {
 											xScaleType='time'. See{' '}
 											<a
 												href="https://momentjs.com/docs/#/displaying/"
-												target="_blank"
+												target="_blank" rel="noreferrer"
 											>
 												MomentJS documentation
 											</a>{' '}

@@ -1,5 +1,5 @@
 import {connect} from '@gisatcz/ptr-state';
-import {Action, Select} from '@gisatcz/ptr-state';
+import {Action} from '@gisatcz/ptr-state';
 
 import presentation from './presentation';
 

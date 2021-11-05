@@ -1,15 +1,9 @@
 import React from 'react';
 import _ from 'lodash';
-import moment from 'moment';
 import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
 import './timeline.scss';
-import ComponentPropsTable, {
-	Prop,
-} from '../../../../ComponentPropsTable/ComponentPropsTable';
+import ComponentPropsTable from '../../../../ComponentPropsTable/ComponentPropsTable';
 import {
-	Timeline,
-	Overlay,
-	CenterPicker,
 	Mouse,
 	Years,
 	Months,

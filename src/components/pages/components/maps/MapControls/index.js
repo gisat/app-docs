@@ -1,5 +1,5 @@
 import React from 'react';
-import Page, {DocsToDo} from '../../../../Page';
+import Page from '../../../../Page';
 import {
 	PresentationMap,
 	MapControls,

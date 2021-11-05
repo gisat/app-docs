@@ -2,13 +2,7 @@ import React from 'react';
 
 import {HoverHandler} from '@gisatcz/ptr-core';
 import {SankeyChart} from '@gisatcz/ptr-charts';
-import Page, {
-	DocsToDo,
-	DocsToDoInline,
-	InlineCodeHighlighter,
-	LightDarkBlock,
-	SyntaxHighlighter,
-} from '../../../Page';
+import Page from '../../../Page';
 
 // import sample_4 from "../../../mockData/asterChart/sample_4";
 import sample_1 from '../../../mockData/sankeyChart/sample_1.json';

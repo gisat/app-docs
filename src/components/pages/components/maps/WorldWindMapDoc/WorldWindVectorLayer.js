@@ -1,19 +1,10 @@
 import React from 'react';
-import _ from 'lodash';
 import Page, {
-	DocsToDo,
-	DocsToDoInline,
 	ImplementationToDo,
-	InlineCodeHighlighter,
-	LightDarkBlock,
 	SyntaxHighlighter,
 } from '../../../../Page';
 import {WorldWindMap} from '@gisatcz/ptr-maps';
 import cz_gadm from '../../../../mockData/map/czGadm1WithStyles/geometries.json';
-import style from '../../../../mockData/map/czGadm1WithStyles/style.json';
-import pointData from '../../../../mockData/map/largePointData/geometries.json';
-import largePointDataFeatures from '../../../../mockData/map/largePointData/sample_points_5000_mini.json';
-import pointStyle from '../../../../mockData/map/largePointData/style-simple-point.json';
 import {HoverHandler} from '@gisatcz/ptr-core';
 import nuts_2 from '../../../../mockData/map/nuts_2.json';
 import {Link} from 'react-router-dom';

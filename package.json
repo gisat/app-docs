@@ -43,12 +43,13 @@
   },
   "devDependencies": {
     "@gisatcz/prettier-config": "0.0.3",
+    "eslint-plugin-unused-imports": "^1.1.5",
     "gh-pages": "^3.2.3",
     "husky": "^7.0.2",
+    "local-cors-proxy": "^1.1.0",
     "prettier": "^2.4.1",
     "pretty-quick": "^3.1.1",
-    "react-app-rewired": "^2.1.8",
-    "local-cors-proxy": "^1.1.0"
+    "react-app-rewired": "^2.1.8"
   },
   "scripts": {
     "proxy": "lcp --proxyUrl https://ptr.gisat.cz --port 4445 --origin http://localhost:3000 --proxyPartial \"\" --credentials",
@@ -58,7 +59,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "eslint": "node node_modules/eslint/bin/eslint.js ./src",
+    "eslintFix": "node node_modules/eslint/bin/eslint.js --fix ./src"
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Rnd} from 'react-rnd';
 import './style.scss';
 import {utils} from '@gisatcz/ptr-utils';

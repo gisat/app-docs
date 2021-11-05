@@ -1,6 +1,5 @@
 import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
-import _ from 'lodash';
 
 import Page from '../../Page';
 

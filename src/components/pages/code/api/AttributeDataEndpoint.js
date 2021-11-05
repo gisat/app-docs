@@ -1,5 +1,5 @@
 import React from 'react';
-import Page, {DocsToDo, SyntaxHighlighter} from '../../../Page';
+import Page, { SyntaxHighlighter} from '../../../Page';
 
 const AttributeDataEndpoint = props => (
 	<Page title="Attribute data endpoint">

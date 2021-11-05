@@ -62,7 +62,7 @@ class LeafletWMSLayer extends React.PureComponent {
 					<Prop name="crs" defaultValue="EPSG:3857" type="string">
 						<Link to="#crs">Coordinates reference system</Link> used for map.
 						Default is{' '}
-						<a href="https://epsg.io/3857" target="_blank">
+						<a href="https://epsg.io/3857" target="_blank" rel="noreferrer">
 							EPSG:3857 (Pseudo-Mercator)
 						</a>
 						. <Link to="#crs">See complete list of available crs</Link>.

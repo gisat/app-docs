@@ -2,7 +2,6 @@ import React from 'react';
 import {withNamespaces} from '@gisatcz/ptr-locales';
 
 import Page, {
-	DocsToDo,
 	ImplementationToDo,
 	InlineCodeHighlighter,
 	PropertyDescription,
@@ -68,7 +67,7 @@ class VectorLayers extends React.PureComponent {
 					A list of{' '}
 					<a
 						target="_blank"
-						href="https://tools.ietf.org/html/rfc7946#section-3.2"
+						href="https://tools.ietf.org/html/rfc7946#section-3.2" rel="noreferrer"
 					>
 						GeoJSON feature
 					</a>{' '}
@@ -94,7 +93,7 @@ class VectorLayers extends React.PureComponent {
 						According to the GeoJSON specification,{' '}
 						<a
 							target="_blank"
-							href="https://tools.ietf.org/html/rfc7946#section-3.2"
+							href="https://tools.ietf.org/html/rfc7946#section-3.2" rel="noreferrer"
 						>
 							the id should be used as an identifier
 						</a>
