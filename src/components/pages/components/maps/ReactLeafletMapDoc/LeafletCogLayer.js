@@ -54,6 +54,7 @@ const croplandClassificationLayer2 = {
 		...croplandClassificationLayer.options,
 		url: 'https://gisat-gis.eu-central-1.linodeobjects.com/worldcereal/example/22LHQ/2020_22LHQ_annualcropland_classification_WorldCerealPixelLSTM.tif',
 	},
+	key: 'cog-layer-2',
 };
 
 const croplandClassificationLayer3 = {
@@ -62,6 +63,7 @@ const croplandClassificationLayer3 = {
 		...croplandClassificationLayer.options,
 		url: 'https://gisat-gis.eu-central-1.linodeobjects.com/worldcereal/example/30SWJ/2020_30SWJ_annualcropland_classification_WorldCerealPixelLSTM.tif',
 	},
+	key: 'cog-layer-3',
 };
 
 const croplandClassificationLayer4 = {
@@ -70,6 +72,7 @@ const croplandClassificationLayer4 = {
 		...croplandClassificationLayer.options,
 		url: 'https://gisat-gis.eu-central-1.linodeobjects.com/worldcereal/example/31UFS/2020_31UFS_annualcropland_classification_WorldCerealPixelLSTM.tif',
 	},
+	key: 'cog-layer-4',
 };
 
 const croplandClassificationLayer5 = {
@@ -78,6 +81,7 @@ const croplandClassificationLayer5 = {
 		...croplandClassificationLayer.options,
 		url: 'https://gisat-gis.eu-central-1.linodeobjects.com/worldcereal/example/35UQR/2020_35UQR_annualcropland_classification_WorldCerealPixelLSTM.tif',
 	},
+	key: 'cog-layer-5',
 };
 
 const croplandClassificationLayer6 = {
@@ -86,6 +90,7 @@ const croplandClassificationLayer6 = {
 		...croplandClassificationLayer.options,
 		url: 'https://gisat-gis.eu-central-1.linodeobjects.com/worldcereal/example/37MBV/2020_37MBV_annualcropland_classification_WorldCerealPixelLSTM.tif',
 	},
+	key: 'cog-layer-6',
 };
 
 const croplandClassificationLayer7 = {
@@ -94,6 +99,7 @@ const croplandClassificationLayer7 = {
 		...croplandClassificationLayer.options,
 		url: 'https://gisat-gis.eu-central-1.linodeobjects.com/worldcereal/example/50SMF/2020_50SMF_annualcropland_classification_WorldCerealPixelLSTM.tif',
 	},
+	key: 'cog-layer-7',
 };
 
 const croplandConfidenceLayer = {
