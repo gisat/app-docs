@@ -150,8 +150,7 @@ const backgroundCartoLayer = {
 	key: 'background-cdb',
 	type: 'wmts',
 	options: {
-		url:
-			'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}@2x.png',
+		url: 'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}@2x.png',
 	},
 };
 
@@ -288,8 +287,7 @@ const pointsInPx = {
 // Vector layer - hundreds of points - size in meters
 let pointsInMetersStyle = _.cloneDeep(pointsStyle);
 pointsInMetersStyle.rules[0].styles[2].attributeScale.size.outputInterval = [
-	500,
-	2000,
+	500, 2000,
 ];
 const pointsInMeters = {
 	key: 'point-data-layer-2',
@@ -404,6 +402,9 @@ const shapes = {
 		features: letnaPoints.features,
 		style: shapeStyle,
 		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
 		pointAsMarker: true,
 		fidColumnName: 'id',
 	},

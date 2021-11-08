@@ -56,9 +56,11 @@ class ReactLeafletMapDoc extends React.PureComponent {
 			debugType: {bottom: true},
 		};
 	}
+
 	setDebug(type) {
 		this.setState({debugType: type});
 	}
+
 	render() {
 		return (
 			<Page title="ReactLeafletMap">
