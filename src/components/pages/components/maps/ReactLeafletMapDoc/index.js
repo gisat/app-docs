@@ -102,6 +102,12 @@ class ReactLeafletMapDoc extends React.PureComponent {
 						<InlineCodeHighlighter>{`debugTileGrid={'bottom': true}`}</InlineCodeHighlighter>
 						. See examples <Link to="#debugTileGrid">examples</Link>.
 					</Prop>
+					<Prop name="height" type="number">
+						Map height in pixels
+					</Prop>
+					<Prop name="width" type="number">
+						Map width in pixels
+					</Prop>
 				</ComponentPropsTable>
 
 				<h2>Layers</h2>

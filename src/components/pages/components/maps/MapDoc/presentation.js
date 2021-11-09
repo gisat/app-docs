@@ -175,6 +175,9 @@ class MapDoc extends React.PureComponent {
 							Function called when a view change is initiated inside the
 							Presentation component
 						</Prop>
+						<Prop name="onResize" type="function">
+							Function called when width or height of the map was changed
+						</Prop>
 						<Prop name="onClick" type="function">
 							Function called on click
 						</Prop>
