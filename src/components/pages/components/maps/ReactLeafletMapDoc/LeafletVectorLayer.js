@@ -504,6 +504,7 @@ const mixedFeaturesLayer = {
 		hovered: {
 			style: 'default',
 		},
+		selectable: true,
 		selected: {
 			testSelection: {
 				keys: ['CZE.12_1'],

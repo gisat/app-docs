@@ -335,7 +335,7 @@ const MapContainer = props => (
 		{props.hideWorldWind ? null : (
 			<div>
 				<PresentationMap
-					mapKey={utils.uuid()}
+					mapKey="world-wind-map"
 					mapComponent={WorldWindMap}
 					backgroundLayer={backgroundLayer}
 					layers={props.layers}
@@ -354,7 +354,7 @@ const MapContainer = props => (
 					layers={props.layers}
 					view={props.view}
 					onLayerClick={props.onSelect}
-					mapKey={utils.uuid()}
+					mapKey="leaflet-map"
 				>
 					<MapControls zoomOnly levelsBased />
 				</PresentationMap>
@@ -377,29 +377,21 @@ class VectorStyleDoc extends React.PureComponent {
 
 	onLayerClick(map, layer, features) {
 		if (layer === 'polygons_hoveredSelectedDefault') {
-			let updatedLayers = this.state.hoveredSelectedDefault.map(
-				(item, index) => {
-					if (index !== 0) {
-						// This isn't the item we care about - keep it as-is
-						return item;
-					}
-
-					// Otherwise, this is the one we want - return an updated value
-					return {
-						...hoveredSelectedDefault,
-						options: {
-							...hoveredSelectedDefault.options,
-							selected: {
-								...hoveredSelectedDefault.options.selected,
-								testSelection: {
-									...hoveredSelectedDefault.options.selected.testSelection,
-									keys: features,
-								},
+			const updatedLayers = [
+				{
+					...hoveredSelectedDefault,
+					options: {
+						...hoveredSelectedDefault.options,
+						selected: {
+							...hoveredSelectedDefault.options.selected,
+							testSelection: {
+								...hoveredSelectedDefault.options.selected.testSelection,
+								keys: features,
 							},
 						},
-					};
-				}
-			);
+					},
+				},
+			];
 
 			this.setState({
 				hoveredSelectedDefault: updatedLayers,
