@@ -11,6 +11,8 @@ import {
 	WorldWindMap,
 	ReactLeafletMap,
 	DeckGlMap,
+	MapSet,
+	MapSetPresentationMap,
 } from '@gisatcz/ptr-maps';
 import ComponentPropsTable, {
 	Prop,
@@ -140,6 +142,47 @@ class MapScaleDocs extends React.PureComponent {
 						<MapScale maxWidth={300} className="ptr-dark" />
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
+				</div>
+
+				<h3>Map set usage</h3>
+
+				<SyntaxHighlighter language="jsx">
+					{`import {DeckGlMap, MapControls, MapScale, MapSet, MapSetPresentationMap} from "@gisatcz/ptr-maps";
+<MapSet
+	activeMapKey="mapDeck-2"
+	mapComponent={DeckGlMap}
+	view={view}
+	sync={{
+		boxRange: true,
+		center: true,
+	}}
+	backgroundLayer={osm}
+>
+	<MapSetPresentationMap mapKey="mapDeck-1" />
+	<MapSetPresentationMap mapKey="mapDeck-2" />
+	<MapSetPresentationMap mapKey="mapDeck-3" />
+	<MapControls levelsBased zoomOnly />
+	<MapScale />
+</MapSet>`}
+				</SyntaxHighlighter>
+
+				<div style={{height: 300}}>
+					<MapSet
+						activeMapKey="mapDeck-2"
+						mapComponent={DeckGlMap}
+						view={view}
+						sync={{
+							boxRange: true,
+							center: true,
+						}}
+						backgroundLayer={osm}
+					>
+						<MapSetPresentationMap mapKey="mapDeck-1" />
+						<MapSetPresentationMap mapKey="mapDeck-2" />
+						<MapSetPresentationMap mapKey="mapDeck-3" />
+						<MapControls levelsBased zoomOnly />
+						<MapScale />
+					</MapSet>
 				</div>
 			</Page>
 		);
