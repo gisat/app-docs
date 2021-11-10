@@ -175,6 +175,9 @@ class MapDoc extends React.PureComponent {
 							Function called when a view change is initiated inside the
 							Presentation component
 						</Prop>
+						<Prop name="onResize" type="function">
+							Function called when width or height of the map was changed
+						</Prop>
 						<Prop name="onClick" type="function">
 							Function called on click
 						</Prop>
@@ -211,34 +214,34 @@ class MapDoc extends React.PureComponent {
 				<SyntaxHighlighter language="jsx">
 					{`import {WorldWindMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
 
-<PresentationMap
-	mapComponent={WorldWindMap}
-	backgroundLayer={{
-		key: 'background-osm',
-		type: 'wmts',
-		options: {
-			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-		}
-	}}
-	layers={[{
-		key: 'cuzk_ortofoto',
-		name: 'CUZK Ortofoto',
-		type: 'wms',
-		options: {
-			url: 'http://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx?',
-			params: {
-				layers: 'GR_ORTFOTORGB'
-			}
-		}
-	}]}
-	view={{
-		center: {lat: 50, lon: 15},
-		boxRange: 500000
-	}}
->
-	<MapControls/>
-</PresentationMap>
-`}
+				<PresentationMap
+					mapComponent={WorldWindMap}
+					backgroundLayer={{
+						key: 'background-osm',
+						type: 'wmts',
+						options: {
+							url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+						}
+					}}
+					layers={[{
+						key: 'cuzk_ortofoto',
+						name: 'CUZK Ortofoto',
+						type: 'wms',
+						options: {
+							url: 'http://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx?',
+							params: {
+								layers: 'GR_ORTFOTORGB'
+							}
+						}
+					}]}
+					view={{
+						center: {lat: 50, lon: 15},
+						boxRange: 500000
+					}}
+				>
+					<MapControls/>
+				</PresentationMap>
+				`}
 				</SyntaxHighlighter>
 
 				<h3>Uncontrolled</h3>
@@ -262,21 +265,21 @@ class MapDoc extends React.PureComponent {
 				</p>
 				<SyntaxHighlighter language="jsx">
 					{`import {ReactLeafletMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
-const Map = connects.Map(PresentationMap);
-<Map
-	mapComponent={ReactLeafletMap}
-	backgroundLayer={{
-		key: 'osm',
-		layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
-	}}
-	view={{
-		center: {lat: 50, lon: 15},
-		boxRange: 500000
-	}}
->
-	<MapControls levelsBased zoomOnly/>
-</Map>
-`}
+				const Map = connects.Map(PresentationMap);
+				<Map
+					mapComponent={ReactLeafletMap}
+					backgroundLayer={{
+						key: 'osm',
+						layerTemplateKey: '11c7cc1b-9834-4e85-aba6-eab5571705e4',
+					}}
+					view={{
+						center: {lat: 50, lon: 15},
+						boxRange: 500000
+					}}
+				>
+					<MapControls levelsBased zoomOnly/>
+				</Map>
+				`}
 				</SyntaxHighlighter>
 
 				<h3 id="connected">Connected to store</h3>
@@ -295,15 +298,15 @@ const Map = connects.Map(PresentationMap);
 				</p>
 				<SyntaxHighlighter language="jsx">
 					{`import {ReactLeafletMap, MapControls, PresentationMap} from "@gisatcz/ptr-maps";
-const Map = connects.Map(PresentationMap);
-// Map with key 'docs-connected-map' should already be in the store
-<Map
-	mapComponent={ReactLeafletMap}
-	stateMapKey="docs-connected-map"
->
-	<MapControls levelsBased zoomOnly/>
-</Map>
-`}
+				const Map = connects.Map(PresentationMap);
+				// Map with key 'docs-connected-map' should already be in the store
+				<Map
+					mapComponent={ReactLeafletMap}
+					stateMapKey="docs-connected-map"
+				>
+					<MapControls levelsBased zoomOnly/>
+				</Map>
+				`}
 				</SyntaxHighlighter>
 
 				<h2 id="view-limits">View limits</h2>
@@ -318,19 +321,19 @@ const Map = connects.Map(PresentationMap);
 				<h3>Limited zoom</h3>
 				<SyntaxHighlighter language="jsx">
 					{`
-<Map
-	//...
-	view={{
-		center: {lat: 50, lon: 15},
-		boxRange: 16000
-	}}
-	viewLimits={{
-	    boxRangeRange: [4000, 64000]
-	}}
->
-	<MapControls/>
-</Map>
-`}
+				<Map
+					//...
+					view={{
+						center: {lat: 50, lon: 15},
+						boxRange: 16000
+					}}
+					viewLimits={{
+					    boxRangeRange: [4000, 64000]
+					}}
+				>
+					<MapControls/>
+				</Map>
+				`}
 				</SyntaxHighlighter>
 				<div style={{display: 'flex', flexWrap: 'wrap'}}>
 					<div style={{margin: 5, height: 300, width: 500}}>
@@ -388,24 +391,24 @@ const Map = connects.Map(PresentationMap);
 
 				<SyntaxHighlighter language="jsx">
 					{`
-<Map
-	//...
-	view={{
-		center: {lat: 50.5, lon: 15.5},
-		boxRange: 100000
-	}}
-	viewLimits={{
-	    center: {
-	    	maxLat: 50.5,
-	    	minLat: 49.5,
-	    	maxLon: 17,
-	    	minLon: 14
-	    }
-	}}
->
-	<MapControls zoomOnly levelsBased />
-</Map>
-`}
+				<Map
+					//...
+					view={{
+						center: {lat: 50.5, lon: 15.5},
+						boxRange: 100000
+					}}
+					viewLimits={{
+					    center: {
+					    	maxLat: 50.5,
+					    	minLat: 49.5,
+					    	maxLon: 17,
+					    	minLon: 14
+					    }
+					}}
+				>
+					<MapControls zoomOnly levelsBased />
+				</Map>
+				`}
 				</SyntaxHighlighter>
 
 				<div style={{margin: 5, height: 400, width: 600}}>
@@ -467,16 +470,16 @@ const Map = connects.Map(PresentationMap);
 				</p>
 				<SyntaxHighlighter language="javascript">
 					{`
-{
-	icons: {
-		'iconKey': {
-			component: Icon, // React component
-			componentProps: {icon: 'crop'}, 
-			anchorPoint: [0.5, 1] // relative anchor position (it means that the icon reference point is placed in the middle horizontally and at the bottom vertically)
-		}
-	}
-}
-`}
+				{
+					icons: {
+						'iconKey': {
+							component: Icon, // React component
+							componentProps: {icon: 'crop'}, 
+							anchorPoint: [0.5, 1] // relative anchor position (it means that the icon reference point is placed in the middle horizontally and at the bottom vertically)
+						}
+					}
+				}
+				`}
 				</SyntaxHighlighter>
 			</Page>
 		);

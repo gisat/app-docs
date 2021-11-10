@@ -56,9 +56,11 @@ class ReactLeafletMapDoc extends React.PureComponent {
 			debugType: {bottom: true},
 		};
 	}
+
 	setDebug(type) {
 		this.setState({debugType: type});
 	}
+
 	render() {
 		return (
 			<Page title="ReactLeafletMap">
@@ -99,6 +101,12 @@ class ReactLeafletMapDoc extends React.PureComponent {
 						possible to display tilegrid in the bottom by{' '}
 						<InlineCodeHighlighter>{`debugTileGrid={'bottom': true}`}</InlineCodeHighlighter>
 						. See examples <Link to="#debugTileGrid">examples</Link>.
+					</Prop>
+					<Prop name="height" type="number">
+						Map height in pixels
+					</Prop>
+					<Prop name="width" type="number">
+						Map width in pixels
 					</Prop>
 				</ComponentPropsTable>
 
