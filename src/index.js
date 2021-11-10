@@ -84,6 +84,7 @@ import UserDoc from './components/pages/architecture/storeDataTypes/commonDataTy
 import UserGroupDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/UserGroupDoc';
 import ViewDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/ViewDoc';
 import MapViewLimitsDoc from './components/pages/architecture/systemDataTypes/MapViewLimits';
+import MapScaleDoc from './components/pages/components/maps/MapScaleDoc';
 import MapWrapperDoc from './components/pages/components/maps/MapWrapperDoc';
 import DataEndpoint from './components/pages/code/api/DataEndpoint';
 import VectorLayers from './components/pages/architecture/systemDataTypes/layers/VectorLayers';
@@ -236,6 +237,7 @@ ReactDOM.render(
 							path="mapWrapper"
 							component={MapWrapperDoc}
 						/>
+						<Page label="Map scale" path="mapScale" component={MapScaleDoc} />
 						<Directory
 							label="Presentational"
 							path="presentational"
