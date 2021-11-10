@@ -28,7 +28,25 @@ const cuzk = {
 		url: 'http://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx?',
 		params: {
 			layers: 'GR_ORTFOTORGB',
+			// format: 'image/jpeg',
+			// crs: 'EPSG:4326',
 		},
+	},
+};
+
+const backgroundLayerZM = {
+	key: 'cuzk_zm',
+	name: 'CUZK ZM 10',
+	type: 'wms',
+	options: {
+		url: 'https://geoportal.cuzk.cz/WMS_ZM10_PUB/WMService.aspx?',
+		params: {
+			layers: 'GR_ZM10',
+			// format: 'image/jpeg',
+			// crs: 'EPSG:4326',
+			// crs: 'EPSG:5514',
+		},
+		singleTile: true,
 	},
 };
 
@@ -40,9 +58,13 @@ const cuzkSingleTile = {
 		url: 'http://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx?',
 		params: {
 			layers: 'GR_ORTFOTORGB',
+			// format: 'image/jpeg',
+			// crs: 'EPSG:4326',
+			// crs: 'EPSG:5514',
 		},
 		singleTile: true,
 	},
+	opacity: 0.5,
 };
 
 const wmsExampleLayers = [cuzk];
@@ -128,7 +150,8 @@ class LeafletWMSLayer extends React.PureComponent {
 					<ReactLeafletMap
 						mapKey="react-leaflet-map-2"
 						view={view}
-						backgroundLayer={backgroundLayer}
+						// crs={"EPSG:5514"}
+						backgroundLayer={backgroundLayerZM}
 						layers={wmsSingleTileExampleLayers}
 					/>
 				</div>
