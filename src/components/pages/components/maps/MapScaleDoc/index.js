@@ -27,7 +27,7 @@ const osm = {
 	key: 'background-osm',
 	type: 'wmts',
 	options: {
-		url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
 	},
 };
 
@@ -77,7 +77,7 @@ class MapScaleDocs extends React.PureComponent {
 			key: 'background-osm',
 			type: 'wmts',
 			options: {
-				url: 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+				url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
 			}
 		}}
 		view={{
