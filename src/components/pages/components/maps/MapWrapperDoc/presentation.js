@@ -69,6 +69,7 @@ class MapWrapperDoc extends React.PureComponent {
 		const props = this.props;
 		props.addSet({
 			key: 'map-wrapper-map-set',
+			activeMapKey: 'map-wrapper-map-1',
 			data: {
 				backgroundLayer: backgroundLayer,
 				view: {
@@ -280,7 +281,7 @@ const map = (
 							boxRange: 100000,
 						}}
 					>
-						<MapControls />
+						<MapControls levelsBased zoomOnly />
 					</PresentationMap>
 				</div>
 			</Page>

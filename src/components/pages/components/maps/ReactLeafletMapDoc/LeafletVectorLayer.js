@@ -150,8 +150,7 @@ const backgroundCartoLayer = {
 	key: 'background-cdb',
 	type: 'wmts',
 	options: {
-		url:
-			'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}@2x.png',
+		url: 'https://basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}@2x.png',
 	},
 };
 
@@ -288,8 +287,7 @@ const pointsInPx = {
 // Vector layer - hundreds of points - size in meters
 let pointsInMetersStyle = _.cloneDeep(pointsStyle);
 pointsInMetersStyle.rules[0].styles[2].attributeScale.size.outputInterval = [
-	500,
-	2000,
+	500, 2000,
 ];
 const pointsInMeters = {
 	key: 'point-data-layer-2',
@@ -344,34 +342,34 @@ const shapeStyle = {
 						metro: {
 							fill: '#efefef',
 							shape: 'pin',
-							size: 16,
+							size: 32,
 							outlineWidth: 2,
 						},
 						tram: {
 							fill: '#992f2f',
 							icon: 'monitoring',
-							size: 16,
+							size: 32,
 						},
 						vegtral: {
 							fill: '#724e25',
 							icon: 'crop',
-							size: 16,
+							size: 32,
 						},
 						parking: {
 							shape: 'cross',
-							size: 16,
+							size: 32,
 							outlineWidth: 4,
 							outlineColor: '#27b0c4',
 						},
 						ntm: {
 							shape: 'square',
-							size: 16,
+							size: 32,
 							outlineWidth: 2,
 							outlineColor: '#4d8c6e',
 							fill: '#89d6ae',
 						},
 						gisat: {
-							size: 48,
+							size: 64,
 							shape: 'pin',
 							outlineWidth: 3,
 							outlineColor: '#395fab',
@@ -404,6 +402,9 @@ const shapes = {
 		features: letnaPoints.features,
 		style: shapeStyle,
 		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
 		pointAsMarker: true,
 		fidColumnName: 'id',
 	},
@@ -503,9 +504,11 @@ const mixedFeaturesLayer = {
 		hovered: {
 			style: 'default',
 		},
+		selectable: true,
 		selected: {
 			testSelection: {
 				keys: ['CZE.12_1'],
+				style: 'default',
 			},
 		},
 		fidColumnName: 'GID_1',
@@ -633,32 +636,16 @@ class LeafletVectorLayer extends React.PureComponent {
 					section.
 				</p>
 
+				<p>VectorLayer could be rendered either as SVG, or canvas. </p>
 				<p>
-					VectorLayer could be rendered either as SVG, or canvas. For details
-					see the examples below.
+					Vector layer rendered as <b>canvas</b> has limited interactivity (no
+					hover effects due to performance), but they are much faster.
 				</p>
 
 				<ImplementationToDo>
-					<b>
-						The rendering of features has to be unified together with popups
-						refactoring. Currently:
-					</b>
 					<ul>
-						<li>
-							Vector layer redered as <b>canvas</b> has limited interactivity
-							(no hover effects due to performance). In canvas could be
-							polygons, lines, as well as points rendered (both pixel-fixed or
-							geographically-fixed). However, the shapes which could be rendered
-							are not unified with the SVG technique.
-						</li>
-						<li>
-							Vector layer could be rendered as <b>SVG</b> using two ways. The
-							first way is fully interactive (including tooltips), it could draw
-							custom shapes as markers and circles as points with geographically
-							fixed size, but it's quite slow. It is used for rendering of
-							layers with 100 features or less. The second way is faster, but
-							without the tooltip option.
-						</li>
+						<li>Tooltips!</li>
+						<li>Unification of markers (shapes) in canvas and svg</li>
 					</ul>
 				</ImplementationToDo>
 
@@ -667,26 +654,26 @@ class LeafletVectorLayer extends React.PureComponent {
 				<p>Basic usage with default style.</p>
 				<SyntaxHighlighter language="jsx">
 					{`<ReactLeafletMap
-    mapKey='basic-usage'
-    view={{
-        center: {lat: 50, lon: 15},
-        boxRange: 2000000
-    }}
-    backgroundLayer={{
-        key: 'background-osm',
-        type: 'wmts',
-        options: {
-            url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-        }
-    }}
-    layers={[{
-        key: "gadm-1-cz",
-        type: "vector",
-        options: {
-            features: [], //list of features
-            fidColumnName: "GID_1"
-        }
-    }]}
+	mapKey='basic-usage'
+	view={{
+		center: {lat: 50, lon: 15},
+		boxRange: 2000000
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+	layers={[{
+		key: "gadm-1-cz",
+		type: "vector",
+		options: {
+			features: [], //list of features
+			fidColumnName: "GID_1"
+		}
+	}]}
 />`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
@@ -698,55 +685,45 @@ class LeafletVectorLayer extends React.PureComponent {
 					/>
 				</div>
 
-				<h3>With popups and selection</h3>
+				<h3>With hover effect and selection</h3>
 				<p>
-					Move cursor over area to see the popup. Click on the area to select
-					it.
+					Move cursor over area to see the hover effect. Click on the area to
+					select it.
 				</p>
 				<SyntaxHighlighter language="jsx">
-					{`<HoverHandler
-    popupContentComponent={
-        (props) => <b>{props.data["NAME_1"]}</b>
-    }
->
-    <ReactLeafletMap
-        //...
-        onLayerClick={this.onLayerClick}
-        layers={[{
-            key: "polygons-with-selection",
-            type: "vector",
-            options: {
-                features: cz_gadm.features,
-                hoverable: true,
-                hovered: {
-                    style: "default"    
-                },
-                selectable: true,
-                selected: {
-                    "testSelection": {
-                        keys: ["CZE.12_1"],
-                        style: "default",
-                        hoveredStyle: "default"
-                    }
-                },
-                fidColumnName: "GID_1"
-            }
-        }]}
-    />
-</HoverHandler>`}
+					{`<ReactLeafletMap
+	//...
+	onLayerClick={this.onLayerClick}
+	layers={[{
+		key: "polygons-with-selection",
+		type: "vector",
+		options: {
+			features: cz_gadm.features,
+			hoverable: true,
+			hovered: {
+				style: "default"    
+			},
+			selectable: true,
+			selected: {
+				"testSelection": {
+					keys: ["CZE.12_1"],
+					style: "default",
+					hoveredStyle: "default"
+				}
+			},
+			fidColumnName: "GID_1"
+		}
+	}]}
+/>`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
-					<HoverHandler
-						popupContentComponent={props => <b>{props.data['NAME_1']}</b>}
-					>
-						<ReactLeafletMap
-							mapKey="basic-polygon-selection"
-							view={view}
-							backgroundLayer={backgroundLayer}
-							layers={this.state.basicPolygonLayersWithSelection}
-							onLayerClick={this.onLayerClick}
-						/>
-					</HoverHandler>
+					<ReactLeafletMap
+						mapKey="basic-polygon-selection"
+						view={view}
+						backgroundLayer={backgroundLayer}
+						layers={this.state.basicPolygonLayersWithSelection}
+						onLayerClick={this.onLayerClick}
+					/>
 				</div>
 
 				<h3>Choropleth with hundreds of polygons</h3>
@@ -755,50 +732,49 @@ class LeafletVectorLayer extends React.PureComponent {
 					it.
 				</p>
 				<SyntaxHighlighter language="jsx">
-					{`
-    <ReactLeafletMap
-        //...
-        layers={[{
-            //...
-            options: {
-                //...
-                style: {
-                    rules: [{
-                        styles: [{
-                            outlineWidth: 1,
-                            outlineColor: "#666"
-                        },{
-                            attributeKey: "diverging_attr",
-                            attributeClasses: [
-                                {
-                                    interval: [-5,-3],
-                                    intervalBounds: [true, false],
-                                    fill: "#d7191c"
-                                },
-                                {
-                                    interval: [-3,-1],
-                                    intervalBounds: [true, false],
-                                    fill: "#fdae61"
-                                },{
-                                    interval: [-1,1],
-                                    intervalBounds: [true, false],
-                                    fill: "#ffffbf"
-                                },{
-                                    interval: [1,3],
-                                    intervalBounds: [true, false],
-                                    fill: "#a6d96a"
-                                },{
-                                    interval: [3,5],
-                                    intervalBounds: [true, false],
-                                    fill: "#1a9641"
-                                }
-                            ]
-                        }]
-                    }
-                ]}
-            }
-        }]}
-    />`}
+					{`<ReactLeafletMap
+	//...
+	layers={[{
+		//...
+		options: {
+			//...
+			style: {
+				rules: [{
+					styles: [{
+						outlineWidth: 1,
+						outlineColor: "#666"
+					},{
+						attributeKey: "diverging_attr",
+						attributeClasses: [
+							{
+								interval: [-5,-3],
+								intervalBounds: [true, false],
+								fill: "#d7191c"
+							},
+							{
+								interval: [-3,-1],
+								intervalBounds: [true, false],
+								fill: "#fdae61"
+							},{
+								interval: [-1,1],
+								intervalBounds: [true, false],
+								fill: "#ffffbf"
+							},{
+								interval: [1,3],
+								intervalBounds: [true, false],
+								fill: "#a6d96a"
+							},{
+								interval: [3,5],
+								intervalBounds: [true, false],
+								fill: "#1a9641"
+							}
+						]
+					}]
+				}
+			]}
+		}
+	}]}
+/>`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
 					<PresentationMap
@@ -815,17 +791,16 @@ class LeafletVectorLayer extends React.PureComponent {
 
 				<p>The same layer as above is now rendered using canvas technique.</p>
 				<SyntaxHighlighter language="jsx">
-					{`
-    <ReactLeafletMap
-        //...
-        layers={[{
-            //...
-            options: {
-                //...
-                renderingTechnique: "canvas"
-            }
-        }]}
-    />`}
+					{`<ReactLeafletMap
+	//...
+	layers={[{
+		//...
+		options: {
+			//...
+			renderingTechnique: "canvas"
+		}
+	}]}
+/>`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
 					<ReactLeafletMap
@@ -950,34 +925,34 @@ class LeafletVectorLayer extends React.PureComponent {
 										metro: {
 											fill: '#efefef',
 											shape: 'pin',
-											size: 16,
+											size: 32,
 											outlineWidth: 2
 										},
 										tram: {
 											fill: '#992f2f',
 											icon: 'monitoring',
-											size: 16
+											size: 32
 										},
 										vegtral: {
 											fill: '#724e25',
 											icon: 'crop',
-											size: 16
+											size: 32
 										},
 										parking: {
 											shape: 'cross',
-											size: 16,
+											size: 32,
 											outlineWidth: 4,
 											outlineColor: '#27b0c4'
 										},
 										ntm: {
 											shape: 'square',
-											size: 16,
+											size: 32,
 											outlineWidth: 2,
 											outlineColor: '#4d8c6e',
 											fill: '#89d6ae'
 										},
 										gisat: {
-											size: 48,
+											size: 64,
 											shape: 'pin',
 											outlineWidth: 3,
 											outlineColor: '#395fab',
@@ -1036,61 +1011,47 @@ class LeafletVectorLayer extends React.PureComponent {
 
 				<h2 id="lines">Lines</h2>
 				<SyntaxHighlighter language="jsx">
-					{`<HoverHandler
-//...
->
-    <ReactLeafletMap
-        //...
-        layers={[{
-            //...
-            options: {
-                //...
-                style: {
-                    rules: [{
-                        styles: [{
-                            outlineColor: "#000000",
-                            outlineWidth: 2,
-                        },{
-                            attributeKey: "TRIDA",
-                            attributeValues: {
-                                1: {
-                                    outlineColor: "#b43300",
-                                    outlineWidth: 6
-                                },
-                                2: {
-                                    outlineColor: "#f89b7a",
-                                    outlineWidth: 6
-                                },
-                                3: {
-                                    outlineColor: "#6c92d0",
-                                    outlineWidth: 3
-                                }
-                            }
-                        }]
-                    }]
-                }
-            }
-        }]}
-    />
-</HoverHandler>`}
+					{`<ReactLeafletMap
+	//...
+	layers={[{
+		//...
+		options: {
+			//...
+			style: {
+				rules: [{
+					styles: [{
+						outlineColor: "#000000",
+						outlineWidth: 2
+					},{
+						attributeKey: "TRIDA",
+						attributeValues: {
+							1: {
+								outlineColor: "#b43300",
+								outlineWidth: 6
+							},
+							2: {
+								outlineColor: "#f89b7a",
+								outlineWidth: 6
+							},
+							3: {
+								outlineColor: "#6c92d0",
+								outlineWidth: 3
+							}
+						}
+					}]
+				}]
+			}
+		}
+	}]}
+/>`}
 				</SyntaxHighlighter>
 				<div style={{height: 500, marginBottom: 10}}>
-					<HoverHandler
-						popupContentComponent={props => {
-							return (
-								<>
-									<b>{props.data['CISLO_SILNICE']}</b>
-								</>
-							);
-						}}
-					>
-						<ReactLeafletMap
-							mapKey="lines-map"
-							view={view}
-							backgroundLayer={backgroundLayer}
-							layers={this.state.lineFeaturesLayers}
-						/>
-					</HoverHandler>
+					<ReactLeafletMap
+						mapKey="lines-map"
+						view={view}
+						backgroundLayer={backgroundLayer}
+						layers={this.state.lineFeaturesLayers}
+					/>
 				</div>
 
 				<h2 id="mixed">Mixed</h2>
@@ -1100,23 +1061,13 @@ class LeafletVectorLayer extends React.PureComponent {
 					top of polygons.
 				</p>
 				<div style={{height: 500, marginBottom: 10}}>
-					<HoverHandler
-						popupContentComponent={props => {
-							return (
-								<>
-									<b>{props.data['NAME_1']}</b>
-								</>
-							);
-						}}
-					>
-						<ReactLeafletMap
-							mapKey="mixed-features-map"
-							view={view}
-							backgroundLayer={backgroundLayer}
-							layers={this.state.mixedFeaturesLayers}
-							onLayerClick={this.onLayerClick}
-						/>
-					</HoverHandler>
+					<ReactLeafletMap
+						mapKey="mixed-features-map"
+						view={view}
+						backgroundLayer={backgroundLayer}
+						layers={this.state.mixedFeaturesLayers}
+						onLayerClick={this.onLayerClick}
+					/>
 				</div>
 			</Page>
 		);

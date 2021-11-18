@@ -17,25 +17,19 @@ import {
 } from '@gisatcz/ptr-maps';
 import cz_gadm from '../../../../../../mockData/map/czGadm1WithStyles/geometries.json';
 import points_50 from '../../../../../../mockData/map/points_50.json';
-import nuts_2 from '../../../../../../mockData/map/nuts_2.json';
 
 import largePointData from '../../../../../../mockData/map/largePointData/geometries.json';
 import largeDataStyle from '../../../../../../mockData/map/largePointData/style.json';
 import {HoverHandler} from '@gisatcz/ptr-core';
 
-const europeView = {
-	center: {lat: 49.8, lon: 12},
-	boxRange: 5000000,
-};
-
 const czView = {
 	center: {lat: 49.8, lon: 15},
-	boxRange: 2000000,
+	boxRange: 500000,
 };
 
 const pragueView = {
 	center: {lat: 49.8, lon: 14.8},
-	boxRange: 300000,
+	boxRange: 100000,
 };
 
 const backgroundLayer = {
@@ -45,17 +39,6 @@ const backgroundLayer = {
 		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
 	},
 };
-
-// Polygons - no styles
-const polygonLayers_noStyles = [
-	{
-		key: 'polygons',
-		type: 'vector',
-		options: {
-			features: cz_gadm.features,
-		},
-	},
-];
 
 // Polygons - fill
 const fillStyle = {
@@ -115,9 +98,16 @@ const hoveredSelectedDefault = {
 	options: {
 		features: cz_gadm.features,
 		fidColumnName: 'GID_1',
+		hoverable: true,
+		hovered: {
+			style: 'default',
+		},
+		selectable: true,
 		selected: {
 			testSelection: {
 				keys: ['CZE.1_1'],
+				style: 'default',
+				hoveredStyle: 'default',
 			},
 		},
 	},
@@ -132,12 +122,14 @@ const hoveredSelectedDefined = {
 	options: {
 		features: cz_gadm.features,
 		fidColumnName: 'GID_1',
+		hoverable: true,
 		hovered: {
 			style: {
 				outlineColor: '#33c21e',
 				outlineWidth: 5,
 			},
 		},
+		selectable: true,
 		selected: {
 			testSelection: {
 				keys: ['CZE.1_1'],
@@ -302,30 +294,7 @@ const scalesStyleSize = {
 					attributeScale: {
 						size: {
 							inputInterval: [0, 100],
-							outputInterval: [1, 20],
-						},
-					},
-				},
-			],
-		},
-	],
-};
-
-const scalesStyleVolume = {
-	rules: [
-		{
-			styles: [
-				{
-					outlineColor: '#000000',
-					outlineWidth: 1,
-					fill: '#ffffff',
-				},
-				{
-					attributeKey: 'attr1',
-					attributeScale: {
-						volume: {
-							inputInterval: [0, 100],
-							outputInterval: [Math.PI, Math.PI * 400],
+							outputInterval: [5, 20],
 						},
 					},
 				},
@@ -342,129 +311,6 @@ const pointLayers_scales_size = [
 			features: points_50,
 			style: scalesStyleSize,
 			pointAsMarker: true,
-		},
-	},
-];
-
-const pointLayers_scales_volume = [
-	{
-		key: 'points',
-		type: 'vector',
-		options: {
-			features: points_50,
-			style: scalesStyleVolume,
-			pointAsMarker: true,
-		},
-	},
-];
-
-// Polygons & diagrams
-const diagramStyle = {
-	rules: [
-		{
-			styles: [
-				{
-					fill: '#cccccc',
-					outlineColor: '#000000',
-					outlineWidth: 1,
-					diagramShape: 'circle',
-					diagramFillOpacity: 1,
-					diagramFill: '#ff88ff',
-					diagramOutlineWidth: 1,
-					diagramOutlineColor: '#b61db6',
-				},
-				{
-					attributeKey: '22a43eb3-6552-476f-97a5-b47490519642',
-					attributeScale: {
-						diagramSize: {
-							inputInterval: [-10, 10],
-							outputInterval: [2000, 30000],
-						},
-					},
-				},
-			],
-		},
-	],
-};
-
-const polygonLayers_diagrams = [
-	{
-		key: 'polygons',
-		type: 'diagram',
-		options: {
-			features: cz_gadm.features,
-			style: diagramStyle,
-			fidColumnName: 'GID_1',
-		},
-	},
-];
-
-// Choropleth and diagrams
-const diagramChoroplethStyle = {
-	rules: [
-		{
-			styles: [
-				{
-					outlineWidth: 1,
-					outlineColor: '#666',
-					diagramShape: 'circle',
-					diagramFillOpacity: 1,
-					diagramFill: '#ff88ff',
-					diagramOutlineWidth: 1,
-					diagramOutlineColor: '#681968',
-				},
-				{
-					attributeKey: 'positive_attr',
-					attributeScale: {
-						diagramSize: {
-							inputInterval: [0, 10],
-							outputInterval: [2000, 20000],
-						},
-					},
-				},
-				{
-					attributeKey: 'diverging_attr',
-					attributeClasses: [
-						{
-							interval: [-5, -3],
-							intervalBounds: [true, false],
-							fill: '#d7191c',
-						},
-						{
-							interval: [-3, -1],
-							intervalBounds: [true, false],
-							fill: '#fdae61',
-						},
-						{
-							interval: [-1, 1],
-							intervalBounds: [true, false],
-							fill: '#ffffbf',
-						},
-						{
-							interval: [1, 3],
-							intervalBounds: [true, false],
-							fill: '#a6d96a',
-						},
-						{
-							interval: [3, 5],
-							intervalBounds: [true, false],
-							fill: '#1a9641',
-						},
-					],
-				},
-			],
-		},
-	],
-};
-
-const polygonLayers_countries = [
-	{
-		key: 'countries',
-		type: 'diagram',
-		options: {
-			features: nuts_2.features,
-			style: diagramChoroplethStyle,
-			fidColumnName: 'id',
 		},
 	},
 ];
@@ -489,7 +335,7 @@ const MapContainer = props => (
 		{props.hideWorldWind ? null : (
 			<div>
 				<PresentationMap
-					mapKey={utils.uuid()}
+					mapKey="world-wind-map"
 					mapComponent={WorldWindMap}
 					backgroundLayer={backgroundLayer}
 					layers={props.layers}
@@ -508,7 +354,7 @@ const MapContainer = props => (
 					layers={props.layers}
 					view={props.view}
 					onLayerClick={props.onSelect}
-					mapKey={utils.uuid()}
+					mapKey="leaflet-map"
 				>
 					<MapControls zoomOnly levelsBased />
 				</PresentationMap>
@@ -531,7 +377,7 @@ class VectorStyleDoc extends React.PureComponent {
 
 	onLayerClick(map, layer, features) {
 		if (layer === 'polygons_hoveredSelectedDefault') {
-			let updatedLayers = [
+			const updatedLayers = [
 				{
 					...hoveredSelectedDefault,
 					options: {
@@ -617,10 +463,29 @@ class VectorStyleDoc extends React.PureComponent {
 
 				<h3 id="hovered-selected">Hovered and selected</h3>
 				<p>
-					If styles for hovered, selected or hovered selected are not defined,
-					default styles will be used. Move cursor over area to see the popup
-					and hovered style. Click on the area to select it.
+					Default styles for hover and selection. Move cursor over area to see
+					hovered style. Click on the area to select it.
 				</p>
+				<SyntaxHighlighter language="js">
+					{`{
+\tkey: "polygons_hoveredSelectedDefined",
+\ttype: "vector",
+\toptions: {
+\t\tfeatures: cz_gadm.features,
+\t\tfidColumnName: "GID_1",
+\t\thovered: {
+\t\t\tstyle: "default"
+\t\t},
+\t\tselected: {
+\t\t\ttestSelection: {
+\t\t\t\tkeys: ["CZE.1_1"],
+\t\t\t\tstyle: "default",
+\t\t\t\thoveredStyle: "default"
+\t\t\t}
+\t\t}
+\t}
+}`}
+				</SyntaxHighlighter>
 				<HoverHandler
 					popupContentComponent={props => <b>{props.data['NAME_1']}</b>}
 				>
@@ -645,12 +510,14 @@ class VectorStyleDoc extends React.PureComponent {
 \toptions: {
 \t\tfeatures: cz_gadm.features,
 \t\tfidColumnName: "GID_1",
+\t\thoverable: true,
 \t\thovered: {
 \t\t\tstyle: {
 \t\t\t\toutlineColor: "#33c21e",
 \t\t\t\toutlineWidth: 5
 \t\t\t}
 \t\t},
+\t\tselectable: true,
 \t\tselected: {
 \t\t\ttestSelection: {
 \t\t\t\tkeys: ["CZE.1_1"],
@@ -772,13 +639,6 @@ class VectorStyleDoc extends React.PureComponent {
 					hideWorldWind
 				/>
 
-				<p>This time symbol volume is specified with scale.</p>
-				<MapContainer
-					layers={pointLayers_scales_volume}
-					view={pragueView}
-					hideWorldWind
-				/>
-
 				<h3 id="transformations">Transformations</h3>
 				<ImplementationToDo>
 					Currently implemented for arrows in WorldWind LargeDataLayer only.{' '}
@@ -795,86 +655,6 @@ class VectorStyleDoc extends React.PureComponent {
 					</Link>
 					.
 				</ImplementationToDo>
-
-				<h3 id="diagrams">Diagrams</h3>
-				<ImplementationToDo>
-					This functionality is not implemented in WorldWind
-				</ImplementationToDo>
-
-				<h4>Basic diagrams</h4>
-				<SyntaxHighlighter language="js">
-					{`{
-\tstyles: [{
-\t\tfill: "#cccccc",
-\t\tdiagramShape: "circle",
-\t\tdiagramFillOpacity: 0.85
-\t}, {
-\t\tattributeKey: "22a43eb3-6552-476f-97a5-b47490519642",
-\t\tattributeScale: {
-\t\t\tdiagramSize: {
-\t\t\t\t"inputInterval": [-10,10],
-\t\t\t\t"outputInterval": [2000, 30000]
-\t\t\t}
-\t\t}
-\t}]
-}`}
-				</SyntaxHighlighter>
-				<MapContainer
-					layers={polygonLayers_diagrams}
-					view={czView}
-					hideWorldWind
-				/>
-
-				<h4>Basic diagrams with choropleth</h4>
-				<SyntaxHighlighter language="js">
-					{`{
-\t\tstyles: [{
-\t\t\toutlineWidth: 1,
-\t\t\toutlineColor: "#666",
-\t\t\tdiagramShape: "circle",
-\t\t\tdiagramFillOpacity: 1
-\t\t}, {
-\t\t\tattributeKey: "positive_attr",
-\t\t\tattributeScale: {
-\t\t\t\tdiagramSize: {
-\t\t\t\t\t"inputInterval": [0,10],
-\t\t\t\t\t"outputInterval": [2000, 20000]
-\t\t\t\t}
-\t\t\t}
-\t\t}, {
-\t\t\tattributeKey: "diverging_attr",
-\t\t\tattributeClasses: [
-\t\t\t\t{
-\t\t\t\t\tinterval: [-5,-3],
-\t\t\t\t\tintervalBounds: [true, false],
-\t\t\t\t\tfill: "#d7191c"
-\t\t\t\t},
-\t\t\t\t{
-\t\t\t\t\tinterval: [-3,-1],
-\t\t\t\t\tintervalBounds: [true, false],
-\t\t\t\t\tfill: "#fdae61"
-\t\t\t\t},{
-\t\t\t\t\tinterval: [-1,1],
-\t\t\t\t\tintervalBounds: [true, false],
-\t\t\t\t\tfill: "#ffffbf"
-\t\t\t\t},{
-\t\t\t\t\tinterval: [1,3],
-\t\t\t\t\tintervalBounds: [true, false],
-\t\t\t\t\tfill: "#a6d96a"
-\t\t\t\t},{
-\t\t\t\t\tinterval: [3,5],
-\t\t\t\t\tintervalBounds: [true, false],
-\t\t\t\t\tfill: "#1a9641"
-\t\t\t\t}
-\t\t\t]
-\t\t}]
-}`}
-				</SyntaxHighlighter>
-				<MapContainer
-					layers={polygonLayers_countries}
-					view={europeView}
-					hideWorldWind
-				/>
 
 				<h3 id="large-data-layer">World Wind LargeDataLayer example</h3>
 
