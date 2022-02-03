@@ -5,8 +5,8 @@ module.exports = function override(config, env) {
 	config.resolve = {
 		alias: {
 			// "@gisatcz/ptr-charts": "C:/Users/pvlach/DATA/ptr-charts",
-			react: 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/node_modules/react',
-			'@gisatcz/ptr-maps': 'C:/Users/PavelVlach/WebstormProjects/ptr-maps',
+			// react: 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/node_modules/react',
+			// '@gisatcz/ptr-maps': 'C:/Users/PavelVlach/WebstormProjects/ptr-maps',
 			// "@gisatcz/ptr-utils": "C:/Users/pvlach/DATA/ptr-utils",
 			// "@gisatcz/ptr-core": "C:/Users/pvlach/DATA/ptr-core",
 			// "@gisatcz/ptr-state": "C:/Users/PavelVlach/WebstormProjects/ptr-state",
