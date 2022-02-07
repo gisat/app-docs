@@ -1,11 +1,7 @@
 import React from 'react';
 import {cloneDeep as _cloneDeep} from 'lodash';
 import Page, {ImplementationToDo, SyntaxHighlighter} from '../../../../Page';
-import {
-	DeckGlMap,
-	MapControls,
-	PresentationMap,
-} from '@gisatcz/ptr-maps';
+import {DeckGlMap, MapControls, PresentationMap} from '@gisatcz/ptr-maps';
 import largePointDataFeatures from '../../../../mockData/map/largePointData/sample_points_5000_mini.json';
 import nuts_2 from '../../../../mockData/map/nuts_2.json';
 import {Link} from 'react-router-dom';
@@ -78,6 +74,13 @@ const choropleth = {
 	options: {
 		features: nuts_2.features,
 		hoverable: true,
+		selectable: true,
+		selected: {
+			testSelection: {
+				keys: ['CZ03'],
+				style: 'default',
+			},
+		},
 		style: choroplethStyle,
 		fidColumnName: 'id',
 	},
@@ -164,6 +167,40 @@ const CustomTooltip = props => {
 };
 
 class VectorLayer extends React.PureComponent {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			choroplethLayers,
+		};
+
+		this.onLayerClick = this.onLayerClick.bind(this);
+	}
+
+	onLayerClick(map, layer, features) {
+		if (map === 'choropleth-map') {
+			let updatedLayers = [
+				{
+					...choropleth,
+					options: {
+						...choropleth.options,
+						selected: {
+							...choropleth.options.selected,
+							testSelection: {
+								...choropleth.options.selected.testSelection,
+								keys: features,
+							},
+						},
+					},
+				},
+			];
+
+			this.setState({
+				choroplethLayers: updatedLayers,
+			});
+		}
+	}
+
 	render() {
 		return (
 			<Page title="Deck.gl WMS layer">
@@ -196,7 +233,8 @@ class VectorLayer extends React.PureComponent {
 						mapKey="choropleth-map"
 						view={viewEurope}
 						backgroundLayer={backgroundLayer}
-						layers={choroplethLayers}
+						layers={this.state.choroplethLayers}
+						onLayerClick={this.onLayerClick}
 					>
 						<MapControls zoomOnly levelsBased />
 					</PresentationMap>
