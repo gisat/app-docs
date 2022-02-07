@@ -94,6 +94,7 @@ import Data from './components/pages/code/state/Data';
 import RasterStyleDoc from './components/pages/architecture/storeDataTypes/commonDataTypes/StyleDoc/RasterStyleDoc';
 import TimelineDoc from './components/pages/components/controls/timeline/Timeline';
 import MapTimelineDoc from './components/pages/components/controls/timeline/MapTimeline';
+import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
 
 const {store} = createStore();
@@ -251,8 +252,11 @@ ReactDOM.render(
 							>
 								<Anchor label="Props" path="props" />
 								<Anchor label="WMTS layer" path="wmts" />
-								<Anchor label="Vector layer" path="vector" />
-								<Anchor label="Tooltip" path="tooltip" />
+								<Page
+									label="Vector layer"
+									path="vectorLayer"
+									component={VectorLayer}
+								/>
 								<Page label="WMS layer" path="wmsLayer" component={WmsLayer} />
 							</Directory>
 							<Directory
