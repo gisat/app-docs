@@ -12,6 +12,7 @@ import Page, {
 import {
 	WorldWindMap,
 	ReactLeafletMap,
+	DeckGlMap,
 	MapControls,
 	PresentationMap,
 } from '@gisatcz/ptr-maps';
@@ -185,6 +186,7 @@ const polygonLayers_attributeValues = [
 		options: {
 			features: cz_gadm.features,
 			style: attributeValuesStyle,
+			fidColumnName: 'GID_1',
 		},
 	},
 ];
@@ -231,6 +233,7 @@ const polygonLayers_intervals = [
 		options: {
 			features: cz_gadm.features,
 			style: intervalsStyle,
+			fidColumnName: 'GID_1',
 		},
 	},
 ];
@@ -355,6 +358,20 @@ const MapContainer = props => (
 					view={props.view}
 					onLayerClick={props.onSelect}
 					mapKey="leaflet-map"
+				>
+					<MapControls zoomOnly levelsBased />
+				</PresentationMap>
+			</div>
+		)}
+		{props.hideDeck ? null : (
+			<div>
+				<PresentationMap
+					mapComponent={DeckGlMap}
+					backgroundLayer={backgroundLayer}
+					layers={props.layers}
+					view={props.view}
+					onLayerClick={props.onSelect}
+					mapKey="deck-map"
 				>
 					<MapControls zoomOnly levelsBased />
 				</PresentationMap>
@@ -600,6 +617,9 @@ class VectorStyleDoc extends React.PureComponent {
 				<p>
 					It is possible to set fill, outlines or opacity based on the scale.
 				</p>
+				<ImplementationToDo>
+					This functionality is not implemented in DeckGlMap yet.
+				</ImplementationToDo>
 				<SyntaxHighlighter language="js">
 					{`{
 \tstyles: [{
@@ -623,7 +643,7 @@ class VectorStyleDoc extends React.PureComponent {
 \t}]
 }`}
 				</SyntaxHighlighter>
-				<MapContainer layers={polygonLayers_scales} view={czView} />
+				<MapContainer layers={polygonLayers_scales} view={czView} hideDeck />
 
 				<p>
 					For point layers (only if using ReactLeafletMap), you can specify
@@ -637,6 +657,7 @@ class VectorStyleDoc extends React.PureComponent {
 					layers={pointLayers_scales_size}
 					view={pragueView}
 					hideWorldWind
+					hideDeck
 				/>
 
 				<h3 id="transformations">Transformations</h3>
