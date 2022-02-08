@@ -17,7 +17,7 @@ const backgroundLayer = {
 	key: 'background-osm',
 	type: 'wmts',
 	options: {
-		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+		url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
 	},
 };
 
@@ -27,7 +27,7 @@ const cuzk = {
 	name: 'CUZK Ortofoto',
 	type: 'wms',
 	options: {
-		url: 'http://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx',
+		url: 'https://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx',
 		params: {
 			layers: 'GR_ORTFOTORGB',
 		},

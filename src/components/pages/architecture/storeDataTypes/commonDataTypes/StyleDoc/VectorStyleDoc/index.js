@@ -37,7 +37,7 @@ const backgroundLayer = {
 	key: 'background-osm',
 	type: 'wmts',
 	options: {
-		url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+		url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
 	},
 };
 
