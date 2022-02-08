@@ -23,8 +23,7 @@ class VectorLayers extends React.PureComponent {
 				</p>
 
 				<ImplementationToDo>
-					All params should be implemented for Leaflet. In WorldWind, only the
-					basics are implemented.
+					In WorldWindMap, only the basics are implemented.
 				</ImplementationToDo>
 
 				<SyntaxHighlighter language="javascript">
@@ -64,8 +63,8 @@ class VectorLayers extends React.PureComponent {
 
 				<h2>options</h2>
 				<PropertyDescription id="features" name="features" dataType="array">
-					For <InlineCodeHighlighter>type="vector"</InlineCodeHighlighter> only.
-					A list of{' '}
+					For <InlineCodeHighlighter>type="vector"</InlineCodeHighlighter> only
+					and <b>required</b>. A list of{' '}
 					<a
 						target="_blank"
 						href="https://tools.ietf.org/html/rfc7946#section-3.2"
@@ -77,7 +76,7 @@ class VectorLayers extends React.PureComponent {
 
 				<PropertyDescription id="tiles" name="tiles" dataType="array">
 					For <InlineCodeHighlighter>type="tiled-vector"</InlineCodeHighlighter>{' '}
-					only. A collection of tile objects (
+					only and <b>required</b>. A collection of tile objects (
 					<Link to="../../../code/packages/tilegrid">more about tiles</Link>):
 					<SyntaxHighlighter language="javascript">
 						{`{
@@ -89,17 +88,9 @@ class VectorLayers extends React.PureComponent {
 				</PropertyDescription>
 
 				<PropertyDescription name="fidColumnName" dataType="string">
-					A feature property which should be used as an identifier.
-					<ImplementationToDo>
-						According to the GeoJSON specification,{' '}
-						<a
-							target="_blank"
-							href="https://tools.ietf.org/html/rfc7946#section-3.2"
-						>
-							the id should be used as an identifier
-						</a>
-						.
-					</ImplementationToDo>
+					Required if features don't have{' '}
+					<InlineCodeHighlighter>id</InlineCodeHighlighter> property. A feature
+					property which should be used as an identifier.
 				</PropertyDescription>
 
 				<PropertyDescription name="hoverable" dataType="boolean">
@@ -113,20 +104,20 @@ class VectorLayers extends React.PureComponent {
 	style: "default" | {fill: "#ddeeff", fillOpacity: 0.5}, // single style object
 }`}
 					</SyntaxHighlighter>
+					Not used in DeckGlMap.
 				</PropertyDescription>
 
 				<PropertyDescription name="pointAsMarker" dataType="boolean">
 					Only for layers with point geometries. If true, the points will have
 					the same size in pixels for each boxRange/zoom level. Otherwise, the
 					points will have the same geographical size.
-					<ImplementationToDo>Implemented for Leaflet only</ImplementationToDo>
 				</PropertyDescription>
 
 				<PropertyDescription name="renderAs" dataType="array">
 					A collection of rules. Each rule must have a boxRangeRange specified
 					saying for which range of boxRange the settings will apply. Currently,
-					it is possible to change renderingTechnique, style and the way how
-					points are displayed based on box range.
+					it is possible to change renderingTechnique (in ReactLeafletMap),
+					style and the way how points are displayed based on box range.
 					<SyntaxHighlighter language="javascript">
 						{`[
 	{
@@ -141,13 +132,12 @@ class VectorLayers extends React.PureComponent {
 	}
 ]`}
 					</SyntaxHighlighter>
-					<ImplementationToDo>Implemented for Leaflet only</ImplementationToDo>
 				</PropertyDescription>
 
 				<PropertyDescription name="renderingTechnique" dataType="string">
-					Using which technique should be the layer rendered. Use "canvas" for
-					large datasets or "svg" for better interactivity. Default is "svg".
-					<ImplementationToDo>Implemented for Leaflet only</ImplementationToDo>
+					Using which technique should be the layer rendered in ReactLeafletMap.
+					Use "canvas" for large datasets or "svg" for better interactivity.
+					Default is "svg".
 				</PropertyDescription>
 
 				<PropertyDescription name="selectable" dataType="boolean">

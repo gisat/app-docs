@@ -41,7 +41,7 @@ class LayersDoc extends React.PureComponent {
 					display final layer on the map.
 				</p>
 
-				<h3>WMS</h3>
+				<h3 id="wms">WMS</h3>
 				<SyntaxHighlighter language="javascript">
 					{`{
 	key: "example_wms_layer",
@@ -51,7 +51,13 @@ class LayersDoc extends React.PureComponent {
 	options: {
 		url: "http://192.168.2.206/geoserver/geonode/wms?"
 		params: {
-			layers: ""
+			layers: "layer",
+			styles: "", // optional
+			format: "image/png", // optional
+			tileSize: 512, // optional
+			transparent: true, // optional
+			version: '1.1.1' // optional
+			crs: 'EPSG:4326' // optional for ReactLeafletMap
 		}
 	}
 }`}
