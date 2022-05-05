@@ -96,6 +96,7 @@ import TimelineDoc from './components/pages/components/controls/timeline/Timelin
 import MapTimelineDoc from './components/pages/components/controls/timeline/MapTimeline';
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
+import GeonamesSearchDoc from './components/pages/components/commonFeatures/GeonamesSearchDoc';
 
 const {store} = createStore();
 
@@ -441,6 +442,11 @@ ReactDOM.render(
 					</Directory>
 					<Directory label="Common features" path="commonFeatures">
 						<Page label="AppContainer" path="appContainer" />
+						<Page
+							label="GeonamesSearch"
+							path="geonamesSearch"
+							component={GeonamesSearchDoc}
+						/>
 						<Page
 							label="HoverHandler"
 							path="hoverHandler"
