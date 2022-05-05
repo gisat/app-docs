@@ -4,10 +4,10 @@ module.exports = function override(config) {
 	// comment when using package from npm
 	config.resolve = {
 		alias: {
-			react:
-				'C:/Users/PavelVlach/WebstormProjects/ptr-components/node_modules/react',
-			'@gisatcz/ptr-components':
-				'C:/Users/PavelVlach/WebstormProjects/ptr-components',
+			// react:
+			// 	'C:/Users/PavelVlach/WebstormProjects/ptr-components/node_modules/react',
+			// '@gisatcz/ptr-components':
+			// 	'C:/Users/PavelVlach/WebstormProjects/ptr-components',
 			// 'classnames': './node_modules/classnames',
 			// 'react': '/Users/vojtadubrovsky/Work/GISAT/git/app-esaWorldCerealProductViewer/node_modules/@gisatcz/ptr-state/node_modules/react',
 			// '@gisatcz/ptr-state': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-state',
