@@ -30,11 +30,22 @@ const GeonamesSearchDoc = () => {
 			<ComponentPropsTable
 				content={[
 					{
+						name: 'className',
+						type: 'string',
+					},
+					{
 						name: 'onPlaceSelect',
 						type: 'function',
 						required: true,
 						description:
 							'Callback function which takes selected item as parameter.',
+					},
+					{
+						name: 'maxPlaces',
+						type: 'number',
+						default: 5,
+						description:
+							'Maximum number of returning places which match search string.',
 					},
 					{
 						name: 'apiKey',
