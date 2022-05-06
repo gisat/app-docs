@@ -42,8 +42,20 @@ const GeonamesSearchDoc = () => {
 						description: 'Service URL.',
 					},
 					{
+						name: 'autoFocus',
+						type: 'boolean',
+						default: false,
+						description: 'If true, the search box has focus when rendered.',
+					},
+					{
 						name: 'className',
 						type: 'string',
+					},
+					{
+						name: 'hideClearIcon',
+						type: 'boolean',
+						default: false,
+						description: 'True if clear icon should be hidden.',
 					},
 					{
 						name: 'hideSearchIcon',
