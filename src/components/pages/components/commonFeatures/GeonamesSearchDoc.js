@@ -21,7 +21,7 @@ const GeonamesSearchDoc = () => {
 	const [view, setView] = useState(defaultView);
 
 	const onPlaceSelect = place => {
-		setView(place.pantherView);
+		setView(place.pantherMapView);
 	};
 
 	return (
