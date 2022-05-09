@@ -38,7 +38,7 @@ const GeonamesSearchDoc = () => {
 					{
 						name: 'apiUrl',
 						type: 'string',
-						default: 'http://api.geonames.org/searchJSON',
+						default: 'https://secure.geonames.org/searchJSON',
 						description: 'Service URL.',
 					},
 					{
