@@ -195,6 +195,7 @@ class MapWrapperDoc extends React.PureComponent {
 						backgroundLayer={backgroundLayer}
 						view={view}
 					>
+						{/* // FIXME controlls */}
 						<MapControls />
 					</PresentationMap>
 				</div>
@@ -224,7 +225,7 @@ class MapWrapperDoc extends React.PureComponent {
 							title: true,
 						}}
 					>
-						<MapControls levelsBased zoomOnly />
+						<MapControls levelsBased zoomOnly key={'MapControls'} />
 					</ConnectedMapSet>
 				</div>
 
@@ -281,6 +282,7 @@ const map = (
 							boxRange: 100000,
 						}}
 					>
+						{/* // FIXME controlls */}
 						<MapControls levelsBased zoomOnly />
 					</PresentationMap>
 				</div>

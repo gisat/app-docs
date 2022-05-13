@@ -93,6 +93,7 @@ class MapSetDoc extends React.PureComponent {
 
 		props.addSet({
 			key: 'docs-MapSet-worldWind',
+			activeMapKey: 'docs-MapSetWorldWind-Map1',
 			data: {
 				backgroundLayer: connectedBackgroundLayer,
 				view: {
@@ -218,8 +219,9 @@ class MapSetDoc extends React.PureComponent {
 						stateMapSetKey="docs-MapSetDeck"
 						mapComponent={DeckGlMap}
 						connectedMapComponent={ConnectedMap}
+						wrapper
 					>
-						<MapControls levelsBased zoomOnly />
+						<MapControls levelsBased zoomOnly key={'mapControls'} />
 					</ConnectedMapSet>
 				</div>
 				<SyntaxHighlighter language="jsx">
@@ -252,6 +254,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 				</p>
 				<div style={{height: 500}}>
 					<MapSet
+						wrapper
 						activeMapKey="mapDeck-2"
 						mapComponent={DeckGlMap}
 						view={{
@@ -263,10 +266,10 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 						}}
 						backgroundLayer={unconnectedBackgroundOsm}
 					>
-						<MapSetPresentationMap mapKey="mapDeck-1" />
-						<MapSetPresentationMap mapKey="mapDeck-2" />
-						<MapSetPresentationMap mapKey="mapDeck-3" />
-						<MapControls levelsBased zoomOnly />
+						<MapSetPresentationMap mapKey="mapDeck-1" key={'map-1'} />
+						<MapSetPresentationMap mapKey="mapDeck-2" key={'map-2'} />
+						<MapSetPresentationMap mapKey="mapDeck-3" key={'map-3'} />
+						<MapControls levelsBased zoomOnly key={'mapControls'} />
 					</MapSet>
 				</div>
 				<SyntaxHighlighter language="jsx">
@@ -312,11 +315,12 @@ import {DeckGlMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
+						wrapper
 						stateMapSetKey="docs-MapSet"
 						mapComponent={ReactLeafletMap}
 						connectedMapComponent={ConnectedMap}
 					>
-						<MapControls levelsBased zoomOnly />
+						<MapControls levelsBased zoomOnly key={'mapControls'} />
 					</ConnectedMapSet>
 				</div>
 				<SyntaxHighlighter language="jsx">
@@ -349,6 +353,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
+						wrapper
 						setKey="uncontrolled-leaflet"
 						activeMapKey="map-2"
 						mapComponent={ReactLeafletMap}
@@ -361,10 +366,10 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 						}}
 						backgroundLayer={connectedBackgroundLayer}
 					>
-						<MapSetPresentationMap mapKey="map-1" />
-						<MapSetPresentationMap mapKey="map-2" />
-						<MapSetPresentationMap mapKey="map-3" />
-						<MapControls levelsBased zoomOnly />
+						<MapSetPresentationMap mapKey="map-1" key={'map-1'} />
+						<MapSetPresentationMap mapKey="map-2" key={'map-2'} />
+						<MapSetPresentationMap mapKey="map-3" key={'map-3'} />
+						<MapControls levelsBased zoomOnly key={'mapControls'} />
 					</ConnectedMapSet>
 				</div>
 				<SyntaxHighlighter language="jsx">
@@ -403,6 +408,7 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 				</p>
 				<div style={{height: 500}}>
 					<MapSet
+						wrapper
 						activeMapKey="map-2"
 						mapComponent={ReactLeafletMap}
 						view={{
@@ -414,10 +420,10 @@ const ConnectedMapSet = connects.MapSet(MapSet);
 						}}
 						backgroundLayer={unconnectedBackgroundOsm}
 					>
-						<MapSetPresentationMap mapKey="map-1" />
-						<MapSetPresentationMap mapKey="map-2" />
-						<MapSetPresentationMap mapKey="map-3" />
-						<MapControls levelsBased zoomOnly />
+						<MapSetPresentationMap mapKey="map-1" key={'map-1'} />
+						<MapSetPresentationMap mapKey="map-2" key={'map-2'} />
+						<MapSetPresentationMap mapKey="map-3" key={'map-3'} />
+						<MapControls levelsBased zoomOnly key={'mapControls'} />
 					</MapSet>
 				</div>
 				<SyntaxHighlighter language="jsx">
@@ -459,11 +465,12 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
+						wrapper
 						stateMapSetKey="docs-MapSet-worldWind"
 						mapComponent={WorldWindMap}
 						connectedMapComponent={ConnectedMap}
 					>
-						<MapControls />
+						<MapControls key={'mapControls'} />
 					</ConnectedMapSet>
 				</div>
 
@@ -475,29 +482,7 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 				</p>
 				<div style={{height: 500}}>
 					<ConnectedMapSet
-						activeMapKey="map-2"
-						mapComponent={WorldWindMap}
-						view={{
-							boxRange: 2000000,
-							heading: 10,
-							tilt: 10,
-						}}
-						sync={{
-							boxRange: true,
-							center: true,
-						}}
-						backgroundLayer={unconnectedBackgroundOsm}
-					>
-						<MapSetPresentationMap mapKey="map-1" />
-						<MapSetPresentationMap mapKey="map-2" />
-						<MapSetPresentationMap mapKey="map-3" />
-						<MapControls />
-					</ConnectedMapSet>
-				</div>
-
-				<h3>Uncontrolled unconnected</h3>
-				<div style={{height: 500}}>
-					<MapSet
+						wrapper
 						activeMapKey="map-2"
 						mapComponent={WorldWindMap}
 						view={{
@@ -509,6 +494,33 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 							boxRange: true,
 							center: true,
 							heading: true,
+							tilt: true,
+						}}
+						backgroundLayer={unconnectedBackgroundOsm}
+					>
+						<MapSetPresentationMap mapKey="map-1" key={'map-1'} />
+						<MapSetPresentationMap mapKey="map-2" key={'map-2'} />
+						<MapSetPresentationMap mapKey="map-3" key={'map-3'} />
+						<MapControls key={'mapControls'} />
+					</ConnectedMapSet>
+				</div>
+
+				<h3>Uncontrolled unconnected</h3>
+				<div style={{height: 500}}>
+					<MapSet
+						wrapper
+						activeMapKey="map-2"
+						mapComponent={WorldWindMap}
+						view={{
+							boxRange: 2000000,
+							heading: 10,
+							tilt: 10,
+						}}
+						sync={{
+							boxRange: true,
+							center: true,
+							heading: true,
+							tilt: true,
 						}}
 						backgroundLayer={unconnectedBackgroundOsm}
 						layers={unconnectedLayersCuzk}
@@ -516,7 +528,7 @@ import {ReactLeafletMap, MapControls, MapSet} from "@gisatcz/ptr-maps";
 						<MapSetPresentationMap mapKey="map-1" />
 						<MapSetPresentationMap mapKey="map-2" />
 						<MapSetPresentationMap mapKey="map-3" />
-						<MapControls />
+						<MapControls key={'mapControls'} />
 					</MapSet>
 				</div>
 			</Page>
