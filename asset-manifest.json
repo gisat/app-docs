@@ -1,20 +1,29 @@
 {
   "files": {
-    "main.css": "/app-docs/static/css/main.4bf7c438.css",
-    "main.js": "/app-docs/static/js/main.d9ac164c.js",
-    "static/media/Esri_WorldImagery.png": "/app-docs/static/media/Esri_WorldImagery.f44b15e0de6b83cfdbe7.png",
-    "static/media/Bing_Aerial.png": "/app-docs/static/media/Bing_Aerial.1db8c29bcc0c460eeeb8.png",
-    "static/media/Esri_WorldTopoMap.png": "/app-docs/static/media/Esri_WorldTopoMap.7360500a5142d67f6fdf.png",
-    "static/media/OpenStreetMap_Mapnik.png": "/app-docs/static/media/OpenStreetMap_Mapnik.6208aac31249ed4fa79f.png",
-    "static/media/panther-icon.png": "/app-docs/static/media/panther-icon.8fc0e40d2b05f31ad2b3.png",
+    "main.css": "/app-docs/static/css/main.6a2074fe.chunk.css",
+    "main.js": "/app-docs/static/js/main.cf253baa.chunk.js",
+    "main.js.map": "/app-docs/static/js/main.cf253baa.chunk.js.map",
+    "runtime-main.js": "/app-docs/static/js/runtime-main.ff3d883f.js",
+    "runtime-main.js.map": "/app-docs/static/js/runtime-main.ff3d883f.js.map",
+    "static/css/2.1f89547f.chunk.css": "/app-docs/static/css/2.1f89547f.chunk.css",
+    "static/js/2.c9a475ac.chunk.js": "/app-docs/static/js/2.c9a475ac.chunk.js",
+    "static/js/2.c9a475ac.chunk.js.map": "/app-docs/static/js/2.c9a475ac.chunk.js.map",
     "index.html": "/app-docs/index.html",
-    "static/media/ec9e28ff.svg": "/app-docs/static/media/ec9e28ff.1f9f459031f765325e06.svg",
-    "static/media/fddc03b8.svg": "/app-docs/static/media/fddc03b8.c4b786ee64e8dfbd75ca.svg",
-    "main.4bf7c438.css.map": "/app-docs/static/css/main.4bf7c438.css.map",
-    "main.d9ac164c.js.map": "/app-docs/static/js/main.d9ac164c.js.map"
+    "static/css/2.1f89547f.chunk.css.map": "/app-docs/static/css/2.1f89547f.chunk.css.map",
+    "static/css/main.6a2074fe.chunk.css.map": "/app-docs/static/css/main.6a2074fe.chunk.css.map",
+    "static/js/2.c9a475ac.chunk.js.LICENSE.txt": "/app-docs/static/js/2.c9a475ac.chunk.js.LICENSE.txt",
+    "static/media/Bing_Aerial.1db8c29b.png": "/app-docs/static/media/Bing_Aerial.1db8c29b.png",
+    "static/media/Esri_WorldImagery.f44b15e0.png": "/app-docs/static/media/Esri_WorldImagery.f44b15e0.png",
+    "static/media/Esri_WorldTopoMap.7360500a.png": "/app-docs/static/media/Esri_WorldTopoMap.7360500a.png",
+    "static/media/OpenStreetMap_Mapnik.6208aac3.png": "/app-docs/static/media/OpenStreetMap_Mapnik.6208aac3.png",
+    "static/media/index.scss": "/app-docs/static/media/b706a53c.11180903.svg",
+    "static/media/panther-icon.8fc0e40d.png": "/app-docs/static/media/panther-icon.8fc0e40d.png"
   },
   "entrypoints": [
-    "static/css/main.4bf7c438.css",
-    "static/js/main.d9ac164c.js"
+    "static/js/runtime-main.ff3d883f.js",
+    "static/css/2.1f89547f.chunk.css",
+    "static/js/2.c9a475ac.chunk.js",
+    "static/css/main.6a2074fe.chunk.css",
+    "static/js/main.cf253baa.chunk.js"
   ]
 }
