@@ -12,7 +12,9 @@ import {
 	CenterPicker,
 	Mouse,
 	Years,
+	YearsLabels,
 	Months,
+	MonthsLabels,
 	TimeLineHover,
 	HoverHandler,
 	position,
@@ -182,9 +184,15 @@ class TimelineDoc extends React.PureComponent {
 			const {activeLevel} = props;
 			switch (activeLevel) {
 				case 'year':
-					return React.createElement(Years, {...props, key: 'year'});
+					return <>
+						<Years key={'years'} {...props}/>
+						<YearsLabels key={'yearsLabes'} {...props}/>
+					</>
 				case 'month':
-					return React.createElement(Months, {...props, key: 'month'});
+					return <>
+						<Months key={'months'} {...props}/>
+						<MonthsLabels key={'monthsLabes'} {...props}/>
+					</>
 			}
 			return React.createElement(Months, {...props, key: 'month'});
 		};
