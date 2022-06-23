@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import moment from 'moment';
-import Page, { InlineCodeHighlighter, SyntaxHighlighter } from '../../../../Page';
+import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
 import './timeline.scss';
 import ComponentPropsTable, {
 	Prop,
@@ -13,6 +13,7 @@ import {
 	Mouse,
 	Years,
 	Months,
+	MapTimelineLegend,
 	TimeLineHover,
 	HoverHandler,
 	position,
@@ -24,67 +25,75 @@ const MapTimelinePresentation = MapTimeline.MapTimelinePresentation;
 
 const LayerRowPresentation = MapTimeline.LayerRowPresentation;
 const LayerRowItemPresentation = MapTimeline.LayerRowItemPresentation;
-const LayerRowPeriodItemPresentation = MapTimeline.LayerRowPeriodItemPresentation;
+const LayerRowPeriodItemPresentation =
+	MapTimeline.LayerRowPeriodItemPresentation;
 
-const LayerRowItemComponentWrapped = (props) => <LayerRowItemPresentation {...props} LayerRowPeriodItemComponent={LayerRowPeriodItemPresentation} />
-const LayerRowComponentWrapped = (props) => <LayerRowPresentation {...props} LayerRowItemComponent={LayerRowItemComponentWrapped} />
+const LayerRowItemComponentWrapped = props => (
+	<LayerRowItemPresentation
+		{...props}
+		LayerRowPeriodItemComponent={LayerRowPeriodItemPresentation}
+	/>
+);
+const LayerRowComponentWrapped = props => (
+	<LayerRowPresentation
+		{...props}
+		LayerRowItemComponent={LayerRowItemComponentWrapped}
+	/>
+);
 
-
-const { getTootlipPosition } = position;
-const { getIntersectionLayers, getIntersectionOverlays, overlap } =
+const {getTootlipPosition} = position;
+const {getIntersectionLayers, getIntersectionOverlays, overlap} =
 	utils.overlays;
 
 const TOOLTIP_PADDING = 5;
 
-const layers = [
-	{
-		lineHeight: 16,
-		elementHeight: 10,
-		legend: {
-			title: 'layer 1',
-		},
-		items: [
-			{
-				periods: [{ data: { start: '2014', end: '2015' } }],
-				colors: {
-					basic: 'red', //should be on row
-					active: 'blue', //should be on row
-				},
-				states: ['basic', 'active', 'hover', 'disabled'],
-				activeStates: ['basic'],
-				mapZIndex: 1,
-				layerState: {
-					layerTemplateKey: 'lt2',
-				},
-			},
-			{
-				periods: [{ data: { start: '2016', end: '2018' } }],
-				colors: {
-					basic: 'red', //should be on row
-					active: 'blue', //should be on row
-				},
-				states: ['basic', 'active', 'hover', 'disabled'],
-				activeStates: ['basic'],
-				mapZIndex: 2,
-				layerState: {
-					layerTemplateKey: 'lt1',
-				},
-			},
-		],
-		controlMapState: false, //'toggle', true,
-	}
-];
+const layers = [];
+
+// const layers = [
+// 	{
+// 		lineHeight: 16,
+// 		elementHeight: 10,
+// 		legend: {
+// 			title: 'layer 1',
+// 		},
+// 		items: [
+// 			{
+// 				periods: [{data: {start: '2014', end: '2015'}}],
+// 				colors: {
+// 					basic: 'red', //should be on row
+// 					active: 'blue', //should be on row
+// 				},
+// 				states: ['basic', 'active', 'hover', 'disabled'],
+// 				activeStates: ['basic'],
+// 				mapZIndex: 1,
+// 				layerState: {
+// 					layerTemplateKey: 'lt2',
+// 				},
+// 			},
+// 			{
+// 				periods: [{data: {start: '2016', end: '2018'}}],
+// 				colors: {
+// 					basic: 'red', //should be on row
+// 					active: 'blue', //should be on row
+// 				},
+// 				states: ['basic', 'active', 'hover', 'disabled'],
+// 				activeStates: ['basic'],
+// 				mapZIndex: 2,
+// 				layerState: {
+// 					layerTemplateKey: 'lt1',
+// 				},
+// 			},
+// 		],
+// 		controlMapState: false, //'toggle', true,
+// 	},
+// ];
 const MOUSEBUFFERWIDTH = 10;
 
-
 const MapTimelineDoc = () => {
-
 	const getOverlaysHoverContent = (x, time, evt, hoverContext, layerRows) => {
-
 		//
 		// FIXME - fix getting hovered layers from timeline on scrolled page!!!
 		//
-
 
 		const clientY = evt.clientY;
 
@@ -113,7 +122,7 @@ const MapTimelineDoc = () => {
 					className={'ptr-timeline-tooltip-layer'}
 				>
 					<div>
-						<span className="dot" style={{ backgroundColor: 'red' }}></span>
+						<span className="dot" style={{backgroundColor: 'red'}}></span>
 					</div>
 					<div>
 						<div>
@@ -132,7 +141,7 @@ const MapTimelineDoc = () => {
 				{intersectionOverlaysElms}
 			</div>
 		);
-	}
+	};
 
 	const onLayerClick = layer => {
 		console.log('On layer click', layer);
@@ -155,14 +164,14 @@ const MapTimelineDoc = () => {
 	];
 
 	const Levels = props => {
-		const { activeLevel } = props;
+		const {activeLevel} = props;
 		switch (activeLevel) {
 			case 'year':
-				return React.createElement(Years, { ...props, key: 'year' });
+				return React.createElement(Years, {...props, key: 'year'});
 			case 'month':
-				return React.createElement(Months, { ...props, key: 'month' });
+				return React.createElement(Months, {...props, key: 'month'});
 		}
-		return React.createElement(Months, { ...props, key: 'month' });
+		return React.createElement(Months, {...props, key: 'month'});
 	};
 
 	return (
@@ -312,7 +321,8 @@ const MapTimelineDoc = () => {
 						name: 'getHoverContent',
 						type: 'function',
 						required: true,
-						description: 'Function that returns hover content. It is called on every mouseMove on timeline.',
+						description:
+							'Function that returns hover content. It is called on every mouseMove on timeline.',
 					},
 					{
 						name: 'LayerRowComponent',
@@ -420,9 +430,13 @@ const layers = [
 `}
 			</SyntaxHighlighter>
 
-			<div style={{ minHeight: '10rem', maxHeight: '20rem', position: 'relative' }}>
+			<div
+				style={{minHeight: '10rem', maxHeight: '20rem', position: 'relative'}}
+			>
 				<MapTimelinePresentation
-					getHoverContent={(...rest) => getOverlaysHoverContent(...rest, layers)}
+					getHoverContent={(...rest) =>
+						getOverlaysHoverContent(...rest, layers)
+					}
 					LayerRowComponent={LayerRowComponentWrapped}
 					periodLimit={periodLimit}
 					onChange={timelineState => {
@@ -433,7 +447,7 @@ const layers = [
 					levels={LEVELS}
 					selectMode={true}
 					layers={layers}
-					legend={true}
+					LegendComponent={MapTimelineLegend}
 					onLayerClick={onLayerClick}
 				>
 					<Mouse mouseBufferWidth={MOUSEBUFFERWIDTH} key="mouse" />
@@ -442,6 +456,6 @@ const layers = [
 			</div>
 		</Page>
 	);
-}
+};
 
 export default MapTimelineDoc;
