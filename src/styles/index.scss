@@ -1,11 +1,5 @@
 @use "sass:math";
-@import '~@gisatcz/ptr-maps';
-@import '~@gisatcz/ptr-charts';
-@import '~@gisatcz/ptr-atoms';
-@import '~@gisatcz/ptr-components';
-@import '~@gisatcz/ptr-core';
 @import '~@gisatcz/ptr-core/lib/styles/_variables';
-@import '~@gisatcz/ptr-timeline';
 
 .ptr-docs {
   display: flex;
