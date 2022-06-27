@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import * as serviceWorker from './serviceWorker';
 import {Provider, ReactReduxContext} from '@gisatcz/ptr-state';
 import {
@@ -112,7 +112,7 @@ store.dispatch(Action.app.updateLocalConfiguration(config));
 i18n.changeLanguage('en');
 proj.addProjections(proj.projections.utms);
 
-ReactDOM.render(
+const App = () => (
 	<Provider store={store} context={ReactReduxContext}>
 		<Helmet titleTemplate="%s | Panther docs" defaultTitle="Panther docs" />
 		<ConnectedRouter history={history} context={ReactReduxContext}>
@@ -491,9 +491,16 @@ ReactDOM.render(
 				<Page label="Panther 2" path="panther2" />
 			</Docs>
 		</ConnectedRouter>
-	</Provider>,
-	document.getElementById('ptr')
+	</Provider>
 );
+
+function renderApp() {
+	const rootEl = document.getElementById('ptr');
+	const root = createRoot(rootEl);
+	root.render(<App />);
+}
+
+renderApp();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

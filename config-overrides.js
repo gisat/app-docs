@@ -8,18 +8,18 @@ module.exports = function override(config, env) {
 			// '@gisatcz/ptr-maps': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps',
 			// '@gisatcz/cross-package-react-context':
 			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/cross-package-react-context/',
-			'@gisatcz/ptr-timeline':
-				'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-timeline/',
+			// '@gisatcz/ptr-timeline':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-timeline/',
 			// '@gisatcz/ptr-atoms': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-atoms/',
 			// '@gisatcz/ptr-maps': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/',
 			// react:
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/node_modules/react',
+			// react:
 			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-atoms/node_modules/react',
-			react:
-				'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-atoms/node_modules/react',
-			'react-dom':
-				'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-atoms/node_modules/react-dom',
-			'react-resize-detector':
-				'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-timeline/node_modules/react-resize-detector',
+			// 'react-dom':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/node_modules/react-dom',
+			// 'react-resize-detector':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-timeline/node_modules/react-resize-detector',
 			// 'react-dom': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-state/node_modules/react-dom',
 			// "@gisatcz/ptr-charts": "C:/Users/pvlach/DATA/ptr-charts",
 			// react: 'C:/Users/PavelVlach/WebstormProjects/ptr-maps/node_modules/react',
