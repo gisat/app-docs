@@ -1,28 +1,18 @@
 {
   "files": {
-    "main.css": "/app-docs/static/css/main.7911c3d6.chunk.css",
-    "main.js": "/app-docs/static/js/main.1ab900fb.chunk.js",
-    "main.js.map": "/app-docs/static/js/main.1ab900fb.chunk.js.map",
-    "runtime-main.js": "/app-docs/static/js/runtime-main.ff3d883f.js",
-    "runtime-main.js.map": "/app-docs/static/js/runtime-main.ff3d883f.js.map",
-    "static/css/2.ee7a7baa.chunk.css": "/app-docs/static/css/2.ee7a7baa.chunk.css",
-    "static/js/2.7704989b.chunk.js": "/app-docs/static/js/2.7704989b.chunk.js",
-    "static/js/2.7704989b.chunk.js.map": "/app-docs/static/js/2.7704989b.chunk.js.map",
+    "main.css": "/app-docs/static/css/main.f190adcf.css",
+    "main.js": "/app-docs/static/js/main.31ce7e82.js",
+    "static/media/Esri_WorldImagery.png": "/app-docs/static/media/Esri_WorldImagery.f44b15e0de6b83cfdbe7.png",
+    "static/media/Bing_Aerial.png": "/app-docs/static/media/Bing_Aerial.1db8c29bcc0c460eeeb8.png",
+    "static/media/Esri_WorldTopoMap.png": "/app-docs/static/media/Esri_WorldTopoMap.7360500a5142d67f6fdf.png",
+    "static/media/OpenStreetMap_Mapnik.png": "/app-docs/static/media/OpenStreetMap_Mapnik.6208aac31249ed4fa79f.png",
+    "static/media/panther-icon.png": "/app-docs/static/media/panther-icon.8fc0e40d2b05f31ad2b3.png",
     "index.html": "/app-docs/index.html",
-    "static/css/2.ee7a7baa.chunk.css.map": "/app-docs/static/css/2.ee7a7baa.chunk.css.map",
-    "static/css/main.7911c3d6.chunk.css.map": "/app-docs/static/css/main.7911c3d6.chunk.css.map",
-    "static/js/2.7704989b.chunk.js.LICENSE.txt": "/app-docs/static/js/2.7704989b.chunk.js.LICENSE.txt",
-    "static/media/Bing_Aerial.1db8c29b.png": "/app-docs/static/media/Bing_Aerial.1db8c29b.png",
-    "static/media/Esri_WorldImagery.f44b15e0.png": "/app-docs/static/media/Esri_WorldImagery.f44b15e0.png",
-    "static/media/Esri_WorldTopoMap.7360500a.png": "/app-docs/static/media/Esri_WorldTopoMap.7360500a.png",
-    "static/media/OpenStreetMap_Mapnik.6208aac3.png": "/app-docs/static/media/OpenStreetMap_Mapnik.6208aac3.png",
-    "static/media/panther-icon.8fc0e40d.png": "/app-docs/static/media/panther-icon.8fc0e40d.png"
+    "main.f190adcf.css.map": "/app-docs/static/css/main.f190adcf.css.map",
+    "main.31ce7e82.js.map": "/app-docs/static/js/main.31ce7e82.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.ff3d883f.js",
-    "static/css/2.ee7a7baa.chunk.css",
-    "static/js/2.7704989b.chunk.js",
-    "static/css/main.7911c3d6.chunk.css",
-    "static/js/main.1ab900fb.chunk.js"
+    "static/css/main.f190adcf.css",
+    "static/js/main.31ce7e82.js"
   ]
 }
