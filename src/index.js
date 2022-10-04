@@ -96,6 +96,7 @@ import TimelineDoc from './components/pages/components/controls/timeline/Timelin
 import MapTimelineDoc from './components/pages/components/controls/timeline/MapTimeline';
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
+import Story from './components/pages/components/story';
 
 const {store} = createStore();
 
@@ -448,6 +449,7 @@ const App = () => (
 						/>
 						<Page label="WindowsContainer" path="windowsContainer" />
 					</Directory>
+					<Directory label="Story" path="story" component={Story} />
 				</Directory>
 				<Directory label="Code" path="code" component={Code}>
 					<Page
