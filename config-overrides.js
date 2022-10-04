@@ -32,6 +32,7 @@ module.exports = function override(config) {
 			// 'G:/PROGRAMOVANI/projects/visat-components',
 		},
 		fallback: {
+			buffer: require.resolve('buffer'),
 			fs: false,
 			crypto: require.resolve('crypto-browserify'),
 			path: require.resolve('path-browserify'),
