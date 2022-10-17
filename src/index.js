@@ -97,6 +97,15 @@ import MapTimelineDoc from './components/pages/components/controls/timeline/MapT
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
 import Story from './components/pages/components/story';
+import AppStory from './components/pages/components/story/AppStory';
+import AppStoryBody from './components/pages/components/story/AppStoryBody';
+import AppStoryContent from './components/pages/components/story/AppStoryContent';
+import AppStorySidePanel from './components/pages/components/story/sidePanel';
+import AppStoryMainPanel from './components/pages/components/story/mainPanel';
+import AppStoryComponents from './components/pages/components/story/storyComponents';
+import AppStoryExamples from './components/pages/components/story/examples';
+import AppStoryCureExample from './components/pages/components/story/examples/AppStoryCureExample';
+import AppStoryVerticalExample from './components/pages/components/story/examples/AppStoryVerticalExample';
 
 const {store} = createStore();
 
@@ -449,7 +458,36 @@ const App = () => (
 						/>
 						<Page label="WindowsContainer" path="windowsContainer" />
 					</Directory>
-					<Directory label="Story" path="story" component={Story} />
+					<Directory label="Story" path="story" component={Story} >
+						<Page label="AppStory" path="AppStory" component={AppStory} />
+						<Page label="AppStoryBody" path="AppStoryBody" component={AppStoryBody} />
+						<Page label="AppStoryContent" path="AppStoryContent" component={AppStoryContent}/>
+						<Page
+								label="Side panel"
+								path="sidePanel"
+								component={AppStorySidePanel}
+						>
+						</Page>
+						<Page
+								label="Main panel"
+								path="mainPanel"
+								component={AppStoryMainPanel}
+						></Page>
+						<Page
+								label="Story components"
+								path="storyComponents"
+								component={AppStoryComponents}
+						>
+						</Page>
+						<Directory
+								label="More examples"
+								path="examples"
+								component={AppStoryExamples}
+						>
+							<Page label="CURE" path="AppStoryCureExample" component={AppStoryCureExample}/>
+							<Page label="Vertical" path="AppStoryVerticalExample" component={AppStoryVerticalExample} />
+						</Directory>
+					</Directory>
 				</Directory>
 				<Directory label="Code" path="code" component={Code}>
 					<Page
