@@ -13,7 +13,7 @@ import "./style.scss";
 
 const AppStorySidePanelExample = () => {
 	return (
-		<div className='ptr-docs-story-example'>
+		<div className='ptr-docs-story-sidePanelExample'>
 			<AppStoryContent className={''} layout="" theme="default">
 				<AppStorySidePanel className={''} hideNavigation={false}>
 					<AppStorySidePanelIntro className={''}>

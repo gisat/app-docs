@@ -6,16 +6,17 @@ import React from 'react';
 const AppStoryBody = () => {
 	return (
 		<Page title="AppStoryBody">
-			<p>AppStoryBody is a container component.</p>
+			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
+			<p>AppStoryBody gives an option to control state of the story.</p>
 			<h2>Props</h2>
 				<ComponentPropsTable>
 					<Prop name="children" type="node" />
 					<Prop name="className" type="string" />
-					<Prop name="activeApplicationStoryKey" type="string" />
-					<Prop name="activeScope" type="object" defaultValue="false" />
+					<Prop name="activeApplicationStoryKey" type="string" >key of the story, handy when more than 1 story is being used</Prop>
+					<Prop name="activeScope" type="object" defaultValue="false">when true - renders component's children</Prop>
 					<Prop name="onMount" type="func" />
 					<Prop name="onUnmount" type="func" />
-					<Prop name="onStoryKeyChange" type="func" />
+					<Prop name="onStoryKeyChange" type="func">takes activeApplicationStoryKey as an argument</Prop>
 				</ComponentPropsTable>
 			<h2>Code example</h2>
 			<SyntaxHighlighter language="jsx">

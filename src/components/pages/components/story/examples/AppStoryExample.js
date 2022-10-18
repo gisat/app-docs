@@ -17,10 +17,10 @@ import React from 'react';
 
 import "./style.scss";
 
-const AppStoryExample = () => {
+const AppStoryExample = ({layout, theme}) => {
 	return (
 		<div className='ptr-docs-story-example'>
-			<AppStoryContent className={''} layout="" theme="default">
+			<AppStoryContent className={''} layout={layout} theme={theme}>
 				<AppStorySidePanel className={''} >
 					<AppStorySidePanelIntro className={''}>
 						<AppStorySubheadline className={''}>
@@ -102,7 +102,5 @@ const AppStoryExample = () => {
 		</div>
 	);
 };
-
-AppStoryExample.propTypes = {};
 
 export default AppStoryExample;

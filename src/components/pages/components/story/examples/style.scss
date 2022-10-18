@@ -6,8 +6,16 @@
 
 .ptr-docs-story-example {
 	width: 100%;
-	height: 20rem;
+	height: 30rem;
 	overflow: hidden;
+	border: 0.1px solid rgba(0, 0, 0, 0.178);
+}
+
+.ptr-docs-story-sidePanelExample {
+	width: fit-content;
+	height: 30rem;
+	overflow: hidden;
+	border: 0.1px solid rgba(0, 0, 0, 0.178);
 }
 
 .is-cureExample {
@@ -26,10 +34,5 @@
 	position: relative;
 	z-index: 20;
 	text-align: center;
-}
-
-.ptr-docs-story-verticalExample {
-	width: 100%;
-	height: 100vh;
 	border: 0.1px solid rgba(0, 0, 0, 0.178);
 }

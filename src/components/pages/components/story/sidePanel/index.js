@@ -9,8 +9,16 @@ import AppStorySidePanelExample from '../examples/AppStorySidePanelExample';
 const AppStorySidePanel = () => {
 	return (
 		<Page title="AppStorySidePanel">
+			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
 			<AppStorySidePanelExample />
-			<p style={{marginTop: "2rem"}}>AppStorySidePanel is a container component.</p>
+			<p style={{marginTop: "2rem"}}>
+				AppStorySidePanel serves as a guide through the story.
+			</p>
+			<p>It is composed of two main parts:</p>
+			<ul style={{marginLeft: "1rem"}}>
+				<li>Navigation - buttons for navigating in the story</li>
+				<li>SidePanel - introduction, case, footer can be optionally used for the content</li>
+			</ul>
 			<h2>Props</h2>
 				<ComponentPropsTable>
 					<Section name={"AppStorySidePanel"}>

@@ -105,7 +105,6 @@ import AppStoryMainPanel from './components/pages/components/story/mainPanel';
 import AppStoryComponents from './components/pages/components/story/storyComponents';
 import AppStoryExamples from './components/pages/components/story/examples';
 import AppStoryCureExample from './components/pages/components/story/examples/AppStoryCureExample';
-import AppStoryVerticalExample from './components/pages/components/story/examples/AppStoryVerticalExample';
 
 const {store} = createStore();
 
@@ -485,7 +484,6 @@ const App = () => (
 								component={AppStoryExamples}
 						>
 							<Page label="CURE" path="AppStoryCureExample" component={AppStoryCureExample}/>
-							<Page label="Vertical" path="AppStoryVerticalExample" component={AppStoryVerticalExample} />
 						</Directory>
 					</Directory>
 				</Directory>
