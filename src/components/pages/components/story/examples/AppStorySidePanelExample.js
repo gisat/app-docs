@@ -9,13 +9,15 @@ import {
 } from '@gisatcz/visat-components';
 import React from 'react';
 
+import Proptypes from "prop-types";
+
 import "./style.scss";
 
-const AppStorySidePanelExample = () => {
+const AppStorySidePanelExample = ({hideNavigation, style}) => {
 	return (
-		<div className='ptr-docs-story-sidePanelExample'>
+		<div className='ptr-docs-story-sidePanelExample' style={style}>
 			<AppStoryContent className={''} layout="" theme="default">
-				<AppStorySidePanel className={''} hideNavigation={false}>
+				<AppStorySidePanel className={''} hideNavigation={hideNavigation}>
 					<AppStorySidePanelIntro className={''}>
 						<AppStorySubheadline className={''}>
 							Service Rationale
@@ -54,6 +56,8 @@ const AppStorySidePanelExample = () => {
 	);
 };
 
-AppStorySidePanelExample.propTypes = {};
+AppStorySidePanelExample.propTypes = {
+	hideNavigation: Proptypes.bool,
+};
 
 export default AppStorySidePanelExample;

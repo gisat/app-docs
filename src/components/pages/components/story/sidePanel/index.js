@@ -10,36 +10,39 @@ const AppStorySidePanel = () => {
 	return (
 		<Page title="AppStorySidePanel">
 			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
-			<AppStorySidePanelExample />
-			<p style={{marginTop: "2rem"}}>
-				AppStorySidePanel serves as a guide through the story.
+			<p>
+				AppStorySidePanel serves as a guide through the story and is composed of two main parts:
 			</p>
-			<p>It is composed of two main parts:</p>
 			<ul style={{marginLeft: "1rem"}}>
-				<li>Navigation - buttons for navigating in the story</li>
-				<li>SidePanel - introduction, case, footer can be optionally used for the content</li>
+				<li>Navigation (left) is composed of buttons for jumping between sections of the story.</li>
+				<li>SidePanel (right) is split into sections - introduction, cases and footer.
+					For all three sections, there are components that can be used to hold the content.</li>
 			</ul>
+			<p style={{marginTop: "1rem"}}>
+				<b>The number of sections in the side panel should be the same as in the main panel.</b>
+			</p>
 			<h2>Props</h2>
-				<ComponentPropsTable>
-					<Section name={"AppStorySidePanel"}>
+			<ComponentPropsTable>
+				<Section name={"AppStorySidePanel"}>
+					<Prop name="children" type="node" />
+					<Prop name="className" type="string" />
+					<Prop name="hideNavigation" type="bool" defaultValue="false">if true - hides the navigation</Prop>
+				</Section>
+				<Section name={"AppStorySidePanelIntro"}>
 						<Prop name="children" type="node" />
 						<Prop name="className" type="string" />
-						<Prop name="hideNavigation" type="bool" defaultValue="false"/>
-					</Section>
-					<Section name={"AppStorySidePanelIntro"}>
-							<Prop name="children" type="node" />
-							<Prop name="className" type="string" />
-					</Section>
-					<Section name={"AppStorySidePanelCase"}>
-							<Prop name="children" type="node" />
-							<Prop name="className" type="string" />
-					</Section>
-					<Section name={"AppStorySidePanelFooter"}>
-							<Prop name="children" type="node" />
-							<Prop name="className" type="string" />
-					</Section>
-				</ComponentPropsTable>
+				</Section>
+				<Section name={"AppStorySidePanelCase"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+				</Section>
+				<Section name={"AppStorySidePanelFooter"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+				</Section>
+			</ComponentPropsTable>
 			<h2>Code example</h2>
+			<h3>With navigation</h3>
 			<SyntaxHighlighter language="jsx">
 {`import {
 	AppStoryContent, 
@@ -88,6 +91,17 @@ const AppStorySidePanel = () => {
 	</AppStorySidePanel>
 </AppStoryContent>`}
 				</SyntaxHighlighter>
+				<AppStorySidePanelExample />
+				<h3>No navigation</h3>
+				<SyntaxHighlighter language="jsx">
+{`<AppStorySidePanel className={''} hideNavigation={true}>
+	<.../>
+</AppStorySidePanel>`}
+				</SyntaxHighlighter>
+				<AppStorySidePanelExample hideNavigation/>
+				<h3>Navigation behaviour on small screens</h3>
+				<p>If the window is too small for the navigation to be shown completely, only the navigation arrows are rendered.</p>
+				<AppStorySidePanelExample style={{height: "10rem"}}/>
 		</Page>
 	);
 };

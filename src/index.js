@@ -97,8 +97,6 @@ import MapTimelineDoc from './components/pages/components/controls/timeline/MapT
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
 import Story from './components/pages/components/story';
-import AppStory from './components/pages/components/story/AppStory';
-import AppStoryBody from './components/pages/components/story/AppStoryBody';
 import AppStoryContent from './components/pages/components/story/AppStoryContent';
 import AppStorySidePanel from './components/pages/components/story/sidePanel';
 import AppStoryMainPanel from './components/pages/components/story/mainPanel';
@@ -458,8 +456,6 @@ const App = () => (
 						<Page label="WindowsContainer" path="windowsContainer" />
 					</Directory>
 					<Directory label="Story" path="story" component={Story} >
-						<Page label="AppStory" path="AppStory" component={AppStory} />
-						<Page label="AppStoryBody" path="AppStoryBody" component={AppStoryBody} />
 						<Page label="AppStoryContent" path="AppStoryContent" component={AppStoryContent}/>
 						<Page
 								label="Side panel"

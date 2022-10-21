@@ -1,13 +1,16 @@
 import Page, { SyntaxHighlighter } from '../../../../Page';
 import React from 'react';
 import ComponentPropsTable, { Prop, Section } from '../../../../ComponentPropsTable/ComponentPropsTable';
-import AppStoryComponentsExample from '../examples/AppStoryComponentsExample';
+import AppStoryExample from '../examples/AppStoryExample';
 
 const AppStoryComponents = () => {
 	return (
 		<Page title="Story components">
-			<AppStoryComponentsExample />
-			<p style={{marginTop: "2rem"}}>Story components are standalone components that can be applied to text.</p>
+			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
+			<p>
+				AppStoryComponents are standalone components that can be used in the side panel's or main panel's sections.
+			</p>
+			<h2>Props</h2>
 			<ComponentPropsTable>
 					<Section name={"AppStoryHeadline"}>
 						<Prop name="children" type="node" />
@@ -34,7 +37,7 @@ const AppStoryComponents = () => {
 							<Prop name="onMount" type="func" />
 							<Prop name="className" type="func" />
 							<Prop name="tagKeys" type="number" />
-							<Prop name="tags" type="array" />
+							<Prop name="tags" type="array">{'[{key: 2, data: {nameDisplay: "rural"}}]'}</Prop>
 					</Section>
 				</ComponentPropsTable>
 			<h2>Code example</h2>
@@ -53,8 +56,8 @@ const AppStoryComponents = () => {
 	AppStoryMainPanelFooter
 } from '@gisatcz/visat-components';
 
-<AppStoryContent className={''} layout="" theme="default">
-	<AppStorySidePanel className={''} >
+<AppStoryContent className={''}>
+	<AppStorySidePanel className={''}>
 		<AppStorySidePanelIntro className={''}>
 			<AppStorySubheadline className={''}>
 				Service Rationale
@@ -86,6 +89,24 @@ const AppStoryComponents = () => {
 			<AppStoryParagraph className={''}>
 			Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Aliquam id dolor. Integer in sapien. Pellentesque pretium lectus id turpis. Duis pulvinar. Duis risus. Curabitur bibendum justo non orci. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Quisque porta. Fusce suscipit libero eget elit. Fusce aliquam vestibulum ipsum.
 			</AppStoryParagraph>
+			<ul className={''} style={{marginLeft: "1rem"}}>
+				<li>
+					<AppStoryLink className={''}>
+						Ut tempus purus at lorem -{' '}
+						<a href="./storyComponents">
+							aenean placerat
+						</a>
+					</AppStoryLink>
+				</li>
+				<li>
+					<AppStoryLink className={''}>
+						Curabitur bibendum justo non orci -{' '}
+						<a href="./storyComponents">
+							mauris metus
+						</a>
+					</AppStoryLink>
+				</li>
+			</ul>
 		</AppStorySidePanelFooter>
 	</AppStorySidePanel>
 	<AppStoryMainPanel className={''}>
@@ -98,8 +119,11 @@ const AppStoryComponents = () => {
 			</AppStorySubheadline>
 			<AppStoryTags
 				className={''}
-				tagKeys={activeApplicationStory?.data?.tagKeys}
-				tags={tags}
+				tags={[
+					{key: 0, data: {nameDisplay: "nature"}},
+					{key: 1, data: {nameDisplay: "forest"}},
+					{key: 2, data: {nameDisplay: "rural"}}
+				]}
 			/>
 		</AppStoryMainPanelIntro>
 		<div className='showcase-1'></div>
@@ -108,28 +132,11 @@ const AppStoryComponents = () => {
 			<AppStorySubheadline className={''} isFooterTitle>
 				Donec iaculis gravida nulla.
 			</AppStorySubheadline>
-				<ul className={'cure-AppStory-listLinks'}>
-				<li>
-					<AppStoryLink className={''}>
-						Copernicus LST products description -{' '}
-						<a href="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-3-slstr/overview/geophysical-measurements/land-surface-temperature">
-							the Sentinel-3 SLSTR User Guide
-						</a>
-					</AppStoryLink>
-				</li>
-				<li>
-					<AppStoryLink className={''}>
-						Copernicus LST products description -{' '}
-						<a href="https://land.copernicus.eu/global/products/lst">
-							Copernicus Global Land service
-						</a>
-					</AppStoryLink>
-				</li>
-			</ul>
 		</AppStoryMainPanelFooter>
 	</AppStoryMainPanel>
 </AppStoryContent>`}
 				</SyntaxHighlighter>
+				<AppStoryExample />
 		</Page>
 	);
 };

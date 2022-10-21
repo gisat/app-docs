@@ -1,7 +1,6 @@
 import Page, { SyntaxHighlighter } from '../../../../Page';
 import React from 'react';
 import ComponentPropsTable, { Prop, Section } from '../../../../ComponentPropsTable/ComponentPropsTable';
-import AppStoryComponentsExample from '../examples/AppStoryComponentsExample';
 
 const AppStoryExamples = () => {
 	return (

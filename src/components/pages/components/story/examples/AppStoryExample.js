@@ -21,7 +21,7 @@ const AppStoryExample = ({layout, theme}) => {
 	return (
 		<div className='ptr-docs-story-example'>
 			<AppStoryContent className={''} layout={layout} theme={theme}>
-				<AppStorySidePanel className={''} >
+				<AppStorySidePanel className={''}>
 					<AppStorySidePanelIntro className={''}>
 						<AppStorySubheadline className={''}>
 							Service Rationale

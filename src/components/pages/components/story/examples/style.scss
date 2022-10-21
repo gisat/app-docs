@@ -1,20 +1,17 @@
 .ptr-docs-story-cureExample {
 	width: 100%;
-	height: 100vh;
 	border: 0.1px solid rgba(0, 0, 0, 0.178);
 }
 
 .ptr-docs-story-example {
 	width: 100%;
-	height: 30rem;
-	overflow: hidden;
+	height: 40rem;
 	border: 0.1px solid rgba(0, 0, 0, 0.178);
 }
 
 .ptr-docs-story-sidePanelExample {
 	width: fit-content;
 	height: 30rem;
-	overflow: hidden;
 	border: 0.1px solid rgba(0, 0, 0, 0.178);
 }
 
@@ -35,4 +32,8 @@
 	z-index: 20;
 	text-align: center;
 	border: 0.1px solid rgba(0, 0, 0, 0.178);
+}
+
+.ptr-docs-story-cureExample-wrapper {
+	height: 40rem;
 }
