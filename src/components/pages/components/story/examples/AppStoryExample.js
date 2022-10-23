@@ -17,10 +17,10 @@ import React from 'react';
 
 import "./style.scss";
 
-const AppStoryExample = ({layout, theme}) => {
+const AppStoryExample = ({panelLayout, theme}) => {
 	return (
 		<div className='ptr-docs-story-example'>
-			<AppStoryContent className={''} layout={layout} theme={theme}>
+			<AppStoryContent className={''} panelLayout={panelLayout} theme={theme}>
 				<AppStorySidePanel className={''}>
 					<AppStorySidePanelIntro className={''}>
 						<AppStorySubheadline className={''}>

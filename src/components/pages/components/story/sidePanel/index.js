@@ -21,12 +21,18 @@ const AppStorySidePanel = () => {
 			<p style={{marginTop: "1rem"}}>
 				<b>The number of sections in the side panel should be the same as in the main panel.</b>
 			</p>
+			<p>
+				First section in the side panel is always considered to be the introduction = home icon is assigned in the navigation.
+				Last section is considered to be the footer = square icon in the navigation.
+				You can change the icons in the navigation with navigationIcons prop.
+			</p>
 			<h2>Props</h2>
 			<ComponentPropsTable>
 				<Section name={"AppStorySidePanel"}>
 					<Prop name="children" type="node" />
 					<Prop name="className" type="string" />
 					<Prop name="hideNavigation" type="bool" defaultValue="false">if true - hides the navigation</Prop>
+					<Prop name="navigationIcons" type="bool" defaultValue="{home: 'ri-home', case: 'ri-dot', footer: 'ri-square'}" />
 				</Section>
 				<Section name={"AppStorySidePanelIntro"}>
 						<Prop name="children" type="node" />
@@ -102,6 +108,14 @@ const AppStorySidePanel = () => {
 				<h3>Navigation behaviour on small screens</h3>
 				<p>If the window is too small for the navigation to be shown completely, only the navigation arrows are rendered.</p>
 				<AppStorySidePanelExample style={{height: "10rem"}}/>
+				<h3>Custom navigation</h3>
+				<p>Default icons in the navigation can be changed with the prop navigationIcons.</p>
+				<SyntaxHighlighter language="jsx">
+{`<AppStorySidePanel className={''} navigationIcons={{home: "ri-city", case: "ri-star", footer: "ri-star"}}>
+	<.../>
+</AppStorySidePanel>`}
+				</SyntaxHighlighter>
+				<AppStorySidePanelExample navigationIcons={{home: "ri-city", case: "ri-star", footer: "ri-star"}}/>
 		</Page>
 	);
 };

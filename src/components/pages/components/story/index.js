@@ -20,7 +20,7 @@ const Story = () => {
 				<li><Link to='./story/mainPanel'>Main panel</Link> (right) - Ideal for the main content like maps or images, these are then descibed in the side panel.</li>
 			</ul>
 			<p style={{marginTop: "1rem"}}>These parts need to be wrapped by AppStoryContent that connects them and provides the correct functionality.</p>
-			<p>At this moment, Story is available in the visat-components package.</p>
+			<b>At this moment, Story is available in the visat-components package.</b>
 			<h2>Code example</h2>
 			<SyntaxHighlighter language="jsx">
 {`import {

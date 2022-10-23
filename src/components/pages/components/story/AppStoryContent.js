@@ -21,7 +21,7 @@ const AppStoryContent = () => {
 			<ComponentPropsTable>
 				<Prop name="children" type="node" />
 				<Prop name="className" type="string" />
-				<Prop name="layout" type="string" defaultValue="horizontal">horizontal || vertical</Prop>
+				<Prop name="panelLayout" type="string" defaultValue="horizontal">horizontal || vertical</Prop>
 				<Prop name="theme" type="object" defaultValue="default">cure || default</Prop>
 			</ComponentPropsTable>
 			<h2>Code example</h2>
@@ -30,25 +30,25 @@ const AppStoryContent = () => {
 {`import { AppStoryContent } from '@gisatcz/visat-components';
 
 	<AppStoryContent
-		layout="vertical"
+		panelLayout="vertical"
 		theme="default">
 	>
 		<... />
 	</AppStoryContent>`}
 			</SyntaxHighlighter>
-			<AppStoryExample layout="vertical" theme="default" />
+			<AppStoryExample panelLayout="vertical" theme="default" />
 			<h3>Horizontal & cure</h3>
 			<SyntaxHighlighter language="jsx">
 {`import { AppStoryContent } from '@gisatcz/visat-components';
 
 	<AppStoryContent
-		layout="horizontal"
+		panelLayout="horizontal"
 		theme="cure">
 	>
 		<... />
 	</AppStoryContent>`}
 			</SyntaxHighlighter>
-			<AppStoryExample layout="horizontal" theme="cure" />
+			<AppStoryExample panelLayout="horizontal" theme="cure" />
 		</Page>
 	);
 };

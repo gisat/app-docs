@@ -13,11 +13,11 @@ import Proptypes from "prop-types";
 
 import "./style.scss";
 
-const AppStorySidePanelExample = ({hideNavigation, style}) => {
+const AppStorySidePanelExample = ({hideNavigation, style, navigationIcons}) => {
 	return (
 		<div className='ptr-docs-story-sidePanelExample' style={style}>
 			<AppStoryContent className={''} layout="" theme="default">
-				<AppStorySidePanel className={''} hideNavigation={hideNavigation}>
+				<AppStorySidePanel className={''} hideNavigation={hideNavigation} navigationIcons={navigationIcons}>
 					<AppStorySidePanelIntro className={''}>
 						<AppStorySubheadline className={''}>
 							Service Rationale
@@ -58,6 +58,8 @@ const AppStorySidePanelExample = ({hideNavigation, style}) => {
 
 AppStorySidePanelExample.propTypes = {
 	hideNavigation: Proptypes.bool,
+	style: Proptypes.object,
+	navigationIcons: Proptypes.object,
 };
 
 export default AppStorySidePanelExample;
