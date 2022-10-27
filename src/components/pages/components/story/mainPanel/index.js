@@ -4,17 +4,16 @@ import { Prop } from '../../../../ComponentPropsTable/ComponentPropsTable';
 import React from 'react';
 
 import "./style.scss";
-import AppStoryMainPanelExample from '../examples/AppStoryMainPanelExample';
+import StoryMainPanelExample from '../examples/StoryMainPanelExample';
 
-const AppStoryMainPanel = () => {
+const StoryMainPanel = () => {
 	return (
-		<Page title="AppStoryMainPanel">
+		<Page title="StoryMainPanel">
 			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
 			<p>
-				AppStoryMainPanel was created to hold the main content of the story, for example: maps, graphs...
-				Like side panel, main panel is also split into sections - introduction, cases and footer.
-				There are two components that can be used to hold the conent. For the section with cases,
-				individual components with content should be created for each case.
+				StoryMainPanel was created to hold the main content of the story, for example: maps or graphs...
+				Like the side panel, main panel is also split into sections - introduction, cases and footer.
+				There are three components that can be optionally used to hold the content.
 			</p>
 			<p style={{marginTop: "1rem"}}>
 				<b>The number of sections in the main panel should be the same as in the side panel.</b>
@@ -22,16 +21,20 @@ const AppStoryMainPanel = () => {
 			</p>
 			<h2>Props</h2>
 			<ComponentPropsTable>
-				<Section name={"AppStoryMainPanel"}>
+				<Section name={"StoryMainPanel"}>
 					<Prop name="children" type="node" />
 					<Prop name="className" type="string" />
 				</Section>
-				<Section name={"AppStoryMainPanelIntro"}>
+				<Section name={"StoryMainPanelIntro"}>
 						<Prop name="children" type="node" />
 						<Prop name="className" type="string" />
 						<Prop name="backgroundImage" type="string">path to the background image</Prop>
 				</Section>
-				<Section name={"AppStoryMainPanelFooter"}>
+				<Section name={"StoryMainPanelCase"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+				</Section>
+				<Section name={"StoryMainPanelFooter"}>
 						<Prop name="children" type="node" />
 						<Prop name="className" type="string" />
 				</Section>
@@ -40,52 +43,61 @@ const AppStoryMainPanel = () => {
 			<h3>Two showcases</h3>
 			<SyntaxHighlighter language="jsx">
 {`import {
-	AppStoryContent, 
-	AppStoryMainPanel, 
-	AppStorySubheadline,
-	AppStoryMainPanelIntro,
-	AppStoryHeadline,
-	AppStoryMainPanelFooter
+	Story, 
+	StoryMainPanel, 
+	StorySubheadline,
+	StoryMainPanelIntro,
+	StoryHeadline,
+	StoryMainPanelFooter,
+	StoryMainPanelCase
 } from '@gisatcz/visat-components';
 
-<AppStoryContent className={''}>
-	<AppStoryMainPanel className={''}>
-		<AppStoryMainPanelIntro className={''}>
-			<AppStoryHeadline className={''} isIntro>
+<Story className={''}>
+	<StoryMainPanel className={''}>
+		<StoryMainPanelIntro className={''}>
+			<StoryHeadline className={''} isIntro>
 				Headline
-			</AppStoryHeadline>
-			<AppStorySubheadline className={'is-intro'}>
+			</StoryHeadline>
+			<StorySubheadline className={'is-intro'}>
 				Maecenas aliquet accumsan leo. Nullam sit amet magna in magna gravida vehicula.
-			</AppStorySubheadline>
-		</AppStoryMainPanelIntro>
-		<div className='showcase-1'></div>
-		<div className='showcase-2'></div>
-		<AppStoryMainPanelFooter className={''}>
-			<AppStorySubheadline className={''} isFooterTitle>
+			</StorySubheadline>
+		</StoryMainPanelIntro>
+		<StoryMainPanelCase>
+			<h2>Showcase 1</h2>
+		</StoryMainPanelCase>
+		<StoryMainPanelCase>
+			<h2>Showcase 2</h2>
+		</StoryMainPanelCase>
+		<StoryMainPanelFooter className={''}>
+			<StorySubheadline className={''} isFooterTitle>
 				Donec iaculis gravida nulla.
-			</AppStorySubheadline>
-		</AppStoryMainPanelFooter>
-	</AppStoryMainPanel>
-</AppStoryContent>`}
+			</StorySubheadline>
+		</StoryMainPanelFooter>
+	</StoryMainPanel>
+</Story>`}
 				</SyntaxHighlighter>
 				<h3>Custom intro background</h3>
 				<SyntaxHighlighter language="jsx">
-{`<AppStoryMainPanelIntro className={''} backgroundImage={require("../../../../../assets/appStoryCustomBackground.jpg")}>
+{`<StoryMainPanelIntro className={''} backgroundImage={require("../../../../../assets/storyCustomBackground.jpg")}>
 	<.../>
-</AppStoryMainPanelIntro>`}
+</StoryMainPanelIntro>`}
 				</SyntaxHighlighter>
-				<AppStoryMainPanelExample backgroundImage={require("../../../../../assets/appStoryCustomBackground.jpg")}/>
+				<div className='ptr-docs-story-example'>
+					<StoryMainPanelExample backgroundImage={require("../../../../../assets/storyCustomBackground.jpg")}/>
+				</div>
 				<h3>Footer</h3>
 				<SyntaxHighlighter language="jsx">
-{`<AppStoryMainPanelFooter className={''}>
+{`<StoryMainPanelFooter className={''}>
 	<.../>
-</AppStoryMainPanelFooter>`}
+</StoryMainPanelFooter>`}
 				</SyntaxHighlighter>
-				<AppStoryMainPanelExample showFooter/>
+				<div className='ptr-docs-story-example'>
+					<StoryMainPanelExample showFooter/>
+				</div>
 		</Page>
 	);
 };
 
-AppStoryMainPanel.propTypes = {};
+StoryMainPanel.propTypes = {};
 
-export default AppStoryMainPanel;
+export default StoryMainPanel;

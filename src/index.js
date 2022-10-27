@@ -97,12 +97,12 @@ import MapTimelineDoc from './components/pages/components/controls/timeline/MapT
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
 import Story from './components/pages/components/story';
-import AppStoryContent from './components/pages/components/story/AppStoryContent';
-import AppStorySidePanel from './components/pages/components/story/sidePanel';
-import AppStoryMainPanel from './components/pages/components/story/mainPanel';
-import AppStoryComponents from './components/pages/components/story/storyComponents';
-import AppStoryExamples from './components/pages/components/story/examples';
-import AppStoryCureExample from './components/pages/components/story/examples/AppStoryCureExample';
+import StoryComponent from './components/pages/components/story/StoryComponent';
+import StorySidePanel from './components/pages/components/story/sidePanel';
+import StoryMainPanel from './components/pages/components/story/mainPanel';
+import StoryComponents from './components/pages/components/story/storyComponents';
+import StoryExamples from './components/pages/components/story/examples';
+import StoryCureExample from './components/pages/components/story/examples/StoryCureExample';
 
 const {store} = createStore();
 
@@ -456,30 +456,30 @@ const App = () => (
 						<Page label="WindowsContainer" path="windowsContainer" />
 					</Directory>
 					<Directory label="Story" path="story" component={Story} >
-						<Page label="AppStoryContent" path="AppStoryContent" component={AppStoryContent}/>
+						<Page label="Story component" path="StoryComponent" component={StoryComponent}/>
 						<Page
 								label="Side panel"
 								path="sidePanel"
-								component={AppStorySidePanel}
+								component={StorySidePanel}
 						>
 						</Page>
 						<Page
 								label="Main panel"
 								path="mainPanel"
-								component={AppStoryMainPanel}
+								component={StoryMainPanel}
 						></Page>
 						<Page
 								label="Story components"
 								path="storyComponents"
-								component={AppStoryComponents}
+								component={StoryComponents}
 						>
 						</Page>
 						<Directory
-								label="More examples"
+								label="Examples"
 								path="examples"
-								component={AppStoryExamples}
+								component={StoryExamples}
 						>
-							<Page label="CURE" path="AppStoryCureExample" component={AppStoryCureExample}/>
+							<Page label="CURE" path="StoryCureExample" component={StoryCureExample}/>
 						</Directory>
 					</Directory>
 				</Directory>

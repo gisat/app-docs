@@ -2,20 +2,25 @@ import Page, { SyntaxHighlighter } from '../../../Page';
 import ComponentPropsTable from '../../../ComponentPropsTable/ComponentPropsTable';
 import { Prop } from '../../../ComponentPropsTable/ComponentPropsTable';
 import React from 'react';
-import AppStoryExample from './examples/AppStoryExample';
+import StoryExample from './examples/StoryExample';
 
-const AppStoryContent = () => {
+const StoryComponent = () => {
 	return (
-		<Page title="AppStoryContent">
+		<Page title="Story component">
 			<p className='ptr-docs-story-isRequired' style={{color: "#e2575a"}}>REQUIRED</p>
 			<p>
-				AppStoryContent is a required component that holds the main content of the story.
+				Story is a required fundamental component that holds all the content of story.
 				It connects side panel with main panel and ensures that story works as expected.
 			</p>
 			<p>
 				As the user is scrolling in the side panel, the location of the user's actual window is being recorded.
-				When the window reaches top of the next section, this section is set as a new active section
-				and content in the main panel is changed.
+				When the user's window reaches top of a next section, this section is set as a new active section
+				and content in the main panel is changed. If the user reaches bottom - the last section (footer)
+				is set as the active section. <b>It is important that sections have reasonable heights.</b>
+			</p>
+			<p>
+				By default, the content is layed out horizontally. On smaller screens the layout changes to vertical.
+				The layout can be also changed with a prop "panelLayout".
 			</p>
 			<h2>Props</h2>
 			<ComponentPropsTable>
@@ -27,32 +32,36 @@ const AppStoryContent = () => {
 			<h2>Code example</h2>
 			<h3>Vertical & default</h3>
 			<SyntaxHighlighter language="jsx">
-{`import { AppStoryContent } from '@gisatcz/visat-components';
+{`import { Story } from '@gisatcz/visat-components';
 
-	<AppStoryContent
+	<Story
 		panelLayout="vertical"
 		theme="default">
 	>
 		<... />
-	</AppStoryContent>`}
+	</Story>`}
 			</SyntaxHighlighter>
-			<AppStoryExample panelLayout="vertical" theme="default" />
+			<div className='ptr-docs-story-example'>
+				<StoryExample panelLayout="vertical" theme="default" />
+			</div>
 			<h3>Horizontal & cure</h3>
 			<SyntaxHighlighter language="jsx">
-{`import { AppStoryContent } from '@gisatcz/visat-components';
+{`import { Story } from '@gisatcz/visat-components';
 
-	<AppStoryContent
+	<Story
 		panelLayout="horizontal"
 		theme="cure">
 	>
 		<... />
-	</AppStoryContent>`}
+	</Story>`}
 			</SyntaxHighlighter>
-			<AppStoryExample panelLayout="horizontal" theme="cure" />
+			<div className='ptr-docs-story-example'>
+				<StoryExample panelLayout="horizontal" theme="cure" />
+			</div>
 		</Page>
 	);
 };
 
-AppStoryContent.propTypes = {};
+StoryComponent.propTypes = {};
 
-export default AppStoryContent;
+export default StoryComponent;

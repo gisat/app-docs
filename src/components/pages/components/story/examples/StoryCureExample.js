@@ -1,19 +1,18 @@
 import {
-	AppStory,
-	AppStoryBody,
-	AppStoryContent,
-	AppStorySidePanel, 
-	AppStoryMainPanel, 
-	AppStorySidePanelIntro, 
-	AppStorySidePanelCase,
-	AppStorySubheadline,
-	AppStoryParagraph,
-	AppStorySidePanelFooter,
-	AppStoryMainPanelIntro,
-	AppStoryHeadline,
-	AppStoryLink,
-	AppStoryTags,
-	AppStoryMainPanelFooter,
+	Story,
+	StorySidePanel, 
+	StoryMainPanel, 
+	StorySidePanelIntro, 
+	StorySidePanelCase,
+	StorySubheadline,
+	StoryParagraph,
+	StorySidePanelFooter,
+	StoryMainPanelIntro,
+	StoryHeadline,
+	StoryLink,
+	StoryTags,
+	StoryMainPanelFooter,
+	StoryMainPanelCase,
 } from '@gisatcz/visat-components';
 import React from 'react';
 
@@ -63,20 +62,20 @@ class MapCenterWrapper extends React.PureComponent {
 	}
 }
 
-const AppStoryCureExample = () => {
+const StoryCureExample = () => {
 	return (
 		<Page title="CURE example">
 			<p>This example was created for the CURE application.</p>
 			<div className='ptr-docs-story-cureExample'>
 				<div className='ptr-docs-story-cureExample-nav'>CURE NAVIGATION</div>
 				<div className='ptr-docs-story-cureExample-wrapper'>	
-					<AppStoryContent className={''} theme="cure">
-						<AppStorySidePanel className={''}>
-							<AppStorySidePanelIntro className={''}>
-								<AppStorySubheadline className={''}>
+					<Story className={''} theme="cure">
+						<StorySidePanel className={''}>
+							<StorySidePanelIntro className={''}>
+								<StorySubheadline className={''}>
 									Service Rationale
-								</AppStorySubheadline>
-								<AppStoryParagraph className={''}>
+								</StorySubheadline>
+								<StoryParagraph className={''}>
 									The surface temperature is one of the most important parameters in
 									the physical processes of urban surface energy, water balance and
 									the land-atmosphere exchanges. Thence, it constitutes a valuable
@@ -96,13 +95,13 @@ const AppStoryCureExample = () => {
 										Urban Heat Storage Monitoring Service
 									</a>
 									.
-								</AppStoryParagraph>
-							</AppStorySidePanelIntro>
-							<AppStorySidePanelCase className={''}>
-								<AppStorySubheadline className={''}>
+								</StoryParagraph>
+							</StorySidePanelIntro>
+							<StorySidePanelCase className={''}>
+								<StorySubheadline className={''}>
 									Detailed Land Surface Temperature (LST)
-								</AppStorySubheadline>
-								<AppStoryParagraph className={''}>
+								</StorySubheadline>
+								<StoryParagraph className={''}>
 									This CURE service generates daily land surface temperature maps for
 									urban areas exploiting the Copernicus Sentinel-3 thermal
 									acquisitions and detailed dynamic information on the land surface
@@ -115,13 +114,13 @@ const AppStoryCureExample = () => {
 									products, providing dense time series of 100 m spatial resolution
 									LST. See example and compare the CURE LST product in 100m resolution
 									(left) with original Copernicus service in 1km resolution (right).{' '}
-								</AppStoryParagraph>
-							</AppStorySidePanelCase>
-							<AppStorySidePanelCase className={''}>
-								<AppStorySubheadline className={''}>
+								</StoryParagraph>
+							</StorySidePanelCase>
+							<StorySidePanelCase className={''}>
+								<StorySubheadline className={''}>
 									Intra-urban Surface Temperature Dynamics
-								</AppStorySubheadline>
-								<AppStoryParagraph className={''}>
+								</StorySubheadline>
+								<StoryParagraph className={''}>
 									The CURE LST maps resolve the intra-urban variations of surface
 									temperature, while providing insights on the surface temperature
 									dynamics, with up to 4 maps per day. These detailed, frequent
@@ -131,13 +130,13 @@ const AppStoryCureExample = () => {
 									temporal distribution of Sentinel-3 LST maps for LST daytime and
 									nighttime values. Select the point in the timeline and see a
 									corresponding LST product in a map.
-								</AppStoryParagraph>
-							</AppStorySidePanelCase>
-							<AppStorySidePanelCase className={''}>
-								<AppStorySubheadline className={''}>
+								</StoryParagraph>
+							</StorySidePanelCase>
+							<StorySidePanelCase className={''}>
+								<StorySubheadline className={''}>
 									Aggregated temperatures for user-defined units
-								</AppStorySubheadline>
-								<AppStoryParagraph className={''}>
+								</StorySubheadline>
+								<StoryParagraph className={''}>
 									<em data-tour="showcase-about">
 										Land Surface Temperature (LST) information can be related to user
 										defined units (e.g. urban plots, neighbourhood blocks, districts)
@@ -148,13 +147,13 @@ const AppStoryCureExample = () => {
 										to inspect variation, value distribution and differences between
 										daytime and nighttime.
 									</em>
-								</AppStoryParagraph>
-							</AppStorySidePanelCase>
-							<AppStorySidePanelFooter className={''}>
-								<AppStorySubheadline className={''}>
+								</StoryParagraph>
+							</StorySidePanelCase>
+							<StorySidePanelFooter className={''}>
+								<StorySubheadline className={''}>
 									Added value discussion
-								</AppStorySubheadline>
-								<AppStoryParagraph className={''}>
+								</StorySubheadline>
+								<StoryParagraph className={''}>
 									The surface temperature is one of the most important parameters in
 									the physical processes of urban surface energy and water balance
 									including the land-atmosphere exchanges. CURE Land Surface
@@ -162,40 +161,40 @@ const AppStoryCureExample = () => {
 									monitoring and analysis of the land surface temperature of your
 									city. As such, it guides local and regional decision makers in
 									efficient city intervention planning and policy-making.
-								</AppStoryParagraph>
-								<AppStorySubheadline className={''}>
+								</StoryParagraph>
+								<StorySubheadline className={''}>
 									Further resources
-								</AppStorySubheadline>
-								<ul className={'cure-AppStory-listLinks'}>
+								</StorySubheadline>
+								<ul className={'cure-Story-listLinks'}>
 									<li>
-										<AppStoryLink className={''}>
+										<StoryLink className={''}>
 											Copernicus LST products description -{' '}
 											<a href="">
 												the Sentinel-3 SLSTR User Guide
 											</a>
-										</AppStoryLink>
+										</StoryLink>
 									</li>
 									<li>
-										<AppStoryLink className={''}>
+										<StoryLink className={''}>
 											Copernicus LST products description -{' '}
 											<a href="">
 												Copernicus Global Land service
 											</a>
-										</AppStoryLink>
+										</StoryLink>
 									</li>
 									<li>
-										<AppStoryLink className={''}>
+										<StoryLink className={''}>
 											RSLab LST product (Landsat based){' '}
 											<a href="">
 												documentation and service
 											</a>
-										</AppStoryLink>
+										</StoryLink>
 									</li>
 								</ul>
-								<AppStorySubheadline className={''}>
+								<StorySubheadline className={''}>
 									Service provider info and other copyrights and credits
-								</AppStorySubheadline>
-								<AppStoryParagraph className={''}>
+								</StorySubheadline>
+								<StoryParagraph className={''}>
 									The service is based on{' '}
 									<a href="">
 										Copernicus Sentinel satellite imagery
@@ -217,27 +216,27 @@ const AppStoryCureExample = () => {
 									</a>{' '}
 									imagery for urban surface dynamics and atmospheric information from{' '}
 									<a href="">C3S</a>.
-								</AppStoryParagraph>
+								</StoryParagraph>
 								<Button
 									disabled
 									icon="settings"
 								>
 									Order service
 								</Button>
-							</AppStorySidePanelFooter>
-						</AppStorySidePanel>
-						<AppStoryMainPanel className={''}>
-							<AppStoryMainPanelIntro
+							</StorySidePanelFooter>
+						</StorySidePanel>
+						<StoryMainPanel className={''}>
+							<StoryMainPanelIntro
 								className={''}
-								backgroundImage={require("../../../../../assets/appStoryCureExample.jpg")}
+								backgroundImage={require("../../../../../assets/storyCureExample.jpg")}
 							>
-								<AppStoryHeadline className={'is-cureExample'} isIntro>
+								<StoryHeadline className={'is-cureExample'} isIntro>
 									Local Scale Surface Temperature Dynamics
-								</AppStoryHeadline>
-								<AppStorySubheadline className={'is-cureExample'} isIntro>
+								</StoryHeadline>
+								<StorySubheadline className={'is-cureExample'} isIntro>
 									Monitor and analyze the surface temperature dynamics in your city
-								</AppStorySubheadline>
-								<AppStoryTags
+								</StorySubheadline>
+								<StoryTags
 									className={''}
 									tagKeys={0}
 									tags={[
@@ -248,7 +247,7 @@ const AppStoryCureExample = () => {
 										{key: 4, data: {nameDisplay: "CLMS"}}
 									]}
 								/>
-							</AppStoryMainPanelIntro>
+							</StoryMainPanelIntro>
 							<div className="ptr-docs-story-cureExample-map">
 								<PresentationMap
 									mapComponent={ReactLeafletMap}
@@ -291,10 +290,10 @@ const AppStoryCureExample = () => {
 									<MapControls levelsBased zoomOnly />
 								</PresentationMap>
 							</div>
-							<AppStoryMainPanelFooter className={''}>
-								<AppStorySubheadline className={''} isFooterTitle>
+							<StoryMainPanelFooter className={''}>
+								<StorySubheadline className={''} isFooterTitle>
 									Continue to other applications
-								</AppStorySubheadline>
+								</StorySubheadline>
 								<a href="">
 									Surface Urban Heat Island Assessment
 								</a>
@@ -310,28 +309,29 @@ const AppStoryCureExample = () => {
 								<a href="">
 									Nature Based Solutions
 								</a>
-							</AppStoryMainPanelFooter>
-						</AppStoryMainPanel>
-					</AppStoryContent>
+							</StoryMainPanelFooter>
+						</StoryMainPanel>
+					</Story>
 					</div>
 			</div>
 			<h2>Code</h2>
 				<SyntaxHighlighter language="jsx">
 			{`
 import {
-	AppStoryContent,
-	AppStorySidePanel, 
-	AppStoryMainPanel, 
-	AppStorySidePanelIntro, 
-	AppStorySidePanelCase,
-	AppStorySubheadline,
-	AppStoryParagraph,
-	AppStorySidePanelFooter,
-	AppStoryMainPanelIntro,
-	AppStoryHeadline,
-	AppStoryLink,
-	AppStoryTags,
-	AppStoryMainPanelFooter,
+	Story,
+	StorySidePanel, 
+	StoryMainPanel, 
+	StorySidePanelIntro, 
+	StorySidePanelCase,
+	StorySubheadline,
+	StoryParagraph,
+	StorySidePanelFooter,
+	StoryMainPanelIntro,
+	StoryHeadline,
+	StoryLink,
+	StoryTags,
+	StoryMainPanelFooter,
+	StoryMainPanelCase,
 } from '@gisatcz/visat-components';
 import React from 'react';
 
@@ -380,17 +380,17 @@ class MapCenterWrapper extends React.PureComponent {
 	}
 }
 
-const AppStoryCureExample = () => {
+const StoryCureExample = () => {
 	return (
 		<div className='ptr-docs-story-cureExample'>
 			<div className='ptr-docs-story-cureExample-nav'>CURE NAVIGATION</div>
-			<AppStoryContent className={''} theme="cure">
-				<AppStorySidePanel className={''}>
-					<AppStorySidePanelIntro className={''}>
-						<AppStorySubheadline className={''}>
+			<Story className={''} theme="cure">
+				<StorySidePanel className={''}>
+					<StorySidePanelIntro className={''}>
+						<StorySubheadline className={''}>
 							Service Rationale
-						</AppStorySubheadline>
-						<AppStoryParagraph className={''}>
+						</StorySubheadline>
+						<StoryParagraph className={''}>
 							The surface temperature is one of the most important parameters in
 							the physical processes of urban surface energy, water balance and
 							the land-atmosphere exchanges. Thence, it constitutes a valuable
@@ -410,13 +410,13 @@ const AppStoryCureExample = () => {
 								Urban Heat Storage Monitoring Service
 							</a>
 							.
-						</AppStoryParagraph>
-					</AppStorySidePanelIntro>
-					<AppStorySidePanelCase className={''}>
-						<AppStorySubheadline className={''}>
+						</StoryParagraph>
+					</StorySidePanelIntro>
+					<StorySidePanelCase className={''}>
+						<StorySubheadline className={''}>
 							Detailed Land Surface Temperature (LST)
-						</AppStorySubheadline>
-						<AppStoryParagraph className={''}>
+						</StorySubheadline>
+						<StoryParagraph className={''}>
 							This CURE service generates daily land surface temperature maps for
 							urban areas exploiting the Copernicus Sentinel-3 thermal
 							acquisitions and detailed dynamic information on the land surface
@@ -429,13 +429,13 @@ const AppStoryCureExample = () => {
 							products, providing dense time series of 100 m spatial resolution
 							LST. See example and compare the CURE LST product in 100m resolution
 							(left) with original Copernicus service in 1km resolution (right).{' '}
-						</AppStoryParagraph>
-					</AppStorySidePanelCase>
-					<AppStorySidePanelCase className={''}>
-						<AppStorySubheadline className={''}>
+						</StoryParagraph>
+					</StorySidePanelCase>
+					<StorySidePanelCase className={''}>
+						<StorySubheadline className={''}>
 							Intra-urban Surface Temperature Dynamics
-						</AppStorySubheadline>
-						<AppStoryParagraph className={''}>
+						</StorySubheadline>
+						<StoryParagraph className={''}>
 							The CURE LST maps resolve the intra-urban variations of surface
 							temperature, while providing insights on the surface temperature
 							dynamics, with up to 4 maps per day. These detailed, frequent
@@ -445,13 +445,13 @@ const AppStoryCureExample = () => {
 							temporal distribution of Sentinel-3 LST maps for LST daytime and
 							nighttime values. Select the point in the timeline and see a
 							corresponding LST product in a map.
-						</AppStoryParagraph>
-					</AppStorySidePanelCase>
-					<AppStorySidePanelCase className={''}>
-						<AppStorySubheadline className={''}>
+						</StoryParagraph>
+					</StorySidePanelCase>
+					<StorySidePanelCase className={''}>
+						<StorySubheadline className={''}>
 							Aggregated temperatures for user-defined units
-						</AppStorySubheadline>
-						<AppStoryParagraph className={''}>
+						</StorySubheadline>
+						<StoryParagraph className={''}>
 							<em data-tour="showcase-about">
 								Land Surface Temperature (LST) information can be related to user
 								defined units (e.g. urban plots, neighbourhood blocks, districts)
@@ -462,13 +462,13 @@ const AppStoryCureExample = () => {
 								to inspect variation, value distribution and differences between
 								daytime and nighttime.
 							</em>
-						</AppStoryParagraph>
-					</AppStorySidePanelCase>
-					<AppStorySidePanelFooter className={''}>
-						<AppStorySubheadline className={''}>
+						</StoryParagraph>
+					</StorySidePanelCase>
+					<StorySidePanelFooter className={''}>
+						<StorySubheadline className={''}>
 							Added value discussion
-						</AppStorySubheadline>
-						<AppStoryParagraph className={''}>
+						</StorySubheadline>
+						<StoryParagraph className={''}>
 							The surface temperature is one of the most important parameters in
 							the physical processes of urban surface energy and water balance
 							including the land-atmosphere exchanges. CURE Land Surface
@@ -476,40 +476,40 @@ const AppStoryCureExample = () => {
 							monitoring and analysis of the land surface temperature of your
 							city. As such, it guides local and regional decision makers in
 							efficient city intervention planning and policy-making.
-						</AppStoryParagraph>
-						<AppStorySubheadline className={''}>
+						</StoryParagraph>
+						<StorySubheadline className={''}>
 							Further resources
-						</AppStorySubheadline>
-						<ul className={'cure-AppStory-listLinks'}>
+						</StorySubheadline>
+						<ul className={'cure-Story-listLinks'}>
 							<li>
-								<AppStoryLink className={''}>
+								<StoryLink className={''}>
 									Copernicus LST products description -{' '}
 									<a href="">
 										the Sentinel-3 SLSTR User Guide
 									</a>
-								</AppStoryLink>
+								</StoryLink>
 							</li>
 							<li>
-								<AppStoryLink className={''}>
+								<StoryLink className={''}>
 									Copernicus LST products description -{' '}
 									<a href="">
 										Copernicus Global Land service
 									</a>
-								</AppStoryLink>
+								</StoryLink>
 							</li>
 							<li>
-								<AppStoryLink className={''}>
+								<StoryLink className={''}>
 									RSLab LST product (Landsat based){' '}
 									<a href="">
 										documentation and service
 									</a>
-								</AppStoryLink>
+								</StoryLink>
 							</li>
 						</ul>
-						<AppStorySubheadline className={''}>
+						<StorySubheadline className={''}>
 							Service provider info and other copyrights and credits
-						</AppStorySubheadline>
-						<AppStoryParagraph className={''}>
+						</StorySubheadline>
+						<StoryParagraph className={''}>
 							The service is based on{' '}
 							<a href="">
 								Copernicus Sentinel satellite imagery
@@ -531,27 +531,27 @@ const AppStoryCureExample = () => {
 							</a>{' '}
 							imagery for urban surface dynamics and atmospheric information from{' '}
 							<a href="">C3S</a>.
-						</AppStoryParagraph>
+						</StoryParagraph>
 						<Button
 							disabled
 							icon="settings"
 						>
 							Order service
 						</Button>
-					</AppStorySidePanelFooter>
-				</AppStorySidePanel>
-				<AppStoryMainPanel className={''}>
-					<AppStoryMainPanelIntro
+					</StorySidePanelFooter>
+				</StorySidePanel>
+				<StoryMainPanel className={''}>
+					<StoryMainPanelIntro
 						className={''}
-						backgroundImage={require("../../../../../assets/appStoryCureExample.jpg")}
+						backgroundImage={require("../../../../../assets/storyCureExample.jpg")}
 					>
-						<AppStoryHeadline className={'is-cureExample'} isIntro>
+						<StoryHeadline className={'is-cureExample'} isIntro>
 							Local Scale Surface Temperature Dynamics
-						</AppStoryHeadline>
-						<AppStorySubheadline className={'is-cureExample'} isIntro>
+						</StoryHeadline>
+						<StorySubheadline className={'is-cureExample'} isIntro>
 							Monitor and analyze the surface temperature dynamics in your city
-						</AppStorySubheadline>
-						<AppStoryTags
+						</StorySubheadline>
+						<StoryTags
 							className={''}
 							tagKeys={0}
 							tags={[
@@ -562,7 +562,7 @@ const AppStoryCureExample = () => {
 								{key: 4, data: {nameDisplay: "CLMS"}}
 							]}
 						/>
-					</AppStoryMainPanelIntro>
+					</StoryMainPanelIntro>
 					<div className="ptr-docs-story-cureExample-map">
 						<PresentationMap
 							mapComponent={ReactLeafletMap}
@@ -605,10 +605,10 @@ const AppStoryCureExample = () => {
 							<MapControls levelsBased zoomOnly />
 						</PresentationMap>
 					</div>
-					<AppStoryMainPanelFooter className={''}>
-						<AppStorySubheadline className={''} isFooterTitle>
+					<StoryMainPanelFooter className={''}>
+						<StorySubheadline className={''} isFooterTitle>
 							Continue to other applications
-						</AppStorySubheadline>
+						</StorySubheadline>
 						<a href="">
 							Surface Urban Heat Island Assessment
 						</a>
@@ -624,9 +624,9 @@ const AppStoryCureExample = () => {
 						<a href="">
 							Nature Based Solutions
 						</a>
-					</AppStoryMainPanelFooter>
-				</AppStoryMainPanel>
-			</AppStoryContent>
+					</StoryMainPanelFooter>
+				</StoryMainPanel>
+			</Story>
 		</div>
 		);
 	};`}
@@ -635,6 +635,6 @@ const AppStoryCureExample = () => {
 	);
 };
 
-AppStoryCureExample.propTypes = {};
+StoryCureExample.propTypes = {};
 
-export default AppStoryCureExample;
+export default StoryCureExample;
