@@ -1,26 +1,45 @@
-import Page, { SyntaxHighlighter } from '../../../Page';
+import Page, { SyntaxHighlighter } from '../../../../Page';
 import React from 'react';
-import StoryExample from './examples/StoryExample';
-import { Link } from 'react-router-dom';
+import ComponentPropsTable, { Prop, Section } from '../../../../ComponentPropsTable/ComponentPropsTable';
+import StoryExample from '../examples/StoryExample';
 
-import "./style.scss";
-
-const Story = () => {
+const StoryComponents = () => {
 	return (
-		<Page title="Story">
+		<Page title="Story components">
+			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
 			<p>
-				Story is a set of react components that can be used for presenting a project or basically anything that needs to be presented/documented.
-				It was originally developed for CURE application to showcase applications that are connected to the project.
+				StoryComponents are standalone components that can be used in the side panel's or main panel's sections.
 			</p>
-			<p style={{textDecoration: "underline"}}>There are 2 main parts of the story:</p>
-			<ul style={{marginLeft: "1rem"}}>
-				<li>
-					<Link to='./story/sidePanel'>Side panel</Link> 
-					{' '}(left) - Contains navigation and a panel that serves as a guide for the story, usually contains text/graphs. </li>
-				<li><Link to='./story/mainPanel'>Main panel</Link> (right) - Ideal for the main content like maps or images, these are then descibed in the side panel.</li>
-			</ul>
-			<p style={{marginTop: "1rem"}}>These panels need to be wrapped in a Story component that connects them and provides the correct functionality.</p>
-			<b>At this moment, Story is available in the visat-components package.</b>
+			<h2>Props</h2>
+			<ComponentPropsTable>
+					<Section name={"StoryHeadline"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+						<Prop name="isIntro" type="bool" defaultValue="false" />
+					</Section>
+					<Section name={"StorySubheadline"}>
+							<Prop name="children" type="node" />
+							<Prop name="className" type="string" />
+							<Prop name="isIntro" type="bool" defaultValue="false" />
+							<Prop name="isFooterTitle" type="bool" defaultValue="false" />
+					</Section>
+					<Section name={"StoryParagraph"}>
+							<Prop name="children" type="node" />
+							<Prop name="className" type="string" />
+					</Section>
+					<Section name={"StoryLink"}>
+							<Prop name="children" type="node" />
+							<Prop name="className" type="string" />
+					</Section>
+					<Section name={"StoryTags"}>
+							<Prop name="children" type="node" />
+							<Prop name="className" type="string" />
+							<Prop name="onMount" type="func" />
+							<Prop name="className" type="func" />
+							<Prop name="tagKeys" type="number" />
+							<Prop name="tags" type="array">{'[{key: 2, data: {nameDisplay: "rural"}}]'}</Prop>
+					</Section>
+				</ComponentPropsTable>
 			<h2>Code example</h2>
 			<SyntaxHighlighter language="jsx">
 {`import {
@@ -34,10 +53,7 @@ const Story = () => {
 	StorySidePanelFooter,
 	StoryMainPanelIntro,
 	StoryHeadline,
-	StoryLink,
-	StoryTags,
-	StoryMainPanelFooter,
-	StoryMainPanelCase
+	StoryMainPanelFooter
 } from '@gisatcz/visat-components';
 
 <Story className={''}>
@@ -126,14 +142,14 @@ const Story = () => {
 		</StoryMainPanelFooter>
 	</StoryMainPanel>
 </Story>`}
-			</SyntaxHighlighter>
-			<div className='ptr-docs-story-example'>
-				<StoryExample />
-			</div>
+				</SyntaxHighlighter>
+				<div className='ptr-docs-story-example'>
+					<StoryExample />
+				</div>
 		</Page>
 	);
 };
 
-Story.propTypes = {};
+StoryComponents.propTypes = {};
 
-export default Story;
+export default StoryComponents;

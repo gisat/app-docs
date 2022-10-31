@@ -1,47 +1,71 @@
-import Page, { SyntaxHighlighter } from '../../../Page';
+import Page, { SyntaxHighlighter } from '../../../../Page';
+import ComponentPropsTable, { Section } from '../../../../ComponentPropsTable/ComponentPropsTable';
+import { Prop } from '../../../../ComponentPropsTable/ComponentPropsTable';
 import React from 'react';
-import StoryExample from './examples/StoryExample';
-import { Link } from 'react-router-dom';
 
 import "./style.scss";
+import StorySidePanelExample from '../examples/StorySidePanelExample';
 
-const Story = () => {
+const StorySidePanel = () => {
 	return (
-		<Page title="Story">
+		<Page title="StorySidePanel">
+			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
 			<p>
-				Story is a set of react components that can be used for presenting a project or basically anything that needs to be presented/documented.
-				It was originally developed for CURE application to showcase applications that are connected to the project.
+				StorySidePanel serves as a guide through the story.
 			</p>
-			<p style={{textDecoration: "underline"}}>There are 2 main parts of the story:</p>
+			<p style={{textDecoration: "underline"}}>
+				It is composed of two main parts:
+			</p>
 			<ul style={{marginLeft: "1rem"}}>
-				<li>
-					<Link to='./story/sidePanel'>Side panel</Link> 
-					{' '}(left) - Contains navigation and a panel that serves as a guide for the story, usually contains text/graphs. </li>
-				<li><Link to='./story/mainPanel'>Main panel</Link> (right) - Ideal for the main content like maps or images, these are then descibed in the side panel.</li>
+				<li>Navigation (left) is composed of buttons for jumping between sections of the story.</li>
+				<li>SidePanel (right) is split into sections - introduction, cases and footer.
+					For all three sections, there are components that can be used to hold the content.</li>
 			</ul>
-			<p style={{marginTop: "1rem"}}>These panels need to be wrapped in a Story component that connects them and provides the correct functionality.</p>
-			<b>At this moment, Story is available in the visat-components package.</b>
+			<h3>Navigation icons</h3>
+			<p style={{marginTop: "1rem"}}>
+				First section in the side panel is always considered to be the introduction - home icon is assigned in the navigation.
+				Last section is considered to be the footer - square icon in the navigation.
+				You can change the icons in the navigation with "navigationIcons" prop. (see the last example)
+			</p>
+			<p>
+				<b>The number of sections in the side panel should be the same as in the main panel.</b>
+			</p>
+			<h2>Props</h2>
+			<ComponentPropsTable>
+				<Section name={"StorySidePanel"}>
+					<Prop name="children" type="node" />
+					<Prop name="className" type="string" />
+					<Prop name="hideNavigation" type="bool" defaultValue="false">if true - hides the navigation</Prop>
+					<Prop name="navigationIcons" type="object" defaultValue="{home: 'ri-home', case: 'ri-dot', footer: 'ri-square'}" />
+				</Section>
+				<Section name={"StorySidePanelIntro"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+				</Section>
+				<Section name={"StorySidePanelCase"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+				</Section>
+				<Section name={"StorySidePanelFooter"}>
+						<Prop name="children" type="node" />
+						<Prop name="className" type="string" />
+				</Section>
+			</ComponentPropsTable>
 			<h2>Code example</h2>
+			<h3>With navigation</h3>
 			<SyntaxHighlighter language="jsx">
 {`import {
-	Story,
+	Story, 
 	StorySidePanel, 
-	StoryMainPanel, 
 	StorySidePanelIntro, 
 	StorySidePanelCase,
 	StorySubheadline,
 	StoryParagraph,
 	StorySidePanelFooter,
-	StoryMainPanelIntro,
-	StoryHeadline,
-	StoryLink,
-	StoryTags,
-	StoryMainPanelFooter,
-	StoryMainPanelCase
 } from '@gisatcz/visat-components';
 
-<Story className={''}>
-	<StorySidePanel className={''}>
+<Story className={''} layout="" theme="default">
+	<StorySidePanel className={''} hideNavigation={false}>
 		<StorySidePanelIntro className={''}>
 			<StorySubheadline className={''}>
 				Service Rationale
@@ -76,64 +100,41 @@ const Story = () => {
 			<StoryParagraph className={''}>
 			Fusce tellus odio, dapibus id fermentum quis, suscipit id erat. Aliquam id dolor. Integer in sapien. Pellentesque pretium lectus id turpis. Duis pulvinar. Duis risus. Curabitur bibendum justo non orci. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur? Nullam lectus justo, vulputate eget mollis sed, tempor sed magna. Quisque porta. Fusce suscipit libero eget elit. Fusce aliquam vestibulum ipsum.
 			</StoryParagraph>
-			<ul className={''} style={{marginLeft: "1rem"}}>
-				<li>
-					<StoryLink className={''}>
-						Ut tempus purus at lorem -{' '}
-						<a href="./storyComponents">
-							aenean placerat
-						</a>
-					</StoryLink>
-				</li>
-				<li>
-					<StoryLink className={''}>
-						Curabitur bibendum justo non orci -{' '}
-						<a href="./storyComponents">
-							mauris metus
-						</a>
-					</StoryLink>
-				</li>
-			</ul>
 		</StorySidePanelFooter>
 	</StorySidePanel>
-	<StoryMainPanel className={''}>
-		<StoryMainPanelIntro className={''}>
-			<StoryHeadline className={''} isIntro>
-				Headline
-			</StoryHeadline>
-			<StorySubheadline className={''} isIntro>
-				Maecenas aliquet accumsan leo. Nullam sit amet magna in magna gravida vehicula.
-			</StorySubheadline>
-			<StoryTags
-				className={''}
-				tags={[
-					{key: 0, data: {nameDisplay: "nature"}},
-					{key: 1, data: {nameDisplay: "forest"}},
-					{key: 2, data: {nameDisplay: "rural"}}
-				]}
-			/>
-		</StoryMainPanelIntro>
-		<StoryMainPanelCase>
-			<h2>Showcase 1</h2>
-		</StoryMainPanelCase>
-		<StoryMainPanelCase>
-			<h2>Showcase 2</h2>
-		</StoryMainPanelCase>
-		<StoryMainPanelFooter className={''}>
-			<StorySubheadline className={''} isFooterTitle>
-				Donec iaculis gravida nulla.
-			</StorySubheadline>
-		</StoryMainPanelFooter>
-	</StoryMainPanel>
 </Story>`}
-			</SyntaxHighlighter>
-			<div className='ptr-docs-story-example'>
-				<StoryExample />
-			</div>
+				</SyntaxHighlighter>
+				<div className='ptr-docs-story-sidePanelExample'>
+					<StorySidePanelExample />
+				</div>
+				<h3>No navigation</h3>
+				<SyntaxHighlighter language="jsx">
+{`<StorySidePanel className={''} hideNavigation={true}>
+	<.../>
+</StorySidePanel>`}
+				</SyntaxHighlighter>
+				<div className='ptr-docs-story-sidePanelExample'>
+					<StorySidePanelExample hideNavigation/>
+				</div>
+				<h3>Navigation behaviour on small screens</h3>
+				<p>If the window is too small for the navigation to be shown completely, only the navigation arrows are rendered.</p>
+				<div className='ptr-docs-story-sidePanelExample' style={{height: "10rem"}}>
+					<StorySidePanelExample />
+				</div>
+				<h3>Custom navigation</h3>
+				<p>Default icons in the navigation can be changed with the prop navigationIcons.</p>
+				<SyntaxHighlighter language="jsx">
+{`<StorySidePanel className={''} navigationIcons={{home: "ri-city", case: "ri-star", footer: "ri-star"}}>
+	<.../>
+</StorySidePanel>`}
+				</SyntaxHighlighter>
+				<div className='ptr-docs-story-sidePanelExample'>
+					<StorySidePanelExample navigationIcons={{home: "ri-city", case: "ri-star", footer: "ri-star"}}/>
+				</div>
 		</Page>
 	);
 };
 
-Story.propTypes = {};
+StorySidePanel.propTypes = {};
 
-export default Story;
+export default StorySidePanel;

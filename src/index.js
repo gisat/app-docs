@@ -97,6 +97,12 @@ import MapTimelineDoc from './components/pages/components/controls/timeline/MapT
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
 import Story from './components/pages/components/story';
+import StoryComponent from './components/pages/components/story/StoryComponent';
+import StorySidePanel from './components/pages/components/story/sidePanel';
+import StoryMainPanel from './components/pages/components/story/mainPanel';
+import StoryComponents from './components/pages/components/story/storyComponents';
+import StoryExamples from './components/pages/components/story/examples';
+import StoryCureExample from './components/pages/components/story/examples/StoryCureExample';
 
 const {store} = createStore();
 
@@ -449,7 +455,33 @@ const App = () => (
 						/>
 						<Page label="WindowsContainer" path="windowsContainer" />
 					</Directory>
-					<Directory label="Story" path="story" component={Story} />
+					<Directory label="Story" path="story" component={Story} >
+						<Page label="Story component" path="StoryComponent" component={StoryComponent}/>
+						<Page
+								label="Side panel"
+								path="sidePanel"
+								component={StorySidePanel}
+						>
+						</Page>
+						<Page
+								label="Main panel"
+								path="mainPanel"
+								component={StoryMainPanel}
+						></Page>
+						<Page
+								label="Story components"
+								path="storyComponents"
+								component={StoryComponents}
+						>
+						</Page>
+						<Directory
+								label="Examples"
+								path="examples"
+								component={StoryExamples}
+						>
+							<Page label="CURE" path="StoryCureExample" component={StoryCureExample}/>
+						</Directory>
+					</Directory>
 				</Directory>
 				<Directory label="Code" path="code" component={Code}>
 					<Page

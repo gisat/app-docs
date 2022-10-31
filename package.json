@@ -16,7 +16,7 @@
     "@gisatcz/ptr-tile-grid": "^0.2.0",
     "@gisatcz/ptr-timeline": "^0.2.3",
     "@gisatcz/ptr-utils": "^1.6.0",
-    "@gisatcz/visat-components": "^0.11.0",
+    "@gisatcz/visat-components": "^0.12.1",
     "classnames": "^2.3.2",
     "connected-react-router": "^6.9.3",
     "cross-env": "^7.0.3",
