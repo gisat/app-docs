@@ -11,13 +11,17 @@ const StorySidePanel = () => {
 		<Page title="StorySidePanel">
 			<p className='ptr-docs-story-isRequired' style={{color: "#2ea200"}}>NOT REQUIRED</p>
 			<p>
-				StorySidePanel serves as a guide through the story and is composed of two main parts:
+				StorySidePanel serves as a guide through the story.
+			</p>
+			<p style={{textDecoration: "underline"}}>
+				It is composed of two main parts:
 			</p>
 			<ul style={{marginLeft: "1rem"}}>
 				<li>Navigation (left) is composed of buttons for jumping between sections of the story.</li>
 				<li>SidePanel (right) is split into sections - introduction, cases and footer.
 					For all three sections, there are components that can be used to hold the content.</li>
 			</ul>
+			<h3>Navigation icons</h3>
 			<p style={{marginTop: "1rem"}}>
 				First section in the side panel is always considered to be the introduction - home icon is assigned in the navigation.
 				Last section is considered to be the footer - square icon in the navigation.

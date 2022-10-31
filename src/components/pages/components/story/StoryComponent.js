@@ -12,15 +12,22 @@ const StoryComponent = () => {
 				Story is a required fundamental component that holds all the content of story.
 				It connects side panel with main panel and ensures that story works as expected.
 			</p>
+			<h3>Functionality</h3>
 			<p>
 				As the user is scrolling in the side panel, the location of the user's actual window is being recorded.
 				When the user's window reaches top of a next section, this section is set as a new active section
 				and content in the main panel is changed. If the user reaches bottom - the last section (footer)
 				is set as the active section. <b>It is important that sections have reasonable heights.</b>
 			</p>
+			<h3>Panel layout</h3>
 			<p>
 				By default, the content is layed out horizontally. On smaller screens the layout changes to vertical.
 				The layout can be also changed with a prop "panelLayout".
+			</p>
+			<h3>Theme</h3>
+			<p>
+				Theme affects colors of the navigation icons and overlay in the main panel's introduction section.
+				It can be changed with a prop "theme".
 			</p>
 			<h2>Props</h2>
 			<ComponentPropsTable>

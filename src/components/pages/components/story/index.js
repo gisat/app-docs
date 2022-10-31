@@ -12,7 +12,7 @@ const Story = () => {
 				Story is a set of react components that can be used for presenting a project or basically anything that needs to be presented/documented.
 				It was originally developed for CURE application to showcase applications that are connected to the project.
 			</p>
-			<p>There are 2 main parts of the story:</p>
+			<p style={{textDecoration: "underline"}}>There are 2 main parts of the story:</p>
 			<ul style={{marginLeft: "1rem"}}>
 				<li>
 					<Link to='./story/sidePanel'>Side panel</Link> 
