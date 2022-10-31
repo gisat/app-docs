@@ -32,7 +32,7 @@ const StorySidePanel = () => {
 					<Prop name="children" type="node" />
 					<Prop name="className" type="string" />
 					<Prop name="hideNavigation" type="bool" defaultValue="false">if true - hides the navigation</Prop>
-					<Prop name="navigationIcons" type="bool" defaultValue="{home: 'ri-home', case: 'ri-dot', footer: 'ri-square'}" />
+					<Prop name="navigationIcons" type="object" defaultValue="{home: 'ri-home', case: 'ri-dot', footer: 'ri-square'}" />
 				</Section>
 				<Section name={"StorySidePanelIntro"}>
 						<Prop name="children" type="node" />
