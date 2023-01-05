@@ -163,7 +163,10 @@ const tooltipLayer = {
 };
 
 const CustomTooltip = props => {
-	return <div style={{background: '#ffffff'}}>ID: {props.featureKey}</div>;
+	const gidsEl = props?.vector.map(v => {
+		return <div>gid: {v?.object?.properties?.gid}</div>;
+	});
+	return <div style={{background: '#ffffff'}}>{gidsEl}</div>;
 };
 
 class VectorLayer extends React.PureComponent {
@@ -336,7 +339,13 @@ class VectorLayer extends React.PureComponent {
 				<SyntaxHighlighter language="js">
 					{`
 
-const TooltipComponent = (props) => <div style={{background: "#ffffff"}}>ID: {props.featureKey}</div>
+const CustomTooltip = props => {
+	const gidsEl = props?.vector.map(v => {
+		return <div>gid: {v?.object?.properties?.gid}</div>;
+	});
+	return <div style={{background: '#ffffff'}}>{gidsEl}</div>;
+};
+
 
 <DeckGlMap
 	view={{
@@ -361,7 +370,7 @@ const TooltipComponent = (props) => <div style={{background: "#ffffff"}}>ID: {pr
 			hoverable: true
 		},
 	]}
-	Tooltip={TooltipComponent}
+	Tooltip={CustomTooltip}
 />
 `}
 				</SyntaxHighlighter>

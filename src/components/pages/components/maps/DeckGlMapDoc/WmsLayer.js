@@ -1,5 +1,5 @@
 import React from 'react';
-import Page from '../../../../Page';
+import Page, {SyntaxHighlighter} from '../../../../Page';
 import {DeckGlMap} from '@gisatcz/ptr-maps';
 import {Link} from 'react-router-dom';
 
@@ -27,6 +27,7 @@ const cuzk = {
 	name: 'CUZK Ortofoto',
 	type: 'wms',
 	options: {
+		pickable: true,
 		url: 'https://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx',
 		params: {
 			layers: 'GR_ORTFOTORGB',
@@ -45,6 +46,13 @@ const composite = {
 			layers: 'OSM-Overlay-WMS',
 		},
 	},
+};
+
+const CustomTooltip = props => {
+	const gidsEl = props?.raster.map(r => {
+		return <div>color: {r?.color.toString()}</div>;
+	});
+	return <div style={{background: '#ffffff'}}>{gidsEl}</div>;
 };
 
 const wmsExampleLayers = [composite];
@@ -76,6 +84,55 @@ class WmsLayer extends React.PureComponent {
 						layers={wmsExampleLayersCz}
 					/>
 				</div>
+				<h3 id="tooltip">Tooltip</h3>
+				<div style={{height: 400, marginBottom: 10}}>
+					<DeckGlMap
+						view={viewCz}
+						backgroundLayer={backgroundLayer}
+						layers={wmsExampleLayersCz}
+						Tooltip={CustomTooltip}
+					/>
+				</div>
+				<SyntaxHighlighter language="js">
+					{`
+
+const CustomTooltip = props => {
+	const gidsEl = props?.raster.map(r => {
+		return <div>color: {r?.color.toString()}</div>;
+	});
+	return <div style={{background: '#ffffff'}}>{gidsEl}</div>;
+};
+
+<DeckGlMap
+	view={{
+		center: {lat: 50.35, lon: 15.8},
+		boxRange: 10000
+	}}
+	backgroundLayer={{
+		key: 'background-osm',
+		type: 'wmts',
+		options: {
+			url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png'
+		}
+	}}
+	layers={[
+		{
+			key: 'cuzk_ortofoto',
+			name: 'CUZK Ortofoto',
+			type: 'wms',
+			options: {
+				pickable: true,
+				url: 'https://geoportal.cuzk.cz/WMS_ORTOFOTO_PUB/WMService.aspx',
+				params: {
+					layers: 'GR_ORTFOTORGB',
+				},
+			},
+		}
+	]}
+	Tooltip={TooltipComponent}
+/>
+`}
+				</SyntaxHighlighter>
 			</Page>
 		);
 	}
