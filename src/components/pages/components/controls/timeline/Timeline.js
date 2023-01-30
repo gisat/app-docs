@@ -3,9 +3,7 @@ import {Link} from 'react-router-dom';
 import moment from 'moment';
 import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
 import './timeline.scss';
-import ComponentPropsTable, {
-	Prop,
-} from '../../../../ComponentPropsTable/ComponentPropsTable';
+import ComponentPropsTable from '../../../../ComponentPropsTable/ComponentPropsTable';
 import {
 	Timeline,
 	Overlay,
@@ -16,13 +14,11 @@ import {
 	Months,
 	MonthsLabels,
 	TimeLineHover,
-	HoverHandler,
-	position,
 	utils,
 } from '@gisatcz/ptr-timeline';
+import {HoverHandler, getTootlipPosition} from '@gisatcz/ptr-core';
 
-const {getTootlipPosition} = position;
-const {getIntersectionOverlays, overlap} = utils.overlays;
+const {getIntersectionOverlays} = utils.overlays;
 
 const TOOLTIP_PADDING = 5;
 
@@ -184,15 +180,19 @@ class TimelineDoc extends React.PureComponent {
 			const {activeLevel} = props;
 			switch (activeLevel) {
 				case 'year':
-					return <>
-						<Years key={'years'} {...props}/>
-						<YearsLabels key={'yearsLabes'} {...props}/>
-					</>
+					return (
+						<>
+							<Years key={'years'} {...props} />
+							<YearsLabels key={'yearsLabes'} {...props} />
+						</>
+					);
 				case 'month':
-					return <>
-						<Months key={'months'} {...props}/>
-						<MonthsLabels key={'monthsLabes'} {...props}/>
-					</>
+					return (
+						<>
+							<Months key={'months'} {...props} />
+							<MonthsLabels key={'monthsLabes'} {...props} />
+						</>
+					);
 			}
 			return React.createElement(Months, {...props, key: 'month'});
 		};
@@ -479,7 +479,10 @@ const Levels = (props) => {
 `}
 				</SyntaxHighlighter>
 
-				<div className={'ptr-timeline'} style={{height: '400px', width: '70px'}}>
+				<div
+					className={'ptr-timeline'}
+					style={{height: '400px', width: '70px'}}
+				>
 					<Timeline
 						periodLimit={periodLimit}
 						onChange={timelineState => {
@@ -553,7 +556,10 @@ const getHorizontalTootlipStyle = () => {
 				</SyntaxHighlighter>
 
 				<div>
-					<HoverHandler getStyle={this.getHorizontalTootlipStyle()}>
+					<HoverHandler
+						getStyle={this.getHorizontalTootlipStyle()}
+						conextId={'TimeLineContext'}
+					>
 						<TimeLineHover getHoverContent={this.getHoverContent}>
 							<Timeline
 								periodLimit={periodLimit}
@@ -582,8 +588,14 @@ const getHorizontalTootlipStyle = () => {
 					<InlineCodeHighlighter>['left', 'right']</InlineCodeHighlighter>.
 				</p>
 
-				<div className={'ptr-timeline-wrapper'} style={{height: '500px', width: '70px', marginTop: '40px'}}>
-					<HoverHandler getStyle={this.getVerticalTootlipStyle()}>
+				<div
+					className={'ptr-timeline-wrapper'}
+					style={{height: '500px', width: '70px', marginTop: '40px'}}
+				>
+					<HoverHandler
+						getStyle={this.getVerticalTootlipStyle()}
+						conextId={'TimeLineContext'}
+					>
 						<TimeLineHover getHoverContent={this.getHoverContent}>
 							<Timeline
 								periodLimit={periodLimit}
@@ -608,7 +620,10 @@ const getHorizontalTootlipStyle = () => {
 				<p></p>
 
 				<div>
-					<HoverHandler getStyle={this.getHorizontalTootlipStyle()}>
+					<HoverHandler
+						getStyle={this.getHorizontalTootlipStyle()}
+						conextId={'TimeLineContext'}
+					>
 						<TimeLineHover getHoverContent={this.getOverlaysHoverContent}>
 							<Timeline
 								periodLimit={periodLimit}

@@ -1,23 +1,13 @@
 import React from 'react';
-import _ from 'lodash';
-import moment from 'moment';
+import {period as periodParser} from '@gisatcz/ptr-utils';
 import Page, {InlineCodeHighlighter, SyntaxHighlighter} from '../../../../Page';
 import './timeline.scss';
-import ComponentPropsTable, {
-	Prop,
-} from '../../../../ComponentPropsTable/ComponentPropsTable';
+import ComponentPropsTable from '../../../../ComponentPropsTable/ComponentPropsTable';
 import {
-	Timeline,
-	Overlay,
-	CenterPicker,
 	Mouse,
 	Years,
 	Months,
 	MapTimelineLegend,
-	TimeLineHover,
-	HoverHandler,
-	position,
-	utils,
 	MapTimeline,
 } from '@gisatcz/ptr-timeline';
 
@@ -28,10 +18,36 @@ const LayerRowItemPresentation = MapTimeline.LayerRowItemPresentation;
 const LayerRowPeriodItemPresentation =
 	MapTimeline.LayerRowPeriodItemPresentation;
 
+const getParsedPeriod = period => {
+	if (period?.data?.start && period?.data?.end) {
+		const parsed = periodParser.parse(
+			`${period.data.start}/${period.data.end}`
+		);
+		return {
+			start: parsed.start,
+			end: parsed.end,
+		};
+	} else if (period?.data?.period) {
+		const parsed = periodParser.parse(period.data.period);
+		return {
+			start: parsed.start.toString(),
+			end: parsed.end.toString(),
+		};
+	} else {
+		return null;
+	}
+};
+
+const LayerRowPeriodItemPresentationWrapped = props => (
+	<LayerRowPeriodItemPresentation
+		{...props}
+		parsedPeriod={getParsedPeriod(props.originPeriod)}
+	/>
+);
 const LayerRowItemComponentWrapped = props => (
 	<LayerRowItemPresentation
 		{...props}
-		LayerRowPeriodItemComponent={LayerRowPeriodItemPresentation}
+		LayerRowPeriodItemComponent={LayerRowPeriodItemPresentationWrapped}
 	/>
 );
 const LayerRowComponentWrapped = props => (
@@ -41,108 +57,102 @@ const LayerRowComponentWrapped = props => (
 	/>
 );
 
-const {getTootlipPosition} = position;
-const {getIntersectionLayers, getIntersectionOverlays, overlap} =
-	utils.overlays;
+const getHoverContent = (x, time, evt, hoverContext, layerRows) => {
+	const clientY = evt.clientY;
 
-const TOOLTIP_PADDING = 5;
+	// remove timeline as a overlay
+	const hoveredOverlays = hoverContext?.hoveredItems?.filter(
+		i => i.key !== 'timeline'
+	);
 
-const layers = [];
+	let top = 0;
+	// select row by mouse position
+	const layerRowMouseIntersection = layerRows?.find(layerRow => {
+		top = top + (layerRow.lineHeight - layerRow.elementHeight) / 2;
+		const layerRowTop = top;
+		top = top + layerRow.elementHeight;
+		const layerRowBottom = top;
+		top = top + (layerRow.lineHeight - layerRow.elementHeight) / 2;
+		const mouseIntersectRow =
+			layerRowTop <= clientY && layerRowBottom >= clientY;
+		return mouseIntersectRow;
+	});
 
-// const layers = [
-// 	{
-// 		lineHeight: 16,
-// 		elementHeight: 10,
-// 		legend: {
-// 			title: 'layer 1',
-// 		},
-// 		items: [
-// 			{
-// 				periods: [{data: {start: '2014', end: '2015'}}],
-// 				colors: {
-// 					basic: 'red', //should be on row
-// 					active: 'blue', //should be on row
-// 				},
-// 				states: ['basic', 'active', 'hover', 'disabled'],
-// 				activeStates: ['basic'],
-// 				mapZIndex: 1,
-// 				layerState: {
-// 					layerTemplateKey: 'lt2',
-// 				},
-// 			},
-// 			{
-// 				periods: [{data: {start: '2016', end: '2018'}}],
-// 				colors: {
-// 					basic: 'red', //should be on row
-// 					active: 'blue', //should be on row
-// 				},
-// 				states: ['basic', 'active', 'hover', 'disabled'],
-// 				activeStates: ['basic'],
-// 				mapZIndex: 2,
-// 				layerState: {
-// 					layerTemplateKey: 'lt1',
-// 				},
-// 			},
-// 		],
-// 		controlMapState: false, //'toggle', true,
-// 	},
-// ];
+	const descriptionElm = (
+		<div>{`${hoveredOverlays?.[0]?.overlay?.origin?.originPeriod?.data?.nameDisplay}`}</div>
+	);
+	const intersectionOverlaysElms =
+		hoveredOverlays?.length > 0 && layerRowMouseIntersection ? (
+			<div
+				key={hoveredOverlays[0].overlay.key}
+				className={'ptr-timeline-tooltip-layer'}
+			>
+				<div>
+					<span
+						className="dot"
+						style={{
+							backgroundColor: layerRowMouseIntersection.items[0].colors.basic,
+						}}
+					></span>
+				</div>
+				<div>
+					<div>xxx</div>
+				</div>
+			</div>
+		) : null;
+
+	return (
+		<div>
+			<div className={'ptr-timeline-tooltip-time'}>
+				<b>{`${time?.format('YYYY')}`}</b>-<b>{`${time?.format('MM')}`}</b>-
+				<b>{`${time?.format('DD')}`}</b>
+			</div>
+			{intersectionOverlaysElms}
+		</div>
+	);
+};
+
+const layers = [
+	{
+		lineHeight: 16,
+		elementHeight: 10,
+		legend: {
+			title: 'layer 1',
+		},
+		items: [
+			{
+				periods: [{data: {start: '2014', end: '2015'}}],
+				colors: {
+					basic: 'red', //should be on row
+					active: 'blue', //should be on row
+				},
+				states: ['basic', 'active', 'hover', 'disabled'],
+				activeStates: ['basic'],
+				mapZIndex: 1,
+				layerState: {
+					layerTemplateKey: 'lt2',
+				},
+			},
+			{
+				periods: [{data: {start: '2016', end: '2018'}}],
+				colors: {
+					basic: 'red', //should be on row
+					active: 'blue', //should be on row
+				},
+				states: ['basic', 'active', 'hover', 'disabled'],
+				activeStates: ['basic'],
+				mapZIndex: 2,
+				layerState: {
+					layerTemplateKey: 'lt1',
+				},
+			},
+		],
+		controlMapState: false, //'toggle', true,
+	},
+];
 const MOUSEBUFFERWIDTH = 10;
 
 const MapTimelineDoc = () => {
-	const getOverlaysHoverContent = (x, time, evt, hoverContext, layerRows) => {
-		//
-		// FIXME - fix getting hovered layers from timeline on scrolled page!!!
-		//
-
-		const clientY = evt.clientY;
-
-		// remove timeline as a overlay
-		const hoveredOverlays = hoverContext?.hoveredItems?.filter(
-			i => i.key !== 'timeline'
-		);
-
-		let top = 0;
-		// select row by mouse position
-		const layerRowMouseIntersection = layerRows?.find(layerRow => {
-			top = top + (layerRow.lineHeight - layerRow.elementHeight) / 2;
-			const layerRowTop = top;
-			top = top + layerRow.elementHeight;
-			const layerRowBottom = top;
-			top = top + (layerRow.lineHeight - layerRow.elementHeight) / 2;
-			const mouseIntersectRow =
-				layerRowTop <= clientY && layerRowBottom >= clientY;
-			return mouseIntersectRow;
-		});
-
-		const intersectionOverlaysElms =
-			hoveredOverlays?.length > 0 && layerRowMouseIntersection ? (
-				<div
-					key={'layerRowMouseIntersection.key'}
-					className={'ptr-timeline-tooltip-layer'}
-				>
-					<div>
-						<span className="dot" style={{backgroundColor: 'red'}}></span>
-					</div>
-					<div>
-						<div>
-							<em>{layerRowMouseIntersection.legend.title}</em>
-						</div>
-					</div>
-				</div>
-			) : null;
-
-		return (
-			<div>
-				<div className={'ptr-timeline-tooltip-time'}>
-					<b>{`${time.format('YYYY')}`}</b>-<b>{`${time.format('MM')}`}</b>-
-					<b>{`${time.format('DD')}`}</b>
-				</div>
-				{intersectionOverlaysElms}
-			</div>
-		);
-	};
-
 	const onLayerClick = layer => {
 		console.log('On layer click', layer);
 	};
@@ -434,9 +444,7 @@ const layers = [
 				style={{minHeight: '10rem', maxHeight: '20rem', position: 'relative'}}
 			>
 				<MapTimelinePresentation
-					getHoverContent={(...rest) =>
-						getOverlaysHoverContent(...rest, layers)
-					}
+					getHoverContent={(...rest) => getHoverContent(...rest, layers)}
 					LayerRowComponent={LayerRowComponentWrapped}
 					periodLimit={periodLimit}
 					onChange={timelineState => {

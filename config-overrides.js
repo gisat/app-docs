@@ -25,7 +25,16 @@ module.exports = function override(config) {
 			// 'react-dom': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-state/node_modules/react-dom',
 			// 'react-resize-detector': '/Users/vojtadubrovsky/Work/GISAT/git/app-esaWorldCerealProductViewer/node_modules/@gisatcz/ptr-maps/node_modules/react-resize-detector',
 			// 'react-resize-detector': '/Users/vojtadubrovsky/Work/GISAT/git/app-esaWorldCerealProductViewer/node_modules/react-resize-detector',
-			// '@gisatcz/ptr-timeline': '/Users/vojtadubrovsky/Work/GISAT/git/ptr-timeline'
+			// react:
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-core/node_modules/react',
+			// 'react-dom':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-core/node_modules/react-dom',
+			// '@gisatcz/ptr-core': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-core',
+			// '@gisatcz/ptr-utils': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-utils',
+			// '@gisatcz/ptr-timeline':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-timeline',
+			// '@gisatcz/cross-package-react-context':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/cross-package-react-context',
 			// react:
 			// 'G:/PROGRAMOVANI/projects/visat-components/node_modules/react',
 			// '@gisatcz/visat-components':
