@@ -68,6 +68,11 @@ class DeckGlMapDoc extends React.PureComponent {
 							Vector layer
 						</Link>
 					</li>
+					<li>
+						<Link to="/components/maps/presentational/deckGl/3dview">
+							Controll for switch to 3D view
+						</Link>
+					</li>
 				</ul>
 
 				<h3 id="wmts">WMTS layer</h3>

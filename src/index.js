@@ -96,6 +96,7 @@ import TimelineDoc from './components/pages/components/controls/timeline/Timelin
 import MapTimelineDoc from './components/pages/components/controls/timeline/MapTimeline';
 import VectorLayer from './components/pages/components/maps/DeckGlMapDoc/VectorLayer';
 import WmsLayer from './components/pages/components/maps/DeckGlMapDoc/WmsLayer';
+import View from './components/pages/components/maps/DeckGlMapDoc/View';
 import Story from './components/pages/components/story';
 import StoryComponent from './components/pages/components/story/StoryComponent';
 import StorySidePanel from './components/pages/components/story/sidePanel';
@@ -265,6 +266,7 @@ const App = () => (
 									component={VectorLayer}
 								/>
 								<Page label="WMS layer" path="wmsLayer" component={WmsLayer} />
+								<Page label="3D View" path="3dview" component={View} />
 							</Directory>
 							<Directory
 								label="WebWorldWind"
@@ -455,31 +457,37 @@ const App = () => (
 						/>
 						<Page label="WindowsContainer" path="windowsContainer" />
 					</Directory>
-					<Directory label="Story" path="story" component={Story} >
-						<Page label="Story component" path="StoryComponent" component={StoryComponent}/>
+					<Directory label="Story" path="story" component={Story}>
 						<Page
-								label="Side panel"
-								path="sidePanel"
-								component={StorySidePanel}
-						>
-						</Page>
+							label="Story component"
+							path="StoryComponent"
+							component={StoryComponent}
+						/>
 						<Page
-								label="Main panel"
-								path="mainPanel"
-								component={StoryMainPanel}
+							label="Side panel"
+							path="sidePanel"
+							component={StorySidePanel}
 						></Page>
 						<Page
-								label="Story components"
-								path="storyComponents"
-								component={StoryComponents}
-						>
-						</Page>
+							label="Main panel"
+							path="mainPanel"
+							component={StoryMainPanel}
+						></Page>
+						<Page
+							label="Story components"
+							path="storyComponents"
+							component={StoryComponents}
+						></Page>
 						<Directory
-								label="Examples"
-								path="examples"
-								component={StoryExamples}
+							label="Examples"
+							path="examples"
+							component={StoryExamples}
 						>
-							<Page label="CURE" path="StoryCureExample" component={StoryCureExample}/>
+							<Page
+								label="CURE"
+								path="StoryCureExample"
+								component={StoryCureExample}
+							/>
 						</Directory>
 					</Directory>
 				</Directory>

@@ -20,6 +20,10 @@ module.exports = function override(config) {
 			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/node_modules/react',
 			// 'react-dom':
 			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/node_modules/react-dom',
+			// react:
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/node_modules/react',
+			// 'react-dom':
+			// 	'/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps/node_modules/react-dom',
 			// '@gisatcz/ptr-maps': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-maps',
 			// 'react-resize-detector': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-timeline/node_modules/react-resize-detector',
 			// 'react-dom': '/Users/vojtadubrovsky/_WORK/GISAT/git/ptr-state/node_modules/react-dom',
