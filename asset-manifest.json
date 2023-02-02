@@ -1,18 +1,20 @@
 {
   "files": {
-    "main.css": "/app-docs/static/css/main.18f0a34b.css",
-    "main.js": "/app-docs/static/js/main.74c7abc7.js",
+    "main.css": "/app-docs/static/css/main.4e0321b7.css",
+    "main.js": "/app-docs/static/js/main.d9056f7d.js",
+    "static/media/storyCureExample.jpg": "/app-docs/static/media/storyCureExample.7bb8e85f0a00ebb32ba6.jpg",
+    "static/media/storyCustomBackground.jpg": "/app-docs/static/media/storyCustomBackground.fd7a23e8d84f1d5216b8.jpg",
     "static/media/Esri_WorldImagery.png": "/app-docs/static/media/Esri_WorldImagery.f44b15e0de6b83cfdbe7.png",
     "static/media/Bing_Aerial.png": "/app-docs/static/media/Bing_Aerial.1db8c29bcc0c460eeeb8.png",
     "static/media/Esri_WorldTopoMap.png": "/app-docs/static/media/Esri_WorldTopoMap.7360500a5142d67f6fdf.png",
     "static/media/OpenStreetMap_Mapnik.png": "/app-docs/static/media/OpenStreetMap_Mapnik.6208aac31249ed4fa79f.png",
     "static/media/panther-icon.png": "/app-docs/static/media/panther-icon.8fc0e40d2b05f31ad2b3.png",
     "index.html": "/app-docs/index.html",
-    "main.18f0a34b.css.map": "/app-docs/static/css/main.18f0a34b.css.map",
-    "main.74c7abc7.js.map": "/app-docs/static/js/main.74c7abc7.js.map"
+    "main.4e0321b7.css.map": "/app-docs/static/css/main.4e0321b7.css.map",
+    "main.d9056f7d.js.map": "/app-docs/static/js/main.d9056f7d.js.map"
   },
   "entrypoints": [
-    "static/css/main.18f0a34b.css",
-    "static/js/main.74c7abc7.js"
+    "static/css/main.4e0321b7.css",
+    "static/js/main.d9056f7d.js"
   ]
 }
